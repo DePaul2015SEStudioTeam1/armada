@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+    <!-- used to register the RPC handler with the spring container -->
+    <bean class="org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter"/>
+
+    <!-- exposes the spring service -->
+    <bean id="httpOperationsService" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+        <property name="service" ref="operationsService"/>
+        <property name="serviceInterface" value="edu.depaul.armada.service.OperationsService"/>
+    </bean>
+    
+    <!-- creates a mapping for the exposed service -->
+    <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+        <property name="mappings">
+            <value>
+                /OperationsService=httpOperationsService
+            </value>
+        </property>
+    </bean>
+    
+</beans>

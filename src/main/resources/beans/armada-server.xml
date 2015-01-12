@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	                    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		                http://www.springframework.org/schema/aop 
+		                http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+		                http://www.springframework.org/schema/context 
+		                http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		                http://www.springframework.org/schema/mvc 
+		                http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+
+	<bean id="contexts"
+		class="org.eclipse.jetty.server.handler.ContextHandlerCollection" />
+	<bean id="server" name="Main" class="org.eclipse.jetty.server.Server"
+		init-method="start" destroy-method="stop">
+		<constructor-arg>
+			<bean id="threadPool" class="org.eclipse.jetty.util.thread.QueuedThreadPool">
+				<property name="minThreads" value="10" />
+				<property name="maxThreads" value="50" />
+			</bean>
+		</constructor-arg>
+		<property name="connectors">
+			<list>
+				<bean id="connector" class="org.eclipse.jetty.server.ServerConnector">
+					<constructor-arg ref="server" />
+					<property name="port" value="9090" />
+				</bean>
+			</list>
+		</property>
+		<property name="handler">
+			<bean id="handlers" class="org.eclipse.jetty.server.handler.HandlerCollection">
+				<property name="handlers">
+					<list>
+						<ref bean="contexts" />
+						<bean id="webapp" class="org.eclipse.jetty.webapp.WebAppContext">
+						  <property name="descriptor" value="webapp/WEB-INF/web.xml"/>
+						  <property name="resourceBase" value="../armada/src/main/webapp"/>
+						  <property name="contextPath" value="/"/>
+						</bean>
+						<bean id="defaultHandler" class="org.eclipse.jetty.server.handler.DefaultHandler" />
+					</list>
+				</property>
+			</bean>
+		</property>
+	</bean>
+
+</beans>
