@@ -8,11 +8,11 @@ package edu.depaul.armada.converter;
  * @author ptrzyna
  *
  */
-public class DomainContainerConverter implements Converter<edu.depaul.operations.domain.Container, edu.depaul.operations.model.Container> {
+public class DomainContainerConverter implements Converter<edu.depaul.armada.domain.Container, edu.depaul.armada.model.Container> {
 
 	@Override
-	public edu.depaul.operations.model.Container convert(edu.depaul.operations.domain.Container domain) {
-		edu.depaul.operations.model.Container model = new edu.depaul.operations.model.Container();
+	public edu.depaul.armada.model.Container convert(edu.depaul.armada.domain.Container domain) {
+		edu.depaul.armada.model.Container model = new edu.depaul.armada.model.Container();
 		
 		model.setId(domain.getId());
 		model.setAgentId(domain.getAgentId());

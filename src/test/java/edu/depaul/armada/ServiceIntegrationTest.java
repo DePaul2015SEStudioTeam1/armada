@@ -6,8 +6,8 @@ package edu.depaul.armada;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import edu.depaul.operations.model.Container;
-import edu.depaul.operations.service.OperationsService;
+import edu.depaul.armada.model.Container;
+import edu.depaul.armada.service.OperationsService;
 
 /**
  * @author ptrzyna

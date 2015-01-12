@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import edu.depaul.operations.model.Container;
-import edu.depaul.operations.service.OperationsService;
+import edu.depaul.armada.model.Container;
+import edu.depaul.armada.service.OperationsService;
 
 /**
  * @author ptrzyna

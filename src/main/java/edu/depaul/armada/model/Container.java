@@ -1,7 +1,7 @@
 /**
  * 
  */
-package edu.depaul.operations.model;
+package edu.depaul.armada.model;
 
 import java.io.Serializable;
 
