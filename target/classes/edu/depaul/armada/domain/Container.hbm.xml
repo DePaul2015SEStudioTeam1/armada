@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="edu.depaul.armada.operations.domain.Container" table="container">
+		<id column="id" name="id" type="java.lang.Long"/>
+		
+		<property column="agent_id" name="agentId" type="java.lang.String" />
+		<property column="mem_total" name="memTotal" type="java.lang.Long" />
+		<property column="mem_used" name="memUsed" type="java.lang.Long" />
+		<property column="mem_free" name="memFree" type="java.lang.Long" />
+		<property column="os_description" name="osDescription" type="java.lang.String" />
+		<property column="os_name" length="4" name="osName" type="java.lang.String" />
+		<property column="os_data_model" name="osDataModel" type="java.lang.String" />
+		<property column="primary_ip_address" name="primaryIpAddress" type="java.lang.String" />
+		<property column="primary_mac_address" name="primaryMacAddress" type="java.lang.String" />
+		<property column="host_name" name="hostName" type="java.lang.String" />
+		<property column="cpu_vendor" name="cpuVendor" type="java.lang.String" />
+		<property column="cpu_model" name="cpuModel" type="java.lang.String" />
+		<property column="cpu_count" name="cpuCount" type="java.lang.Integer" />
+		<property column="disk_space_total" name="diskSpaceTotal" type="java.lang.Long" />
+		<property column="disk_space_used" name="diskSpaceUsed" type="java.lang.Long" />
+		<property column="disk_space_free" name="diskSpaceFree" type="java.lang.Long" />
+  
+	</class>
+</hibernate-mapping>
