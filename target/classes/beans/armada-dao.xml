@@ -18,7 +18,7 @@
 
     <tx:annotation-driven transaction-manager="operationsTransactionManager"/>
     
-    <bean id="containerDao" class="edu.depaul.armada.operations.dao.ContainerDaoHibernate">
+    <bean id="containerDao" class="edu.depaul.armada.dao.ContainerDaoHibernate">
         <constructor-arg name="sessionFactory" ref="operationsSessionFactory"/>
     </bean>
 
@@ -35,7 +35,7 @@
                 <prop key="hibernate.hbm2dll.auto">false</prop>
             </props>
         </property>
-        <property name="mappingLocations" value="classpath:edu/depaul/domain/*.hbm.xml"/>
+        <property name="mappingLocations" value="classpath:edu/depaul/armada/domain/*.hbm.xml"/>
     </bean>
 
 </beans>

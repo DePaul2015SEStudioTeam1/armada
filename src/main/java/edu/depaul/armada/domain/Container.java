@@ -1,7 +1,7 @@
 /**
  * 
  */
-package edu.depaul.operations.domain;
+package edu.depaul.armada.domain;
 
 /**
  * @author ptrzyna

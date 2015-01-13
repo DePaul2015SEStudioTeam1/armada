@@ -13,7 +13,7 @@
 		                http://www.springframework.org/schema/mvc 
 		                http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 	
-	<context:component-scan base-package="edu.depaul.armada.operations.controller" />
+	<context:component-scan base-package="edu.depaul.armada.controller" />
     <mvc:annotation-driven/>
 		                
     <import resource="classpath:beans/armada-dao.xml"/>

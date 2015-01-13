@@ -8,7 +8,7 @@ package edu.depaul.armada.service;
  * 
  * @author Paul A. Trzyna
  */
-public interface MaestroService<Container> {
+public interface CollectorService<Container> {
 
 	/**
 	 * Inserts a new Container instance or updates the existing one

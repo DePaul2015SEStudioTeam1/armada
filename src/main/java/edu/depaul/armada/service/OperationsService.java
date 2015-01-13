@@ -1,7 +1,7 @@
 /**
  * 
  */
-package edu.depaul.operations.service;
+package edu.depaul.armada.service;
 
 import java.util.List;
 

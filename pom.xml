@@ -8,7 +8,8 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<spring.version>3.0.7.RELEASE</spring.version>
-	</properties>
+	  	<jettyVersion>9.2.6.v20141205</jettyVersion>
+  	</properties>
 
 	<distributionManagement>
 		<repository>
@@ -34,10 +35,43 @@
 					<target>1.7</target>
 				</configuration>
 			</plugin>
+			<plugin>
+		      	<groupId>org.apache.maven.plugins</groupId>
+		      	<artifactId>maven-shade-plugin</artifactId>
+		      	<version>2.3</version>
+		      	<configuration>
+		      		<transformers>
+		      			<transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+						  <resource>META-INF/spring.handlers</resource>
+						</transformer>
+						<transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+						  <resource>META-INF/spring.schemas</resource>
+						</transformer>
+		      		</transformers>
+		      	</configuration>
+		        <executions>
+		          <execution>
+		            <phase>package</phase>
+		            <goals>
+		              <goal>shade</goal>
+		            </goals>
+		          </execution>
+		        </executions>
+		      </plugin>
 		</plugins>
 	</build>
 
 	<dependencies>
+		<dependency>
+	  		<groupId>org.eclipse.jetty</groupId>
+	  		<artifactId>jetty-server</artifactId>
+	  		<version>${jettyVersion}</version>
+	  	</dependency>
+	  	<dependency>
+	  		<groupId>org.eclipse.jetty</groupId>
+	  		<artifactId>jetty-webapp</artifactId>
+	  		<version>${jettyVersion}</version>
+	  	</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
@@ -77,11 +111,6 @@
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-ehcache</artifactId>
 			<version>3.5.4-Final</version>
-		</dependency>
-		<dependency>
-			<groupId>edu.depaul</groupId>
-			<artifactId>operations-api</artifactId>
-			<version>${operations-api.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>mysql</groupId>

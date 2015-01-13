@@ -1,7 +1,7 @@
 /**
  * 
  */
-package edu.depaul.operations.dao;
+package edu.depaul.armada.dao;
 
 import java.util.List;
 
