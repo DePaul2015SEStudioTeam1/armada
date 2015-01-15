@@ -14,7 +14,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class Armada {
 
 	public static void main(String[] args) {
-		ApplicationContext ctx = new ClassPathXmlApplicationContext("beans/armada-config.xml"); 
+		ApplicationContext ctx = new ClassPathXmlApplicationContext("beans/armada-config.xml");
 	}
 
 }
