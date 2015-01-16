@@ -15,11 +15,12 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 /**
  * Main entry point into the armada app
  * 
- * @author ptrzyna
+ * @author ptrzyna and jplante
  */
 public class Armada {
 
 	public static void main(String[] args) throws Exception {
+		
 		ApplicationContext ctx = new ClassPathXmlApplicationContext("beans/armada-config.xml");
 		
 		String webappDirLocation = "src/main/webapp/";
@@ -41,9 +42,9 @@ public class Armada {
 		HandlerList handlers = new HandlerList();
 		handlers.setHandlers(new Handler[] {resource_handler, new DefaultHandler()});
 		server.setHandler(handlers);
-		
 		server.start();
 		server.join();
+		
 	}
 
 }
