@@ -3,6 +3,8 @@
  */
 package edu.depaul.armada;
 
+import java.net.URL;
+
 import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.handler.DefaultHandler;
@@ -33,7 +35,12 @@ public class Armada {
 		ResourceHandler resourceHandler = new ResourceHandler();
 		resourceHandler.setDirectoriesListed(true);
 		resourceHandler.setWelcomeFiles(new String[]{"index.html"});
-		resourceHandler.setResourceBase("classpath:/webapp/");
+		
+		ClassLoader loader = Armada.class.getClassLoader();
+		URL resource = loader.getResource("assets/");
+		String webDir = resource.toExternalForm();
+		
+		resourceHandler.setResourceBase(webDir);
 		
 		ServletHandler servletHandler = new ServletHandler();
 		DispatcherServlet dispatcherServlet = new DispatcherServlet();
