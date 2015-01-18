@@ -12,13 +12,24 @@
 		                http://www.springframework.org/schema/context/spring-context-3.0.xsd
 		                http://www.springframework.org/schema/mvc 
 		                http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
-	
-	<context:component-scan base-package="edu.depaul.armada.controller" />
-    <mvc:annotation-driven/>
-		                
-    <import resource="classpath:beans/armada-dao.xml"/>
-    <import resource="classpath:beans/armada-datasource.xml"/>
-    <import resource="classpath:beans/armada-service.xml"/>
-    <import resource="classpath:beans/armada-servlet.xml"/>
+    
+    <!-- used to register the RPC handler with the spring container -->
+    <bean class="org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter"/>
+
+    <!-- exposes the spring service -->
+    <bean id="httpOperationsService" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+        <property name="service" ref="operationsService"/>
+        <property name="serviceInterface" value="edu.depaul.armada.service.OperationsService"/>
+    </bean>
+    
+    <!-- creates a mapping for the exposed service -->
+    <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+        <property name="mappings">
+            <value>
+                /OperationsService=httpOperationsService
+            </value>
+        </property>
+    </bean>
+
 
 </beans>

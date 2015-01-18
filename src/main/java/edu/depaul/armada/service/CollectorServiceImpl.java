@@ -6,7 +6,6 @@ package edu.depaul.armada.service;
 import org.apache.log4j.Logger;
 
 import edu.depaul.armada.model.Container;
-import edu.depaul.armada.service.OperationsService;
 
 /**
  * Concrete implementation of the OperationsService
