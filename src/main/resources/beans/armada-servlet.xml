@@ -22,11 +22,17 @@
         <property name="serviceInterface" value="edu.depaul.armada.service.OperationsService"/>
     </bean>
     
+    <bean id="httpCollectorService" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+        <property name="service" ref="collectorService"/>
+        <property name="serviceInterface" value="edu.depaul.armada.service.CollectorService"/>
+    </bean>    
+    
     <!-- creates a mapping for the exposed service -->
     <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
         <property name="mappings">
             <value>
                 /OperationsService=httpOperationsService
+                /MaestroService=httpCollectorService
             </value>
         </property>
     </bean>
