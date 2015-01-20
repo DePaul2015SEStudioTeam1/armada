@@ -51,94 +51,95 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <img src="http://old.dmps.k12.ia.us/schools/1Lovejoy/images/ship.gif" alt="ship" style="width:50px;height:50px"> <a class="navbar-brand" href="#">Welcome to Armada</a>
+          <img src="images/ship.gif" alt="ship" style="width:50px;height:50px"> <a class="navbar-brand" href="#">Welcome to Armada</a>
         </div>
       </div>
     </nav>
 
-<div class="container">
-<H4>Today is 
-<script>
-	var d = new Date();
-	document.write(d.toDateString());
-</script>
-</H4>
-<br/>
-<div class="panel panel-primary col-xs-6" >
-  <div class="panel-heading">Host A</div>
-  <div class="panel-body">
-	  <div class="row">
-		<div class="col-xs-6">
-			Running: <span class="label label-default label-success">5</span><br/>
-			Idle: <span class="label label-info">1</span><br/>
-			Error: <span class="label label-danger">2</span><br/>
-	  	</div>
-	  	<div class="col-xs-6">
-		  <canvas id="myChart3" width="200" height="200"></canvas>
-	  	</div>
-	  </div>
-  </div>
-</div>
-<br/>
-	<div class="span12">
-		<legend>Container Activity</legend>
-		<div class="row-fluid table-condensed">
-        	<table id="containers" class="table table-hover table-bordered" cellspacing="0" width="100%">
-				<thead>
-					<tr>
-						<th>Agent ID</th>
-						<th>Primary IP Address</th>
-						<th>Primary Mac Address</th>
-						<th>Host Name</th>
-						<th>CPU Vendor</th>
-						<th>CPU Model</th>
-						<th>CPU Count</th>
-						<th>OS Name</th>
-						<th>Memory Free</th>
-						<th>Disk Space Free</th>
-					</tr>
-				</thead>
-	        </table>
-        </div>
-	</div>
-	<div role="tabpanel">
-		<ul class="nav nav-tabs" role="tablist" id="myTab">
-		  <li role="presentation" class="active"><a href="#details" aria-controls="home" role="tab" data-toggle="tab">Details</a></li>
-		  <li role="presentation"><a href="#logs" aria-controls="profile" role="tab" data-toggle="tab">Logs</a></li>
-		</ul>
-
-		<div class="tab-content">
-		  <div role="tabpanel" class="tab-pane" id="details">		  
-		  	<div class="panel panel-primary" >
-			  <div class="panel-body">
-				  <div class="row">
-					<div class="col-xs-6">
-						IP Address: 0.0.0.0<br/>
-						MAC Address: xxxxx<br/>
-						CPU Vendor/Model: Inten XEON<br/>
-						# of CPUs: 1<br/>
-						OS: Mac OSX<br/>
-						Memory<br/>
-						Used: 40% Free: 60% Total: 16GB<br/>
-						Hard Drives (1 Drive(s) in total)<br/>
-						Used: 22% Free: 78% Total: 320GB<br/>
-						<br/>
-						Notes:<br/>
-					</div>
-					<div class="col-xs-6">
-					  <canvas id="myChart" width="200" height="200"></canvas>
-					  <canvas id="myChart2" width="200" height="200"></canvas>
-					</div>
-			  	  </div>
+	<div class="container">
+		<div class="text-right">
+			<a href="#login">Login</a> | <a href="#logout">Logout</a> | <a href="#settings">Settings</a>
+			<br/>
+			Today is <script> var d = new Date(); document.write(d.toDateString()); </script>
+		</div>
+		<br/>
+		<br/>
+		<div class="panel panel-primary col-xs-6" >
+		  <div class="panel-heading">Host A</div>
+		  <div class="panel-body">
+			  <div class="row">
+				<div class="col-xs-6">
+					Running: <span class="label label-default label-success">5</span><br/>
+					Idle: <span class="label label-warning">1</span><br/>
+					Error: <span class="label label-danger">2</span><br/>
+				</div>
+				<div class="col-xs-6">
+				  <canvas id="myChart3" width="200" height="200"></canvas>
+				</div>
 			  </div>
-		    </div>
-		  </div>
-		  <div role="tabpanel" class="tab-pane" id="logs">
-			  <p>More to come!</p>
 		  </div>
 		</div>
+		<br/>
+		<div class="span12">
+			<legend>Container Activity</legend>
+			<div class="row-fluid table-condensed">
+				<table id="containers" class="table table-hover table-bordered" cellspacing="0" width="100%">
+					<thead>
+						<tr>
+							<th>Agent ID</th>
+							<th>Primary IP Address</th>
+							<th>Primary Mac Address</th>
+							<th>Host Name</th>
+							<th>CPU Vendor</th>
+							<th>CPU Model</th>
+							<th>CPU Count</th>
+							<th>OS Name</th>
+							<th>Memory Free</th>
+							<th>Disk Space Free</th>
+						</tr>
+					</thead>
+				</table>
+			</div>
+		</div>
+		<div role="tabpanel">
+			<ul class="nav nav-tabs" role="tablist" id="myTab">
+			  <li role="presentation" class="active"><a href="#details" aria-controls="home" role="tab" data-toggle="tab">Details</a></li>
+			  <li role="presentation"><a href="#logs" aria-controls="profile" role="tab" data-toggle="tab">Logs</a></li>
+			</ul>
+
+			<div class="tab-content">
+			  <div role="tabpanel" class="tab-pane fade in active" id="details">		  
+				<div class="panel panel-primary" >
+				  <div class="panel-body">
+					  <div class="row">
+						<div class="col-xs-4">
+							IP Address: 0.0.0.0<br/>
+							MAC Address: xxxxx<br/>
+							CPU Vendor/Model: Intel XEON<br/>
+							# of CPUs: 1<br/>
+							OS: Mac OSX<br/>
+							Memory<br/>
+							Used: 40% Free: 60% Total: 16GB<br/>
+							Hard Drives (1 Drive(s) in total)<br/>
+							Used: 22% Free: 78% Total: 320GB<br/>
+							<br/>
+							Notes:<br/>
+						</div>
+						<div class="col-xs-8">
+						  <canvas id="myChart" width="200" height="200"></canvas>
+						  <canvas id="myChart2" width="200" height="200"></canvas>
+						  <canvas id="myChart4" width="200" height="200"></canvas>
+						</div>
+					  </div>
+				  </div>
+				</div>
+			  </div>
+			  <div role="tabpanel" class="tab-pane fade" id="logs">
+				  <p>More to come!</p>
+			  </div>
+			</div>
+		</div>
 	</div>
-</div>
 
 <script>
 	$(document).ready(function() {
@@ -160,23 +161,17 @@
 		
 		var data3 = [
 			{
-				value: 300,
+				value: 3,
 				color:"#F7464A",
 				highlight: "#FF5A5E",
 				label: "Red"
 			},
 			{
-				value: 50,
-				color: "#46BFBD",
+				value: 5,
+				color: "#5cb85c",
 				highlight: "#5AD3D1",
 				label: "Green"
-			},
-			{
-				value: 100,
-				color: "#FDB45C",
-				highlight: "#FFC870",
-				label: "Blue"
-			}
+			}		
 		];
 	
 		var ctx = document.getElementById("myChart").getContext("2d");
@@ -187,6 +182,9 @@
 
 		var ctx3 = document.getElementById("myChart3").getContext("2d");		
 		var myPieChart = new Chart(ctx3).Pie(data3);
+		
+		var ctx4 = document.getElementById("myChart4").getContext("2d");		
+		var myPieChart = new Chart(ctx4).Line(data2);
 	
 		var table = $('#containers').dataTable( {
 			"cache": false,
