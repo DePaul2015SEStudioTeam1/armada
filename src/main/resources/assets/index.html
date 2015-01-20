@@ -28,7 +28,6 @@
 
 
     <script src="http://use.edgefonts.net/andika.js"></script>
-    <!-- <script src="http://use.edgefonts.net/arvo.js"></script> -->
 </head>
 
 <html>
@@ -45,12 +44,6 @@
     <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
           <img src="images/ship.gif" alt="ship" style="width:50px;height:50px"> <a class="navbar-brand" href="#">Welcome to Armada</a>
         </div>
       </div>
@@ -65,7 +58,7 @@
 		<br/>
 		<br/>
 		<div class="panel panel-primary col-xs-6" >
-		  <div class="panel-heading">Host A</div>
+		  <div class="panel-heading ">Host A</div>
 		  <div class="panel-body">
 			  <div class="row">
 				<div class="col-xs-6">
@@ -80,7 +73,7 @@
 		  </div>
 		</div>
 		<br/>
-		<div class="span12">
+		<div>
 			<legend>Container Activity</legend>
 			<div class="row-fluid table-condensed">
 				<table id="containers" class="table table-hover table-bordered" cellspacing="0" width="100%">
@@ -101,7 +94,7 @@
 				</table>
 			</div>
 		</div>
-		<div role="tabpanel">
+		<div role="tabpanel" id="tabPanel" class="hide">
 			<ul class="nav nav-tabs" role="tablist" id="myTab">
 			  <li role="presentation" class="active"><a href="#details" aria-controls="home" role="tab" data-toggle="tab">Details</a></li>
 			  <li role="presentation"><a href="#logs" aria-controls="profile" role="tab" data-toggle="tab">Logs</a></li>
@@ -163,14 +156,14 @@
 			{
 				value: 3,
 				color:"#F7464A",
-				highlight: "#FF5A5E",
-				label: "Red"
+				highlight: "#F7464A",
+				label: "Inactive"
 			},
 			{
 				value: 5,
 				color: "#5cb85c",
-				highlight: "#5AD3D1",
-				label: "Green"
+				highlight: "#5cb85c",
+				label: "Active"
 			}		
 		];
 	
@@ -212,10 +205,9 @@
 //			table.fnReloadAjax();
 //		}, 30000 );
 		
-		//$('#containers tbody').on('click', 'tr', function () {
-		//	var name = $('td', this).eq(0).text();
-	    //    	alert( 'You clicked on '+name+'\'s row' );
-    	//	} );
+		$('#containers tbody').on('click', 'tr', function () {
+			$("#tabPanel").show();
+    	} );
 	} );
 </script>
 
