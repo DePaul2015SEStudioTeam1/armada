@@ -53,7 +53,7 @@
 		<div class="text-right">
 			<a href="#login">Login</a> | <a href="#logout">Logout</a> | <a href="#settings" data-toggle="modal" data-target="#settings">Settings</a>
 			<br/>
-			Today is <script> var d = new Date(); document.write(d.toDateString()); </script>
+			Today is <script>document.write(new Date().toDateString()); </script>
 		</div>
 		<div class="modal fade bannerformmodal" tabindex="-1" role="dialog" aria-labelledby="bannerformmodal" aria-hidden="true" id="settings">
 			<div class="modal-dialog modal-sm">
@@ -265,7 +265,7 @@
 			"white-space": "nowrap",
 			"lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
 	    		"ajax": {
-	    			url: "http://140.192.249.15:8080/operations-service/containers/",
+	    			url: "http://localhost:8083/containers/",
 	    			dataSrc: ""
 	    		},
 			"columns": [
