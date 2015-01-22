@@ -27,7 +27,7 @@
     <![endif]-->
 
 
-    <script src="http://use.edgefonts.net/andika.js"></script>
+    <!-- <script src="http://use.edgefonts.net/andika.js"></script> -->
 </head>
 
 <html>
@@ -51,9 +51,87 @@
 
 	<div class="container">
 		<div class="text-right">
-			<a href="#login">Login</a> | <a href="#logout">Logout</a> | <a href="#settings">Settings</a>
+			<a href="#login">Login</a> | <a href="#logout">Logout</a> | <a href="#settings" data-toggle="modal" data-target="#settings">Settings</a>
 			<br/>
 			Today is <script> var d = new Date(); document.write(d.toDateString()); </script>
+		</div>
+		<div class="modal fade bannerformmodal" tabindex="-1" role="dialog" aria-labelledby="bannerformmodal" aria-hidden="true" id="settings">
+			<div class="modal-dialog modal-sm">
+				<div class="modal-content">
+				<div class="modal-content">
+				<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title" id="myModalLabel">Settings</h4>
+					</div>
+				<div class="modal-body">
+						 <form id="requestacallform" method="POST" name="requestacallform">
+							  <div class="form-group">
+									<div class="input-group">                               
+										<span class="input-group-addon"><i class="fa fa-user"></i></span>
+										<input id="cpu_threshold" type="number" class="form-control" placeholder="CPU Threshold" name="cpu_threshold"/>
+									</div>
+							  </div>
+							  <div class="form-group">
+								  <div class="input-group">                               
+									  <span class="input-group-addon"><i class="fa fa-user"></i></span>
+									  <input id="mem_threshold" type="number" class="form-control" placeholder="Memory Threshold" name="mem_threshold"/>
+								  </div>
+							  </div>
+							  <div class="form-group">
+								  <div class="input-group">                               
+									  <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+									  <input id="disk_threshold" type="number" class="form-control" placeholder="Diskspace Threshold" name="disk_threshold" />
+								  </div>
+							  </div>
+						</form>
+					</div>
+			    <div class="modal-footer">
+				  	<button type="submit" class="btn btn-blue">Save</button>
+					<button type="submit" class="btn btn-blue">Submit</button>              
+					<button type="button" class="btn btn-blue">Reset</button>
+				  </div>          
+			</div>
+			</div>
+		  	</div>
+		</div>
+		<div class="modal fade bannerformmodal" tabindex="-1" role="dialog" aria-labelledby="deployer" aria-hidden="true" id="deploy">
+			<div class="modal-dialog col-xs-8">
+				<div class="modal-content">
+				<div class="modal-content">
+				<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title" id="myModalLabel">Load/Unload Docker Images</h4>
+					</div>
+				<div class="modal-body">
+						 <form id="requestacallform" method="POST" name="requestacallform">
+							<div class="form-group">
+								<select multiple class="form-control">
+								  <option>Image A</option>
+								  <option>Image B</option>
+								  <option>Image C</option>
+								  <option>Image D</option>
+								  <option>Image E</option>
+								</select>
+							</div>
+							<div class="form-group">
+								<select multiple class="form-control">
+								  <option>Host 1</option>
+								  <option>Host 2</option>
+								  <option>Host 3</option>
+								</select>
+							</div>
+						</form>
+					</div>
+				<div class="modal-footer">
+				    <button type="button" class="btn btn-blue">Add</button>
+				    <button type="button" class="btn btn-blue">Add All</button>
+					<button type="button" class="btn btn-blue">Remove</button>
+					<button type="button" class="btn btn-blue">Remove All</button>
+					<button type="button" class="btn btn-blue">Reset</button>
+				  </div>
+			</div>
+			</div>
+			</div>
 		</div>
 		<br/>
 		<br/>
@@ -61,13 +139,16 @@
 		  <div class="panel-heading ">Host A</div>
 		  <div class="panel-body">
 			  <div class="row">
-				<div class="col-xs-6">
+				<div class="col-xs-2">
 					Running: <span class="label label-default label-success">5</span><br/>
 					Idle: <span class="label label-warning">1</span><br/>
 					Error: <span class="label label-danger">2</span><br/>
 				</div>
-				<div class="col-xs-6">
+				<div class="col-xs-5">
 				  <canvas id="myChart3" width="200" height="200"></canvas>
+				</div>
+				<div class="col-xs-1">
+				<a href="#settings" data-toggle="modal" data-target="#deploy">Deployer</a>
 				</div>
 			  </div>
 		  </div>
@@ -94,7 +175,7 @@
 				</table>
 			</div>
 		</div>
-		<div role="tabpanel" id="tabPanel" class="hide">
+		<div role="tabpanel" id="tabPanel">
 			<ul class="nav nav-tabs" role="tablist" id="myTab">
 			  <li role="presentation" class="active"><a href="#details" aria-controls="home" role="tab" data-toggle="tab">Details</a></li>
 			  <li role="presentation"><a href="#logs" aria-controls="profile" role="tab" data-toggle="tab">Logs</a></li>
@@ -205,9 +286,9 @@
 //			table.fnReloadAjax();
 //		}, 30000 );
 		
-		$('#containers tbody').on('click', 'tr', function () {
-			$("#tabPanel").show();
-    	} );
+		//$('#containers tbody').on('click', 'tr', function () {
+		//	$("#tabPanel").show();
+    	//} );
 	} );
 </script>
 
