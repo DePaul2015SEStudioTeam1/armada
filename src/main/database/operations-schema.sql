@@ -25,24 +25,51 @@
 
 DROP TABLE IF EXISTS `container`;
 
+# CREATE TABLE `container` (
+#   `id` bigint(11) NOT NULL AUTO_INCREMENT,
+#   `agent_id` varchar(45) DEFAULT NULL,
+#   `mem_total` bigint(11) DEFAULT NULL,
+#   `mem_used` bigint(11) DEFAULT NULL,
+#   `mem_free` bigint(11) DEFAULT NULL,
+#   `os_description` varchar(200) DEFAULT NULL,
+#   `os_name` varchar(100) DEFAULT NULL,
+#   `os_data_model` varchar(100) DEFAULT NULL,
+#   `primary_ip_address` varchar(200) DEFAULT NULL,
+#   `primary_mac_address` varchar(200) DEFAULT NULL,
+#   `host_name` varchar(200) DEFAULT NULL,
+#   `cpu_vendor` varchar(45) DEFAULT NULL,
+#   `cpu_model` varchar(45) DEFAULT NULL,
+#   `cpu_count` int(11) DEFAULT NULL,
+#   `disk_space_total` bigint(11) DEFAULT NULL,
+#   `disk_space_free` bigint(11) DEFAULT NULL,
+#   `disk_space_used` bigint(11) DEFAULT NULL,
+#   PRIMARY KEY (`id`)
+# ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+# 'container' represents the overview of a container logging to Armada
 CREATE TABLE `container` (
   `id` bigint(11) NOT NULL AUTO_INCREMENT,
-  `agent_id` varchar(45) DEFAULT NULL,
-  `mem_total` bigint(11) DEFAULT NULL,
-  `mem_used` bigint(11) DEFAULT NULL,
-  `mem_free` bigint(11) DEFAULT NULL,
-  `os_description` varchar(200) DEFAULT NULL,
-  `os_name` varchar(100) DEFAULT NULL,
-  `os_data_model` varchar(100) DEFAULT NULL,
-  `primary_ip_address` varchar(200) DEFAULT NULL,
-  `primary_mac_address` varchar(200) DEFAULT NULL,
-  `host_name` varchar(200) DEFAULT NULL,
-  `cpu_vendor` varchar(45) DEFAULT NULL,
-  `cpu_model` varchar(45) DEFAULT NULL,
-  `cpu_count` int(11) DEFAULT NULL,
-  `disk_space_total` bigint(11) DEFAULT NULL,
-  `disk_space_free` bigint(11) DEFAULT NULL,
-  `disk_space_used` bigint(11) DEFAULT NULL,
+  `name` varchar(45) DEFAULT NULL,
+  `docker_alias` varchar(45) DEFAULT NULL,
+  `cadvisor_url` varchar(45) DEFAULT NULL,
+  `mem_limit` bigint(11) DEFAULT NULL,
+  `cpu_limit` bigint(11) DEFAULT NULL,
+  `filesystem_capacity` bigint(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+# 'container_log' represents a timestamped log sent from
+# the agent, corresponding to a container
+DROP TABLE IF EXISTS `container_log`;
+CREATE TABLE `container` (
+  `id` bigint(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) DEFAULT NULL,
+  `docker_alias` varchar(45) DEFAULT NULL,
+  `cadvisor_url` varchar(45) DEFAULT NULL,
+  `mem_limit` bigint(11) DEFAULT NULL,
+  `cpu_limit` bigint(11) DEFAULT NULL,
+  `filesystem_capacity` bigint(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
