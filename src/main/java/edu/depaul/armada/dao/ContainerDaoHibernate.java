@@ -36,7 +36,7 @@ public class ContainerDaoHibernate implements ContainerDao<Container> {
 	}
 
 	/* (non-Javadoc)
-	 * @see edu.depaul.armada.operations.dao.ContainerDao#getAll()
+	 * @see edu.depaul.armada.operations.dao.ContainerDao#getAllContainers()
 	 */
 	@Override
 	public List<Container> getAll() {

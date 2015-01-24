@@ -35,7 +35,7 @@ public class OperationsController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	@ResponseBody
 	public List<Container> getAll() {
-		return operationsService.getAll();
+		return operationsService.getAllContainers();
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)

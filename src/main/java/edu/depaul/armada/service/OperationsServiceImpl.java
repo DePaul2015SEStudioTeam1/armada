@@ -89,10 +89,10 @@ public class OperationsServiceImpl implements OperationsService<Container> {
 	}
 
 	/* (non-Javadoc)
-	 * @see edu.depaul.armada.operations.service.OperationsService#getAll()
+	 * @see edu.depaul.armada.operations.service.OperationsService#getAllContainers()
 	 */
 	@Override
-	public List<Container> getAll() {
+	public List<Container> getAllContainers() {
 		
 		List<edu.depaul.armada.domain.Container> domainContainers = containerDao.getAll(); 
 		List<Container> modelContainers = new ArrayList<Container>();
