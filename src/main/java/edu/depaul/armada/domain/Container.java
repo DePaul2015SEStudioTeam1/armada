@@ -1,6 +1,3 @@
-/**
- * 
- */
 package edu.depaul.armada.domain;
 
 /**

@@ -5,7 +5,7 @@ package edu.depaul.armada.converter;
 
 
 /**
- * @author ptrzyna
+ * @author ptrzyna, john davidson
  *
  */
 public class DomainContainerConverter implements Converter<edu.depaul.armada.domain.Container, edu.depaul.armada.model.Container> {
