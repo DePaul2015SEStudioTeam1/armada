@@ -12,7 +12,6 @@ import edu.depaul.armada.service.OperationsService;
 public class ServiceIntegrationTest {
 
 	public static void main(String[] args) {
-		
 		ApplicationContext context = new ClassPathXmlApplicationContext("beans/operations-client.xml");
 		OperationsService<Container> service = context.getBean("remoteOperationsService", OperationsService.class);
 		
@@ -21,7 +20,5 @@ public class ServiceIntegrationTest {
 		for(int i=0; i<11; i++) {
 			service.store(test);
 		}
-		
 	}
-	
 }
