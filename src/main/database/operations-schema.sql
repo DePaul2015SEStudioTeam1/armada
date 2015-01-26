@@ -64,6 +64,25 @@ CREATE TABLE `container` (
 DROP TABLE IF EXISTS `container_log`;
 CREATE TABLE `container_log` (
 
+  #TODO:
+  #is this ID even needed?
+  #could use container_id/timestamp as unique identifier
+  `id` bigint(11) NOT NULL AUTO_INCREMENT,
+
+  #TODO:
+  #this should somehow correspond to the "docker_id"
+  # in a container. Foreign key relation?
+  `container_id` varchar(45) DEFAULT NULL,
+
+  #TODO:
+  #find out exactly what format cAdvisor is presenting this timestamp
+  `timestamp` varchar(45) DEFAULT NULL,
+
+  `mem_usage` bigint(11) DEFAULT NULL,
+  `total_cpu_usage` bigint(11) DEFAULT NULL,
+  `filesystem_usage` bigint(11) DEFAULT NULL,
+
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
