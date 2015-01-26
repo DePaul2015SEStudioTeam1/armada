@@ -1,6 +1,3 @@
-/**
- * 
- */
 package edu.depaul.armada;
 
 import org.springframework.context.ApplicationContext;
@@ -20,7 +17,7 @@ public class ServiceIntegrationTest {
 		OperationsService<Container> service = context.getBean("remoteOperationsService", OperationsService.class);
 		
 		Container test = new Container();
-		test.setAgentId("test");
+		test.setDockerId("test");
 		for(int i=0; i<11; i++) {
 			service.store(test);
 		}

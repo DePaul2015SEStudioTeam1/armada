@@ -25,7 +25,7 @@ public class CollectorServiceImpl implements CollectorService<Container> {
 	 * @see edu.depaul.service.OperationsService#store(edu.depaul.model.Container)
 	 */
 	public void store(Container container) {
-		logger.debug("Container received. [Container: " + container.getId() + " Agent: " + container.getAgentId() + "]");
+		logger.debug("Container received. [Container: " + container.getId() + " Agent: " + container.getDockerId() + "]");
 		
 		try {
 			operationsService.store(container);

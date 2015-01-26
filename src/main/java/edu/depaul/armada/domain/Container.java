@@ -4,27 +4,17 @@
 package edu.depaul.armada.domain;
 
 /**
- * @author ptrzyna
+ * @author ptrzyna, john davidson
  *
  */
 public class Container {
 	private long id;
-	private String agentId;
-	private long memTotal;
-	private long memUsed;
-	private long memFree;
-	private String osDescription;
-	private String osName;
-	private String osDataModel;
-	private String primaryIpAddress;
-	private String primaryMacAddress;
-	private String hostName;
-	private String cpuVendor;
-	private String cpuModel;
-	private int cpuCount;
-	private long diskSpaceTotal;
-	private long diskSpaceUsed;
-	private long diskSpaceFree;
+	private String name;
+	private String dockerId;
+	private String cAdvisorURL;
+	private long memLimit;
+	private long cpuLimit;
+	private long filesystemCapacity;
 
 	public long getId() {
 		return id;
@@ -34,131 +24,52 @@ public class Container {
 		this.id = id;
 	}
 
-	public String getAgentId() {
-		return agentId;
+	public String getName() {
+		return name;
 	}
 
-	public void setAgentId(String agentId) {
-		this.agentId = agentId;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public long getMemTotal() {
-		return memTotal;
+	public String getDockerId() {
+		return dockerId;
 	}
 
-	public void setMemTotal(long memTotal) {
-		this.memTotal = memTotal;
+	public void setDockerId(String dockerId) {
+		this.dockerId = dockerId;
 	}
 
-	public long getMemUsed() {
-		return memUsed;
+	public String getCAdvisorURL() {
+		return cAdvisorURL;
 	}
 
-	public void setMemUsed(long memUsed) {
-		this.memUsed = memUsed;
+	public void setCAdvisorURL(String cAdvisorURL) {
+		this.cAdvisorURL = cAdvisorURL;
 	}
 
-	public long getMemFree() {
-		return memFree;
+	public long getMemLimit() {
+		return memLimit;
 	}
 
-	public void setMemFree(long memFree) {
-		this.memFree = memFree;
+	public void setMemLimit(long memLimit) {
+		this.memLimit = memLimit;
 	}
 
-	public String getOsDescription() {
-		return osDescription;
+	public long getCpuLimit() {
+		return cpuLimit;
 	}
 
-	public void setOsDescription(String osDescription) {
-		this.osDescription = osDescription;
+	public void setCpuLimit(long cpuLimit) {
+		this.cpuLimit = cpuLimit;
 	}
 
-	public String getOsName() {
-		return osName;
+	public long getFilesystemCapacity() {
+		return filesystemCapacity;
 	}
 
-	public void setOsName(String osName) {
-		this.osName = osName;
+	public void setFilesystemCapacity(long filesystemCapacity) {
+		this.filesystemCapacity = filesystemCapacity;
 	}
 
-	public String getOsDataModel() {
-		return osDataModel;
-	}
-
-	public void setOsDataModel(String osDataModel) {
-		this.osDataModel = osDataModel;
-	}
-
-	public String getPrimaryIpAddress() {
-		return primaryIpAddress;
-	}
-
-	public void setPrimaryIpAddress(String primaryIpAddress) {
-		this.primaryIpAddress = primaryIpAddress;
-	}
-
-	public String getPrimaryMacAddress() {
-		return primaryMacAddress;
-	}
-
-	public void setPrimaryMacAddress(String primaryMacAddress) {
-		this.primaryMacAddress = primaryMacAddress;
-	}
-
-	public String getHostName() {
-		return hostName;
-	}
-
-	public void setHostName(String hostName) {
-		this.hostName = hostName;
-	}
-
-	public String getCpuVendor() {
-		return cpuVendor;
-	}
-
-	public void setCpuVendor(String cpuVendor) {
-		this.cpuVendor = cpuVendor;
-	}
-
-	public String getCpuModel() {
-		return cpuModel;
-	}
-
-	public void setCpuModel(String cpuModel) {
-		this.cpuModel = cpuModel;
-	}
-
-	public int getCpuCount() {
-		return cpuCount;
-	}
-
-	public void setCpuCount(int cpuCount) {
-		this.cpuCount = cpuCount;
-	}
-
-	public long getDiskSpaceTotal() {
-		return diskSpaceTotal;
-	}
-
-	public void setDiskSpaceTotal(long diskSpaceTotal) {
-		this.diskSpaceTotal = diskSpaceTotal;
-	}
-
-	public long getDiskSpaceUsed() {
-		return diskSpaceUsed;
-	}
-
-	public void setDiskSpaceUsed(long diskSpaceUsed) {
-		this.diskSpaceUsed = diskSpaceUsed;
-	}
-
-	public long getDiskSpaceFree() {
-		return diskSpaceFree;
-	}
-
-	public void setDiskSpaceFree(long diskSpaceFree) {
-		this.diskSpaceFree = diskSpaceFree;
-	}
 }

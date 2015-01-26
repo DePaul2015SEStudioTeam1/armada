@@ -25,8 +25,8 @@ public interface ContainerDao<Container> {
 	/**
 	 * Gets record matching agent id
 	 * 
-	 * @param agentId	id of the agent we want to retrieve
+	 * @param dockerId	id of the agent we want to retrieve
 	 * @return container instance matching the id
 	 */
-	Container findWithAgentId(String agentId);
+	Container findWithDockerId(String dockerId);
 }

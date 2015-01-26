@@ -26,7 +26,7 @@ public interface OperationsService<Container> {
 	 * 
 	 * @return all containers in the db
 	 */
-	List<Container> getAllContainers();
+	List<Container> getAll();
 	
 	/**
 	 * Gets a desired set of records from the db, can be used for pagination

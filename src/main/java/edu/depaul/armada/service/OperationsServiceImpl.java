@@ -16,7 +16,7 @@ import edu.depaul.armada.model.Container;
 /**
  * Concrete implementation of the OperationsService
  * 
- * @author Paul A. Trzyna
+ * @author Paul A. Trzyna, John Davidson
  */
 @Transactional
 public class OperationsServiceImpl implements OperationsService<Container> {
@@ -51,7 +51,9 @@ public class OperationsServiceImpl implements OperationsService<Container> {
 	 */
 	public void store(Container container) {
 		// TODO add versioning of db records to let hibernate do this automatically
-		edu.depaul.armada.domain.Container old = containerDao.findWithAgentId(container.getAgentId());
+		edu.depaul.armada.domain.Container old = containerDao.findWithDockerId(container.getDockerId());
+
+
 		edu.depaul.armada.domain.Container domain = modelConverter.convert(container);
 		
 		if(old != null) {
@@ -64,35 +66,19 @@ public class OperationsServiceImpl implements OperationsService<Container> {
 	}
 	
 	private void merge(edu.depaul.armada.domain.Container old, edu.depaul.armada.domain.Container domain) {
-		old.setAgentId(domain.getAgentId());
-		
-		old.setCpuCount(domain.getCpuCount());
-		old.setCpuModel(domain.getCpuModel());
-		old.setCpuVendor(domain.getCpuVendor());
-		
-		old.setMemTotal(domain.getMemTotal());
-		old.setMemFree(domain.getMemFree());
-		old.setMemUsed(domain.getMemUsed());
-		
-		old.setOsDescription(domain.getOsDescription());
-		old.setOsDataModel(domain.getOsDataModel());
-		old.setOsName(domain.getOsName());
-		
-		old.setPrimaryIpAddress(domain.getPrimaryIpAddress());
-		old.setPrimaryMacAddress(domain.getPrimaryMacAddress());
-		
-		old.setHostName(domain.getHostName());
-		
-		old.setDiskSpaceTotal(domain.getDiskSpaceTotal());
-		old.setDiskSpaceFree(domain.getDiskSpaceFree());
-		old.setDiskSpaceUsed(domain.getDiskSpaceUsed());
+		old.setName(domain.getName());
+		old.setDockerId(domain.getDockerId());
+		old.setCAdvisorURL(domain.getCAdvisorURL());
+		old.setMemLimit(domain.getMemLimit());
+		old.setCpuLimit(domain.getCpuLimit());
+		old.setFilesystemCapacity(domain.getFilesystemCapacity());
 	}
 
 	/* (non-Javadoc)
-	 * @see edu.depaul.armada.operations.service.OperationsService#getAllContainers()
+	 * @see edu.depaul.armada.operations.service.OperationsService#getAll()
 	 */
-	@Override
-	public List<Container> getAllContainers() {
+	@ Override
+	public List<Container> getAll() {
 		
 		List<edu.depaul.armada.domain.Container> domainContainers = containerDao.getAll(); 
 		List<Container> modelContainers = new ArrayList<Container>();

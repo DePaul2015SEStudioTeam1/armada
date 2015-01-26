@@ -36,7 +36,7 @@ public class ContainerDaoHibernate implements ContainerDao<Container> {
 	}
 
 	/* (non-Javadoc)
-	 * @see edu.depaul.armada.operations.dao.ContainerDao#getAllContainers()
+	 * @see edu.depaul.armada.operations.dao.ContainerDao#getAll()
 	 */
 	@Override
 	public List<Container> getAll() {
@@ -56,12 +56,12 @@ public class ContainerDaoHibernate implements ContainerDao<Container> {
 	}
 
 	/* (non-Javadoc)
-	 * @see edu.depaul.armada.operations.dao.ContainerDao#findWithAgentId(java.lang.String)
+	 * @see edu.depaul.armada.operations.dao.ContainerDao#findWithDockerId(java.lang.String)
 	 */
 	@Override
-	public Container findWithAgentId(String agentId) {
-		Query query = sessionFactory.getCurrentSession().createQuery("from Container where agentId = :agentId");
-		query.setString("agentId", agentId);
+	public Container findWithDockerId(String dockerId) {
+		Query query = sessionFactory.getCurrentSession().createQuery("from Container where docker_id = :dockerId");
+		query.setString("dockerId", dockerId);
 		return (Container) query.uniqueResult();
 	}
 	

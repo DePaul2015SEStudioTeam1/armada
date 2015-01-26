@@ -50,7 +50,7 @@ DROP TABLE IF EXISTS `container`;
 CREATE TABLE `container` (
   `id` bigint(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) DEFAULT NULL,
-  `docker_alias` varchar(45) DEFAULT NULL,
+  `docker_id` varchar(45) DEFAULT NULL,
   `cadvisor_url` varchar(45) DEFAULT NULL,
   `mem_limit` bigint(11) DEFAULT NULL,
   `cpu_limit` bigint(11) DEFAULT NULL,
@@ -62,15 +62,8 @@ CREATE TABLE `container` (
 # 'container_log' represents a timestamped log sent from
 # the agent, corresponding to a container
 DROP TABLE IF EXISTS `container_log`;
-CREATE TABLE `container` (
-  `id` bigint(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(45) DEFAULT NULL,
-  `docker_alias` varchar(45) DEFAULT NULL,
-  `cadvisor_url` varchar(45) DEFAULT NULL,
-  `mem_limit` bigint(11) DEFAULT NULL,
-  `cpu_limit` bigint(11) DEFAULT NULL,
-  `filesystem_capacity` bigint(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+CREATE TABLE `container_log` (
+
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
