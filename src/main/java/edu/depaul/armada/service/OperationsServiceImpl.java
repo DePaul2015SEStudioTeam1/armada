@@ -51,7 +51,7 @@ public class OperationsServiceImpl implements OperationsService<Container> {
 	 */
 	public void store(Container container) {
 		// TODO add versioning of db records to let hibernate do this automatically
-		edu.depaul.armada.domain.Container old = containerDao.findWithDockerId(container.getDockerId());
+		edu.depaul.armada.domain.Container old = containerDao.findWithDockerId(container.getContainerId());
 
 
 		edu.depaul.armada.domain.Container domain = modelConverter.convert(container);
@@ -67,8 +67,8 @@ public class OperationsServiceImpl implements OperationsService<Container> {
 	
 	private void merge(edu.depaul.armada.domain.Container old, edu.depaul.armada.domain.Container domain) {
 		old.setName(domain.getName());
-		old.setDockerId(domain.getDockerId());
-		old.setCAdvisorURL(domain.getCAdvisorURL());
+		old.setContainerId(domain.getContainerId());
+		old.setcAdvisorURL(domain.getcAdvisorURL());
 		old.setMemLimit(domain.getMemLimit());
 		old.setCpuLimit(domain.getCpuLimit());
 		old.setFilesystemCapacity(domain.getFilesystemCapacity());

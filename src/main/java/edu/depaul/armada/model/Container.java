@@ -12,7 +12,7 @@ public class Container implements Serializable {
 
 	private long id;
 	private String name;
-	private String dockerId;
+	private String containerId;
 	private String cAdvisorURL;
 	private long memLimit;
 	private long cpuLimit;
@@ -34,19 +34,19 @@ public class Container implements Serializable {
 		this.name = name;
 	}
 
-	public String getDockerId() {
-		return dockerId;
+	public String getContainerId() {
+		return containerId;
 	}
 
-	public void setDockerId(String dockerId) {
-		this.dockerId = dockerId;
+	public void setContainerId(String containerId) {
+		this.containerId = containerId;
 	}
 
-	public String getCAdvisorURL() {
+	public String getcAdvisorURL() {
 		return cAdvisorURL;
 	}
 
-	public void setCAdvisorURL(String cAdvisorURL) {
+	public void setcAdvisorURL(String cAdvisorURL) {
 		this.cAdvisorURL = cAdvisorURL;
 	}
 

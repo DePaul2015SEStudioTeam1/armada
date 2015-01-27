@@ -16,7 +16,7 @@ public class ServiceIntegrationTest {
 		OperationsService<Container> service = context.getBean("remoteOperationsService", OperationsService.class);
 		
 		Container test = new Container();
-		test.setDockerId("test");
+		test.setContainerId("test");
 		for(int i=0; i<11; i++) {
 			service.store(test);
 		}

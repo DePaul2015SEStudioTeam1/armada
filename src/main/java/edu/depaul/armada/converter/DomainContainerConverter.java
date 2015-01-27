@@ -16,8 +16,8 @@ public class DomainContainerConverter implements Converter<edu.depaul.armada.dom
 
 		model.setId(domain.getId());
 		model.setName(domain.getName());
-		model.setDockerId(domain.getDockerId());
-		model.setCAdvisorURL(domain.getCAdvisorURL());
+		model.setContainerId(domain.getContainerId());
+		model.setcAdvisorURL(domain.getcAdvisorURL());
 		model.setMemLimit(domain.getMemLimit());
 		model.setCpuLimit(domain.getCpuLimit());
 		model.setFilesystemCapacity(domain.getFilesystemCapacity());

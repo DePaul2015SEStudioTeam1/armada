@@ -50,7 +50,7 @@ DROP TABLE IF EXISTS `container`;
 CREATE TABLE `container` (
   `id` bigint(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) DEFAULT NULL,
-  `docker_id` varchar(45) DEFAULT NULL,
+  `container_id` varchar(45) DEFAULT NULL,
   `cadvisor_url` varchar(45) DEFAULT NULL,
   `mem_limit` bigint(11) DEFAULT NULL,
   `cpu_limit` bigint(11) DEFAULT NULL,
