@@ -9,6 +9,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<spring.version>3.0.7.RELEASE</spring.version>
 		<jetty.version>9.2.3.v20140905</jetty.version>
+		<armada-api.version>0.0.1-SNAPSHOT</armada-api.version>
 	</properties>
 
 	<distributionManagement>
@@ -178,6 +179,11 @@
 			<artifactId>jackson-mapper-asl</artifactId>
 			<version>1.9.12</version>
 		</dependency>
+        <dependency>
+            <groupId>edu.depaul</groupId>
+            <artifactId>armada-api</artifactId>
+            <version>${armada-api.version}</version>
+        </dependency>
 	</dependencies>
 
 </project>

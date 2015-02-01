@@ -12,10 +12,10 @@ import edu.depaul.armada.model.Container;
  * 
  * @author John Plante
  */
-public class CollectorServiceImpl implements CollectorService<Container> {
+public class ArmadaServiceImpl implements ArmadaService<Container> {
     
     private OperationsService<Container> operationsService;
-    final Logger logger = Logger.getLogger(CollectorServiceImpl.class);
+    final Logger logger = Logger.getLogger(ArmadaServiceImpl.class);
     
     public void setOperationsService(OperationsService<Container> operationsService){
         this.operationsService = operationsService;

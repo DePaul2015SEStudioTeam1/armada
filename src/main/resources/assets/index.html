@@ -51,7 +51,8 @@
 
 	<div class="container">
 		<div class="text-right">
-			<a href="#login">Login</a> | <a href="#logout">Logout</a> | <a href="#settings" data-toggle="modal" data-target="#settings">Settings</a>
+		    <!-- add an icon here, a gear -->
+			<a href="#settings" data-toggle="modal" data-target="#settings">Settings</a>
 			<br/>
 			Today is <script>document.write(new Date().toDateString()); </script>
 		</div>
@@ -135,19 +136,39 @@
 		</div>
 		<br/>
 		<br/>
-		<div class="panel panel-primary col-xs-6" >
-		  <div class="panel-heading ">Host A</div>
+		<div class="panel panel-primary col-xs-12" >
 		  <div class="panel-body">
 			  <div class="row">
-				<div class="col-xs-2">
-					Running: <span class="label label-default label-success">5</span><br/>
-					Idle: <span class="label label-warning">1</span><br/>
-					Error: <span class="label label-danger">2</span><br/>
+				<div class="col-xs-4">
+				    <div class="row">
+				        <div class="col-xs-3 label label-default label-success" align="right">
+				            Running:
+				        </div>
+				        <div class="col-xs-2">
+				            5
+                        </div>    
+				    </div>
+				    <div class="row">
+                        <div class="col-xs-3 label label-idle" align="right">
+                            Idle:
+                        </div>
+                        <div class="col-xs-2">
+                            1
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-3 label label-warning" align="right">
+                            Error:
+                        </div>
+                        <div class="col-xs-2">
+                            2
+                        </div>
+                    </div>
 				</div>
-				<div class="col-xs-5">
+				<div class="col-xs-4">
 				  <canvas id="myChart3" width="200" height="200"></canvas>
 				</div>
-				<div class="col-xs-1">
+				<div class="col-xs-4">
 				<a href="#settings" data-toggle="modal" data-target="#deploy">Deployer</a>
 				</div>
 			  </div>

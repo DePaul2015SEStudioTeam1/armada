@@ -24,7 +24,7 @@
     
     <bean id="httpCollectorService" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
         <property name="service" ref="collectorService"/>
-        <property name="serviceInterface" value="edu.depaul.armada.service.CollectorService"/>
+        <property name="serviceInterface" value="edu.depaul.armada.service.ArmadaService"/>
     </bean>    
     
     <!-- creates a mapping for the exposed service -->
