@@ -27,7 +27,7 @@ public class ContainerDaoHibernate implements ContainerDao<Container> {
 	}
 
 	/* (non-Javadoc)
-	 * @see edu.depaul.armada.operations.dao.ContainerDao#store(edu.depaul.armada.operations.domain.Container)
+	 * @see edu.depaul.armada.dao.ContainerDao#store(edu.depaul.armada.domain.Container)
 	 */
 	@Override
 	public void store(Container container) {
@@ -64,7 +64,4 @@ public class ContainerDaoHibernate implements ContainerDao<Container> {
 		query.setString("dockerId", dockerId);
 		return (Container) query.uniqueResult();
 	}
-	
-	
-	
 }
