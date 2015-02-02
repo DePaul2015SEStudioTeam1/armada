@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import edu.depaul.armada.domain.Container;
+import edu.depaul.armada.util.AssertUtil;
 
 /**
  * @author ptrzyna
@@ -31,6 +32,7 @@ public class ContainerDaoHibernate implements ContainerDao<Container> {
 	 */
 	@Override
 	public void store(Container container) {
+		AssertUtil.assertNotNull(container, "Container instance cannot be null!");
 		sessionFactory.getCurrentSession().saveOrUpdate(container);
 		sessionFactory.getCurrentSession().flush();
 	}

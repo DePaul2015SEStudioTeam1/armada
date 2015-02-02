@@ -10,6 +10,6 @@
 		<property column="cadvisor_url" name="cAdvisorURL" type="java.lang.String" />
 		<property column="mem_limit" name="memLimit" type="java.lang.Long" />
 		<property column="cpu_limit" name="cpuLimit" type="java.lang.Long" />
-		<property column="filesystem_capacity" name="filesystemCapacity" type="java.lang.String" />
+		<property column="filesystem_capacity" name="filesystemCapacity" type="java.lang.Long" />
 	</class>
 </hibernate-mapping>
