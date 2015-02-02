@@ -22,8 +22,8 @@
         <property name="serviceInterface" value="edu.depaul.armada.service.OperationsService"/>
     </bean>
     
-    <bean id="httpCollectorService" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
-        <property name="service" ref="collectorService"/>
+    <bean id="httpArmadaService" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+        <property name="service" ref="armadaService"/>
         <property name="serviceInterface" value="edu.depaul.armada.service.ArmadaService"/>
     </bean>    
     
@@ -32,7 +32,7 @@
         <property name="mappings">
             <value>
                 /OperationsService=httpOperationsService
-                /MaestroService=httpCollectorService
+                /MaestroService=httpArmadaService
             </value>
         </property>
     </bean>

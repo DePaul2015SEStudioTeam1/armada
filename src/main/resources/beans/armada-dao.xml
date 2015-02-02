@@ -18,24 +18,12 @@
 
     <tx:annotation-driven transaction-manager="operationsTransactionManager"/>
     
-    <bean id="containerDao" class="edu.depaul.armada.dao.ContainerLogDaoHibernate">
+    <bean id="containerLogDao" class="edu.depaul.armada.dao.ContainerLogDaoHibernate">
         <constructor-arg name="sessionFactory" ref="operationsSessionFactory"/>
     </bean>
-
-    <bean id="operationsTransactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
-        <property name="sessionFactory" ref="operationsSessionFactory"/>
-    </bean>
     
-    <bean id="operationsSessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
-        <property name="dataSource" ref="operationsDataSource"/>
-        <property name="hibernateProperties">
-            <props>
-                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
-                <prop key="hibernate.show_sql">true</prop>
-                <prop key="hibernate.hbm2dll.auto">false</prop>
-            </props>
-        </property>
-        <property name="mappingLocations" value="classpath:edu/depaul/armada/domain/*.hbm.xml"/>
+    <bean id="containerDao" class="edu.depaul.armada.dao.ContainerDaoHibernate">
+        <constructor-arg name="sessionFactory" ref="operationsSessionFactory"/>
     </bean>
 
 </beans>
