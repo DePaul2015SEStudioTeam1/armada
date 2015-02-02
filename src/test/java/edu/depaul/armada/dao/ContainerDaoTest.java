@@ -58,10 +58,15 @@ public class ContainerDaoTest {
 	/**
 	 * Test method for {@link edu.depaul.armada.dao.ContainerDao#getAll()}.
 	 */
+	@DirtiesContext
 	@Test
-	@Ignore
 	public void testGetAll() {
-		fail("Not yet implemented");
+		Container container = new Container();
+		_dao.store(container);
+		
+		List<Container> containers = _dao.getAll();
+		
+		assertEquals(1, containers.size());
 	}
 
 	/**
