@@ -29,7 +29,7 @@ import edu.depaul.armada.domain.Container;
 @Transactional
 public class ContainerDaoTest {
 
-	@Autowired private ContainerDao<Container> _dao;
+	@Autowired private ContainerDaoHibernate _dao;
 	
 	
 	/**
