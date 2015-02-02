@@ -7,6 +7,7 @@ import static org.junit.Assert.*;
 
 import java.util.List;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,6 +59,7 @@ public class ContainerDaoTest {
 	 * Test method for {@link edu.depaul.armada.dao.ContainerDao#getAll()}.
 	 */
 	@Test
+	@Ignore
 	public void testGetAll() {
 		fail("Not yet implemented");
 	}
@@ -66,6 +68,7 @@ public class ContainerDaoTest {
 	 * Test method for {@link edu.depaul.armada.dao.ContainerDao#get(long, int)}.
 	 */
 	@Test
+	@Ignore
 	public void testGet() {
 		fail("Not yet implemented");
 	}
@@ -74,6 +77,7 @@ public class ContainerDaoTest {
 	 * Test method for {@link edu.depaul.armada.dao.ContainerDao#findWithDockerId(java.lang.String)}.
 	 */
 	@Test
+	@Ignore
 	public void testFindWithDockerId() {
 		fail("Not yet implemented");
 	}
