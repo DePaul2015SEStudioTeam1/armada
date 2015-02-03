@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import edu.depaul.armada.domain.ContainerLog;
+import edu.depaul.armada.util.AssertUtil;
 
 /**
  * @author ptrzyna and jplante
@@ -33,12 +34,14 @@ public class ContainerLogDaoHibernate implements ContainerLogDao<ContainerLog> {
 	 */
 	@Override
 	public void store(ContainerLog containerLog) {
+		AssertUtil.assertNotNull(containerLog, "ContainerLog instance cannot be null!");
 		sessionFactory.getCurrentSession().saveOrUpdate(containerLog);
 		sessionFactory.getCurrentSession().flush();
 	}
 
 	@Override
 	public List<ContainerLog> findWithContainerId(String containerId) {
+		AssertUtil.assertNotNull(containerId, "Parameter 'containerId' cannot be null!");
 		Query query = sessionFactory.getCurrentSession().createQuery("from ContainerLog where container_id = :containerId");
 		query.setString("containerId", containerId);
 		return castContainerLogList(ContainerLog.class, query.list());
