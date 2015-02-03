@@ -4,7 +4,9 @@
 		"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 	<class name="edu.depaul.armada.domain.ContainerLog" table="container_log">
-		<id column="id" name="id" type="java.lang.Long"/>
+		<id column="id" name="id" type="java.lang.Long">
+          <generator class="native"/>
+        </id>
 		<property column="container_id" name="containerId" type="java.lang.String" />
 		<property column="timestamp" name="timestamp" type="java.lang.String" />
 		<property column="mem_usage" name="memUsage" type="java.lang.Long" />

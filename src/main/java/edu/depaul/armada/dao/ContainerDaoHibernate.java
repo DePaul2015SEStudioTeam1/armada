@@ -61,9 +61,10 @@ public class ContainerDaoHibernate implements ContainerDao<Container> {
 	 * @see edu.depaul.armada.operations.dao.ContainerDao#findWithDockerId(java.lang.String)
 	 */
 	@Override
-	public Container findWithDockerId(String dockerId) {
-		Query query = sessionFactory.getCurrentSession().createQuery("from Container where docker_id = :dockerId");
-		query.setString("dockerId", dockerId);
+	public Container findWithContainerId(String containerId) {
+		AssertUtil.assertNotNull(containerId, "Parameter 'containerId' cannot be null!");
+		Query query = sessionFactory.getCurrentSession().createQuery("from Container where container_id = :containerId");
+		query.setString("containerId", containerId);
 		return (Container) query.uniqueResult();
 	}
 }

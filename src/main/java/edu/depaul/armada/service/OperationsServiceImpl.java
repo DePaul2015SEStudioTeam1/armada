@@ -51,8 +51,7 @@ public class OperationsServiceImpl implements OperationsService<Container> {
 	 */
 	public void store(Container container) {
 		// TODO add versioning of db records to let hibernate do this automatically
-		edu.depaul.armada.domain.Container old = containerDao.findWithDockerId(container.getContainerId());
-
+		edu.depaul.armada.domain.Container old = containerDao.findWithContainerId(container.getContainerId());
 
 		edu.depaul.armada.domain.Container domain = modelConverter.convert(container);
 		

@@ -7,7 +7,6 @@ import static org.junit.Assert.*;
 
 import java.util.List;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +29,6 @@ import edu.depaul.armada.domain.Container;
 public class ContainerDaoTest {
 
 	@Autowired private ContainerDao<Container> _dao;
-	
 	
 	/**
 	 * Test method for {@link edu.depaul.armada.dao.ContainerDao#store(java.lang.Object)}.
@@ -61,30 +59,74 @@ public class ContainerDaoTest {
 	@DirtiesContext
 	@Test
 	public void testGetAll() {
-		Container container = new Container();
-		_dao.store(container);
+		
+		int expected = 10;
+		
+		for(int i=0; i<expected; i++) {
+			Container container = new Container();
+			_dao.store(container);
+		}
 		
 		List<Container> containers = _dao.getAll();
 		
-		assertEquals(1, containers.size());
+		assertEquals(expected, containers.size());
 	}
 
 	/**
 	 * Test method for {@link edu.depaul.armada.dao.ContainerDao#get(long, int)}.
 	 */
+	@DirtiesContext
 	@Test
-	@Ignore
 	public void testGet() {
-		fail("Not yet implemented");
+		Container container = new Container();
+		_dao.store(container);
+		
+		List<Container> results = _dao.get(0, 1);
+		
+		assertNotNull(results);
+		assertEquals(1, results.size());
 	}
 
 	/**
-	 * Test method for {@link edu.depaul.armada.dao.ContainerDao#findWithDockerId(java.lang.String)}.
+	 * Test method for {@link edu.depaul.armada.dao.ContainerDao#findWithContainerId(java.lang.String)}.
 	 */
+	@DirtiesContext
 	@Test
-	@Ignore
-	public void testFindWithDockerId() {
-		fail("Not yet implemented");
+	public void testFindWithContainerId() {
+		Container container = new Container();
+		container.setContainerId("test1");
+		_dao.store(container);
+		
+		container = new Container();
+		container.setContainerId("test2");
+		_dao.store(container);
+		
+		container = new Container();
+		container.setContainerId("test3");
+		_dao.store(container);
+		
+		Container result = _dao.findWithContainerId("test1");
+		assertNotNull(result);
+		assertEquals("test1", result.getContainerId());
+		
+		result = _dao.findWithContainerId("test2");
+		assertNotNull(result);
+		assertEquals("test2", result.getContainerId());
+		
+		result = _dao.findWithContainerId("test3");
+		assertNotNull(result);
+		assertEquals("test3", result.getContainerId());
+		
+		result = _dao.findWithContainerId("test0");
+		assertNull(result);
+		
+		try {
+			_dao.findWithContainerId(null);
+			fail("Expected IllegalArgumentException!");
+		}
+		catch(IllegalArgumentException iae) {
+			assertEquals("Parameter 'containerId' cannot be null!", iae.getMessage());
+		}
 	}
 
 }

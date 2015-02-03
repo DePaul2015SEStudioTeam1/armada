@@ -7,14 +7,12 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import edu.depaul.armada.domain.ContainerLog;
-
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import edu.depaul.armada.domain.Container;
+import edu.depaul.armada.domain.ContainerLog;
 
 /**
  * @author ptrzyna and jplante
@@ -86,12 +84,12 @@ public class ContainerLogDaoHibernate implements ContainerLogDao<ContainerLog> {
 		return avg;
 	}
 	
-	public static <ContainerLog> List<ContainerLog> castContainerLogList(Class<? extends ContainerLog> ContainerLog, Collection<?> collection) {
+	public static <T> List<ContainerLog> castContainerLogList(Class<? extends ContainerLog> ContainerLog, Collection<?> collection) {
 	    List<ContainerLog> containerLogList = new ArrayList<ContainerLog>(collection.size());
 	    for(Object containerLog: collection) {
 	    	containerLogList.add(ContainerLog.cast(containerLog));
 	    }
 	    return containerLogList;
 	}
-
+	
 }
