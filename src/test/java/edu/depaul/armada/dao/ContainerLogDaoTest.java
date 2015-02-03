@@ -31,7 +31,7 @@ import edu.depaul.armada.domain.ContainerLog;
 @Transactional
 public class ContainerLogDaoTest {
 
-	@Autowired private ContainerDao<Container> _dao;
+	//@Autowired private ContainerDao<Container> _dao;
 	@Autowired private ContainerLogDao<ContainerLog> _logDao;
 	
 	/**
@@ -42,7 +42,7 @@ public class ContainerLogDaoTest {
 	public void testStore() {
 		
 		try {
-			_dao.store(null);
+			_logDao.store(null);
 			fail("Expected IllegalArgumentException!");
 		}
 		catch(IllegalArgumentException iae) {
