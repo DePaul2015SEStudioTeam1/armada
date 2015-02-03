@@ -43,7 +43,6 @@ public class ContainerLogDaoHibernate implements ContainerLogDao<ContainerLog> {
 		query.setString("containerId", containerId);
 		return castContainerLogList(ContainerLog.class, query.list());
 	}
-
 	
 	@Override
 	public long getContainerLogAvgMemUsage(String containerId) {
