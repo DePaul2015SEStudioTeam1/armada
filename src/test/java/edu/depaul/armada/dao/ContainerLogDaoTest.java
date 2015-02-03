@@ -46,7 +46,7 @@ public class ContainerLogDaoTest {
 			fail("Expected IllegalArgumentException!");
 		}
 		catch(IllegalArgumentException iae) {
-			assertEquals("Container instance cannot be null!", iae.getMessage());
+			assertEquals("ContainerLog instance cannot be null!", iae.getMessage());
 		}
 		
 		ContainerLog containerLog = new ContainerLog();
