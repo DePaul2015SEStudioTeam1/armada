@@ -4,6 +4,7 @@
 package edu.depaul.armada.dao;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
 
 import java.util.List;
@@ -68,7 +69,7 @@ public class ContainerLogDaoTest {
 	}
 	
 	/**
-	 * Test method for {@link edu.depaul.armada.dao.ContainerLogDao#findWithContainerId()}.
+	 * Test method for {@link edu.depaul.armada.dao.ContainerLogDao#findWithContainerId(java.lang.String)}.
 	 */
 	@DirtiesContext
 	@Test
@@ -93,16 +94,16 @@ public class ContainerLogDaoTest {
 	}
 	
 	/**
-	 * Test method for {@link edu.depaul.armada.dao.ContainerLogDao#findWithContainerId()}.
+	 * Test method for {@link edu.depaul.armada.dao.ContainerLogDao#findWithContainerId(java.lang.String)}.
 	 */
 	@DirtiesContext
 	@Test
 	public void testFindWithContainerIdCheckResult() {
-		/*
+		
 		ContainerLog containerLog = new ContainerLog();
 		ContainerLog containerLogTwo = new ContainerLog();
-		ContainerLog containerLogThree = new ContainerLog();*/
-		String containerId = "test container ID one";/*
+		ContainerLog containerLogThree = new ContainerLog();
+		String containerId = "test container ID one";
 		String containerIdTwo = "test container ID two";
 		containerLog.setContainerId(containerId);
 		containerLogTwo.setContainerId(containerId);
@@ -111,19 +112,63 @@ public class ContainerLogDaoTest {
 		_logDao.store(containerLog);
 		_logDao.store(containerLogTwo);
 		_logDao.store(containerLogThree);
-		*/
+		
 		List<ContainerLog> containerLogs = _logDao.findWithContainerId(containerId);
 		
 		assertEquals(containerId, containerLogs.get(1).getContainerId());
 	}
 	
 	/**
-	 * Test method for {@link edu.depaul.armada.dao.ContainerLogDao#findWithContainerId()}.
+	 * Test method for {@link edu.depaul.armada.dao.ContainerLogDao#getContainerLogAvgMemUsage(java.lang.String)}.
 	 */
 	@DirtiesContext
 	@Test
 	public void testContainerLogAvgMemUsage(){
 		
+		String containerIdOne = "container 1";
+		ContainerLog containerLogOne = new ContainerLog();
+		ContainerLog containerLogTwo = new ContainerLog();
+		ContainerLog containerLogThree = new ContainerLog();
+		containerLogOne.setContainerId(containerIdOne);
+		containerLogTwo.setContainerId(containerIdOne);
+		containerLogThree.setContainerId(containerIdOne);
+		long logOneMemUsage = 1;
+		long logTwoMemUsage = 2;
+		long logThreeMemUsage = 3;
+		containerLogOne.setMemUsage(logOneMemUsage);
+		containerLogTwo.setMemUsage(logTwoMemUsage);
+		containerLogThree.setMemUsage(logThreeMemUsage);
+		
+		String containerIdTwo = "container 2";
+		ContainerLog containerLogFour = new ContainerLog();
+		ContainerLog containerLogFive = new ContainerLog();
+		ContainerLog containerLogSix = new ContainerLog();
+		containerLogFour.setContainerId(containerIdTwo);
+		containerLogFive.setContainerId(containerIdTwo);
+		containerLogSix.setContainerId(containerIdTwo);
+		long logFourMemUsage = -1;
+		long logFiveMemUsage = -2;
+		long logSixMemUsage = -3;
+		containerLogFour.setMemUsage(logFourMemUsage);
+		containerLogFive.setMemUsage(logFiveMemUsage);
+		containerLogSix.setMemUsage(logSixMemUsage);
+		
+		String containerIdThree = "container 3";
+		ContainerLog containerLogSeven = new ContainerLog();
+		containerLogSeven.setContainerId(containerIdThree);
+		long logSevenMemUsage = 0;
+		containerLogSeven.setMemUsage(logSevenMemUsage);
+			
+		String containerIdFour = "container 4";
+		ContainerLog containerLogEight = new ContainerLog();
+		containerLogEight.setContainerId(containerIdFour);
+		long logEightMemUsage = 100;
+		containerLogEight.setMemUsage(logEightMemUsage);
+		
+		assertEquals(2, _logDao.getContainerLogAvgMemUsage("container 1"));
+		assertEquals(-2, _logDao.getContainerLogAvgMemUsage("container 2"));
+		assertEquals(0, _logDao.getContainerLogAvgMemUsage("container 3"));
+		assertEquals(33, _logDao.getContainerLogAvgMemUsage("container 4"));
 	}
 
 }
