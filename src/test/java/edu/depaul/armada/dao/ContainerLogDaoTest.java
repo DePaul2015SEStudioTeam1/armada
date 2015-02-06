@@ -146,6 +146,9 @@ public class ContainerLogDaoTest {
 		containerLogOne.setMemUsage(logOneMemUsage);
 		containerLogTwo.setMemUsage(logTwoMemUsage);
 		containerLogThree.setMemUsage(logThreeMemUsage);
+		_logDao.store(containerLogOne);
+		_logDao.store(containerLogTwo);
+		_logDao.store(containerLogThree);
 		
 		String containerIdTwo = "container 2";
 		ContainerLog containerLogFour = new ContainerLog();
@@ -160,12 +163,16 @@ public class ContainerLogDaoTest {
 		containerLogFour.setMemUsage(logFourMemUsage);
 		containerLogFive.setMemUsage(logFiveMemUsage);
 		containerLogSix.setMemUsage(logSixMemUsage);
+		_logDao.store(containerLogFour);
+		_logDao.store(containerLogFive);
+		_logDao.store(containerLogSix);
 		
 		String containerIdThree = "container 3";
 		ContainerLog containerLogSeven = new ContainerLog();
 		containerLogSeven.setContainerId(containerIdThree);
 		long logSevenMemUsage = 0;
 		containerLogSeven.setMemUsage(logSevenMemUsage);
+		_logDao.store(containerLogSeven);
 			
 		String containerIdFour = "container 4";
 		ContainerLog containerLogEight = new ContainerLog();
@@ -180,6 +187,9 @@ public class ContainerLogDaoTest {
 		containerLogEight.setMemUsage(logEightMemUsage);
 		containerLogNine.setMemUsage(logNineMemUsage);
 		containerLogTen.setMemUsage(logTenMemUsage);
+		_logDao.store(containerLogEight);
+		_logDao.store(containerLogNine);
+		_logDao.store(containerLogTen);
 		
 		assertEquals(2, _logDao.getContainerLogAvgMemUsage("container 1"));
 		assertEquals(-2, _logDao.getContainerLogAvgMemUsage("container 2"));
