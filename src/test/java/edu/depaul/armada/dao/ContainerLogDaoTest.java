@@ -76,11 +76,11 @@ public class ContainerLogDaoTest {
 	public void testFindWithContainerId() {
 		
 		try {
-			_logDao.store(null);
+			_logDao.findWithContainerId(null);
 			fail("Expected IllegalArgumentException!");
 		}
 		catch(IllegalArgumentException iae) {
-			assertEquals("ContainerLog instance cannot be null!", iae.getMessage());
+			assertEquals("Parameter 'containerId' cannot be null!", iae.getMessage());
 		}
 		
 		ContainerLog containerLog = new ContainerLog();
