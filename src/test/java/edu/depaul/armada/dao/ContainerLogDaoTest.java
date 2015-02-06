@@ -75,6 +75,14 @@ public class ContainerLogDaoTest {
 	@Test
 	public void testFindWithContainerId() {
 		
+		try {
+			_logDao.store(null);
+			fail("Expected IllegalArgumentException!");
+		}
+		catch(IllegalArgumentException iae) {
+			assertEquals("ContainerLog instance cannot be null!", iae.getMessage());
+		}
+		
 		ContainerLog containerLog = new ContainerLog();
 		ContainerLog containerLogTwo = new ContainerLog();
 		ContainerLog containerLogThree = new ContainerLog();
@@ -161,9 +169,17 @@ public class ContainerLogDaoTest {
 			
 		String containerIdFour = "container 4";
 		ContainerLog containerLogEight = new ContainerLog();
+		ContainerLog containerLogNine = new ContainerLog();
+		ContainerLog containerLogTen = new ContainerLog();
 		containerLogEight.setContainerId(containerIdFour);
-		long logEightMemUsage = 100;
+		containerLogNine.setContainerId(containerIdFour);
+		containerLogTen.setContainerId(containerIdFour);
+		long logEightMemUsage = 25;
+		long logNineMemUsage = 25;
+		long logTenMemUsage = 50;
 		containerLogEight.setMemUsage(logEightMemUsage);
+		containerLogNine.setMemUsage(logNineMemUsage);
+		containerLogTen.setMemUsage(logTenMemUsage);
 		
 		assertEquals(2, _logDao.getContainerLogAvgMemUsage("container 1"));
 		assertEquals(-2, _logDao.getContainerLogAvgMemUsage("container 2"));
