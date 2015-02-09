@@ -125,8 +125,8 @@ public class ArmadaServiceImpl implements ArmadaService {
 	 */
 	@Override
 	public void store(ContainerLog containerLog) {
-		// TODO Auto-generated method stub
-		
+		edu.depaul.armada.domain.ContainerLog domain = modelContainerLogConverter.convert(containerLog);
+		containerLogDao.store(domain);
 	}
 
 	/* (non-Javadoc)
