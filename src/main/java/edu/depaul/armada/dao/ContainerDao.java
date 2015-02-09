@@ -5,11 +5,15 @@ package edu.depaul.armada.dao;
 
 import java.util.List;
 
+import edu.depaul.armada.domain.Container;
+
 
 /**
+ * Used for CRUD operations associated with Container instances
+ * 
  * @author ptrzyna
  */
-public interface ContainerDao<Container> {
+public interface ContainerDao {
 
 	/**
 	 * Stores a container

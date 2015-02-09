@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.5.11)
 # Database: operations
-# Generation Time: 2014-10-23 02:33:38 +0000
+# Generation Time: 2015-02-09 00:26:21 +0000
 # ************************************************************
 
 
@@ -25,63 +25,31 @@
 
 DROP TABLE IF EXISTS `container`;
 
-# CREATE TABLE `container` (
-#   `id` bigint(11) NOT NULL AUTO_INCREMENT,
-#   `agent_id` varchar(45) DEFAULT NULL,
-#   `mem_total` bigint(11) DEFAULT NULL,
-#   `mem_used` bigint(11) DEFAULT NULL,
-#   `mem_free` bigint(11) DEFAULT NULL,
-#   `os_description` varchar(200) DEFAULT NULL,
-#   `os_name` varchar(100) DEFAULT NULL,
-#   `os_data_model` varchar(100) DEFAULT NULL,
-#   `primary_ip_address` varchar(200) DEFAULT NULL,
-#   `primary_mac_address` varchar(200) DEFAULT NULL,
-#   `host_name` varchar(200) DEFAULT NULL,
-#   `cpu_vendor` varchar(45) DEFAULT NULL,
-#   `cpu_model` varchar(45) DEFAULT NULL,
-#   `cpu_count` int(11) DEFAULT NULL,
-#   `disk_space_total` bigint(11) DEFAULT NULL,
-#   `disk_space_free` bigint(11) DEFAULT NULL,
-#   `disk_space_used` bigint(11) DEFAULT NULL,
-#   PRIMARY KEY (`id`)
-# ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-# 'container' represents the overview of a container logging to Armada
 CREATE TABLE `container` (
-  `id` bigint(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(45) DEFAULT NULL,
-  `container_id` varchar(45) DEFAULT NULL,
-  `cadvisor_url` varchar(45) DEFAULT NULL,
-  `mem_limit` bigint(11) DEFAULT NULL,
-  `cpu_limit` bigint(11) DEFAULT NULL,
-  `filesystem_capacity` bigint(11) DEFAULT NULL,
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  `container_id` varchar(255) DEFAULT NULL,
+  `cadvisor_url` varchar(255) DEFAULT NULL,
+  `mem_limit` bigint(20) DEFAULT NULL,
+  `cpu_limit` bigint(20) DEFAULT NULL,
+  `filesystem_capacity` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
-# 'container_log' represents a timestamped log sent from
-# the agent, corresponding to a container
+
+# Dump of table container_log
+# ------------------------------------------------------------
+
 DROP TABLE IF EXISTS `container_log`;
+
 CREATE TABLE `container_log` (
-
-  #TODO:
-  #is this ID even needed?
-  #could use container_id/timestamp as unique identifier
-  `id` bigint(11) NOT NULL AUTO_INCREMENT,
-
-  #TODO:
-  #this should somehow correspond to the "docker_id"
-  # in a container. Foreign key relation?
-  `container_id` varchar(45) DEFAULT NULL,
-
-  #TODO:
-  #find out exactly what format cAdvisor is presenting this timestamp
-  `timestamp` varchar(45) DEFAULT NULL,
-
-  `mem_usage` bigint(11) DEFAULT NULL,
-  `total_cpu_usage` bigint(11) DEFAULT NULL,
-  `filesystem_usage` bigint(11) DEFAULT NULL,
-
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `container_id` varchar(255) DEFAULT NULL,
+  `timestamp` varchar(255) DEFAULT NULL,
+  `mem_usage` bigint(20) DEFAULT NULL,
+  `total_cpu_usage` bigint(20) DEFAULT NULL,
+  `filesystem_usage` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

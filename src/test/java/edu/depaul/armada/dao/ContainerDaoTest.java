@@ -24,11 +24,11 @@ import edu.depaul.armada.domain.Container;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"/beans/armada-config-test.xml"})
-@TransactionConfiguration(transactionManager="operationsTransactionManager")
+@TransactionConfiguration(transactionManager="armadaTransactionManager")
 @Transactional
 public class ContainerDaoTest {
 
-	@Autowired private ContainerDao<Container> _dao;
+	@Autowired private ContainerDao _dao;
 	
 	/**
 	 * Test method for {@link edu.depaul.armada.dao.ContainerDao#store(java.lang.Object)}.

@@ -29,6 +29,7 @@ public class Armada {
 		resourceHandler.setDirectoriesListed(true);
 		resourceHandler.setWelcomeFiles(new String[]{"index.html"});
 		
+		// loads dashboard from classpath
 		ClassLoader loader = Armada.class.getClassLoader();
 		URL resource = loader.getResource("assets/");
 		String webDir = resource.toExternalForm();

@@ -18,7 +18,7 @@ import edu.depaul.armada.util.AssertUtil;
  *
  */
 @Repository
-public class ContainerDaoHibernate implements ContainerDao<Container> {
+public class ContainerDaoHibernate implements ContainerDao {
 
 	private SessionFactory sessionFactory;
 	

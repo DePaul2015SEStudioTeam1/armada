@@ -16,14 +16,14 @@
 		                http://www.springframework.org/schema/tx 
                         http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
 
-    <tx:annotation-driven transaction-manager="operationsTransactionManager"/>
+    <tx:annotation-driven transaction-manager="armadaTransactionManager"/>
     
     <bean id="containerLogDao" class="edu.depaul.armada.dao.ContainerLogDaoHibernate">
-        <constructor-arg name="sessionFactory" ref="operationsSessionFactory"/>
+        <constructor-arg name="sessionFactory" ref="armadaSessionFactory"/>
     </bean>
     
     <bean id="containerDao" class="edu.depaul.armada.dao.ContainerDaoHibernate">
-        <constructor-arg name="sessionFactory" ref="operationsSessionFactory"/>
+        <constructor-arg name="sessionFactory" ref="armadaSessionFactory"/>
     </bean>
 
 </beans>

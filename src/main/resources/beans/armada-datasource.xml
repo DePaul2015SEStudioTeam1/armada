@@ -13,8 +13,12 @@
 		                http://www.springframework.org/schema/mvc 
 		                http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 
-    <bean id="operationsDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+    <bean id="armadaDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
         <property name="driverClass" value="com.mysql.jdbc.Driver"/>
+        <!--  
+            We will need to rename the db and the user to armada u/p armada/armada
+            Operations is out, doesn't make any sense now.
+        -->
         <property name="jdbcUrl" value="jdbc:mysql://127.0.0.1:3306/operations"/>
         <property name="user" value="operations"/>
         <property name="password" value="operations"/>
@@ -23,17 +27,17 @@
         <property name="maxPoolSize" value="6"/>
     </bean>
     
-    <bean id="operationsTransactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
-        <property name="sessionFactory" ref="operationsSessionFactory"/>
+    <bean id="armadaTransactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+        <property name="sessionFactory" ref="armadaSessionFactory"/>
     </bean>
     
-    <bean id="operationsSessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
-        <property name="dataSource" ref="operationsDataSource"/>
+    <bean id="armadaSessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+        <property name="dataSource" ref="armadaDataSource"/>
         <property name="hibernateProperties">
             <props>
                 <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
                 <prop key="hibernate.show_sql">true</prop>
-                <prop key="hibernate.hbm2dll.auto">false</prop>
+                <prop key="hibernate.hbm2ddl.auto">none</prop>
             </props>
         </property>
         <property name="mappingLocations" value="classpath:edu/depaul/armada/domain/*.hbm.xml"/>

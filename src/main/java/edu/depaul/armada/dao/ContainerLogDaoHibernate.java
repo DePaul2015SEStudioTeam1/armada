@@ -16,11 +16,12 @@ import edu.depaul.armada.domain.ContainerLog;
 import edu.depaul.armada.util.AssertUtil;
 
 /**
+ * Implementation of the ContainerLogDao
+ * 
  * @author ptrzyna and jplante
- *
  */
 @Repository
-public class ContainerLogDaoHibernate implements ContainerLogDao<ContainerLog> {
+public class ContainerLogDaoHibernate implements ContainerLogDao {
 
 	private SessionFactory sessionFactory;
 

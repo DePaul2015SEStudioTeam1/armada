@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import edu.depaul.armada.model.Container;
-import edu.depaul.armada.service.OperationsService;
+import edu.depaul.armada.service.ArmadaService;
 
 /**
  * @author ptrzyna
@@ -21,27 +21,20 @@ import edu.depaul.armada.service.OperationsService;
  */
 @Controller
 @RequestMapping("/containers")
-public class OperationsController {
+public class ArmadaController {
 
-	@Autowired private OperationsService<Container> operationsService;
-	
-	/**
-	 * @param operationsService the operationsService to set
-	 */
-	public void setOperationsService(OperationsService<Container> operationsService) {
-		this.operationsService = operationsService;
-	}
+	@Autowired private ArmadaService armadaService;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	@ResponseBody
 	public List<Container> getAll() {
-		return operationsService.getAll();
+		return armadaService.getAll();
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public List<Container> getPage(@PathVariable long id) {
-		return operationsService.get(id, 10);
+		return armadaService.get(id, 10);
 	}
 	
 	

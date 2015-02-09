@@ -16,12 +16,7 @@
     <!-- used to register the RPC handler with the spring container -->
     <bean class="org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter"/>
 
-    <!-- exposes the spring service -->
-    <bean id="httpOperationsService" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
-        <property name="service" ref="operationsService"/>
-        <property name="serviceInterface" value="edu.depaul.armada.service.OperationsService"/>
-    </bean>
-    
+    <!-- exposes the spring service -->    
     <bean id="httpArmadaService" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
         <property name="service" ref="armadaService"/>
         <property name="serviceInterface" value="edu.depaul.armada.service.ArmadaService"/>
@@ -31,8 +26,7 @@
     <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
         <property name="mappings">
             <value>
-                /OperationsService=httpOperationsService
-                /MaestroService=httpArmadaService
+                /ArmadaService=httpArmadaService
             </value>
         </property>
     </bean>

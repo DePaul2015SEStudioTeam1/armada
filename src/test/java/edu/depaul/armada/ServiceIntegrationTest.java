@@ -4,7 +4,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import edu.depaul.armada.model.Container;
-import edu.depaul.armada.service.OperationsService;
+import edu.depaul.armada.service.ArmadaService;
 
 /**
  * @author ptrzyna
@@ -12,8 +12,8 @@ import edu.depaul.armada.service.OperationsService;
 public class ServiceIntegrationTest {
 
 	public static void main(String[] args) {
-		ApplicationContext context = new ClassPathXmlApplicationContext("beans/operations-client.xml");
-		OperationsService<Container> service = context.getBean("remoteOperationsService", OperationsService.class);
+		ApplicationContext context = new ClassPathXmlApplicationContext("beans/armada-client.xml");
+		ArmadaService service = context.getBean("remoteArmadaService", ArmadaService.class);
 		
 		Container test = new Container();
 		test.setContainerId("test");

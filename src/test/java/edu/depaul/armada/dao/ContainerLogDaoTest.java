@@ -3,13 +3,10 @@
  */
 package edu.depaul.armada.dao;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
 
 import java.util.List;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +16,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
-import edu.depaul.armada.domain.Container;
 import edu.depaul.armada.domain.ContainerLog;
 
 /**
@@ -28,12 +24,11 @@ import edu.depaul.armada.domain.ContainerLog;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"/beans/armada-config-test.xml"})
-@TransactionConfiguration(transactionManager="operationsTransactionManager")
+@TransactionConfiguration(transactionManager="armadaTransactionManager")
 @Transactional
 public class ContainerLogDaoTest {
 
-	//@Autowired private ContainerDao<Container> _dao;
-	@Autowired private ContainerLogDao<ContainerLog> _logDao;
+	@Autowired private ContainerLogDao _logDao;
 	
 	/**
 	 * Test method for {@link edu.depaul.armada.dao.ContainerLogDao#store(java.lang.Object)}.

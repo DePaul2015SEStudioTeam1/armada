@@ -5,12 +5,16 @@ package edu.depaul.armada.dao;
 
 import java.util.List;
 
+import edu.depaul.armada.domain.ContainerLog;
+
 
 /**
+ * Used for CRUD operations associated with ConatainerLogs
+ * 
  * Created by jodavidson on 1/25/15.
  * Completed by jplante
  */
-public interface ContainerLogDao<ContainerLog> {
+public interface ContainerLogDao {
 
 	/**
 	 * Stores a containerLog
