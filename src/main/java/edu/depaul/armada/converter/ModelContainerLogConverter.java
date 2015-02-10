@@ -15,7 +15,6 @@ public class ModelContainerLogConverter implements Converter<edu.depaul.armada.m
 		
 		edu.depaul.armada.domain.ContainerLog domain = new edu.depaul.armada.domain.ContainerLog();
 		
-		domain.setId(model.getId());
 		domain.setTimestamp(model.getTimestamp());
 		domain.setMemUsage(model.getMemUsage());
 		domain.setTotalCpuUsage(model.getTotalCpuUsage());

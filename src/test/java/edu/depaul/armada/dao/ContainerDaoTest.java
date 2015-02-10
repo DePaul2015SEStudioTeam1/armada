@@ -105,19 +105,19 @@ public class ContainerDaoTest {
 		container.setContainerUniqueId("test3");
 		_dao.store(container);
 		
-		Container result = _dao.findWithContainerId("test1");
+		Container result = _dao.findWithContainerId(1);
 		assertNotNull(result);
-		assertEquals("test1", result.getContainerId());
+		assertEquals(1, result.getId());
 		
-		result = _dao.findWithContainerId("test2");
+		result = _dao.findWithContainerId(2);
 		assertNotNull(result);
-		assertEquals("test2", result.getContainerId());
+		assertEquals("test2", result.getId());
 		
-		result = _dao.findWithContainerId("test3");
+		result = _dao.findWithContainerId(3);
 		assertNotNull(result);
-		assertEquals("test3", result.getContainerId());
+		assertEquals("test3", result.getId());
 		
-		result = _dao.findWithContainerId("test0");
+		result = _dao.findWithContainerId(0);
 		assertNull(result);
 		
 		try {

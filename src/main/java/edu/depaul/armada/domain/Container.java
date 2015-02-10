@@ -37,11 +37,11 @@ public class Container {
 		this.containerUniqueId = containerUniqueId;
 	}
 
-	public String getcAdvisorURL() {
+	public String getCAdvisorURL() {
 		return cAdvisorURL;
 	}
 
-	public void setcAdvisorURL(String cAdvisorURL) {
+	public void setCAdvisorURL(String cAdvisorURL) {
 		this.cAdvisorURL = cAdvisorURL;
 	}
 
