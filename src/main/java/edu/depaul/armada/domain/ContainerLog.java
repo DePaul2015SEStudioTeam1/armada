@@ -1,16 +1,19 @@
 package edu.depaul.armada.domain;
 
 /**
- * Created by jodavidson on 1/25/15.
+ * @author jplante jdavidson
  */
 public class ContainerLog {
 
 	private long id;
-	private String containerId;
+	private Container container;
 	private String timestamp;
 	private long memUsage;
 	private long totalCpuUsage;
 	private long filesystemUsage;
+	private long memTotal;
+	private long totalCpu;
+	private long totalFilesystem;
 
 	public long getId() {
 		return id;
@@ -20,12 +23,12 @@ public class ContainerLog {
 		this.id = id;
 	}
 
-	public String getContainerId() {
-		return containerId;
+	public Container getContainer() {
+		return container;
 	}
 
-	public void setContainerId(String containerId) {
-		this.containerId = containerId;
+	public void setContainer(Container container) {
+		this.container = container;
 	}
 
 	public String getTimestamp() {
@@ -58,6 +61,30 @@ public class ContainerLog {
 
 	public void setFilesystemUsage(long filesystemUsage) {
 		this.filesystemUsage = filesystemUsage;
+	}
+	
+	public long getMemTotal(){
+		return memTotal;
+	}
+	
+	public void setMemTotal(long memTotal) {
+		this.memTotal = memTotal;
+	}
+	
+	public long getTotalCpu() {
+		return totalCpu;
+	}
+	
+	public void setTotalCpu(long totalCpu) {
+		this.totalCpu = totalCpu;
+	}
+	
+	public long getTotalFilesystem(){
+		return totalFilesystem;
+	}
+	
+	public void setTotalFilesystem(long totalFilesystem){
+		this.totalFilesystem = totalFilesystem;
 	}
 
 }
