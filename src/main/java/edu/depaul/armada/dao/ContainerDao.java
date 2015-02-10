@@ -32,5 +32,5 @@ public interface ContainerDao {
 	 * @param containerId	id of the container we want to retrieve
 	 * @return container instance matching the id
 	 */
-	Container findWithContainerId(String containerId);
+	Container findWithContainerId(long containerId);
 }

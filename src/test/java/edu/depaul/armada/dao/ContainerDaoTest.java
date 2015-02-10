@@ -94,15 +94,15 @@ public class ContainerDaoTest {
 	@Test
 	public void testFindWithContainerId() {
 		Container container = new Container();
-		container.setContainerId("test1");
+		container.setContainerUniqueId("test1");
 		_dao.store(container);
 		
 		container = new Container();
-		container.setContainerId("test2");
+		container.setContainerUniqueId("test2");
 		_dao.store(container);
 		
 		container = new Container();
-		container.setContainerId("test3");
+		container.setContainerUniqueId("test3");
 		_dao.store(container);
 		
 		Container result = _dao.findWithContainerId("test1");

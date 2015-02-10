@@ -3,7 +3,7 @@ package edu.depaul.armada.domain;
 import java.util.List;
 
 /**
- * @author ptrzyna, john davidson
+ * @author ptrzyna, john davidson, jplante
  *
  */
 public class Container {

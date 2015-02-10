@@ -68,7 +68,7 @@ public class ArmadaServiceImpl implements ArmadaService {
 	 */
 	public void store(Container container) {
 		// TODO add versioning of db records to let hibernate do this automatically
-		edu.depaul.armada.domain.Container old = containerDao.findWithContainerId(container.getContainerId());
+		edu.depaul.armada.domain.Container old = containerDao.findWithContainerId(container.getId());
 
 		edu.depaul.armada.domain.Container domain = modelContainerConverter.convert(container);
 		
@@ -83,9 +83,9 @@ public class ArmadaServiceImpl implements ArmadaService {
 	
 	private void merge(edu.depaul.armada.domain.Container old, edu.depaul.armada.domain.Container domain) {
 		old.setName(domain.getName());
-		old.setContainerId(domain.getContainerId());
+		old.setId(domain.getId());
 		old.setcAdvisorURL(domain.getcAdvisorURL());
-		old.setMemLimit(domain.getMemLimit());
+		old.set MemLimit(domain.getMemLimit());
 		old.setCpuLimit(domain.getCpuLimit());
 		old.setFilesystemCapacity(domain.getFilesystemCapacity());
 	}
