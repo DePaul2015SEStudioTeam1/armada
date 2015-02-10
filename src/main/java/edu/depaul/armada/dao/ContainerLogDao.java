@@ -29,8 +29,8 @@ public interface ContainerLogDao {
 	 * @param containerId	id of the container we want to retrieve
 	 * @return containerLog instance matching the id
 	 */
-	List<ContainerLog> findWithContainerId(String containerId);
-	long getContainerLogAvgMemUsage(String containerId);
-	long getContainerLogAvgCpuUsage(String containerId);
-	long getContainerLogAvgFileSystemUsage(String containerId);
+	List<ContainerLog> findWithContainerId(long containerId);
+	long getContainerLogAvgMemUsage(long containerId);
+	long getContainerLogAvgCpuUsage(long containerId);
+	long getContainerLogAvgFileSystemUsage(long containerId);
 }

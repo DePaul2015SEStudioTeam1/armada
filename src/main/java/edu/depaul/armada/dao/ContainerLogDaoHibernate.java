@@ -41,15 +41,15 @@ public class ContainerLogDaoHibernate implements ContainerLogDao {
 	}
 
 	@Override
-	public List<ContainerLog> findWithContainerId(String containerId) {
+	public List<ContainerLog> findWithContainerId(long containerId) {
 		AssertUtil.assertNotNull(containerId, "Parameter 'containerId' cannot be null!");
-		Query query = sessionFactory.getCurrentSession().createQuery("from ContainerLog where container_id = :containerId");
-		query.setString("containerId", containerId);
+		Query query = sessionFactory.getCurrentSession().createQuery("from ContainerLog where id = :containerId");
+		query.setLong("containerId", containerId);
 		return castContainerLogList(ContainerLog.class, query.list());
 	}
 	
 	@Override
-	public long getContainerLogAvgMemUsage(String containerId) {
+	public long getContainerLogAvgMemUsage(long containerId) {
 		List<ContainerLog> containerLogList = findWithContainerId(containerId);
 		long avg = 0;
 		if(!containerLogList.isEmpty()){
@@ -62,7 +62,7 @@ public class ContainerLogDaoHibernate implements ContainerLogDao {
 	}
 
 	@Override
-	public long getContainerLogAvgCpuUsage(String containerId) {
+	public long getContainerLogAvgCpuUsage(long containerId) {
 		List<ContainerLog> containerLogList = findWithContainerId(containerId);
 		long avg = 0;
 		if(!containerLogList.isEmpty()){
@@ -75,7 +75,7 @@ public class ContainerLogDaoHibernate implements ContainerLogDao {
 	}
 
 	@Override
-	public long getContainerLogAvgFileSystemUsage(String containerId) {
+	public long getContainerLogAvgFileSystemUsage(long containerId) {
 		List<ContainerLog> containerLogList = findWithContainerId(containerId);
 		long avg = 0;
 		if(!containerLogList.isEmpty()){

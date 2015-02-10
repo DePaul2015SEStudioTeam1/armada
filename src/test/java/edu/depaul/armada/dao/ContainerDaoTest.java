@@ -94,15 +94,15 @@ public class ContainerDaoTest {
 	@Test
 	public void testFindWithContainerId() {
 		Container container = new Container();
-		container.setContainerUniqueId("test1");
+		container.setId(1);
 		_dao.store(container);
 		
 		container = new Container();
-		container.setContainerUniqueId("test2");
+		container.setId(2);
 		_dao.store(container);
 		
 		container = new Container();
-		container.setContainerUniqueId("test3");
+		container.setId(3);
 		_dao.store(container);
 		
 		Container result = _dao.findWithContainerId(1);
@@ -120,13 +120,6 @@ public class ContainerDaoTest {
 		result = _dao.findWithContainerId(0);
 		assertNull(result);
 		
-		try {
-			_dao.findWithContainerId(null);
-			fail("Expected IllegalArgumentException!");
-		}
-		catch(IllegalArgumentException iae) {
-			assertEquals("Parameter 'containerId' cannot be null!", iae.getMessage());
-		}
 	}
 
 }
