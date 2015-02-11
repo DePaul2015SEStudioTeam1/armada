@@ -6,7 +6,9 @@ package edu.depaul.armada.dao;
 import static org.junit.Assert.*;
 
 import java.util.List;
+import java.util.UUID;
 
+import org.apache.commons.lang3.RandomUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
+import edu.depaul.armada.domain.Container;
 import edu.depaul.armada.domain.ContainerLog;
 
 /**
@@ -65,17 +68,15 @@ public class ContainerLogDaoTest {
 	@Test
 	public void testFindWithContainerId() {
 		
-		ContainerLog containerLog = new ContainerLog();
-		ContainerLog containerLogTwo = new ContainerLog();
-		ContainerLog containerLogThree = new ContainerLog();
-		long containerId = 1;
-		long containerIdTwo = 2;
+		ContainerLog containerLog = newContainerLog();
+		ContainerLog containerLogTwo = newContainerLog();
+		ContainerLog containerLogThree = newContainerLog();
 		
 		logDao.store(containerLog);
 		logDao.store(containerLogTwo);
 		logDao.store(containerLogThree);
 		
-		List<ContainerLog> containerLogs = logDao.findWithContainerId(containerId);
+		List<ContainerLog> containerLogs = logDao.findWithContainerId(1);
 		
 		assertEquals(1, containerLogs.size());
 	}
@@ -194,4 +195,22 @@ public class ContainerLogDaoTest {
 		assertEquals(-1, logDao.getContainerLogAvgFileSystemUsage(4));
 	}
 
+	private Container newContainer() {
+		Container container = new Container();
+		container.setCAdvisorURL("http://localhost:8080/cAdvisor");
+		container.setContainerUniqueId(UUID.randomUUID().toString());
+		container.setName("test-name");
+		return container;
+	}
+	
+	private ContainerLog newContainerLog() {
+		ContainerLog log = new ContainerLog();
+		log.setCpuUsed(RandomUtils.nextLong(0, 100));
+		log.setCpuTotal(100);
+		log.setMemUsed(RandomUtils.nextLong(0, 100));
+		log.setMemTotal(100);
+		log.setDiskUsed(RandomUtils.nextLong(0, 100));
+		log.setDiskTotal(100);
+		return log;
+	}
 }

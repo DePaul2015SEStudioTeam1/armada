@@ -6,6 +6,7 @@ package edu.depaul.armada.dao;
 import static org.junit.Assert.*;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -46,7 +47,7 @@ public class ContainerDaoTest {
 			assertEquals("Container instance cannot be null!", iae.getMessage());
 		}
 		
-		Container container = new Container();
+		Container container = newContainer();
 		dao.store(container);
 		
 		List<Container> containers = dao.getAll();
@@ -64,7 +65,7 @@ public class ContainerDaoTest {
 		int expected = 10;
 		
 		for(int i=0; i<expected; i++) {
-			Container container = new Container();
+			Container container = newContainer();
 			dao.store(container);
 		}
 		
@@ -79,7 +80,7 @@ public class ContainerDaoTest {
 	@DirtiesContext
 	@Test
 	public void testGet() {
-		Container container = new Container();
+		Container container = newContainer();
 		dao.store(container);
 		
 		List<Container> results = dao.get(0, 1);
@@ -94,15 +95,15 @@ public class ContainerDaoTest {
 	@DirtiesContext
 	@Test
 	public void testFindWithContainerId() {
-		Container container = new Container();
+		Container container = newContainer();
 		container.setName("test1");
 		dao.store(container);
 		
-		container = new Container();
+		container = newContainer();
 		container.setName("test2");
 		dao.store(container);
 		
-		container = new Container();
+		container = newContainer();
 		container.setName("test3");
 		dao.store(container);
 		
@@ -125,7 +126,7 @@ public class ContainerDaoTest {
 	
 	@Test
 	public void testStoreWithChild() {
-		Container container = new Container();
+		Container container = newContainer();
 		container.setContainerUniqueId("test");
 		container.addLog(new ContainerLog());
 		dao.store(container);
@@ -138,4 +139,21 @@ public class ContainerDaoTest {
 		assertEquals(1, container.getLogs().size());
 	}
 
+	@Test
+	public void testGetAllDashboardContainers() {
+		fail("not implemented");
+	}
+	
+	@Test
+	public void testGetDashboardContainers_long() {
+		fail("not implemented");
+	}
+	
+	private Container newContainer() {
+		Container container = new Container();
+		container.setCAdvisorURL("http://localhost:8080/cAdvisor");
+		container.setContainerUniqueId(UUID.randomUUID().toString());
+		container.setName("test-name");
+		return container;
+	}
 }
