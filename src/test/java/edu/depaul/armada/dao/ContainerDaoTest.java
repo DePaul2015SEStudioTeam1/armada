@@ -28,7 +28,7 @@ import edu.depaul.armada.domain.Container;
 @Transactional
 public class ContainerDaoTest {
 
-	@Autowired private ContainerDao _dao;
+	@Autowired private ContainerDao dao;
 	
 	/**
 	 * Test method for {@link edu.depaul.armada.dao.ContainerDao#store(java.lang.Object)}.
@@ -38,7 +38,7 @@ public class ContainerDaoTest {
 	public void testStore() {
 		
 		try {
-			_dao.store(null);
+			dao.store(null);
 			fail("Expected IllegalArgumentException!");
 		}
 		catch(IllegalArgumentException iae) {
@@ -46,9 +46,9 @@ public class ContainerDaoTest {
 		}
 		
 		Container container = new Container();
-		_dao.store(container);
+		dao.store(container);
 		
-		List<Container> containers = _dao.getAll();
+		List<Container> containers = dao.getAll();
 		
 		assertEquals(1, containers.size());
 	}
@@ -64,10 +64,10 @@ public class ContainerDaoTest {
 		
 		for(int i=0; i<expected; i++) {
 			Container container = new Container();
-			_dao.store(container);
+			dao.store(container);
 		}
 		
-		List<Container> containers = _dao.getAll();
+		List<Container> containers = dao.getAll();
 		
 		assertEquals(expected, containers.size());
 	}
@@ -79,9 +79,9 @@ public class ContainerDaoTest {
 	@Test
 	public void testGet() {
 		Container container = new Container();
-		_dao.store(container);
+		dao.store(container);
 		
-		List<Container> results = _dao.get(0, 1);
+		List<Container> results = dao.get(0, 1);
 		
 		assertNotNull(results);
 		assertEquals(1, results.size());
@@ -94,30 +94,30 @@ public class ContainerDaoTest {
 	@Test
 	public void testFindWithContainerId() {
 		Container container = new Container();
-		container.setId(1);
-		_dao.store(container);
+		container.setName("test1");
+		dao.store(container);
 		
 		container = new Container();
-		container.setId(2);
-		_dao.store(container);
+		container.setName("test2");
+		dao.store(container);
 		
 		container = new Container();
-		container.setId(3);
-		_dao.store(container);
+		container.setName("test3");
+		dao.store(container);
 		
-		Container result = _dao.findWithContainerId(1);
+		Container result = dao.findWithContainerId(1);
 		assertNotNull(result);
 		assertEquals(1, result.getId());
 		
-		result = _dao.findWithContainerId(2);
+		result = dao.findWithContainerId(2);
 		assertNotNull(result);
-		assertEquals("test2", result.getId());
+		assertEquals("test2", result.getName());
 		
-		result = _dao.findWithContainerId(3);
+		result = dao.findWithContainerId(3);
 		assertNotNull(result);
-		assertEquals("test3", result.getId());
+		assertEquals("test3", result.getName());
 		
-		result = _dao.findWithContainerId(0);
+		result = dao.findWithContainerId(0);
 		assertNull(result);
 		
 	}

@@ -6,6 +6,7 @@ package edu.depaul.armada.dao;
 import java.util.List;
 
 import edu.depaul.armada.domain.Container;
+import edu.depaul.armada.model.DashboardContainer;
 
 
 /**
@@ -22,6 +23,10 @@ public interface ContainerDao {
 	 */
 	void store(Container container);
 	
+	List<DashboardContainer> getAllDashboardContainers();
+	
+	List<DashboardContainer> getDashboardContainers(long id, int count);
+
 	List<Container> getAll();
 	
 	List<Container> get(long id, int count);
@@ -33,4 +38,12 @@ public interface ContainerDao {
 	 * @return container instance matching the id
 	 */
 	Container findWithContainerId(long containerId);
+
+	/**
+	 * Finds a Container instance with given id
+	 * 
+	 * @param containerUniqueId	id used to find the container
+	 * @return Container matching the id
+	 */
+	Container findWithContainerUniqueId(String containerUniqueId);
 }

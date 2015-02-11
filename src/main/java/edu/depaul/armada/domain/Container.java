@@ -52,5 +52,10 @@ public class Container {
 	public void setLogs(List<ContainerLog> logs) {
 		this.logs = logs;
 	}
+	
+	public void addLog(ContainerLog log) {
+		log.setContainer(this);
+		this.logs.add(log);
+	}
 
 }
