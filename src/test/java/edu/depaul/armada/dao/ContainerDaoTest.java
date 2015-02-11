@@ -17,6 +17,7 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 import edu.depaul.armada.domain.Container;
+import edu.depaul.armada.domain.ContainerLog;
 
 /**
  * @author ptrzyna
@@ -120,6 +121,21 @@ public class ContainerDaoTest {
 		result = dao.findWithContainerId(0);
 		assertNull(result);
 		
+	}
+	
+	@Test
+	public void testStoreWithChild() {
+		Container container = new Container();
+		container.setContainerUniqueId("test");
+		container.addLog(new ContainerLog());
+		dao.store(container);
+		
+		assertTrue(container.getId() > 0);
+		
+		container = dao.findWithContainerUniqueId("test");
+		
+		assertNotNull(container);
+		assertEquals(1, container.getLogs().size());
 	}
 
 }

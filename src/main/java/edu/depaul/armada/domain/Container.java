@@ -1,5 +1,6 @@
 package edu.depaul.armada.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -11,7 +12,7 @@ public class Container {
 	private String name;
 	private String containerUniqueId;
 	private String cAdvisorURL;
-	private List<ContainerLog> logs;
+	private List<ContainerLog> logs = new ArrayList<ContainerLog>();
 
 	public long getId() {
 		return id;
