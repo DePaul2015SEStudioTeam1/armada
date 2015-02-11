@@ -5,6 +5,7 @@ package edu.depaul.armada.dao;
 
 import static org.junit.Assert.*;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.UUID;
 
@@ -48,9 +49,9 @@ public class ContainerLogDaoTest {
 			assertEquals("ContainerLog instance cannot be null!", iae.getMessage());
 		}
 		
-		ContainerLog containerLog = new ContainerLog();
-		ContainerLog containerLogTwo = new ContainerLog();
-		ContainerLog containerLogThree = new ContainerLog();
+		ContainerLog containerLog = newContainerLog();
+		ContainerLog containerLogTwo = newContainerLog();
+		ContainerLog containerLogThree = newContainerLog();
 		
 		logDao.store(containerLog);
 		logDao.store(containerLogTwo);
@@ -90,9 +91,9 @@ public class ContainerLogDaoTest {
 	@Test
 	public void testFindWithContainerIdCheckResult() {
 		
-		ContainerLog containerLog = new ContainerLog();
-		ContainerLog containerLogTwo = new ContainerLog();
-		ContainerLog containerLogThree = new ContainerLog();
+		ContainerLog containerLog = newContainerLog();
+		ContainerLog containerLogTwo = newContainerLog();
+		ContainerLog containerLogThree = newContainerLog();
 		long containerId = 1;
 		
 		logDao.store(containerLog);
@@ -110,11 +111,11 @@ public class ContainerLogDaoTest {
 	@DirtiesContext
 	@Test
 	public void testContainerLogAvgUsageMethods(){
-		
-		long containerIdOne = 1;
-		ContainerLog containerLogOne = new ContainerLog();
-		ContainerLog containerLogTwo = new ContainerLog();
-		ContainerLog containerLogThree = new ContainerLog();
+		// TODO: break this up into separate methods
+		// It will make it clearer what is being tested
+		ContainerLog containerLogOne = newContainerLog();
+		ContainerLog containerLogTwo = newContainerLog();
+		ContainerLog containerLogThree = newContainerLog();
 		long usageOne = 1;
 		long usageTwo = 2;
 		long usageThree = 3;
@@ -131,10 +132,9 @@ public class ContainerLogDaoTest {
 		logDao.store(containerLogTwo);
 		logDao.store(containerLogThree);
 		
-		long containerIdTwo = 2;
-		ContainerLog containerLogFour = new ContainerLog();
-		ContainerLog containerLogFive = new ContainerLog();
-		ContainerLog containerLogSix = new ContainerLog();
+		ContainerLog containerLogFour = newContainerLog();
+		ContainerLog containerLogFive = newContainerLog();
+		ContainerLog containerLogSix = newContainerLog();
 		long usageFour = -1;
 		long usageFive = -2;
 		long usageSix = -3;
@@ -151,18 +151,16 @@ public class ContainerLogDaoTest {
 		logDao.store(containerLogFive);
 		logDao.store(containerLogSix);
 		
-		long containerIdThree = 3;
-		ContainerLog containerLogSeven = new ContainerLog();
+		ContainerLog containerLogSeven = newContainerLog();
 		long usageSeven = 0;
 		containerLogSeven.setMemUsed(usageSeven);
 		containerLogSeven.setCpuUsed(usageSeven);
 		containerLogSeven.setDiskUsed(usageSeven);
 		logDao.store(containerLogSeven);
 			
-		long containerIdFour = 4;
-		ContainerLog containerLogEight = new ContainerLog();
-		ContainerLog containerLogNine = new ContainerLog();
-		ContainerLog containerLogTen = new ContainerLog();
+		ContainerLog containerLogEight = newContainerLog();
+		ContainerLog containerLogNine = newContainerLog();
+		ContainerLog containerLogTen = newContainerLog();
 		long usageEight = 25;
 		long usageNine = 25;
 		long usageTen = 50;
@@ -205,6 +203,7 @@ public class ContainerLogDaoTest {
 	
 	private ContainerLog newContainerLog() {
 		ContainerLog log = new ContainerLog();
+		log.setTimestamp(new Timestamp(0));
 		log.setCpuUsed(RandomUtils.nextLong(0, 100));
 		log.setCpuTotal(100);
 		log.setMemUsed(RandomUtils.nextLong(0, 100));

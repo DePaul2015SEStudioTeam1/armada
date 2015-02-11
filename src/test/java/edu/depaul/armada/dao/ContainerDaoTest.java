@@ -5,6 +5,7 @@ package edu.depaul.armada.dao;
 
 import static org.junit.Assert.*;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.UUID;
 
@@ -128,7 +129,9 @@ public class ContainerDaoTest {
 	public void testStoreWithChild() {
 		Container container = newContainer();
 		container.setContainerUniqueId("test");
-		container.addLog(new ContainerLog());
+		ContainerLog log = new ContainerLog();
+		log.setTimestamp(new Timestamp(0));
+		container.addLog(log);
 		dao.store(container);
 		
 		assertTrue(container.getId() > 0);

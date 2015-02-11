@@ -7,13 +7,13 @@
 		<id column="id" name="id" type="java.lang.Long">
           <generator class="native"/>
         </id>
-		<property column="timestamp" name="timestamp" type="java.sql.Timestamp" />
-		<property column="mem_used" name="memUsed" type="java.lang.Long" />
+		<property column="timestamp" name="timestamp" type="java.sql.Timestamp" not-null="true"/>
+		<property column="mem_used" name="memUsed" type="java.lang.Long"/>
 		<property column="mem_total" name="memTotal" type="java.lang.Long" />
 		<property column="cpu_used" name="cpuUsed" type="java.lang.Long" />
         <property column="cpu_total" name="cpuTotal" type="java.lang.Long" />
         <property column="disk_used" name="diskUsed" type="java.lang.Long" />
         <property column="disk_total" name="diskTotal" type="java.lang.Long" />
-        <many-to-one column="container_id" name="container" class="edu.depaul.armada.domain.Container"/>
+        <many-to-one column="container_id" name="container" class="edu.depaul.armada.domain.Container" foreign-key="fk_container_to_log"/>
 	</class>
 </hibernate-mapping>
