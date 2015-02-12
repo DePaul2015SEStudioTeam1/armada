@@ -3,7 +3,7 @@ package edu.depaul.armada;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import edu.depaul.armada.model.Container;
+import edu.depaul.armada.model.AgentContainer;
 import edu.depaul.armada.service.ArmadaService;
 
 /**
@@ -15,10 +15,10 @@ public class ServiceIntegrationTest {
 		ApplicationContext context = new ClassPathXmlApplicationContext("beans/armada-client.xml");
 		ArmadaService service = context.getBean("remoteArmadaService", ArmadaService.class);
 		
-		Container test = new Container();
-		test.setContainerId("test");
+		AgentContainer test = new AgentContainer();
+		test.name = "test";
 		for(int i=0; i<11; i++) {
-			service.store(test);
+			service.send(test);
 		}
 	}
 }

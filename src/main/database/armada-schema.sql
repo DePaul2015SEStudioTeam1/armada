@@ -6,8 +6,8 @@
 # http://code.google.com/p/sequel-pro/
 #
 # Host: 127.0.0.1 (MySQL 5.5.11)
-# Database: operations
-# Generation Time: 2015-02-09 00:26:21 +0000
+# Database: armada
+# Generation Time: 2015-02-11 23:49:43 +0000
 # ************************************************************
 
 
@@ -27,14 +27,12 @@ DROP TABLE IF EXISTS `container`;
 
 CREATE TABLE `container` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) DEFAULT NULL,
-  `container_id` varchar(255) DEFAULT NULL,
-  `cadvisor_url` varchar(255) DEFAULT NULL,
-  `mem_limit` bigint(20) DEFAULT NULL,
-  `cpu_limit` bigint(20) DEFAULT NULL,
-  `filesystem_capacity` bigint(20) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `name` varchar(255) NOT NULL,
+  `container_unique_id` varchar(255) NOT NULL,
+  `cadvisor_url` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `container_unique_id` (`container_unique_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
 
@@ -45,13 +43,18 @@ DROP TABLE IF EXISTS `container_log`;
 
 CREATE TABLE `container_log` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `container_id` varchar(255) DEFAULT NULL,
-  `timestamp` varchar(255) DEFAULT NULL,
-  `mem_usage` bigint(20) DEFAULT NULL,
-  `total_cpu_usage` bigint(20) DEFAULT NULL,
-  `filesystem_usage` bigint(20) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `timestamp` datetime NOT NULL,
+  `mem_used` bigint(20) DEFAULT NULL,
+  `mem_total` bigint(20) DEFAULT NULL,
+  `cpu_used` bigint(20) DEFAULT NULL,
+  `cpu_total` bigint(20) DEFAULT NULL,
+  `disk_used` bigint(20) DEFAULT NULL,
+  `disk_total` bigint(20) DEFAULT NULL,
+  `container_id` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_container_to_log` (`container_id`),
+  CONSTRAINT `fk_container_to_log` FOREIGN KEY (`container_id`) REFERENCES `container` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
 

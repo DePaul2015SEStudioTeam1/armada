@@ -1,19 +1,21 @@
 package edu.depaul.armada.domain;
 
+import java.sql.Timestamp;
+
 /**
  * @author jplante jdavidson
  */
-public class ContainerLog {
+public class ContainerLog implements Comparable<ContainerLog> {
 
 	private long id;
 	private Container container;
-	private String timestamp;
-	private long memUsage;
-	private long totalCpuUsage;
-	private long filesystemUsage;
+	private Timestamp timestamp;
+	private long cpuUsed;
+	private long cpuTotal;
+	private long diskUsed;
+	private long diskTotal;
+	private long memUsed;
 	private long memTotal;
-	private long totalCpu;
-	private long totalFilesystem;
 
 	public long getId() {
 		return id;
@@ -31,60 +33,68 @@ public class ContainerLog {
 		this.container = container;
 	}
 
-	public String getTimestamp() {
+	public Timestamp getTimestamp() {
 		return timestamp;
 	}
 
-	public void setTimestamp(String timestamp) {
+	public void setTimestamp(Timestamp timestamp) {
 		this.timestamp = timestamp;
 	}
 
-	public long getMemUsage() {
-		return memUsage;
+	public long getCpuUsed() {
+		return cpuUsed;
 	}
 
-	public void setMemUsage(long memUsage) {
-		this.memUsage = memUsage;
+	public void setCpuUsed(long cpuUsed) {
+		this.cpuUsed = cpuUsed;
 	}
 
-	public long getTotalCpuUsage() {
-		return totalCpuUsage;
+	public long getCpuTotal() {
+		return cpuTotal;
 	}
 
-	public void setTotalCpuUsage(long totalCpuUsage) {
-		this.totalCpuUsage = totalCpuUsage;
+	public void setCpuTotal(long cpuTotal) {
+		this.cpuTotal = cpuTotal;
 	}
 
-	public long getFilesystemUsage() {
-		return filesystemUsage;
+	public long getMemUsed() {
+		return memUsed;
 	}
 
-	public void setFilesystemUsage(long filesystemUsage) {
-		this.filesystemUsage = filesystemUsage;
+	public void setMemUsed(long memUsed) {
+		this.memUsed = memUsed;
 	}
-	
-	public long getMemTotal(){
+
+	public long getMemTotal() {
 		return memTotal;
 	}
-	
+
 	public void setMemTotal(long memTotal) {
 		this.memTotal = memTotal;
 	}
-	
-	public long getTotalCpu() {
-		return totalCpu;
+
+	public long getDiskUsed() {
+		return diskUsed;
 	}
-	
-	public void setTotalCpu(long totalCpu) {
-		this.totalCpu = totalCpu;
+
+	public void setDiskUsed(long diskUsed) {
+		this.diskUsed = diskUsed;
 	}
-	
-	public long getTotalFilesystem(){
-		return totalFilesystem;
+
+	public long getDiskTotal() {
+		return diskTotal;
 	}
-	
-	public void setTotalFilesystem(long totalFilesystem){
-		this.totalFilesystem = totalFilesystem;
+
+	public void setDiskTotal(long diskTotal) {
+		this.diskTotal = diskTotal;
 	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Comparable#compareTo(java.lang.Object)
+	 */
+	@Override
+	public int compareTo(ContainerLog o) {
+		return this.timestamp.compareTo(o.timestamp);
+	}	
 
 }

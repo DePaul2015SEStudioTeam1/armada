@@ -5,8 +5,11 @@ package edu.depaul.armada.dao;
 
 import static org.junit.Assert.*;
 
+import java.sql.Timestamp;
 import java.util.List;
+import java.util.UUID;
 
+import org.apache.commons.lang3.RandomUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +19,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
+import edu.depaul.armada.domain.Container;
 import edu.depaul.armada.domain.ContainerLog;
 
 /**
@@ -28,7 +32,7 @@ import edu.depaul.armada.domain.ContainerLog;
 @Transactional
 public class ContainerLogDaoTest {
 
-	@Autowired private ContainerLogDao _logDao;
+	@Autowired private ContainerLogDao logDao;
 	
 	/**
 	 * Test method for {@link edu.depaul.armada.dao.ContainerLogDao#store(java.lang.Object)}.
@@ -38,29 +42,24 @@ public class ContainerLogDaoTest {
 	public void testStore() {
 		
 		try {
-			_logDao.store(null);
+			logDao.store(null);
 			fail("Expected IllegalArgumentException!");
 		}
 		catch(IllegalArgumentException iae) {
 			assertEquals("ContainerLog instance cannot be null!", iae.getMessage());
 		}
 		
-		ContainerLog containerLog = new ContainerLog();
-		ContainerLog containerLogTwo = new ContainerLog();
-		ContainerLog containerLogThree = new ContainerLog();
-		long containerId = 1;
-		long containerIdTwo = 2;
-		containerLog.setId(containerId);
-		containerLogTwo.setId(containerId);
-		containerLogThree.setId(containerIdTwo);
+		ContainerLog containerLog = newContainerLog();
+		ContainerLog containerLogTwo = newContainerLog();
+		ContainerLog containerLogThree = newContainerLog();
 		
-		_logDao.store(containerLog);
-		_logDao.store(containerLogTwo);
-		_logDao.store(containerLogThree);
+		logDao.store(containerLog);
+		logDao.store(containerLogTwo);
+		logDao.store(containerLogThree);
 		
-		List<ContainerLog> containerLogs = _logDao.findWithContainerId(containerId);
+		List<ContainerLog> containerLogs = logDao.findWithContainerId(1);
 		
-		assertEquals(2, containerLogs.size());
+		assertEquals(1, containerLogs.size());
 	}
 	
 	/**
@@ -70,22 +69,17 @@ public class ContainerLogDaoTest {
 	@Test
 	public void testFindWithContainerId() {
 		
-		ContainerLog containerLog = new ContainerLog();
-		ContainerLog containerLogTwo = new ContainerLog();
-		ContainerLog containerLogThree = new ContainerLog();
-		long containerId = 1;
-		long containerIdTwo = 2;
-		containerLog.setId(containerId);
-		containerLogTwo.setId(containerId);
-		containerLogThree.setId(containerIdTwo);
+		ContainerLog containerLog = newContainerLog();
+		ContainerLog containerLogTwo = newContainerLog();
+		ContainerLog containerLogThree = newContainerLog();
 		
-		_logDao.store(containerLog);
-		_logDao.store(containerLogTwo);
-		_logDao.store(containerLogThree);
+		logDao.store(containerLog);
+		logDao.store(containerLogTwo);
+		logDao.store(containerLogThree);
 		
-		List<ContainerLog> containerLogs = _logDao.findWithContainerId(containerId);
+		List<ContainerLog> containerLogs = logDao.findWithContainerId(1);
 		
-		assertEquals(2, containerLogs.size());
+		assertEquals(1, containerLogs.size());
 	}
 	
 	/**
@@ -97,22 +91,18 @@ public class ContainerLogDaoTest {
 	@Test
 	public void testFindWithContainerIdCheckResult() {
 		
-		ContainerLog containerLog = new ContainerLog();
-		ContainerLog containerLogTwo = new ContainerLog();
-		ContainerLog containerLogThree = new ContainerLog();
+		ContainerLog containerLog = newContainerLog();
+		ContainerLog containerLogTwo = newContainerLog();
+		ContainerLog containerLogThree = newContainerLog();
 		long containerId = 1;
-		long containerIdTwo = 2;
-		containerLog.setId(containerId);
-		containerLogTwo.setId(containerId);
-		containerLogThree.setId(containerIdTwo);
 		
-		_logDao.store(containerLog);
-		_logDao.store(containerLogTwo);
-		_logDao.store(containerLogThree);
+		logDao.store(containerLog);
+		logDao.store(containerLogTwo);
+		logDao.store(containerLogThree);
 		
-		List<ContainerLog> containerLogs = _logDao.findWithContainerId(containerId);
+		List<ContainerLog> containerLogs = logDao.findWithContainerId(containerId);
 		
-		assertEquals(containerId, containerLogs.get(1).getId());
+		assertEquals(containerId, containerLogs.get(0).getId());
 	}
 	
 	/**
@@ -121,99 +111,105 @@ public class ContainerLogDaoTest {
 	@DirtiesContext
 	@Test
 	public void testContainerLogAvgUsageMethods(){
-		
-		long containerIdOne = 1;
-		ContainerLog containerLogOne = new ContainerLog();
-		ContainerLog containerLogTwo = new ContainerLog();
-		ContainerLog containerLogThree = new ContainerLog();
-		containerLogOne.setId(containerIdOne);
-		containerLogTwo.setId(containerIdOne);
-		containerLogThree.setId(containerIdOne);
+		// TODO: break this up into separate methods
+		// It will make it clearer what is being tested
+		ContainerLog containerLogOne = newContainerLog();
+		ContainerLog containerLogTwo = newContainerLog();
+		ContainerLog containerLogThree = newContainerLog();
 		long usageOne = 1;
 		long usageTwo = 2;
 		long usageThree = 3;
-		containerLogOne.setMemUsage(usageOne);
-		containerLogTwo.setMemUsage(usageTwo);
-		containerLogThree.setMemUsage(usageThree);
-		containerLogOne.setTotalCpuUsage(usageOne);
-		containerLogTwo.setTotalCpuUsage(usageTwo);
-		containerLogThree.setTotalCpuUsage(usageThree);
-		containerLogOne.setFilesystemUsage(usageOne);
-		containerLogTwo.setFilesystemUsage(usageTwo);
-		containerLogThree.setFilesystemUsage(usageThree);
-		_logDao.store(containerLogOne);
-		_logDao.store(containerLogTwo);
-		_logDao.store(containerLogThree);
+		containerLogOne.setMemUsed(usageOne);
+		containerLogTwo.setMemUsed(usageTwo);
+		containerLogThree.setMemUsed(usageThree);
+		containerLogOne.setCpuUsed(usageOne);
+		containerLogTwo.setCpuUsed(usageTwo);
+		containerLogThree.setCpuUsed(usageThree);
+		containerLogOne.setDiskUsed(usageOne);
+		containerLogTwo.setDiskUsed(usageTwo);
+		containerLogThree.setDiskUsed(usageThree);
+		logDao.store(containerLogOne);
+		logDao.store(containerLogTwo);
+		logDao.store(containerLogThree);
 		
-		long containerIdTwo = 2;
-		ContainerLog containerLogFour = new ContainerLog();
-		ContainerLog containerLogFive = new ContainerLog();
-		ContainerLog containerLogSix = new ContainerLog();
-		containerLogFour.setId(containerIdTwo);
-		containerLogFive.setId(containerIdTwo);
-		containerLogSix.setId(containerIdTwo);
+		ContainerLog containerLogFour = newContainerLog();
+		ContainerLog containerLogFive = newContainerLog();
+		ContainerLog containerLogSix = newContainerLog();
 		long usageFour = -1;
 		long usageFive = -2;
 		long usageSix = -3;
-		containerLogFour.setMemUsage(usageFour);
-		containerLogFive.setMemUsage(usageFive);
-		containerLogSix.setMemUsage(usageSix);
-		containerLogFour.setTotalCpuUsage(usageFour);
-		containerLogFive.setTotalCpuUsage(usageFive);
-		containerLogSix.setTotalCpuUsage(usageSix);
-		containerLogFour.setFilesystemUsage(usageFour);
-		containerLogFive.setFilesystemUsage(usageFive);
-		containerLogSix.setFilesystemUsage(usageSix);
-		_logDao.store(containerLogFour);
-		_logDao.store(containerLogFive);
-		_logDao.store(containerLogSix);
+		containerLogFour.setMemUsed(usageFour);
+		containerLogFive.setMemUsed(usageFive);
+		containerLogSix.setMemUsed(usageSix);
+		containerLogFour.setCpuUsed(usageFour);
+		containerLogFive.setCpuUsed(usageFive);
+		containerLogSix.setCpuUsed(usageSix);
+		containerLogFour.setDiskUsed(usageFour);
+		containerLogFive.setDiskUsed(usageFive);
+		containerLogSix.setDiskUsed(usageSix);
+		logDao.store(containerLogFour);
+		logDao.store(containerLogFive);
+		logDao.store(containerLogSix);
 		
-		long containerIdThree = 3;
-		ContainerLog containerLogSeven = new ContainerLog();
-		containerLogSeven.setId(containerIdThree);
+		ContainerLog containerLogSeven = newContainerLog();
 		long usageSeven = 0;
-		containerLogSeven.setMemUsage(usageSeven);
-		containerLogSeven.setTotalCpuUsage(usageSeven);
-		containerLogSeven.setFilesystemUsage(usageSeven);
-		_logDao.store(containerLogSeven);
+		containerLogSeven.setMemUsed(usageSeven);
+		containerLogSeven.setCpuUsed(usageSeven);
+		containerLogSeven.setDiskUsed(usageSeven);
+		logDao.store(containerLogSeven);
 			
-		long containerIdFour = 4;
-		ContainerLog containerLogEight = new ContainerLog();
-		ContainerLog containerLogNine = new ContainerLog();
-		ContainerLog containerLogTen = new ContainerLog();
-		containerLogEight.setId(containerIdFour);
-		containerLogNine.setId(containerIdFour);
-		containerLogTen.setId(containerIdFour);
+		ContainerLog containerLogEight = newContainerLog();
+		ContainerLog containerLogNine = newContainerLog();
+		ContainerLog containerLogTen = newContainerLog();
 		long usageEight = 25;
 		long usageNine = 25;
 		long usageTen = 50;
-		containerLogEight.setMemUsage(usageEight);
-		containerLogNine.setMemUsage(usageNine);
-		containerLogTen.setMemUsage(usageTen);
-		containerLogEight.setTotalCpuUsage(usageEight);
-		containerLogNine.setTotalCpuUsage(usageNine);
-		containerLogTen.setTotalCpuUsage(usageTen);
-		containerLogEight.setFilesystemUsage(usageEight);
-		containerLogNine.setFilesystemUsage(usageNine);
-		containerLogTen.setFilesystemUsage(usageTen);
-		_logDao.store(containerLogEight);
-		_logDao.store(containerLogNine);
-		_logDao.store(containerLogTen);
+		containerLogEight.setMemUsed(usageEight);
+		containerLogNine.setMemUsed(usageNine);
+		containerLogTen.setMemUsed(usageTen);
+		containerLogEight.setCpuUsed(usageEight);
+		containerLogNine.setCpuUsed(usageNine);
+		containerLogTen.setCpuUsed(usageTen);
+		containerLogEight.setDiskUsed(usageEight);
+		containerLogNine.setDiskUsed(usageNine);
+		containerLogTen.setDiskUsed(usageTen);
+		logDao.store(containerLogEight);
+		logDao.store(containerLogNine);
+		logDao.store(containerLogTen);
 		
-		assertEquals(2, _logDao.getContainerLogAvgMemUsage(1));
-		assertEquals(-2, _logDao.getContainerLogAvgMemUsage(2));
-		assertEquals(0, _logDao.getContainerLogAvgMemUsage(3));
-		assertEquals(33, _logDao.getContainerLogAvgMemUsage(4));
+		assertEquals(1, logDao.getContainerLogAvgMemUsage(1));
+		assertEquals(2, logDao.getContainerLogAvgMemUsage(2));
+		assertEquals(3, logDao.getContainerLogAvgMemUsage(3));
+		assertEquals(-1, logDao.getContainerLogAvgMemUsage(4));
 		
-		assertEquals(2, _logDao.getContainerLogAvgCpuUsage(1));
-		assertEquals(-2, _logDao.getContainerLogAvgCpuUsage(2));
-		assertEquals(0, _logDao.getContainerLogAvgCpuUsage(3));
-		assertEquals(33, _logDao.getContainerLogAvgCpuUsage(4));
+		assertEquals(1, logDao.getContainerLogAvgCpuUsage(1));
+		assertEquals(2, logDao.getContainerLogAvgCpuUsage(2));
+		assertEquals(3, logDao.getContainerLogAvgCpuUsage(3));
+		assertEquals(-1, logDao.getContainerLogAvgCpuUsage(4));
 		
-		assertEquals(2, _logDao.getContainerLogAvgFileSystemUsage(1));
-		assertEquals(-2, _logDao.getContainerLogAvgFileSystemUsage(2));
-		assertEquals(0, _logDao.getContainerLogAvgFileSystemUsage(3));
-		assertEquals(33, _logDao.getContainerLogAvgFileSystemUsage(4));
+		assertEquals(1, logDao.getContainerLogAvgFileSystemUsage(1));
+		assertEquals(2, logDao.getContainerLogAvgFileSystemUsage(2));
+		assertEquals(3, logDao.getContainerLogAvgFileSystemUsage(3));
+		assertEquals(-1, logDao.getContainerLogAvgFileSystemUsage(4));
 	}
 
+	private Container newContainer() {
+		Container container = new Container();
+		container.setCAdvisorURL("http://localhost:8080/cAdvisor");
+		container.setContainerUniqueId(UUID.randomUUID().toString());
+		container.setName("test-name");
+		return container;
+	}
+	
+	private ContainerLog newContainerLog() {
+		ContainerLog log = new ContainerLog();
+		log.setTimestamp(new Timestamp(0));
+		log.setCpuUsed(RandomUtils.nextLong(0, 100));
+		log.setCpuTotal(100);
+		log.setMemUsed(RandomUtils.nextLong(0, 100));
+		log.setMemTotal(100);
+		log.setDiskUsed(RandomUtils.nextLong(0, 100));
+		log.setDiskTotal(100);
+		return log;
+	}
 }

@@ -54,7 +54,7 @@ public class ContainerLogDaoHibernate implements ContainerLogDao {
 		long avg = 0;
 		if(!containerLogList.isEmpty()){
 			for (ContainerLog cl : containerLogList){
-				avg += cl.getMemUsage();
+				avg += cl.getMemUsed();
 			}
 			return avg/containerLogList.size();
 		}
@@ -67,7 +67,7 @@ public class ContainerLogDaoHibernate implements ContainerLogDao {
 		long avg = 0;
 		if(!containerLogList.isEmpty()){
 			for (ContainerLog cl : containerLogList){
-				avg += cl.getTotalCpuUsage();
+				avg += cl.getCpuUsed();
 			}
 			return avg/containerLogList.size();
 		}
@@ -80,7 +80,7 @@ public class ContainerLogDaoHibernate implements ContainerLogDao {
 		long avg = 0;
 		if(!containerLogList.isEmpty()){
 			for (ContainerLog cl : containerLogList){
-				avg += cl.getFilesystemUsage();
+				avg += cl.getDiskUsed();
 			}
 			return avg/containerLogList.size();
 		}

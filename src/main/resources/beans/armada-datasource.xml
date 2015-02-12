@@ -19,9 +19,9 @@
             We will need to rename the db and the user to armada u/p armada/armada
             Operations is out, doesn't make any sense now.
         -->
-        <property name="jdbcUrl" value="jdbc:mysql://127.0.0.1:3306/operations"/>
-        <property name="user" value="operations"/>
-        <property name="password" value="operations"/>
+        <property name="jdbcUrl" value="jdbc:mysql://127.0.0.1:3306/armada"/>
+        <property name="user" value="armada"/>
+        <property name="password" value="armada"/>
         <property name="initialPoolSize" value="3"/>
         <property name="minPoolSize" value="3"/>
         <property name="maxPoolSize" value="6"/>
