@@ -117,7 +117,7 @@ public class ContainerDaoHibernate implements ContainerDao {
 	 */
 	@Override
 	public List<DashboardContainer> getDashboardContainers(long id, int count) {
-		Query query = sessionFactory.getCurrentSession().createQuery("from Container where id = :id limit :count");
+		Query query = sessionFactory.getCurrentSession().createQuery("from Container where id > :id");
 		query.setLong("id", id);
 		query.setMaxResults(count);
 		List<Container> containers = query.list();
