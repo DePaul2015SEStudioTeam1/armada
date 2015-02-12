@@ -11,6 +11,7 @@ import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import edu.depaul.armada.domain.Container;
 import edu.depaul.armada.domain.ContainerLog;
@@ -21,6 +22,7 @@ import edu.depaul.armada.util.AssertUtil;
  * @author ptrzyna
  *
  */
+@Transactional
 @Repository
 public class ContainerDaoHibernate implements ContainerDao {
 

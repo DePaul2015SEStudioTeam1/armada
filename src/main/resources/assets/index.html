@@ -181,16 +181,15 @@
 				<table id="containers" class="table table-hover table-bordered" cellspacing="0" width="100%">
 					<thead>
 						<tr>
-							<th>Agent ID</th>
-							<th>Primary IP Address</th>
-							<th>Primary Mac Address</th>
-							<th>Host Name</th>
-							<th>CPU Vendor</th>
-							<th>CPU Model</th>
-							<th>CPU Count</th>
-							<th>OS Name</th>
-							<th>Memory Free</th>
-							<th>Disk Space Free</th>
+							<th>Name</th>
+							<th>Container Unique Id</th>
+							<th>C Advisor URL</th>
+							<th>Mem Used</th>
+							<th>Mem Total</th>
+							<th>Cpu Used</th>
+							<th>Cpu Total</th>
+							<th>Disk Used</th>
+							<th>Disk Total</th>
 						</tr>
 					</thead>
 				</table>
@@ -290,15 +289,16 @@
 	    			dataSrc: ""
 	    		},
 			"columns": [
-				{ "data": "agentId" },
-				{ "data": "primaryIpAddress" },
-				{ "data": "primaryMacAddress" },
-				{ "data": "hostName" },
-				{ "data": "cpuVendor" },
-				{ "data": "cpuModel" },
-				{ "data": "cpuCount" },
-				{ "data": "memFree" },
-				{ "data": "diskSpaceFree" },
+				{ "data": "name" },
+				{ "data": "containerUniqueId" },
+				{ "data": "cAdvisorURL" },
+				{ "data": "memUsed" },
+				{ "data": "memTotal" },
+				{ "data": "cpuUsed" },
+				{ "data": "cpuTotal" },
+				{ "data": "diskUsed" },
+				{ "data": "diskTotal" }
+				{ "data": "containerId" }
 			]
 		} );
 		$.fn.dataTable.ext.errMode = 'throw';
