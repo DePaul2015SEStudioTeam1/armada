@@ -119,6 +119,27 @@ public class ContainerDaoHibernate implements ContainerDao {
 	 */
 	@Override
 	public List<DashboardContainer> getDashboardContainers(long id, int count) {
-		throw new UnsupportedOperationException("not implemented!");
+		Query query = sessionFactory.getCurrentSession().createQuery("from Container where id > :id");
+		query.setLong("id", id);
+		query.setMaxResults(count);
+		List<Container> containers = query.list();
+		List<DashboardContainer> result = new ArrayList<DashboardContainer>(containers.size());
+		for(Container container : containers) {
+			DashboardContainer temp = new DashboardContainer();
+			temp.name = container.getName();
+			temp.containerId = container.getId();
+			temp.containerUniqueId = container.getContainerUniqueId();
+			temp.cAdvisorURL = container.getCAdvisorURL();
+			Set<ContainerLog> logs = container.getLogs();
+			ContainerLog[] logArr = logs.toArray(new ContainerLog[logs.size()]);
+			temp.cpuUsed = logArr[0].getCpuUsed();
+			temp.cpuTotal = logArr[0].getCpuTotal();
+			temp.memUsed = logArr[0].getCpuUsed();
+			temp.memTotal = logArr[0].getCpuUsed();
+			temp.diskUsed = logArr[0].getCpuUsed();
+			temp.diskTotal = logArr[0].getCpuUsed();
+			result.add(temp);
+		}
+		return result;
 	}	
 }
