@@ -9,6 +9,7 @@ import java.sql.Timestamp;
 import java.util.List;
 import java.util.UUID;
 
+import org.apache.commons.lang3.RandomUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import edu.depaul.armada.domain.Container;
 import edu.depaul.armada.domain.ContainerLog;
+import edu.depaul.armada.model.DashboardContainer;
 
 /**
  * @author ptrzyna
@@ -144,7 +146,19 @@ public class ContainerDaoTest {
 
 	@Test
 	public void testGetAllDashboardContainers() {
-		fail("not implemented");
+		for(int i=0; i<100; i++) {
+			Container container = newContainer();
+			container.addLog(newContainerLog());
+			container.addLog(newContainerLog());
+			container.addLog(newContainerLog());
+			dao.store(container);
+		}
+		
+		List<DashboardContainer> result = dao.getAllDashboardContainers();
+		assertNotNull(result);
+		assertEquals(100, result.size());
+		
+		// verify the ordering
 	}
 	
 	@Test
@@ -158,5 +172,17 @@ public class ContainerDaoTest {
 		container.setContainerUniqueId(UUID.randomUUID().toString());
 		container.setName("test-name");
 		return container;
+	}
+	
+	private ContainerLog newContainerLog() {
+		ContainerLog log = new ContainerLog();
+		log.setTimestamp(new Timestamp(RandomUtils.nextLong(0, System.currentTimeMillis())));
+		log.setCpuUsed(RandomUtils.nextLong(0, 100));
+		log.setCpuTotal(100);
+		log.setMemUsed(RandomUtils.nextLong(0, 100));
+		log.setMemTotal(100);
+		log.setDiskUsed(RandomUtils.nextLong(0, 100));
+		log.setDiskTotal(100);
+		return log;
 	}
 }

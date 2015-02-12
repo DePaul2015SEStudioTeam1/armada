@@ -11,9 +11,9 @@
 		<property column="name" name="name" type="java.lang.String" not-null="true"/>
 		<property column="container_unique_id" name="containerUniqueId" type="java.lang.String" unique="true" not-null="true"/>
 		<property column="cadvisor_url" name="CAdvisorURL" type="java.lang.String" not-null="true" />
-		<bag name="logs" cascade="all" inverse="true">
+		<set name="logs" cascade="all" inverse="true" order-by="timestamp desc">
 		  <key column="container_id"/>
 		  <one-to-many class="edu.depaul.armada.domain.ContainerLog"/>
-		</bag>
+		</set>
 	</class>
 </hibernate-mapping>

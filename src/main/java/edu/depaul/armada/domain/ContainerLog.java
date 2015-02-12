@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 /**
  * @author jplante jdavidson
  */
-public class ContainerLog {
+public class ContainerLog implements Comparable<ContainerLog> {
 
 	private long id;
 	private Container container;
@@ -87,6 +87,14 @@ public class ContainerLog {
 
 	public void setDiskTotal(long diskTotal) {
 		this.diskTotal = diskTotal;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Comparable#compareTo(java.lang.Object)
+	 */
+	@Override
+	public int compareTo(ContainerLog o) {
+		return this.timestamp.compareTo(o.timestamp);
 	}	
 
 }

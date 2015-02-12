@@ -1,7 +1,7 @@
 package edu.depaul.armada.domain;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * @author ptrzyna, john davidson, jplante
@@ -12,7 +12,7 @@ public class Container {
 	private String name;
 	private String containerUniqueId;
 	private String cAdvisorURL;
-	private List<ContainerLog> logs = new ArrayList<ContainerLog>();
+	private Set<ContainerLog> logs = new TreeSet<ContainerLog>();
 
 	public long getId() {
 		return id;
@@ -46,11 +46,11 @@ public class Container {
 		this.cAdvisorURL = cAdvisorURL;
 	}
 
-	public List<ContainerLog> getLogs() {
+	public Set<ContainerLog> getLogs() {
 		return logs;
 	}
 
-	public void setLogs(List<ContainerLog> logs) {
+	public void setLogs(Set<ContainerLog> logs) {
 		this.logs = logs;
 	}
 	
