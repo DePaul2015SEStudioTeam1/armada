@@ -23,7 +23,12 @@ import edu.depaul.armada.model.DashboardContainer;
 @RequestMapping("/containers")
 public class ArmadaController {
 
-	@Autowired private ContainerDao containerDao;
+	private ContainerDao containerDao;
+	
+	@Autowired
+	public void setContainerDao(ContainerDao dao) {
+		containerDao = dao;
+	}
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	@ResponseBody

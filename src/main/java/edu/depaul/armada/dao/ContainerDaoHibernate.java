@@ -28,6 +28,8 @@ public class ContainerDaoHibernate implements ContainerDao {
 
 	private SessionFactory sessionFactory;
 	
+	public ContainerDaoHibernate() {}
+	
 	@Autowired
 	public ContainerDaoHibernate(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;

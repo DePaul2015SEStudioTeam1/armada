@@ -26,6 +26,8 @@ import edu.depaul.armada.util.AssertUtil;
 public class ContainerLogDaoHibernate implements ContainerLogDao {
 
 	private SessionFactory sessionFactory;
+	
+	public ContainerLogDaoHibernate() {}
 
 	@Autowired
 	public ContainerLogDaoHibernate(SessionFactory sessionFactory) {
