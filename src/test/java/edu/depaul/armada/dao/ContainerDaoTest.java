@@ -165,6 +165,7 @@ public class ContainerDaoTest {
 	public void testGetDashboardContainers_long() {
 		for(int i=0; i<100; i++) {
 			Container container = newContainer();
+			container.setName("Container " + i);
 			container.addLog(newContainerLog());
 			container.addLog(newContainerLog());
 			container.addLog(newContainerLog());
@@ -175,12 +176,18 @@ public class ContainerDaoTest {
 		List<DashboardContainer> result1 = dao.getDashboardContainers(id1, count1);
 		assertNotNull(result1);
 		assertEquals(count1, result1.size());
+		for (int j=0; j < count1; j++){
+			assertEquals(result1.get(j).containerId, j);
+		}
 		
 		long id2 = 5;
 		int count2 = 3;
 		List<DashboardContainer> result2 = dao.getDashboardContainers(id2, count2);
 		assertNotNull(result2);
 		assertEquals(count2, result2.size());
+		for (int k=0; k<count2; k++){
+			assertEquals(result2.get(k).containerId, k+id2);
+		}
 	}
 	
 	private Container newContainer() {
