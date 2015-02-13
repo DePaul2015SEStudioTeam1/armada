@@ -185,7 +185,7 @@ public class ContainerDaoTest {
 		List<DashboardContainer> result2 = dao.getDashboardContainers(id2, count2);
 		assertNotNull(result2);
 		assertEquals(count2, result2.size());
-		for (int k=0; k < count2; k++){
+		for (int k=5; k < count2; k++){
 			assertEquals("Container " + k, result2.get(k).name);
 		}
 	}
