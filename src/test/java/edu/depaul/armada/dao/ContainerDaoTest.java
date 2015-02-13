@@ -177,7 +177,7 @@ public class ContainerDaoTest {
 		assertNotNull(result1);
 		assertEquals(count1, result1.size());
 		for (int j=0; j < count1; j++){
-			assertEquals(result1.get(j).containerId, j);
+			assertEquals(result1.get(j).name, "Container " + j);
 		}
 		
 		long id2 = 5;
@@ -185,8 +185,8 @@ public class ContainerDaoTest {
 		List<DashboardContainer> result2 = dao.getDashboardContainers(id2, count2);
 		assertNotNull(result2);
 		assertEquals(count2, result2.size());
-		for (int k=0; k<count2; k++){
-			assertEquals(result2.get(k).containerId, k+id2);
+		for (int k=0; k < count2; k++){
+			assertEquals(result2.get(k).name, "Container " + k);
 		}
 	}
 	
