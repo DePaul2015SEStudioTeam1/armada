@@ -94,11 +94,12 @@ public class ContainerLogDaoTest {
 		ContainerLog containerLog = newContainerLog();
 		ContainerLog containerLogTwo = newContainerLog();
 		ContainerLog containerLogThree = newContainerLog();
-		long containerId = 1;
 		
 		logDao.store(containerLog);
 		logDao.store(containerLogTwo);
 		logDao.store(containerLogThree);
+		
+		long containerId = containerLog.getId();
 		
 		List<ContainerLog> containerLogs = logDao.findWithContainerId(containerId);
 		
