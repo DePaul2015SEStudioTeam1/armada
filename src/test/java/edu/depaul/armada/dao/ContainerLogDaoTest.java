@@ -13,7 +13,6 @@ import org.apache.commons.lang3.RandomUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
@@ -37,7 +36,6 @@ public class ContainerLogDaoTest {
 	/**
 	 * Test method for {@link edu.depaul.armada.dao.ContainerLogDao#store(java.lang.Object)}.
 	 */
-	@DirtiesContext
 	@Test
 	public void testStore() {
 		
@@ -65,7 +63,6 @@ public class ContainerLogDaoTest {
 	/**
 	 * Test method for {@link edu.depaul.armada.dao.ContainerLogDao#findWithContainerId(java.lang.String)}.
 	 */
-	@DirtiesContext
 	@Test
 	public void testFindWithContainerId() {
 		
@@ -77,7 +74,7 @@ public class ContainerLogDaoTest {
 		logDao.store(containerLogTwo);
 		logDao.store(containerLogThree);
 		
-		List<ContainerLog> containerLogs = logDao.findWithContainerId(1);
+		List<ContainerLog> containerLogs = logDao.findWithContainerId(containerLog.getId());
 		
 		assertEquals(1, containerLogs.size());
 	}
@@ -87,7 +84,6 @@ public class ContainerLogDaoTest {
 	 * Also test method for {@link edu.depaul.armada.dao.ContainerLogDao#getContainerLogAvgCpuUsage(java.lang.String)}.
 	 * Also test method for {@link edu.depaul.armada.dao.ContainerLogDao#getContainerLogAvgFileSystemUsage(java.lang.String)}.
 	 */
-	@DirtiesContext
 	@Test
 	public void testFindWithContainerIdCheckResult() {
 		
@@ -109,7 +105,6 @@ public class ContainerLogDaoTest {
 	/**
 	 * Test method for {@link edu.depaul.armada.dao.ContainerLogDao#getContainerLogAvgMemUsage(java.lang.String)}.
 	 */
-	@DirtiesContext
 	@Test
 	public void testContainerLogAvgUsageMethods(){
 		// TODO: break this up into separate methods
@@ -178,20 +173,20 @@ public class ContainerLogDaoTest {
 		logDao.store(containerLogNine);
 		logDao.store(containerLogTen);
 		
-		assertEquals(1, logDao.getContainerLogAvgMemUsage(1));
-		assertEquals(2, logDao.getContainerLogAvgMemUsage(2));
-		assertEquals(3, logDao.getContainerLogAvgMemUsage(3));
-		assertEquals(-1, logDao.getContainerLogAvgMemUsage(4));
+		assertEquals(1, logDao.getContainerLogAvgMemUsage(containerLogOne.getId()));
+		assertEquals(2, logDao.getContainerLogAvgMemUsage(containerLogTwo.getId()));
+		assertEquals(3, logDao.getContainerLogAvgMemUsage(containerLogThree.getId()));
+		assertEquals(-1, logDao.getContainerLogAvgMemUsage(containerLogFour.getId()));
 		
-		assertEquals(1, logDao.getContainerLogAvgCpuUsage(1));
-		assertEquals(2, logDao.getContainerLogAvgCpuUsage(2));
-		assertEquals(3, logDao.getContainerLogAvgCpuUsage(3));
-		assertEquals(-1, logDao.getContainerLogAvgCpuUsage(4));
+		assertEquals(1, logDao.getContainerLogAvgCpuUsage(containerLogOne.getId()));
+		assertEquals(2, logDao.getContainerLogAvgCpuUsage(containerLogTwo.getId()));
+		assertEquals(3, logDao.getContainerLogAvgCpuUsage(containerLogThree.getId()));
+		assertEquals(-1, logDao.getContainerLogAvgCpuUsage(containerLogFour.getId()));
 		
-		assertEquals(1, logDao.getContainerLogAvgFileSystemUsage(1));
-		assertEquals(2, logDao.getContainerLogAvgFileSystemUsage(2));
-		assertEquals(3, logDao.getContainerLogAvgFileSystemUsage(3));
-		assertEquals(-1, logDao.getContainerLogAvgFileSystemUsage(4));
+		assertEquals(1, logDao.getContainerLogAvgFileSystemUsage(containerLogOne.getId()));
+		assertEquals(2, logDao.getContainerLogAvgFileSystemUsage(containerLogTwo.getId()));
+		assertEquals(3, logDao.getContainerLogAvgFileSystemUsage(containerLogThree.getId()));
+		assertEquals(-1, logDao.getContainerLogAvgFileSystemUsage(containerLogFour.getId()));
 	}
 
 	private Container newContainer() {
