@@ -57,7 +57,7 @@ public class ContainerLogDaoTest {
 		logDao.store(containerLogTwo);
 		logDao.store(containerLogThree);
 		
-		List<ContainerLog> containerLogs = logDao.findWithContainerId(1);
+		List<ContainerLog> containerLogs = logDao.findWithContainerId(containerLog.getId());
 		
 		assertEquals(1, containerLogs.size());
 	}
