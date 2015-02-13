@@ -49,10 +49,6 @@ public class ContainerLogDaoTest {
 		ContainerLog containerLogTwo = newContainerLog();
 		ContainerLog containerLogThree = newContainerLog();
 		
-		containerLog.setId(1);
-		containerLogTwo.setId(2);
-		containerLogThree.setId(3);
-		
 		logDao.store(containerLog);
 		logDao.store(containerLogTwo);
 		logDao.store(containerLogThree);
