@@ -163,7 +163,24 @@ public class ContainerDaoTest {
 	
 	@Test
 	public void testGetDashboardContainers_long() {
-		fail("not implemented");
+		for(int i=0; i<100; i++) {
+			Container container = newContainer();
+			container.addLog(newContainerLog());
+			container.addLog(newContainerLog());
+			container.addLog(newContainerLog());
+			dao.store(container);
+		}
+		long id1 = 0;
+		int count1 = 5;
+		List<DashboardContainer> result1 = dao.getDashboardContainers(id1, count1);
+		assertNotNull(result1);
+		assertEquals(count1, result1.size());
+		
+		long id2 = 5;
+		int count2 = 3;
+		List<DashboardContainer> result2 = dao.getDashboardContainers(id2, count2);
+		assertNotNull(result2);
+		assertEquals(count2, result2.size());
 	}
 	
 	private Container newContainer() {
