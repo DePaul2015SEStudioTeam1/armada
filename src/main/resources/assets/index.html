@@ -300,9 +300,16 @@
 				{ "data": "diskTotal" }
 			]
 		} );
+		$('#containers tbody')
+        .on('mouseover', 'td', function () {
+           $(table.cells().nodes().addClass('highlight');
+        } )
+        .on('mouseleave', function () {
+            $(table.cells().nodes()).removeClass('highlight');
+        } );
 		$.fn.dataTable.ext.errMode = 'throw';
 		
-//		setInterval( function () {
+//		setInterval(function () {
 //			table.fnReloadAjax();
 //		}, 30000 );
 		
