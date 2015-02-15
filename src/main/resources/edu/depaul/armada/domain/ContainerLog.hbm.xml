@@ -14,6 +14,9 @@
         <property column="cpu_total" name="cpuTotal" type="java.lang.Long" />
         <property column="disk_used" name="diskUsed" type="java.lang.Long" />
         <property column="disk_total" name="diskTotal" type="java.lang.Long" />
-        <many-to-one column="container_id" name="container" class="edu.depaul.armada.domain.Container" foreign-key="fk_container_to_log"/>
+        <many-to-one column="container_id" name="container" 
+            class="edu.depaul.armada.domain.Container" 
+            foreign-key="fk_container_to_log"
+            not-null="true"/>
 	</class>
 </hibernate-mapping>

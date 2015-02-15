@@ -17,20 +17,14 @@ import edu.depaul.armada.domain.ContainerLog;
 public interface ContainerLogDao {
 
 	/**
-	 * Stores a containerLog
-	 *
-	 * @param containerLog container instance we want to store
-	 */
-	void store(ContainerLog containerLog);
-	
-	/**
-	 * Gets record matching container id
+	 * Gets list of logs matching container id
 	 * 
-	 * @param containerId	id of the container we want to retrieve
-	 * @return containerLog instance matching the id
+	 * @param containerId	id of the parent container of logs we want
+	 * @return list of logs belonging to a container
 	 */
 	List<ContainerLog> findWithContainerId(long containerId);
-	long getContainerLogAvgMemUsage(long containerId);
-	long getContainerLogAvgCpuUsage(long containerId);
-	long getContainerLogAvgFileSystemUsage(long containerId);
+	
+	double getContainerLogAvgMemUsage(long containerId);
+	double getContainerLogAvgCpuUsage(long containerId);
+	double getContainerLogAvgFileSystemUsage(long containerId);
 }

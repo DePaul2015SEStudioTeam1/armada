@@ -92,37 +92,36 @@ public class ContainerDaoTest {
 		assertEquals(1, results.size());
 	}
 
-	/**
-	 * Test method for {@link edu.depaul.armada.dao.ContainerDao#findWithContainerId(java.lang.String)}.
-	 */
-	@DirtiesContext
 	@Test
 	public void testFindWithContainerId() {
-		Container container = newContainer();
-		container.setName("test1");
-		dao.store(container);
 		
-		container = newContainer();
-		container.setName("test2");
-		dao.store(container);
+		Container[] containers = new Container[3];
 		
-		container = newContainer();
-		container.setName("test3");
-		dao.store(container);
+		containers[0] = newContainer();
+		containers[0].setName("test1");
+		dao.store(containers[0]);
 		
-		Container result = dao.findWithContainerId(1);
-		assertNotNull(result);
-		assertEquals(1, result.getId());
+		containers[1] = newContainer();
+		containers[1].setName("test2");
+		dao.store(containers[1]);
 		
-		result = dao.findWithContainerId(2);
+		containers[2] = newContainer();
+		containers[2].setName("test3");
+		dao.store(containers[2]);
+		
+		Container result = dao.findWithContainerId(containers[0].getId());
+		assertNotNull("Expected result to bo non null!", result);
+		assertEquals(containers[0].getId(), result.getId());
+		
+		result = dao.findWithContainerId(containers[1].getId());
 		assertNotNull(result);
 		assertEquals("test2", result.getName());
 		
-		result = dao.findWithContainerId(3);
+		result = dao.findWithContainerId(containers[2].getId());
 		assertNotNull(result);
 		assertEquals("test3", result.getName());
 		
-		result = dao.findWithContainerId(0);
+		result = dao.findWithContainerId(-1);
 		assertNull(result);
 		
 	}

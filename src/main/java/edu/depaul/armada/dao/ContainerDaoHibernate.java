@@ -5,7 +5,6 @@ package edu.depaul.armada.dao;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
@@ -101,7 +100,7 @@ public class ContainerDaoHibernate implements ContainerDao {
 			temp.containerId = container.getId();
 			temp.containerUniqueId = container.getContainerUniqueId();
 			temp.cAdvisorURL = container.getCAdvisorURL();
-			Set<ContainerLog> logs = container.getLogs();
+			List<ContainerLog> logs = container.getLogs();
 			ContainerLog[] logArr = logs.toArray(new ContainerLog[logs.size()]);
 			temp.cpuUsed = logArr[0].getCpuUsed();
 			temp.cpuTotal = logArr[0].getCpuTotal();
@@ -130,7 +129,7 @@ public class ContainerDaoHibernate implements ContainerDao {
 			temp.containerId = container.getId();
 			temp.containerUniqueId = container.getContainerUniqueId();
 			temp.cAdvisorURL = container.getCAdvisorURL();
-			Set<ContainerLog> logs = container.getLogs();
+			List<ContainerLog> logs = container.getLogs();
 			ContainerLog[] logArr = logs.toArray(new ContainerLog[logs.size()]);
 			temp.cpuUsed = logArr[0].getCpuUsed();
 			temp.cpuTotal = logArr[0].getCpuTotal();
@@ -141,5 +140,5 @@ public class ContainerDaoHibernate implements ContainerDao {
 			result.add(temp);
 		}
 		return result;
-	}	
+	}
 }

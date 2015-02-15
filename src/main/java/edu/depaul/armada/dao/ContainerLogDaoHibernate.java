@@ -3,12 +3,13 @@
  */
 package edu.depaul.armada.dao;
 
-import java.util.ArrayList;
-import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
-import org.hibernate.Query;
+import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -34,69 +35,47 @@ public class ContainerLogDaoHibernate implements ContainerLogDao {
 		this.sessionFactory = sessionFactory;
 	}
 
-	/* (non-Javadoc)
-	 * @see edu.depaul.armada.dao.ContainerLogDao#store(edu.depaul.armada.domain.ContainerLog)
-	 */
-	@Override
-	public void store(ContainerLog containerLog) {
-		AssertUtil.assertNotNull(containerLog, "ContainerLog instance cannot be null!");
-		sessionFactory.getCurrentSession().saveOrUpdate(containerLog);
-		sessionFactory.getCurrentSession().flush();
-	}
-
 	@Override
 	public List<ContainerLog> findWithContainerId(long containerId) {
 		AssertUtil.assertNotNull(containerId, "Parameter 'containerId' cannot be null!");
-		Query query = sessionFactory.getCurrentSession().createQuery("from ContainerLog where id = :containerId");
-		query.setLong("containerId", containerId);
-		return castContainerLogList(ContainerLog.class, query.list());
+		Criteria criteria = newCriteria();
+		criteria.createAlias("container", "container");
+		criteria.add(Restrictions.eq("container.id", containerId));
+		List<ContainerLog> logs = criteria.list();
+		return (logs == null)? Collections.<ContainerLog>emptyList() : logs;
 	}
 	
 	@Override
-	public long getContainerLogAvgMemUsage(long containerId) {
-		List<ContainerLog> containerLogList = findWithContainerId(containerId);
-		long avg = 0;
-		if(!containerLogList.isEmpty()){
-			for (ContainerLog cl : containerLogList){
-				avg += cl.getMemUsed();
-			}
-			return avg/containerLogList.size();
-		}
-		return avg;
+	public double getContainerLogAvgMemUsage(long containerId) {
+		return getAverage(containerId, "memUsed");
 	}
 
 	@Override
-	public long getContainerLogAvgCpuUsage(long containerId) {
-		List<ContainerLog> containerLogList = findWithContainerId(containerId);
-		long avg = 0;
-		if(!containerLogList.isEmpty()){
-			for (ContainerLog cl : containerLogList){
-				avg += cl.getCpuUsed();
-			}
-			return avg/containerLogList.size();
-		}
-		return avg;
+	public double getContainerLogAvgCpuUsage(long containerId) {
+		return getAverage(containerId, "cpuUsed");
 	}
 
 	@Override
-	public long getContainerLogAvgFileSystemUsage(long containerId) {
-		List<ContainerLog> containerLogList = findWithContainerId(containerId);
-		long avg = 0;
-		if(!containerLogList.isEmpty()){
-			for (ContainerLog cl : containerLogList){
-				avg += cl.getDiskUsed();
-			}
-			return avg/containerLogList.size();
-		}
-		return avg;
+	public double getContainerLogAvgFileSystemUsage(long containerId) {
+		return getAverage(containerId, "filesystemUsed");
 	}
 	
-	public static <T> List<ContainerLog> castContainerLogList(Class<? extends ContainerLog> ContainerLog, Collection<?> collection) {
-	    List<ContainerLog> containerLogList = new ArrayList<ContainerLog>(collection.size());
-	    for(Object containerLog: collection) {
-	    	containerLogList.add(ContainerLog.cast(containerLog));
-	    }
-	    return containerLogList;
+	private double getAverage(long containerId, String property) {
+		Criteria criteria = newCriteria();
+		criteria.createAlias("container", "container");
+		criteria.add(Restrictions.eq("container.id", containerId));
+		criteria.setProjection(Projections.avg(property));
+		Double result = (Double) criteria.uniqueResult();
+		return (result == null)? 0.0 : result;
+	}
+	
+	/**
+	 * Return new criteria
+	 * 
+	 * @return new criteria
+	 */
+	private Criteria newCriteria() {
+		return sessionFactory.getCurrentSession().createCriteria(ContainerLog.class);
 	}
 	
 }
