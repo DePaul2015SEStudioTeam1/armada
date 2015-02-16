@@ -12,7 +12,7 @@ import edu.depaul.armada.dao.ContainerDao;
 import edu.depaul.armada.dao.ContainerLogDao;
 import edu.depaul.armada.domain.Container;
 import edu.depaul.armada.domain.ContainerLog;
-import edu.depaul.armada.model.AgentContainer;
+import edu.depaul.armada.model.AgentContainerLog;
 
 /**
  * Concrete implementation of the OperationsService
@@ -39,7 +39,7 @@ public class ArmadaServiceImpl implements ArmadaService {
 	 * @see edu.depaul.armada.service.ArmadaService#send(edu.depaul.armada.model.AgentContainer)
 	 */
 	@Override
-	public void send(AgentContainer agentContainer) {
+	public void send(AgentContainerLog agentContainer) {
 		// get container matching unique id
 		Container container = containerDao.findWithContainerUniqueId(agentContainer.containerUniqueId); 
 		if(container == null) {
@@ -54,8 +54,8 @@ public class ArmadaServiceImpl implements ArmadaService {
 		log.setCpuTotal(agentContainer.cpuTotal);
 		log.setMemUsed(agentContainer.memUsed);
 		log.setMemTotal(agentContainer.memTotal);
-		log.setDiskUsed(agentContainer.filesystemUsed);
-		log.setDiskTotal(agentContainer.filesystemUsed);
+		log.setDiskUsed(agentContainer.diskUsed);
+		log.setDiskTotal(agentContainer.diskTotal);
 		log.setTimestamp(agentContainer.timestamp);
 		
 		container.addLog(log);
@@ -67,9 +67,9 @@ public class ArmadaServiceImpl implements ArmadaService {
 	 * @see edu.depaul.armada.service.ArmadaService#send(java.util.List)
 	 */
 	@Override
-	public void send(List<AgentContainer> containers) {
-		for(AgentContainer container : containers) {
-			send(container);
+	public void send(List<AgentContainerLog> logs) {
+		for(AgentContainerLog log : logs) {
+			send(log);
 		}
 	}
 
