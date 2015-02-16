@@ -21,7 +21,7 @@ import edu.depaul.armada.model.DashboardContainer;
  */
 @Controller
 @RequestMapping("/containers")
-public class ArmadaController {
+public class ContainerRestfulController {
 
 	private ContainerDao containerDao;
 	

@@ -22,7 +22,7 @@ import edu.depaul.armada.model.DashboardContainer;
 import edu.depaul.armada.util.TestUtil;
 
 /**
- * Exercises the ArmadaController
+ * Exercises the ContainerRestfulController
  * 
  * @author ptrzyna
  */
@@ -30,17 +30,17 @@ import edu.depaul.armada.util.TestUtil;
 @ContextConfiguration(locations = {"/beans/armada-config-test.xml"})
 @TransactionConfiguration(transactionManager="armadaTransactionManager")
 @Transactional
-public class ArmadaControllerTest {
+public class ContainerRestfulControllerTest {
 
 	@Autowired private ContainerDao containerDao;
-	@Autowired private ArmadaController armadaController;
+	@Autowired private ContainerRestfulController containerRestfulController;
 	
 	/**
-	 * Test method for {@link edu.depaul.armada.controller.ArmadaController#getAll()}.
+	 * Test method for {@link edu.depaul.armada.controller.ContainerRestfulController#getAll()}.
 	 */
 	@Test
 	public void testGetAllDashboardContainers() {
-		List<DashboardContainer> result = armadaController.getAllDashboardContainers();
+		List<DashboardContainer> result = containerRestfulController.getAllDashboardContainers();
 		assertTrue(result.isEmpty());
 		
 		Container container = TestUtil.newContainer();
@@ -61,7 +61,7 @@ public class ArmadaControllerTest {
 		
 		containerDao.store(container2);
 		
-		result = armadaController.getAllDashboardContainers();
+		result = containerRestfulController.getAllDashboardContainers();
 		// container corresponds to dashboard container
 		assertEquals("Expected 2 because there are only two containers.", 2, result.size());
 		
@@ -85,7 +85,7 @@ public class ArmadaControllerTest {
 	}
 
 	/**
-	 * Test method for {@link edu.depaul.armada.controller.ArmadaController#getPage(long)}.
+	 * Test method for {@link edu.depaul.armada.controller.ContainerRestfulController#getPage(long)}.
 	 */
 	@Test
 	public void testGetPageOfDashboardContainers() {
@@ -99,7 +99,7 @@ public class ArmadaControllerTest {
 			containerDao.store(containers[i]);
 		}
 		
-		List<DashboardContainer> result = armadaController.getPageOfDashboardContainers(0);
+		List<DashboardContainer> result = containerRestfulController.getPageOfDashboardContainers(0);
 		assertEquals(10, result.size());
 		
 		for(int i=0; i<result.size(); i++) {
