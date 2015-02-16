@@ -47,4 +47,13 @@ public interface ContainerLogDao {
 	 * @return average of disk usage
 	 */
 	double getContainerLogAvgDiskUsage(long containerId);
+
+	/**
+	 * Gets logs for given container for a period of 24h in the past
+	 * 
+	 * @param containerId	id of the container to which the logs belong
+	 * @param period	used to determine the time period for which we want to collect logs
+	 * @return list of logs
+	 */
+	List<ContainerLog> findWithContainerIdAndPeriod(long containerId, int period);
 }

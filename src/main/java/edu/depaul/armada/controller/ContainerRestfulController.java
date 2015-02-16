@@ -42,9 +42,4 @@ public class ContainerRestfulController {
 		return containerDao.getDashboardContainers(id, 10);
 	}
 	
-	// add method for getting a all logs for container
-	
-	// add method for getting a subset of logs for container within a date range
-	
-	
 }

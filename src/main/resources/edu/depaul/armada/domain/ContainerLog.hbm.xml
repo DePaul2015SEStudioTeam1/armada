@@ -15,6 +15,7 @@
         <property column="disk_used" name="diskUsed" type="java.lang.Long" />
         <property column="disk_total" name="diskTotal" type="java.lang.Long" />
         <many-to-one column="container_id" name="container" 
+            fetch="join"
             class="edu.depaul.armada.domain.Container" 
             foreign-key="fk_container_to_log"
             not-null="true"/>

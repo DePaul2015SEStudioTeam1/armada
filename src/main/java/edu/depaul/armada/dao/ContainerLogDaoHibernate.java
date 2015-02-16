@@ -3,6 +3,7 @@
  */
 package edu.depaul.armada.dao;
 
+import java.sql.Timestamp;
 import java.util.Collections;
 import java.util.List;
 
@@ -76,6 +77,21 @@ public class ContainerLogDaoHibernate implements ContainerLogDao {
 	 */
 	private Criteria newCriteria() {
 		return sessionFactory.getCurrentSession().createCriteria(ContainerLog.class);
+	}
+
+	/* (non-Javadoc)
+	 * @see edu.depaul.armada.dao.ContainerLogDao#findWithContainerIdAndPeriod(long, int)
+	 */
+	@Override
+	public List<ContainerLog> findWithContainerIdAndPeriod(long containerId, int periodInHours) {
+		Criteria criteria = newCriteria();
+		criteria.createAlias("container", "container");
+		criteria.add(Restrictions.eq("container.id", containerId));
+		Timestamp currentDate = new Timestamp(System.currentTimeMillis());
+		criteria.add(Restrictions.le("timestamp", currentDate));
+		criteria.add(Restrictions.ge("timestamp", new Timestamp(currentDate.getTime() - 24 * 60 * 60 * 1000)));
+		List<ContainerLog> result = criteria.list();
+		return (result == null)? Collections.<ContainerLog>emptyList() : result;
 	}
 	
 }
