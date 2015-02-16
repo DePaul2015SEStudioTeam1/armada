@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -14,6 +15,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
  * @author tokenofid
  * 
  */
+@Ignore
 public class ArmadaUITest {
 	private WebDriver driver = new FirefoxDriver();
 	final static String URL = "http://localhost:8000";

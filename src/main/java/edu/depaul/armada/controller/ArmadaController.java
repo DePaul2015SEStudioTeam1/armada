@@ -32,15 +32,19 @@ public class ArmadaController {
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	@ResponseBody
-	public List<DashboardContainer> getAll() {
+	public List<DashboardContainer> getAllDashboardContainers() {
 		return containerDao.getAllDashboardContainers();
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	@ResponseBody
-	public List<DashboardContainer> getPage(@PathVariable long id) {
+	public List<DashboardContainer> getPageOfDashboardContainers(@PathVariable long id) {
 		return containerDao.getDashboardContainers(id, 10);
 	}
+	
+	// add method for getting a all logs for container
+	
+	// add method for getting a subset of logs for container within a date range
 	
 	
 }

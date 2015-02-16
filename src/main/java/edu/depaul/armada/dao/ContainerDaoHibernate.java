@@ -102,12 +102,13 @@ public class ContainerDaoHibernate implements ContainerDao {
 			temp.cAdvisorURL = container.getCAdvisorURL();
 			List<ContainerLog> logs = container.getLogs();
 			ContainerLog[] logArr = logs.toArray(new ContainerLog[logs.size()]);
-			temp.cpuUsed = logArr[0].getCpuUsed();
-			temp.cpuTotal = logArr[0].getCpuTotal();
-			temp.memUsed = logArr[0].getCpuUsed();
-			temp.memTotal = logArr[0].getCpuUsed();
-			temp.diskUsed = logArr[0].getCpuUsed();
-			temp.diskTotal = logArr[0].getCpuUsed();
+			int index = logArr.length-1;
+			temp.cpuUsed = logArr[index].getCpuUsed();
+			temp.cpuTotal = logArr[index].getCpuTotal();
+			temp.memUsed = logArr[index].getMemUsed();
+			temp.memTotal = logArr[index].getMemTotal();
+			temp.diskUsed = logArr[index].getDiskUsed();
+			temp.diskTotal = logArr[index].getDiskTotal();
 			result.add(temp);
 		}
 		return result;
@@ -131,12 +132,13 @@ public class ContainerDaoHibernate implements ContainerDao {
 			temp.cAdvisorURL = container.getCAdvisorURL();
 			List<ContainerLog> logs = container.getLogs();
 			ContainerLog[] logArr = logs.toArray(new ContainerLog[logs.size()]);
-			temp.cpuUsed = logArr[0].getCpuUsed();
-			temp.cpuTotal = logArr[0].getCpuTotal();
-			temp.memUsed = logArr[0].getCpuUsed();
-			temp.memTotal = logArr[0].getCpuUsed();
-			temp.diskUsed = logArr[0].getCpuUsed();
-			temp.diskTotal = logArr[0].getCpuUsed();
+			int index = logArr.length-1;
+			temp.cpuUsed = logArr[index].getCpuUsed();
+			temp.cpuTotal = logArr[index].getCpuTotal();
+			temp.memUsed = logArr[index].getMemUsed();
+			temp.memTotal = logArr[index].getMemTotal();
+			temp.diskUsed = logArr[index].getDiskUsed();
+			temp.diskTotal = logArr[index].getDiskTotal();
 			result.add(temp);
 		}
 		return result;

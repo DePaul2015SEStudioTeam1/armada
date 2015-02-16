@@ -5,11 +5,8 @@ package edu.depaul.armada.dao;
 
 import static org.junit.Assert.*;
 
-import java.sql.Timestamp;
 import java.util.List;
-import java.util.UUID;
 
-import org.apache.commons.lang3.RandomUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import edu.depaul.armada.domain.Container;
 import edu.depaul.armada.domain.ContainerLog;
+import edu.depaul.armada.util.TestUtil;
 
 /**
  * @author jplante
@@ -37,10 +35,10 @@ public class ContainerLogDaoTest {
 	@Test
 	public void testFindWithContainerId() {
 		
-		Container container = newContainer();
+		Container container = TestUtil.newContainer();
 		ContainerLog[] logs = new ContainerLog[3];
 		for(int i=0; i<logs.length; i++) {
-			logs[i] = newContainerLog();
+			logs[i] = TestUtil.newContainerLog();
 			container.addLog(logs[i]);
 		}
 		
@@ -50,26 +48,6 @@ public class ContainerLogDaoTest {
 		
 		assertEquals(logs.length, result.size());
 		assertEquals(logs[0].getId(), result.get(0).getId());
-	}
-
-	private Container newContainer() {
-		Container container = new Container();
-		container.setCAdvisorURL("http://localhost:8080/cAdvisor");
-		container.setContainerUniqueId(UUID.randomUUID().toString());
-		container.setName("test-name");
-		return container;
-	}
-	
-	private ContainerLog newContainerLog() {
-		ContainerLog log = new ContainerLog();
-		log.setTimestamp(new Timestamp(0));
-		log.setCpuUsed(RandomUtils.nextLong(0, 100));
-		log.setCpuTotal(100);
-		log.setMemUsed(RandomUtils.nextLong(0, 100));
-		log.setMemTotal(100);
-		log.setDiskUsed(RandomUtils.nextLong(0, 100));
-		log.setDiskTotal(100);
-		return log;
 	}
 	
 	@Test
@@ -81,8 +59,8 @@ public class ContainerLogDaoTest {
 	@Test
 	public void testGetContainerLogAvgMemUsage_matching_container_logs() {
 		
-		Container container = newContainer();
-		ContainerLog log = newContainerLog();
+		Container container = TestUtil.newContainer();
+		ContainerLog log = TestUtil.newContainerLog();
 		container.addLog(log);
 	
 		containerDao.store(container);	
@@ -91,7 +69,7 @@ public class ContainerLogDaoTest {
 		assertEquals("Expected average to be " + log.getMemUsed() + ", but was " + average + "!", log.getMemUsed(), average, 0.1);
 		
 		container = containerDao.findWithContainerId(container.getId());
-		ContainerLog log2 = newContainerLog();
+		ContainerLog log2 = TestUtil.newContainerLog();
 		container.addLog(log2);
 		containerDao.store(container);
 		
