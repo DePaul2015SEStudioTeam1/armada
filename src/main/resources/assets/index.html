@@ -2,240 +2,233 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <title>Armada Dashboard</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
+<meta charset="utf-8">
+<title>Armada Dashboard</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="">
 
-    <!-- Le styles -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            padding-top: 0px; /* 0px to make the container go all the way to the bottom of the topbar */
-		    /*font-size: 70%;*/
-        }
-    </style>
-    <link href="css/bootstrap-responsive.css" rel="stylesheet">
-    <link href="css/styles.css" rel="stylesheet">
-    <link href="css/dataTables.bootstrap.css" rel="stylesheet">
-    <link href="css/dataTables.tableTools.css" rel="stylesheet">
+<!-- Le styles -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<style>
+body {
+	padding-top: 0px;
+	/* 0px to make the container go all the way to the bottom of the topbar */
+	/*font-size: 70%;*/
+}
+</style>
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/styles.css" rel="stylesheet">
+<link href="css/dataTables.bootstrap.css" rel="stylesheet">
+<link href="css/dataTables.tableTools.css" rel="stylesheet">
 
-    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
+<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+<!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
 
-    <!-- <script src="http://use.edgefonts.net/andika.js"></script> -->
+<!-- <script src="http://use.edgefonts.net/andika.js"></script> -->
 </head>
-
 <html>
-    <script type="text/javascript" src="js/jquery.js"></script>
-	<script type="text/javascript" src="js/jquery.dataTables.js"></script>
-	<script type="text/javascript" src="js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="js/dataTables.bootstrap.js"></script>
-	<!-- <script type="text/javascript" src="js/fnReloadAjax.js"></script> -->
-	<script type="text/javascript" src="js/dataTables.tableTools.js"></script>
-	<script type="text/javascript" src="js/Chart.js"></script>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/jquery.dataTables.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/dataTables.bootstrap.js"></script>
+<script type="text/javascript" src="js/dataTables.tableTools.js"></script>
+<script type="text/javascript" src="js/Chart.js"></script>
 
 <body>
 
-    <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
-      <div class="container">
-        <div class="navbar-header">
-          <img src="images/ship.gif" alt="ship" style="width:50px;height:50px"> <a class="navbar-brand" href="#">Welcome to Armada</a>
-        </div>
-      </div>
-    </nav>
+	<nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<img src="images/ship.gif" alt="ship"
+					style="width: 50px; height: 50px"> <a class="navbar-brand"
+					href="#">Welcome to Armada</a>
+			</div>
+		</div>
+	</nav>
 
 	<div class="container">
 		<div class="text-right">
-		    <!-- add an icon here, a gear -->
+			<!-- add an icon here, a gear -->
 			<a href="#settings" data-toggle="modal" data-target="#settings">Settings</a>
-			<br/>
-			Today is <script>document.write(new Date().toDateString()); </script>
+			<br /> Today is
+			<script>document.write(new Date().toDateString()); </script>
 		</div>
-		<div class="modal fade bannerformmodal" tabindex="-1" role="dialog" aria-labelledby="bannerformmodal" aria-hidden="true" id="settings">
+		<div class="modal fade bannerformmodal" tabindex="-1" role="dialog"
+			aria-labelledby="bannerformmodal" aria-hidden="true" id="settings">
 			<div class="modal-dialog modal-sm">
 				<div class="modal-content">
-				<div class="modal-content">
-				<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-						<h4 class="modal-title" id="myModalLabel">Settings</h4>
-					</div>
-				<div class="modal-body">
-						 <form id="requestacallform" method="POST" name="requestacallform">
-							  <div class="form-group">
-									<div class="input-group">                               
-										<span class="input-group-addon"><i class="fa fa-user"></i></span>
-										<input id="cpu_threshold" type="number" class="form-control" placeholder="CPU Threshold" name="cpu_threshold"/>
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal"
+								aria-hidden="true">&times;</button>
+							<h4 class="modal-title" id="myModalLabel">Settings</h4>
+						</div>
+						<div class="modal-body">
+							<form id="requestacallform" method="POST" name="requestacallform">
+								<div class="form-group">
+									<div class="input-group">
+										<span class="input-group-addon"><i class="fa fa-user"></i>
+										</span> <input id="cpu_threshold" type="number" class="form-control"
+											placeholder="CPU Threshold" name="cpu_threshold" />
 									</div>
-							  </div>
-							  <div class="form-group">
-								  <div class="input-group">                               
-									  <span class="input-group-addon"><i class="fa fa-user"></i></span>
-									  <input id="mem_threshold" type="number" class="form-control" placeholder="Memory Threshold" name="mem_threshold"/>
-								  </div>
-							  </div>
-							  <div class="form-group">
-								  <div class="input-group">                               
-									  <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-									  <input id="disk_threshold" type="number" class="form-control" placeholder="Diskspace Threshold" name="disk_threshold" />
-								  </div>
-							  </div>
-						</form>
+								</div>
+								<div class="form-group">
+									<div class="input-group">
+										<span class="input-group-addon"><i class="fa fa-user"></i>
+										</span> <input id="mem_threshold" type="number" class="form-control"
+											placeholder="Memory Threshold" name="mem_threshold" />
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="input-group">
+										<span class="input-group-addon"><i
+											class="fa fa-envelope"></i>
+										</span> <input id="disk_threshold" type="number" class="form-control"
+											placeholder="Diskspace Threshold" name="disk_threshold" />
+									</div>
+								</div>
+							</form>
+						</div>
+						<div class="modal-footer">
+							<button type="submit" class="btn btn-blue">Save</button>
+							<button type="button" class="btn btn-blue">Reset</button>
+						</div>
 					</div>
-			    <div class="modal-footer">
-				  	<button type="submit" class="btn btn-blue">Save</button>
-					<button type="submit" class="btn btn-blue">Submit</button>              
-					<button type="button" class="btn btn-blue">Reset</button>
-				  </div>          
+				</div>
 			</div>
-			</div>
-		  	</div>
 		</div>
-		<div class="modal fade bannerformmodal" tabindex="-1" role="dialog" aria-labelledby="deployer" aria-hidden="true" id="deploy">
+
+		<div class="modal fade bannerformmodal" tabindex="-1" role="dialog"
+			aria-labelledby="bannerformmodal" aria-hidden="true" id="container_info">
+			<div class="modal-dialog modal-sm">
+				<div class="modal-content">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal"
+								aria-hidden="true">&times;</button>
+							<h4 class="modal-title" id="myModalLabel">Container ________</h4>
+						</div>
+						<div class="panel panel-primary">
+							<div class="panel-body">
+								<div class="row">
+									<div class="col-xs-8">
+										<canvas id="myChart" width="200" height="200"></canvas>
+										<canvas id="myChart2" width="200" height="200"></canvas>
+										<canvas id="myChart4" width="200" height="200"></canvas>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		
+		<div class="modal fade bannerformmodal" tabindex="-1" role="dialog"
+			aria-labelledby="deployer" aria-hidden="true" id="deploy">
 			<div class="modal-dialog col-xs-8">
 				<div class="modal-content">
-				<div class="modal-content">
-				<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-						<h4 class="modal-title" id="myModalLabel">Load/Unload Docker Images</h4>
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal"
+								aria-hidden="true">&times;</button>
+							<h4 class="modal-title" id="myModalLabel">Load/Unload Docker
+								Images</h4>
+						</div>
+						<div class="modal-body">
+							<form id="requestacallform" method="POST" name="requestacallform">
+								<div class="form-group">
+									<select multiple class="form-control">
+										<option>Image A</option>
+										<option>Image B</option>
+										<option>Image C</option>
+										<option>Image D</option>
+										<option>Image E</option>
+									</select>
+								</div>
+								<div class="form-group">
+									<select multiple class="form-control">
+										<option>Host 1</option>
+										<option>Host 2</option>
+										<option>Host 3</option>
+									</select>
+								</div>
+							</form>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-blue">Add</button>
+							<button type="button" class="btn btn-blue">Add All</button>
+							<button type="button" class="btn btn-blue">Remove</button>
+							<button type="button" class="btn btn-blue">Remove All</button>
+							<button type="button" class="btn btn-blue">Reset</button>
+						</div>
 					</div>
-				<div class="modal-body">
-						 <form id="requestacallform" method="POST" name="requestacallform">
-							<div class="form-group">
-								<select multiple class="form-control">
-								  <option>Image A</option>
-								  <option>Image B</option>
-								  <option>Image C</option>
-								  <option>Image D</option>
-								  <option>Image E</option>
-								</select>
-							</div>
-							<div class="form-group">
-								<select multiple class="form-control">
-								  <option>Host 1</option>
-								  <option>Host 2</option>
-								  <option>Host 3</option>
-								</select>
-							</div>
-						</form>
-					</div>
-				<div class="modal-footer">
-				    <button type="button" class="btn btn-blue">Add</button>
-				    <button type="button" class="btn btn-blue">Add All</button>
-					<button type="button" class="btn btn-blue">Remove</button>
-					<button type="button" class="btn btn-blue">Remove All</button>
-					<button type="button" class="btn btn-blue">Reset</button>
-				  </div>
-			</div>
-			</div>
+				</div>
 			</div>
 		</div>
-		<br/>
-		<br/>
-		<div class="panel panel-primary col-xs-12" >
-		  <div class="panel-body">
-			  <div class="row">
-				<div class="col-xs-4">
-				    <div class="row">
-				        <div class="col-xs-3 label label-default label-success" align="right">
-				            Running:
-				        </div>
-				        <div class="col-xs-2">
-				            5
-                        </div>    
-				    </div>
-				    <div class="row">
-                        <div class="col-xs-3 label label-idle" align="right">
-                            Idle:
-                        </div>
-                        <div class="col-xs-2">
-                            1
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-3 label label-warning" align="right">
-                            Error:
-                        </div>
-                        <div class="col-xs-2">
-                            2
-                        </div>
-                    </div>
+		<br /> <br />
+		<div class="panel panel-primary col-xs-8">
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-xs-4">
+						<div class="row">
+							<div class="col-xs-3 label label-default label-success"
+								align="right">Running:</div>
+							<div class="col-xs-2">5</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-3 label label-idle" align="right">Idle:
+							</div>
+							<div class="col-xs-2">1</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-3 label label-warning" align="right">
+								Error:</div>
+							<div class="col-xs-2">2</div>
+						</div>
+					</div>
+					<div class="col-xs-4">
+						<canvas id="myChart3" width="200" height="200"></canvas>
+					</div>
+					<div class="col-xs-4">
+						<div class="row">
+							<a href="#settings" data-toggle="modal" data-target="#deploy">Deployer</a>
+						</div>
+					</div>
 				</div>
-				<div class="col-xs-4">
-				  <canvas id="myChart3" width="200" height="200"></canvas>
-				</div>
-				<div class="col-xs-4">
-				<a href="#settings" data-toggle="modal" data-target="#deploy">Deployer</a>
-				</div>
-			  </div>
-		  </div>
+			</div>
 		</div>
-		<br/>
+		<br />
 		<div>
 			<legend>Container Activity</legend>
 			<div class="row-fluid table-condensed">
-				<table id="containers" class="table table-hover table-bordered" cellspacing="0" width="100%">
+				<table id="containers" class="table table-hover table-bordered"
+					cellspacing="0" width="100%">
 					<thead>
 						<tr>
-							<th>Name</th>
-							<th>Container Unique Id</th>
-							<th>C Advisor URL</th>
-							<th>Mem Used</th>
-							<th>Mem Total</th>
-							<th>Cpu Used</th>
-							<th>Cpu Total</th>
-							<th>Disk Used</th>
-							<th>Disk Total</th>
+							<th>Agent ID</th>
+							<th>Primary IP Address</th>
+							<th>Primary Mac Address</th>
+							<th>Host Name</th>
+							<th>CPU Vendor</th>
+							<th>CPU Model</th>
+							<th>CPU Count</th>
+							<th>OS Name</th>
+							<th>Memory Free</th>
+							<th>Disk Space Free</th>
 						</tr>
 					</thead>
 				</table>
 			</div>
 		</div>
-		<div role="tabpanel" id="tabPanel">
-			<ul class="nav nav-tabs" role="tablist" id="myTab">
-			  <li role="presentation" class="active"><a href="#details" aria-controls="home" role="tab" data-toggle="tab">Details</a></li>
-			  <li role="presentation"><a href="#logs" aria-controls="profile" role="tab" data-toggle="tab">Logs</a></li>
-			</ul>
-
-			<div class="tab-content">
-			  <div role="tabpanel" class="tab-pane fade in active" id="details">		  
-				<div class="panel panel-primary" >
-				  <div class="panel-body">
-					  <div class="row">
-						<div class="col-xs-4">
-							IP Address: 0.0.0.0<br/>
-							MAC Address: xxxxx<br/>
-							CPU Vendor/Model: Intel XEON<br/>
-							# of CPUs: 1<br/>
-							OS: Mac OSX<br/>
-							Memory<br/>
-							Used: 40% Free: 60% Total: 16GB<br/>
-							Hard Drives (1 Drive(s) in total)<br/>
-							Used: 22% Free: 78% Total: 320GB<br/>
-							<br/>
-							Notes:<br/>
-						</div>
-						<div class="col-xs-8">
-						  <canvas id="myChart" width="200" height="200"></canvas>
-						  <canvas id="myChart2" width="200" height="200"></canvas>
-						  <canvas id="myChart4" width="200" height="200"></canvas>
-						</div>
-					  </div>
-				  </div>
-				</div>
-			  </div>
-			  <div role="tabpanel" class="tab-pane fade" id="logs">
-				  <p>More to come!</p>
-			  </div>
-			</div>
-		</div>
 	</div>
 
-<script>
+	<script>
 	$(document).ready(function() {
 		var data2 = {
 			labels: ["January", "February", "March", "April", "May", "June", "July"],
@@ -289,33 +282,23 @@
 	    			dataSrc: ""
 	    		},
 			"columns": [
-				{ "data": "name" },
-				{ "data": "containerUniqueId" },
-				{ "data": "cAdvisorURL" },
-				{ "data": "memUsed" },
-				{ "data": "memTotal" },
-				{ "data": "cpuUsed" },
-				{ "data": "cpuTotal" },
-				{ "data": "diskUsed" },
-				{ "data": "diskTotal" }
+				{ "data": "agentId" },
+				{ "data": "primaryIpAddress" },
+				{ "data": "primaryMacAddress" },
+				{ "data": "hostName" },
+				{ "data": "cpuVendor" },
+				{ "data": "cpuModel" },
+				{ "data": "cpuCount" },
+				{ "data": "memFree" },
+				{ "data": "diskSpaceFree" },
 			]
 		} );
-		$('#containers tbody')
-        .on('mouseover', 'td', function () {
-           $(table.cells().nodes().addClass('highlight');
-        } )
-        .on('mouseleave', function () {
-            $(table.cells().nodes()).removeClass('highlight');
-        } );
 		$.fn.dataTable.ext.errMode = 'throw';
-		
-//		setInterval(function () {
-//			table.fnReloadAjax();
-//		}, 30000 );
-		
-		//$('#containers tbody').on('click', 'tr', function () {
-		//	$("#tabPanel").show();
-    	//} );
+
+		$('#containers tbody').on( 'dblclick', 'tr', function () {
+			  self.Editor.edit( this );
+		} );
+
 	} );
 </script>
 
