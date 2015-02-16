@@ -47,11 +47,4 @@ public interface ContainerLogDao {
 	 * @return average of disk usage
 	 */
 	double getContainerLogAvgDiskUsage(long containerId);
-	
-	/**
-	 * Gets a list of log entries for given container. These entries are for the past 24h.
-	 * 
-	 * @return list of log entries
-	 */
-	List<ContainerLog> getLogs(long containerId);
 }
