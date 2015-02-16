@@ -56,7 +56,7 @@ public class ContainerLogDaoHibernate implements ContainerLogDao {
 	}
 
 	@Override
-	public double getContainerLogAvgFileSystemUsage(long containerId) {
+	public double getContainerLogAvgDiskUsage(long containerId) {
 		return getAverage(containerId, "filesystemUsed");
 	}
 	
@@ -76,6 +76,15 @@ public class ContainerLogDaoHibernate implements ContainerLogDao {
 	 */
 	private Criteria newCriteria() {
 		return sessionFactory.getCurrentSession().createCriteria(ContainerLog.class);
+	}
+
+	/* (non-Javadoc)
+	 * @see edu.depaul.armada.dao.ContainerLogDao#getLogs(long)
+	 */
+	@Override
+	public List<ContainerLog> getLogs(long containerId) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

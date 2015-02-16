@@ -24,7 +24,34 @@ public interface ContainerLogDao {
 	 */
 	List<ContainerLog> findWithContainerId(long containerId);
 	
+	/**
+	 * Calculates the average memory use
+	 * 
+	 * @param containerId	container for which we want average memory usage
+	 * @return average of memory usage
+	 */
 	double getContainerLogAvgMemUsage(long containerId);
+	
+	/**
+	 * Calculates the average cpu use
+	 * 
+	 * @param containerId	container for which we want average cpu usage
+	 * @return average of cpu usage
+	 */
 	double getContainerLogAvgCpuUsage(long containerId);
-	double getContainerLogAvgFileSystemUsage(long containerId);
+	
+	/**
+	 * Calculates the average disk use
+	 * 
+	 * @param containerId	container for which we want average disk usage
+	 * @return average of disk usage
+	 */
+	double getContainerLogAvgDiskUsage(long containerId);
+	
+	/**
+	 * Gets a list of log entries for given container. These entries are for the past 24h.
+	 * 
+	 * @return list of log entries
+	 */
+	List<ContainerLog> getLogs(long containerId);
 }

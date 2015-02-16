@@ -102,4 +102,10 @@ public class ContainerLogDaoTest {
 		double expectedAverage = ((log.getMemUsed() + log2.getMemUsed())/2d);
 		assertEquals("Expected average to be " + expectedAverage + ", but was " + average + "!", expectedAverage, average, 0.1);
 	}
+	
+	@Test
+	public void testGetLogs() {
+		List<ContainerLog> result = containerLogDao.getLogs(-1);
+		assertTrue(result.isEmpty());
+	}
 }
