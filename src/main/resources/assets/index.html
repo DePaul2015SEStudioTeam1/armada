@@ -206,16 +206,15 @@ body {
 					cellspacing="0" width="100%">
 					<thead>
 						<tr>
-							<th>Agent ID</th>
-							<th>Primary IP Address</th>
-							<th>Primary Mac Address</th>
-							<th>Host Name</th>
-							<th>CPU Vendor</th>
-							<th>CPU Model</th>
-							<th>CPU Count</th>
-							<th>OS Name</th>
-							<th>Memory Free</th>
-							<th>Disk Space Free</th>
+							<th>Name</th>
+							<th>Container Id</th>
+							<th>C Advisor URL</th>
+							<th>CPU Used</th>
+							<th>CPU Total</th>
+							<th>Mem Used</th>
+							<th>Mem Total</th>
+							<th>Disk Used</th>
+							<th>Disk Total</th>
 						</tr>
 					</thead>
 				</table>
@@ -277,16 +276,15 @@ body {
 	    			dataSrc: ""
 	    		},
 			"columns": [
-				{ "data": "agentId" },
-				{ "data": "primaryIpAddress" },
-				{ "data": "primaryMacAddress" },
-				{ "data": "hostName" },
-				{ "data": "cpuVendor" },
-				{ "data": "cpuModel" },
-				{ "data": "cpuCount" },
-				{ "data": "memFree" },
-				{ "data": "diskSpaceFree" },
-				{ "data": "containerId" }
+				{ "data": "name" },
+				{ "data": "containerUniqueId" },
+				{ "data": "cAdvisorURL" },
+				{ "data": "cpuUsed" },
+				{ "data": "cpuTotal" },
+				{ "data": "memUsed" },
+				{ "data": "memTotal" },
+				{ "data": "diskUsed" },
+				{ "data": "diskTotal" }
 			]
 		} );
 		$('#containers tbody').on('mouseover', 'td', function () {
