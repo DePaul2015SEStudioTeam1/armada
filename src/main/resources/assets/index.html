@@ -286,12 +286,13 @@ body {
 				{ "data": "cpuCount" },
 				{ "data": "memFree" },
 				{ "data": "diskSpaceFree" },
+				{ "data": "containerId" }
 			]
 		} );
 		$('#containers tbody').on('mouseover', 'td', function () {
-			$(table.cells().nodes().addClass('highlight');
+			$(table.cells().nodes().addClass('highlight'));
 		} ).on('mouseleave', function () {
-		    $(table.cells().nodes()).removeClass('highlight');
+			$(table.cells().nodes()).removeClass('highlight');
 		} );
 		$.fn.dataTable.ext.errMode = 'throw';
 
