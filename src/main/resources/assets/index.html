@@ -172,7 +172,7 @@ body {
 			</div>
 		</div>
 		<br /> <br />
-		<div class="panel panel-primary col-xs-8">
+		<div class="panel panel-primary col-xs-12">
 			<div class="panel-body">
 				<div class="row">
 					<div class="col-xs-4">
@@ -194,11 +194,6 @@ body {
 					</div>
 					<div class="col-xs-4">
 						<canvas id="myChart3" width="200" height="200"></canvas>
-					</div>
-					<div class="col-xs-4">
-						<div class="row">
-							<a href="#settings" data-toggle="modal" data-target="#deploy">Deployer</a>
-						</div>
 					</div>
 				</div>
 			</div>
@@ -292,6 +287,11 @@ body {
 				{ "data": "memFree" },
 				{ "data": "diskSpaceFree" },
 			]
+		} );
+		$('#containers tbody').on('mouseover', 'td', function () {
+			$(table.cells().nodes().addClass('highlight');
+		} ).on('mouseleave', function () {
+		    $(table.cells().nodes()).removeClass('highlight');
 		} );
 		$.fn.dataTable.ext.errMode = 'throw';
 
