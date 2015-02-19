@@ -56,7 +56,17 @@ CREATE TABLE `container_log` (
   CONSTRAINT `fk_container_to_log` FOREIGN KEY (`container_id`) REFERENCES `container` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+# Dump of table preferences
+# ------------------------------------------------------------
 
+DROP TABLE IF EXISTS `preferences`;
+
+CREATE TABLE `preferences` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `pref_key` varchar(50) DEFAULT NULL,
+  `pref_value` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;

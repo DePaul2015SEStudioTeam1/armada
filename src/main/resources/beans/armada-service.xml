@@ -16,6 +16,7 @@
     <bean id="armadaService" class="edu.depaul.armada.service.ArmadaServiceImpl">
         <property name="containerLogDao" ref="containerLogDao" />
         <property name="containerDao" ref="containerDao"/>
+        <property name="preferenceDao" ref="preferenceDao"/>
     </bean>
 
 </beans>

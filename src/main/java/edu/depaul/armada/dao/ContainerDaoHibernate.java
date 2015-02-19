@@ -40,6 +40,9 @@ public class ContainerDaoHibernate implements ContainerDao {
 	@Override
 	public void store(Container container) {
 		AssertUtil.assertNotNull(container, "Container instance cannot be null!");
+		if (container.getCAdvisorURL() == null || container.getCAdvisorURL().isEmpty()) {
+			container.setCAdvisorURL("test");
+		}
 		sessionFactory.getCurrentSession().saveOrUpdate(container);
 		sessionFactory.getCurrentSession().flush();
 	}

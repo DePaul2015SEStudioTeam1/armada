@@ -12,7 +12,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 
 /**
- * @author tokenofid
+ * @author Roland T Craddolph
  * 
  */
 @Ignore

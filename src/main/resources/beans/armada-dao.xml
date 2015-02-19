@@ -25,5 +25,9 @@
     <bean id="containerDao" class="edu.depaul.armada.dao.ContainerDaoHibernate">
         <constructor-arg name="sessionFactory" ref="armadaSessionFactory"/>
     </bean>
+    
+	<bean id="preferenceDao" class="edu.depaul.armada.dao.PreferenceDaoHibernate">
+        <constructor-arg name="sessionFactory" ref="armadaSessionFactory"/>
+    </bean>
 
 </beans>

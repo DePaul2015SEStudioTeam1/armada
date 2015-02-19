@@ -10,6 +10,7 @@ import org.apache.commons.lang3.RandomUtils;
 
 import edu.depaul.armada.domain.Container;
 import edu.depaul.armada.domain.ContainerLog;
+import edu.depaul.armada.domain.Preference;
 
 /**
  * Test utility that can be used to easily set up test objects
@@ -36,6 +37,13 @@ public class TestUtil {
 		log.setDiskUsed(RandomUtils.nextLong(0, 100));
 		log.setDiskTotal(100);
 		return log;
+	}
+	
+	public static Preference newPreference() {
+		Preference preference = new Preference();
+		preference.setKey("cpu");
+		preference.setValue(90);
+		return preference;
 	}
 	
 }

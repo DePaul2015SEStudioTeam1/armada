@@ -10,9 +10,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import edu.depaul.armada.dao.ContainerDao;
 import edu.depaul.armada.dao.ContainerLogDao;
+import edu.depaul.armada.dao.PreferenceDao;
 import edu.depaul.armada.domain.Container;
 import edu.depaul.armada.domain.ContainerLog;
+import edu.depaul.armada.domain.Preference;
 import edu.depaul.armada.model.AgentContainerLog;
+import edu.depaul.armada.model.DashboardPreference;
 
 /**
  * Concrete implementation of the OperationsService
@@ -26,6 +29,7 @@ public class ArmadaServiceImpl implements ArmadaService {
 
 	private ContainerDao containerDao;
 	private ContainerLogDao containerLogDao;
+	private PreferenceDao preferenceDao;
 	
 	public void setContainerDao(ContainerDao containerDao) {
 		this.containerDao = containerDao;
@@ -33,6 +37,10 @@ public class ArmadaServiceImpl implements ArmadaService {
 	
 	public void setContainerLogDao(ContainerLogDao containerLogDao) {
 		this.containerLogDao = containerLogDao;
+	}
+	
+	public void setPreferenceDao(PreferenceDao preferenceDao) {
+		this.preferenceDao = preferenceDao;
 	}
 
 	/* (non-Javadoc)
@@ -72,7 +80,35 @@ public class ArmadaServiceImpl implements ArmadaService {
 			send(log);
 		}
 	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see edu.depaul.armada.service.ArmadaService#storePreference(edu.depaul.armada.model.DashboardPreference)
+	 */
+	@Override
+	public void storePreference(DashboardPreference dashboardPreference) {
+		// get container matching unique id
+		Preference preference = preferenceDao.findWithPreferenceKey(dashboardPreference.key); 
+		if(preference == null) {
+			preference = new Preference();
+			preference.setKey(dashboardPreference.key);
+			preference.setValue(dashboardPreference.value);
+		}
+		// save preference
+		preferenceDao.storePreference(preference);		
+	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see edu.depaul.armada.service.ArmadaService#storePreferences(java.util.List)
+	 */
+	@Override
+	public void storePreferences(List<DashboardPreference> dashboardPreferences) {
+		for (DashboardPreference preference : dashboardPreferences) {
+			storePreference(preference);
+		}
+	}
+	
 	
 
 }
