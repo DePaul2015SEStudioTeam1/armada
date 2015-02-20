@@ -297,8 +297,55 @@ body {
 		$('#containers tbody').on( 'dblclick', 'tr', function () {
 			  self.Editor.edit( this );
 		} );
+		
+		
 
 	} );
+</script>
+
+<script>
+	(function() {
+		var preferencesREST = "http://localhost:8083/preferences";
+		var cpuThreshold;
+		var diskThreshold;
+		var memoryThreshold;
+		
+		$.getJSON( preferencesREST)
+			.done(function( data ) {
+		
+		    $.each( data.preferences, function( key, val ) {
+		
+		        if (key == 'cpu_threshold'){
+		              cpuThreshold = val;
+				}
+		
+		        else if (key == 'disk_threshold'){
+		              diskThreshold = val;   
+		        }
+		        
+		        else if (key == 'memory_threshold'){
+		        	memoryThreshold = val;
+				}
+		
+		    });
+		
+		  });
+		$('tr').find(function() {return parseInt($(this).children("td.CheckThis").text(), 10) >= cpuThreshold}).addClass('thresholdhighlight');  
+		$('tr').find(function() {return parseInt($(this).children("td.CheckThis").text(), 10) >= memoryThreshold}).addClass('thresholdhighlight');
+		$('tr').find(function() {return parseInt($(this).children("td.CheckThis").text(), 10) >= diskThreshold}).addClass('thresholdhighlight');
+		
+		$('#containers tbody').on('mouseover', 'td', function () {
+			$(table.cells().nodes().addClass('highlight'));
+		} ).on('mouseleave', function () {
+			$(table.cells().nodes()).removeClass('highlight');
+		} );
+		$.fn.dataTable.ext.errMode = 'throw';
+
+		$('#containers tbody').on( 'dblclick', 'tr', function () {
+			  self.Editor.edit( this );
+		} );
+		
+		})();
 </script>
 
 </body>
