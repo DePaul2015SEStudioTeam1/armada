@@ -68,6 +68,9 @@ CREATE TABLE `preferences` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+INSERT INTO `preferences` (`pref_key`, `pref_value`)
+VALUES ('cpu_threshold', 80), ('disk_threshold', 90), ('memory_threshold', 90);
+
 
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
