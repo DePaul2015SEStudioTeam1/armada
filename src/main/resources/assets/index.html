@@ -37,9 +37,28 @@ body {
 <script type="text/javascript" src="js/dataTables.bootstrap.js"></script>
 <script type="text/javascript" src="js/dataTables.tableTools.js"></script>
 <script type="text/javascript" src="js/Chart.js"></script>
-
+<script>
+	var cpuThreshold;
+	var diskThreshold;
+	var memoryThreshold;
+	
+	$(function() {
+		var preferencesREST = "http://localhost:8083/preferences/";
+		$.get(preferencesREST).done(function( data ) {
+			$.each( data, function( id ) {
+			
+				if (data[id].key == 'cpu_threshold') {
+					cpuThreshold = data[id].value;
+				} else if (data[id].key == 'disk_threshold') {
+				              diskThreshold = data[id].value;   
+				} else if (data[id].key == 'memory_threshold') {
+				        	memoryThreshold = data[id].value;
+				}
+			});
+		});
+	});
+</script>
 <body>
-
 	<nav class="navbar navbar-inverse navbar-static-top" role="navigation">
 		<div class="container">
 			<div class="navbar-header">
@@ -271,10 +290,10 @@ body {
 			"cache": false,
 			"white-space": "nowrap",
 			"lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
-	    		"ajax": {
-	    			url: "http://localhost:8083/containers/",
-	    			dataSrc: ""
-	    		},
+	    	"ajax": {
+	   			url: "http://localhost:8083/containers/",
+	   			dataSrc: ""
+	    	},
 			"columns": [
 				{ "data": "name" },
 				{ "data": "containerUniqueId" },
@@ -285,12 +304,18 @@ body {
 				{ "data": "memTotal" },
 				{ "data": "diskUsed" },
 				{ "data": "diskTotal" }
-			]
-		} );
-		$('#containers tbody').on('mouseover', 'td', function () {
-			$(table.cells().nodes().addClass('highlight'));
-		} ).on('mouseleave', function () {
-			$(table.cells().nodes()).removeClass('highlight');
+			],
+			"fnRowCallback": function( nRow, aData, iDisplayIndex, iDisplayIndexFull ) {
+				$(nRow).children().each(function(index, td) {
+                    if(aData.cpuUsed >= cpuThreshold)  {
+                    	$(nRow).css('color', 'red')
+                    } else if (aData.diskUsed >= diskThreshold) {
+                    	$(nRow).css('color', 'red')
+                    } else if (aData.memUsed >= memoryThreshold) {
+                    	$(nRow).css('color', 'red')
+                    }
+		        });             
+		    }
 		} );
 		$.fn.dataTable.ext.errMode = 'throw';
 

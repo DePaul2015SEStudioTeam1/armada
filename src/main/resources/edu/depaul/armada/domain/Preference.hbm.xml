@@ -9,6 +9,6 @@
 		  <generator class="native"/>
 		</id>
 		<property column="pref_key" name="key" type="java.lang.String" not-null="true"/>
-		<property column="pref_value" name="value" type="java.lang.String" unique="true" not-null="true"/>
+		<property column="pref_value" name="value" type="integer" unique="true" not-null="true"/>
 	</class>
 </hibernate-mapping>
