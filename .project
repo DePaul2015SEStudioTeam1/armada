@@ -26,11 +26,4 @@
 		<nature>org.springframework.ide.eclipse.core.springnature</nature>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>armada-api.properties</name>
-			<type>1</type>
-			<location>/private/etc/armada/armada-api.properties</location>
-		</link>
-	</linkedResources>
 </projectDescription>

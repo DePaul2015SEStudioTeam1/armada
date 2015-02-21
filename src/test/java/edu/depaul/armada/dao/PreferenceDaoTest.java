@@ -1,24 +1,19 @@
 package edu.depaul.armada.dao;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
 
 import java.util.List;
-import java.util.UUID;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
-import edu.depaul.armada.domain.Container;
 import edu.depaul.armada.domain.Preference;
 import edu.depaul.armada.model.DashboardPreference;
-import edu.depaul.armada.util.TestUtil;
 
 /**
  * 
@@ -33,10 +28,6 @@ public class PreferenceDaoTest {
 
 	@Autowired private PreferenceDao dao;
 	
-	/**
-	 * 
-	 */
-	@DirtiesContext
 	@Test
 	public void testStorePreference() {
 		
@@ -45,10 +36,10 @@ public class PreferenceDaoTest {
 			fail("Expected IllegalArgumentException!");
 		}
 		catch(IllegalArgumentException iae) {
-			assertEquals("Container instance cannot be null!", iae.getMessage());
+			assertEquals("preference instance cannot be null!", iae.getMessage());
 		}
 		
-		Preference preference = newPreference();
+		Preference preference = newPreference("cpu");
 		dao.storePreference(preference);
 		
 		List<DashboardPreference> preferences = dao.getAll();
@@ -56,17 +47,15 @@ public class PreferenceDaoTest {
 		assertEquals(1, preferences.size());
 	}
 
-	/**
-	 * Test method for {@link edu.depaul.armada.dao.ContainerDao#getAll()}.
-	 */
-	@DirtiesContext
 	@Test
 	public void testGetAll() {
 		
 		int expected = 3;
 		
+		String[] keys = new String[] {"cpu", "mem", "disk"};
+		
 		for(int i=0; i<expected; i++) {
-			Preference preference = newPreference();
+			Preference preference = newPreference(keys[i]);
 			dao.storePreference(preference);
 		}
 		
@@ -75,9 +64,9 @@ public class PreferenceDaoTest {
 		assertEquals(expected, preferences.size());
 	}
 	
-	private Preference newPreference() {
+	private Preference newPreference(String key) {
 		Preference preference = new Preference();
-		preference.setKey("cpu");
+		preference.setKey(key);
 		preference.setValue(90);
 		return preference;
 	}
