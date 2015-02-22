@@ -39,6 +39,7 @@ body {
 	var diskThreshold;
 	var memoryThreshold;
 	var refreshVar;
+	var tableRefresh;
 		
 	$(function() {
 		var preferencesREST = "http://localhost:8083/preferences/";
@@ -53,6 +54,7 @@ body {
 			    	memoryThreshold = data[id].value;
 				} else if (data[id].key == 'refresh') {
 					refreshVar = data[id].value;
+					tableRefresh = refreshVar * 1000;
 				}
 			});
 		});
@@ -87,7 +89,7 @@ body {
 							<h4 class="modal-title" id="myModalLabel">Settings</h4>
 						</div>
 						<div class="modal-body">
-							<form id="requestacallform" method="POST" name="requestacallform">
+							<form id="settingsForm" method="POST">
 								<div class="form-group">
 									<div class="input-group spinner">
 									<label class="control-label" for="textinput">CPU Threshold</label>
@@ -109,14 +111,14 @@ body {
 								<div class="form-group">
 									<div class="input-group spinner">
 									<label class="control-label" for="textinput">Table Refresh</label>
-											<input id="refresh_var" type="number" class="form-control" name="refresh_threshold" data-min="0" data-max="60"/>
+											<input id="refresh_var" type="number" class="form-control" name="refresh_threshold" data-min="0" />
 									</div>
 								</div>
+								<div align="right">
+									<button id="saveSettings" type="submit" class="btn btn-blue btn-primary" data-dismiss="modal">Save</button>
+									<button type="button" class="btn btn-blue" id="resetbtn">Reset</button>
+								</div>
 							</form>
-						</div>
-						<div class="modal-footer">
-							<button type="submit" class="btn btn-blue" id="save">Save</button>
-							<button type="button" class="btn btn-blue" is="resetbtn">Reset</button>
 						</div>
 					</div>
 				</div>
@@ -268,7 +270,7 @@ body {
 
 		setInterval( function () {
 			table.ajax.reload( null, false ); // user paging is not reset on reload
-		}, 30000 );
+		}, 40000);
 
 		var cName;
 
@@ -286,6 +288,21 @@ body {
              $(".modal-body #cpu_threshold").val(cpuThreshold);
              $(".modal-body #disk_threshold").val(diskThreshold);
              $(".modal-body #refresh_var").val(refreshVar);
+         });
+
+		 $("#saveSettings").click(function(e){
+			e.preventDefault();
+			console.log(JSON.stringify($('#settingsForm').serializeArray()))
+<!--			$.ajax({-->
+<!--	            type: "POST",-->
+<!--	            url: "http://localhost:8083/preferences/setAll",-->
+<!--	            data: JSON.stringify($('#settingsForm').serializeArray()),-->
+<!--	            dataType: 'json',-->
+<!--	            contentType: 'application/json',-->
+<!--	            success: function(data){   -->
+<!--	                alert("Saved");-->
+<!--	            }-->
+<!--			});-->
          });
 
 	} );
