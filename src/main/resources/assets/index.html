@@ -257,11 +257,11 @@ body {
 			"fnRowCallback": function( nRow, aData, iDisplayIndex, iDisplayIndexFull ) {
 				$(nRow).children().each(function(index, td) {
                     if(aData.cpuUsed >= cpuThreshold)  {
-                    	$(nRow).css('color', 'red')
+                    	$(nRow).css('background', 'red')
                     } else if (aData.diskUsed >= diskThreshold) {
-                    	$(nRow).css('color', 'red')
+                    	$(nRow).css('background', 'red')
                     } else if (aData.memUsed >= memoryThreshold) {
-                    	$(nRow).css('color', 'red')
+                    	$(nRow).css('background', 'red')
                     }
 		        });             
 		    }
