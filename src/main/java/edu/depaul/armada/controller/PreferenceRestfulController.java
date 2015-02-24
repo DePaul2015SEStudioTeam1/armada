@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import edu.depaul.armada.dao.PreferenceDao;
+import edu.depaul.armada.domain.DashboardPreferenceList;
 import edu.depaul.armada.domain.Preference;
 import edu.depaul.armada.model.DashboardPreference;
 
@@ -35,19 +36,19 @@ public class PreferenceRestfulController {
 	}
 	
 	@RequestMapping(value = "/setAll", method = RequestMethod.POST)
-	public void setAll(@RequestBody List<DashboardPreference> preferences) {
+	public void setAll( @RequestBody DashboardPreferenceList preferences) {
 		for(DashboardPreference temp : preferences) {
-			Preference pref = preferenceDao.findWithPreferenceKey(temp.key);
+			Preference pref = preferenceDao.findWithPreferenceName(temp.name);
 			if(pref == null) {
 				pref = new Preference();
-				pref.setKey(temp.key);
+				pref.setName(temp.name);
 			}
 			pref.setValue(temp.value);
 			try {
 				preferenceDao.storePreference(pref);
 			}
 			catch(Exception e) {
-				log.error("Skipping adding a preference with key: " + temp.key + " due to an error!", e);
+				log.error("Skipping adding a preference with name: " + temp.name + " due to an error!", e);
 				continue;
 			}
 		}

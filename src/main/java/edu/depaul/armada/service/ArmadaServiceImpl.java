@@ -88,10 +88,10 @@ public class ArmadaServiceImpl implements ArmadaService {
 	@Override
 	public void storePreference(DashboardPreference dashboardPreference) {
 		// get container matching unique id
-		Preference preference = preferenceDao.findWithPreferenceKey(dashboardPreference.key); 
+		Preference preference = preferenceDao.findWithPreferenceName(dashboardPreference.name); 
 		if(preference == null) {
 			preference = new Preference();
-			preference.setKey(dashboardPreference.key);
+			preference.setName(dashboardPreference.name);
 			preference.setValue(dashboardPreference.value);
 		}
 		// save preference

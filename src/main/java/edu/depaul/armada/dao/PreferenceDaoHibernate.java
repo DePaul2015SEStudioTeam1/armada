@@ -56,13 +56,13 @@ public class PreferenceDaoHibernate implements PreferenceDao {
 	
 	/*
 	 * (non-Javadoc)
-	 * @see edu.depaul.armada.dao.PreferenceDao#findWithPreferenceKey(java.lang.String)
+	 * @see edu.depaul.armada.dao.PreferenceDao#findWithPreferenceName(java.lang.String)
 	 */
 	@Override
-	public Preference findWithPreferenceKey(String key) {
-		AssertUtil.assertNotNull(key, "Parameter 'key' cannot be null!");
-		Query query = sessionFactory.getCurrentSession().createQuery("from Preference where key = :key");
-		query.setString("key", key);
+	public Preference findWithPreferenceName(String name) {
+		AssertUtil.assertNotNull(name, "Parameter 'name' cannot be null!");
+		Query query = sessionFactory.getCurrentSession().createQuery("from Preference where name = :name");
+		query.setString("name", name);
 		return (Preference) query.uniqueResult();
 	}
 

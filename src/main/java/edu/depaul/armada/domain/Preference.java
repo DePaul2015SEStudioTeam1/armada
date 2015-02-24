@@ -9,7 +9,7 @@ package edu.depaul.armada.domain;
  */
 public class Preference {
 	private long id;
-	private String key;
+	private String name;
 	private int value;
 	
 	/**
@@ -27,17 +27,17 @@ public class Preference {
 	}
 	
 	/**
-	 * @return the key
+	 * @return the name
 	 */
-	public String getKey() {
-		return key;
+	public String getName() {
+		return name;
 	}
 	
 	/**
-	 * @param key the key to set
+	 * @param name the name to set
 	 */
-	public void setKey(String key) {
-		this.key = key;
+	public void setName(String name) {
+		this.name = name;
 	}
 	
 	/**

@@ -52,10 +52,10 @@ public class PreferenceDaoTest {
 		
 		int expected = 3;
 		
-		String[] keys = new String[] {"cpu", "mem", "disk"};
+		String[] names = new String[] {"cpu", "mem", "disk"};
 		
 		for(int i=0; i<expected; i++) {
-			Preference preference = newPreference(keys[i]);
+			Preference preference = newPreference(names[i]);
 			dao.storePreference(preference);
 		}
 		
@@ -64,9 +64,9 @@ public class PreferenceDaoTest {
 		assertEquals(expected, preferences.size());
 	}
 	
-	private Preference newPreference(String key) {
+	private Preference newPreference(String name) {
 		Preference preference = new Preference();
-		preference.setKey(key);
+		preference.setName(name);
 		preference.setValue(90);
 		return preference;
 	}

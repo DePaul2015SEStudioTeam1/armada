@@ -63,12 +63,12 @@ DROP TABLE IF EXISTS `preferences`;
 
 CREATE TABLE `preferences` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `pref_key` varchar(50) DEFAULT NULL,
+  `pref_name` varchar(50) DEFAULT NULL,
   `pref_value` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-INSERT INTO `preferences` (`pref_key`, `pref_value`)
+INSERT INTO `preferences` (`pref_name`, `pref_value`)
 VALUES ('cpu_threshold', 80), ('disk_threshold', 90), ('memory_threshold', 90);
 
 

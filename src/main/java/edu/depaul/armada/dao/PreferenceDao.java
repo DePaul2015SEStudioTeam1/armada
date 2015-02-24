@@ -27,8 +27,8 @@ public interface PreferenceDao {
 
 	/**
 	 * 
-	 * @param key
+	 * @param name
 	 * @return
 	 */
-	Preference findWithPreferenceKey(String key);
+	Preference findWithPreferenceName(String name);
 }

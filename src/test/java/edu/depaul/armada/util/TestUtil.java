@@ -41,7 +41,7 @@ public class TestUtil {
 	
 	public static Preference newPreference() {
 		Preference preference = new Preference();
-		preference.setKey("cpu");
+		preference.setName("cpu");
 		preference.setValue(90);
 		return preference;
 	}

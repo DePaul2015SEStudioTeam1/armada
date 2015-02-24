@@ -46,13 +46,13 @@ body {
 		$.get(preferencesREST).done(function( data ) {
 			$.each( data, function( id ) {
 			
-				if (data[id].key == 'cpu_threshold') {
+				if (data[id].name == 'cpu_threshold') {
 					cpuThreshold = data[id].value;
-				} else if (data[id].key == 'disk_threshold') {
+				} else if (data[id].name == 'disk_threshold') {
 	            	diskThreshold = data[id].value;   
-				} else if (data[id].key == 'memory_threshold') {
+				} else if (data[id].name == 'memory_threshold') {
 			    	memoryThreshold = data[id].value;
-				} else if (data[id].key == 'refresh') {
+				} else if (data[id].name == 'refresh_page') {
 					refreshVar = data[id].value;
 					tableRefresh = refreshVar * 1000;
 				}
@@ -99,7 +99,7 @@ body {
 								<div class="form-group">
 									<div class="input-group spinner">
 									<label class="control-label" for="textinput">Memory Threshold</label>
-										<input id="mem_threshold" type="number" class="form-control" name="mem_threshold" data-min="0" data-max="100"/>
+										<input id="memory_threshold" type="number" class="form-control" name="memory_threshold" data-min="0" data-max="100"/>
 									</div>
 								</div>
 								<div class="form-group">
@@ -111,7 +111,7 @@ body {
 								<div class="form-group">
 									<div class="input-group spinner">
 									<label class="control-label" for="textinput">Table Refresh</label>
-											<input id="refresh_var" type="number" class="form-control" name="refresh_threshold" data-min="0" />
+											<input id="refresh_page" type="number" class="form-control" name="refresh_page" data-min="0" />
 									</div>
 								</div>
 								<div align="right">
@@ -284,25 +284,28 @@ body {
 		});
 
 		 $('#settings').bind('show',function() {
-             $(".modal-body #mem_threshold").val(memoryThreshold);
+             $(".modal-body #memory_threshold").val(memoryThreshold);
              $(".modal-body #cpu_threshold").val(cpuThreshold);
              $(".modal-body #disk_threshold").val(diskThreshold);
-             $(".modal-body #refresh_var").val(refreshVar);
+             $(".modal-body #refresh_page").val(refreshVar);
          });
 
 		 $("#saveSettings").click(function(e){
 			e.preventDefault();
 			console.log(JSON.stringify($('#settingsForm').serializeArray()))
-<!--			$.ajax({-->
-<!--	            type: "POST",-->
-<!--	            url: "http://localhost:8083/preferences/setAll",-->
-<!--	            data: JSON.stringify($('#settingsForm').serializeArray()),-->
-<!--	            dataType: 'json',-->
-<!--	            contentType: 'application/json',-->
-<!--	            success: function(data){   -->
-<!--	                alert("Saved");-->
-<!--	            }-->
-<!--			});-->
+			$.ajax({
+	            type: "POST",
+	            url: "http://localhost:8083/preferences/setAll/",
+	            data: JSON.stringify($('#settingsForm').serializeArray()),
+	            dataType: 'json',
+	            contentType: 'application/json; charset=utf-8',
+	            error: function(e) {
+	                console.log(e);
+	              },
+	            success: function(data){   
+	                alert("Saved");
+	            }
+			});
          });
 
 	} );
