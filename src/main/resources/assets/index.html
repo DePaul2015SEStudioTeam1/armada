@@ -82,44 +82,42 @@ body {
 			aria-labelledby="bannerformmodal" aria-hidden="true" id="settings">
 			<div class="modal-dialog modal-sm">
 				<div class="modal-content">
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal"
-								aria-hidden="true">&times;</button>
-							<h4 class="modal-title" id="myModalLabel">Settings</h4>
-						</div>
-						<div class="modal-body">
-							<form id="settingsForm" method="POST">
-								<div class="form-group">
-									<div class="input-group spinner">
-									<label class="control-label" for="textinput">CPU Threshold</label>
-										<input id="cpu_threshold" type="number" class="form-control" name="cpu_threshold" data-min="0" data-max="100"/>
-									</div>
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-hidden="true">&times;</button>
+						<h4 class="modal-title" id="myModalLabel">Settings</h4>
+					</div>
+					<div class="modal-body">
+						<form id="settingsForm" method="POST">
+							<div class="form-group">
+								<div class="input-group spinner">
+								<label class="control-label" for="textinput">CPU Threshold</label>
+									<input id="cpu_threshold" type="number" class="form-control" name="cpu_threshold" data-min="0" data-max="100"/>
 								</div>
-								<div class="form-group">
-									<div class="input-group spinner">
-									<label class="control-label" for="textinput">Memory Threshold</label>
-										<input id="memory_threshold" type="number" class="form-control" name="memory_threshold" data-min="0" data-max="100"/>
-									</div>
+							</div>
+							<div class="form-group">
+								<div class="input-group spinner">
+								<label class="control-label" for="textinput">Memory Threshold</label>
+									<input id="memory_threshold" type="number" class="form-control" name="memory_threshold" data-min="0" data-max="100"/>
 								</div>
-								<div class="form-group">
-									<div class="input-group spinner">
-									<label class="control-label" for="textinput">Disk Threshold</label>
-											<input id="disk_threshold" type="number" class="form-control" name="disk_threshold" data-min="0" data-max="100"/>
-									</div>
+							</div>
+							<div class="form-group">
+								<div class="input-group spinner">
+								<label class="control-label" for="textinput">Disk Threshold</label>
+										<input id="disk_threshold" type="number" class="form-control" name="disk_threshold" data-min="0" data-max="100"/>
 								</div>
-								<div class="form-group">
-									<div class="input-group spinner">
-									<label class="control-label" for="textinput">Table Refresh</label>
-											<input id="refresh_page" type="number" class="form-control" name="refresh_page" data-min="0" />
-									</div>
+							</div>
+							<div class="form-group">
+								<div class="input-group spinner">
+								<label class="control-label" for="textinput">Table Refresh</label>
+										<input id="refresh_page" type="number" class="form-control" name="refresh_page" data-min="0" />
 								</div>
-								<div align="right">
-									<button id="saveSettings" type="submit" class="btn btn-blue btn-primary" data-dismiss="modal">Save</button>
-									<button type="button" class="btn btn-blue" id="resetbtn">Reset</button>
-								</div>
-							</form>
-						</div>
+							</div>
+							<div align="right">
+								<button id="saveSettings" type="submit" class="btn btn-blue btn-primary" data-dismiss="modal">Save</button>
+								<button type="button" class="btn btn-blue" id="resetbtn">Reset</button>
+							</div>
+						</form>
 					</div>
 				</div>
 			</div>
@@ -129,13 +127,13 @@ body {
 			<div class="panel-body">
 					<div class="col-xs-6">
 						<div class="row">
-							<div class="col-xs-3 label label-default label-success">Running: <span id="running">5</span></div>
+							<div class="col-xs-3 label label-default label-success"><h5>Running: 5</h5></div>
 						</div>
 						<div class="row">
-							<div class="col-xs-3 label label-warning">Idle: <span id="idle">1</span></div>
+							<div class="col-xs-3 label label-warning"><h5>Idle: 1</h5></div>
 						</div>
 						<div class="row">
-							<div class="col-xs-3 label label-danger">Error: <span id="error">2</span></div>
+							<div class="col-xs-3 label label-danger"><h5>Error: 2</h5></div>
 						</div>
 					</div>
 					<div class="col-xs-4">
@@ -169,35 +167,70 @@ body {
 	<div class="modal fade bannerformmodal" tabindex="-1" role="dialog" aria-labelledby="bannerformmodal" aria-hidden="true" id="cDetails">
 		<div class="modal-dialog">
 			<div class="modal-content">
-			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
 				<div class="modal-body">
-				  <div>
-					  <canvas id="myChart" width="200" height="200"></canvas>
-					  <canvas id="myChart2" width="200" height="200"></canvas>
-					  <canvas id="myChart4" width="200" height="200"></canvas>
-				  </div>
+<!--						<canvas id="myChart" width="200" height="200"></canvas>-->
+<!--						<canvas id="myChart2" width="200" height="200"></canvas>-->
+<!--						<canvas id="myChart4" width="200" height="200"></canvas>-->
 				</div>
-			  </div>
 			</div>
 		</div>
-	</div>  
+	</div>
+
 	<script>
 	$(document).ready(function() {
-		var data2 = {
-			labels: ["January", "February", "March", "April", "May", "June", "July"],
+		var cName;
+		var memArray = new Array();
+		var diskArray = new Array();
+		var cpuArray = new Array();
+		var timestampArray = new Array();
+		
+		var cpuData = {
+			labels: timestampArray,
 			datasets: [
 				{
-					label: "My First dataset",
+					label: "CPU Usage History",
 					fillColor: "rgba(220,220,220,0.2)",
 					strokeColor: "rgba(220,220,220,1)",
 					pointColor: "rgba(220,220,220,1)",
 					pointStrokeColor: "#fff",
 					pointHighlightFill: "#fff",
 					pointHighlightStroke: "rgba(220,220,220,1)",
-					data: [65, 59, 80, 81, 56, 55, 40]
+					data: cpuArray
+				}
+			]
+		};
+
+		var memData = {
+			labels: timestampArray,
+			datasets: [
+				{
+					label: "Memory Usage History",
+					fillColor: "rgba(220,220,220,0.2)",
+					strokeColor: "rgba(220,220,220,1)",
+					pointColor: "rgba(220,220,220,1)",
+					pointStrokeColor: "#fff",
+					pointHighlightFill: "#fff",
+					pointHighlightStroke: "rgba(220,220,220,1)",
+					data: memArray
+				}
+			]
+		};
+		
+		var diskData = {
+			labels: timestampArray,
+			datasets: [
+				{
+					label: "Disk History",
+					fillColor: "rgba(220,220,220,0.2)",
+					strokeColor: "rgba(220,220,220,1)",
+					pointColor: "rgba(220,220,220,1)",
+					pointStrokeColor: "#fff",
+					pointHighlightFill: "#fff",
+					pointHighlightStroke: "rgba(220,220,220,1)",
+					data: diskArray
 				}
 			]
 		};
@@ -222,18 +255,9 @@ body {
 				label: "Active"
 			}		
 		];
-	
-		var ctx = document.getElementById("myChart").getContext("2d");
-		var myRadarChart = new Chart(ctx).Line(data2);
-		
-		var ctx2 = document.getElementById("myChart2").getContext("2d");
-		var myLineChart = new Chart(ctx2).Line(data2);
 
 		var ctx3 = document.getElementById("myChart3").getContext("2d");		
 		var myPieChart = new Chart(ctx3).Pie(data3);
-		
-		var ctx4 = document.getElementById("myChart4").getContext("2d");		
-		var myPieChart = new Chart(ctx4).Line(data2);
 	
 		var table = $('#containers').DataTable( {
 			"cache": false,
@@ -252,16 +276,24 @@ body {
 				{ "data": "memUsed" },
 				{ "data": "memTotal" },
 				{ "data": "diskUsed" },
-				{ "data": "diskTotal" }
+				{ "data": "diskTotal" },
+				{ "data": "containerId"}
+			],
+			"columnDefs": [
+	            {
+	                "targets": [9],
+	                "visible": false,
+	                "searchable": false
+	            }
 			],
 			"fnRowCallback": function( nRow, aData, iDisplayIndex, iDisplayIndexFull ) {
 				$(nRow).children().each(function(index, td) {
                     if(aData.cpuUsed >= cpuThreshold)  {
-                    	$(nRow).css('background', 'red')
+                    	$(nRow).css('background', '#F7464A')
                     } else if (aData.diskUsed >= diskThreshold) {
-                    	$(nRow).css('background', 'red')
+                    	$(nRow).css('background', '#F7464A')
                     } else if (aData.memUsed >= memoryThreshold) {
-                    	$(nRow).css('background', 'red')
+                    	$(nRow).css('background', '#F7464A')
                     }
 		        });             
 		    }
@@ -272,17 +304,61 @@ body {
 			table.ajax.reload( null, false ); // user paging is not reset on reload
 		}, 40000);
 
-		var cName;
+		$('#containers tbody tr').each( function() {
+	        var title;
+	        var tds = $('td', this);
+	        var cpuUsed = $(tds[3]).text();
+	        var memUsed = $(tds[5]).text();
+	        var diskUsed = $(tds[7]).text();
+	         
+            if(cpuUsed >= cpuThreshold)  {
+				title = " CPU Used > " + cpuThreshold;
+            } else if (diskUsed >= diskThreshold) {
+            	title += " Disk Used > " + diskUsed;
+            } else if (memUsed >= memoryThreshold) {
+            	title += " Memory Used > " + memUsed;
+            }
+	         
+	        this.setAttribute( 'title', title );
+	    } );
+
+		table.$('tr').tooltip( {
+	        "delay": 0,
+	        "track": true,
+	        "fade": 250
+	    } );
 
 		$('#containers tbody').on( 'dblclick', 'tr', function () {
 			cName = table.cell(this, 0).data();
+			var cId = table.cell(this,9).data();
+			
+			var logsREST = "http://localhost:8083/logs/"+cId;
+    		$.get(logsREST).done(function( data ) {
+    			$.each( data, function( id ) {
+					memArray.push(data[id].memUsed);
+					diskArray.push(data[id].diskUsed);
+					cpuArray.push(data[id].cpuUsed);
+					timestampArray.push(data[id].timestamp);
+        		});
+    		});
+			
 	        $('#cDetails').modal('show');
 	    });
 
 	    $('#cDetails').bind('show', function() {
-            $(".modal-header").html("<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button><h4>" + cName + " - Details</h4>");		    
-		});
+	    	$(".modal-header").html("<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button><h4>" + cName + " - Details</h4>");
+<!--	    	$('#cDetails').find('.modal-body').append("<canvas id=\"myChart\" width=\"200\" height=\"200\"></canvas><canvas id=\"myChart2\" width=\"200\" height=\"200\"></canvas><canvas id=\"myChart4\" width=\"200\" height=\"200\"></canvas>");-->
+	    	$('#cDetails').find('.modal-body').append("<canvas id=\"myChart\" width=\"400\" height=\"400\"></canvas>");
 
+	    	var ctx = document.getElementById("myChart").getContext("2d");
+			var myCpuChart = new Chart(ctx).Line(cpuData);
+			
+<!--			var ctx2 = document.getElementById("myChart2").getContext("2d");-->
+<!--			var myDiskChart = new Chart(ctx2).Line(diskData);-->
+<!---->
+<!--			var ctx4 = document.getElementById("myChart4").getContext("2d");		-->
+<!--			var myMemoryChart = new Chart(ctx4).Line(memData);-->
+		});
 
 		 $('#settings').bind('show',function() {
              $(".modal-body #memory_threshold").val(memoryThreshold);
@@ -302,11 +378,9 @@ body {
 	            contentType: 'application/json; charset=utf-8',
 	            error: function(e) {
 	                console.log(e);
-	              },
-	            success: function(data){   
-	                alert("Saved");
 	            }
 			});
+			location.reload();
          });
 
 	} );
