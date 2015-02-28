@@ -3,6 +3,8 @@
  */
 $(document).ready(function() {
 
+	var currentDate = new Date().toDateString();
+	
 	var cpuThreshold;
 	var diskThreshold;
 	var memoryThreshold;
@@ -30,6 +32,11 @@ $(document).ready(function() {
 	};
 	
 	var preferencesREST = "http://localhost:8083/preferences/";
+	
+	/*
+	 * Sets the current data
+	 */
+	$("#currentDate").text("Today is " + currentDate);
 					
 	/*
 	 * Used to retrieve thresholds from the 'preferences' REST api 
