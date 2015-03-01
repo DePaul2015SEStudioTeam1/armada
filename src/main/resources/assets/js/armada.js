@@ -18,6 +18,14 @@ $(document).ready(function() {
 	var cpuArray = [];
 	var timestampArray = [];
 	
+	// colors
+	var red = "rgba(247, 70, 74, 1)";
+	var redTrans = "rgba(247, 70, 74, 0.5)";
+	var green = "rgba(92, 184, 92, 1)";
+	var greenTrans = "rgba(92, 184, 92, 0.5)";
+	var orange = "rgba(240, 173, 78, 1)";
+	var orangeTrans = "rgba(240, 173, 78, 0.5)";
+	
 	var cpuData = {
 		labels : timestampArray,
 		datasets : [ {
@@ -85,67 +93,86 @@ $(document).ready(function() {
 		} ]
 	};
 
-	var pieChartData = [ {
+	var pieChartData = [       	    
+	         {
 		value : 3,
-		color : "#F7464A",
-		highlight : "#F7464A",
+		color : red,
+		highlight : red,	// // rgb 247 70 74
 		label : "Inactive"
 	}, {
 		value : 5,
-		color : "#5cb85c",
-		highlight : "#5cb85c",
+		color : orange,	// rgb 92 184 92
+		highlight : orange,	// rgb 92 184 92
 		label : "Active"
 	}, {
 		value : 1,
-		color : "#f0ad4e",
-		highlight : "#f0ad4e",
+		color : green,	// rgb 240 173 78
+		highlight : green,	//  rgb 240 173 78
 		label : "Active"
 	} ];
 	
 	var lineChartData = {
-		    labels: ["", "", "", "", "", "", ""],
+		    labels: ["1", "2", "3", "4", "5", "6", "7"],
 		    datasets: [
 		        {
 		            label: "My First dataset",
-		            fillColor: "rgba(220,220,220,0.2)",
-		            strokeColor: "rgba(220,220,220,1)",
-		            pointColor: "rgba(220,220,220,1)",
-		            pointStrokeColor: "#fff",
-		            pointHighlightFill: "#fff",
-		            pointHighlightStroke: "rgba(220,220,220,1)",
+		            fillColor: redTrans,
+		            strokeColor: red,
+		            pointColor: red,
+		            pointStrokeColor: red,
+		            pointHighlightFill: red,
+		            pointHighlightStroke: red,
 		            data: [65, 59, 80, 81, 56, 55, 40]
 		        },
 		        {
 		            label: "My Second dataset",
-		            fillColor: "rgba(151,187,205,0.2)",
-		            strokeColor: "rgba(151,187,205,1)",
-		            pointColor: "rgba(151,187,205,1)",
-		            pointStrokeColor: "#fff",
-		            pointHighlightFill: "#fff",
-		            pointHighlightStroke: "rgba(151,187,205,1)",
+		            fillColor: orangeTrans,
+		            strokeColor: orange,
+		            pointColor: orange,
+		            pointStrokeColor: orange,
+		            pointHighlightFill: orange,
+		            pointHighlightStroke: orange,
 		            data: [28, 48, 40, 19, 86, 27, 90]
+		        },
+		        {
+		            label: "My Third dataset",
+		            fillColor: greenTrans,
+		            strokeColor: green,
+		            pointColor: green,
+		            pointStrokeColor: green,
+		            pointHighlightFill: green,
+		            pointHighlightStroke: green,
+		            data: [2, 8, 40, 9, 8, 50, 9]
 		        }
 		    ]
 		};
 	
 	var barChartData = {
-		    labels: ["", "", "", "", "", "", ""],
+		    labels: ["1", "2", "3", "4", "5", "6", "7"],
 		    datasets: [
 		        {
 		            label: "My First dataset",
-		            fillColor: "rgba(220,220,220,0.5)",
-		            strokeColor: "rgba(220,220,220,0.8)",
-		            highlightFill: "rgba(220,220,220,0.75)",
-		            highlightStroke: "rgba(220,220,220,1)",
+		            fillColor: redTrans,
+		            strokeColor: red,
+		            highlightFill: red,
+		            highlightStroke: red,
 		            data: [65, 59, 80, 81, 56, 55, 40]
 		        },
 		        {
 		            label: "My Second dataset",
-		            fillColor: "rgba(151,187,205,0.5)",
-		            strokeColor: "rgba(151,187,205,0.8)",
-		            highlightFill: "rgba(151,187,205,0.75)",
-		            highlightStroke: "rgba(151,187,205,1)",
+		            fillColor: orangeTrans,
+		            strokeColor: orange,
+		            highlightFill: orange,
+		            highlightStroke: orange,
 		            data: [28, 48, 40, 19, 86, 27, 90]
+		        },
+		        {
+		            label: "My Third dataset",
+		            fillColor: greenTrans,
+		            strokeColor: green,
+		            highlightFill: green,
+		            highlightStroke: green,
+		            data: [2, 8, 40, 9, 8, 50, 9]
 		        }
 		    ]
 		};
