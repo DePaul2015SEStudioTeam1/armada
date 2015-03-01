@@ -34,23 +34,21 @@ body {
 <script type="text/javascript" src="js/dataTables.tableTools.js"></script>
 <script type="text/javascript" src="js/Chart.js"></script>
 <script type="text/javascript" src="js/armada.js"></script>
-<script type="text/javascript" src="js/trafficlight.js"></script>
 <body>
 	<nav class="navbar navbar-inverse navbar-static-top" role="navigation">
 		<div class="container">
 			<div class="navbar-header">
 				<img src="images/ship.gif" alt="ship"
 					style="width: 50px; height: 50px"> <a class="navbar-brand"
-					href="#">Welcome to Armada</a>
+					href="#">Armada</a>
 			</div>
 		</div>
 	</nav>
 
 	<div class="container">
 		<div class="text-right">
-			<!-- add an icon here, a gear -->
-			<a href="#settings" data-toggle="modal" data-target="#settings">Settings</a>
-			<br/><span id="currentDate">Today is </span>
+			<span id="currentDate"></span>
+			<a href="#settings" class="btn btn-xs btn-primary" data-toggle="modal" data-target="#settings"> Settings </a>
 		</div>
 		<div class="modal fade bannerformmodal" tabindex="-1" role="dialog"
 			aria-labelledby="bannerformmodal" aria-hidden="true" id="settings">
@@ -65,30 +63,38 @@ body {
 						<form id="settingsForm" method="POST">
 							<div class="form-group">
 								<div class="input-group spinner">
-								<label class="control-label" for="textinput">CPU Threshold</label>
-									<input id="cpu_threshold" type="number" class="form-control" name="cpu_threshold" data-min="0" data-max="100"/>
+									<label class="control-label" for="textinput">CPU
+										Threshold</label> <input id="cpu_threshold" type="number"
+										class="form-control" name="cpu_threshold" data-min="0"
+										data-max="100" />
 								</div>
 							</div>
 							<div class="form-group">
 								<div class="input-group spinner">
-								<label class="control-label" for="textinput">Memory Threshold</label>
-									<input id="memory_threshold" type="number" class="form-control" name="memory_threshold" data-min="0" data-max="100"/>
+									<label class="control-label" for="textinput">Memory
+										Threshold</label> <input id="memory_threshold" type="number"
+										class="form-control" name="memory_threshold" data-min="0"
+										data-max="100" />
 								</div>
 							</div>
 							<div class="form-group">
 								<div class="input-group spinner">
-								<label class="control-label" for="textinput">Disk Threshold</label>
-										<input id="disk_threshold" type="number" class="form-control" name="disk_threshold" data-min="0" data-max="100"/>
+									<label class="control-label" for="textinput">Disk
+										Threshold</label> <input id="disk_threshold" type="number"
+										class="form-control" name="disk_threshold" data-min="0"
+										data-max="100" />
 								</div>
 							</div>
 							<div class="form-group">
 								<div class="input-group spinner">
-								<label class="control-label" for="textinput">Table Refresh</label>
-										<input id="refresh_page" type="number" class="form-control" name="refresh_page" data-min="0" />
+									<label class="control-label" for="textinput">Table
+										Refresh</label> <input id="refresh_page" type="number"
+										class="form-control" name="refresh_page" data-min="0" />
 								</div>
 							</div>
 							<div align="right">
-								<button id="saveSettings" type="submit" class="btn btn-blue btn-primary" data-dismiss="modal">Save</button>
+								<button id="saveSettings" type="submit"
+									class="btn btn-blue btn-primary" data-dismiss="modal">Save</button>
 								<button type="button" class="btn btn-blue" id="resetbtn">Reset</button>
 							</div>
 						</form>
@@ -96,30 +102,36 @@ body {
 				</div>
 			</div>
 		</div>
-
-		<div class="panel panel-default col-xs-6">
-			<div class="panel-body">
-					<div class="col-xs-6">
-						<div class="row">
-							<div class="col-xs-3 label label-default label-success"><h5>Running: 5</h5></div>
-						</div>
-						<div class="row">
-							<div class="col-xs-3 label label-warning"><h5>Idle: 1</h5></div>
-						</div>
-						<div class="row">
-							<div class="col-xs-3 label label-danger"><h5>Error: 2</h5></div>
-						</div>
-					</div>
-					<div class="col-xs-4">
-						<canvas id="myChart3" width="200" height="200"></canvas>
-					</div>
-			</div>
+		
+		<div class="row">
+		  <div id="traffic-light" class="col-md-3">
+		      <div class="row">
+		          <div class="col-md-23 label label-default label-success">
+		              Running: <span id="successCount"></span>
+		          </div>
+		      </div>
+              <div class="row">
+                <div id="warningCount" class="col-md-3 label label-default label-warning">
+                    Warning: <span id="warningCount"></span>
+                </div>
+              </div>
+              <div class="row">
+                <div id="dangerCount" class="col-md-3 label label-default label-danger">
+                    Error: <span id="errorCount"></span>
+                </div>
+              </div>
+		  </div>
+          <div id="pie-chart" class="col-xs-6 col-md-3">
+            <canvas id="myChart3" width="200" height="200"></canvas>
+          </div>
+          <div class="col-xs-6 col-md-3">
+          </div>
 		</div>
-		<br />
+
 		<div>
 			<legend>Container Activity</legend>
 			<div class="row-fluid table-condensed">
-				<table id="containers" class="table table-hover table-bordered"
+				<table id="containers" class="table table-hover table-bordered table-striped"
 					cellspacing="0" width="100%">
 					<thead>
 						<tr>
@@ -138,16 +150,18 @@ body {
 			</div>
 		</div>
 	</div>
-	<div class="modal fade bannerformmodal" tabindex="-1" role="dialog" aria-labelledby="bannerformmodal" aria-hidden="true" id="cDetails">
+	<div class="modal fade bannerformmodal" tabindex="-1" role="dialog"
+		aria-labelledby="bannerformmodal" aria-hidden="true" id="cDetails">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
 				</div>
 				<div class="modal-body">
-<!--						<canvas id="myChart" width="200" height="200"></canvas>-->
-<!--						<canvas id="myChart2" width="200" height="200"></canvas>-->
-<!--						<canvas id="myChart4" width="200" height="200"></canvas>-->
+					<!--						<canvas id="myChart" width="200" height="200"></canvas>-->
+					<!--						<canvas id="myChart2" width="200" height="200"></canvas>-->
+					<!--						<canvas id="myChart4" width="200" height="200"></canvas>-->
 				</div>
 			</div>
 		</div>

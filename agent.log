@@ -116,3 +116,12 @@
 11:47:08,261 INFO  [Server] Started @5533ms
 11:47:17,669 WARN  [PageNotFound] No mapping found for HTTP request with URI [/favicon.ico] in DispatcherServlet with name 'org.springframework.web.servlet.DispatcherServlet-7cf10a6f'
 11:48:03,595 WARN  [PageNotFound] No mapping found for HTTP request with URI [/preferences/setAll/preferences/setAll] in DispatcherServlet with name 'org.springframework.web.servlet.DispatcherServlet-7cf10a6f'
+17:06:30,950 WARN  [PageNotFound] No mapping found for HTTP request with URI [/preferences/setAll/preferences/setAll] in DispatcherServlet with name 'org.springframework.web.servlet.DispatcherServlet-7cf10a6f'
+17:06:42,784 WARN  [PageNotFound] No mapping found for HTTP request with URI [/preferences/setAll/preferences/setAll] in DispatcherServlet with name 'org.springframework.web.servlet.DispatcherServlet-7cf10a6f'
+17:46:44,777 WARN  [PageNotFound] No mapping found for HTTP request with URI [/js/trafficlight.js] in DispatcherServlet with name 'org.springframework.web.servlet.DispatcherServlet-7cf10a6f'
+17:48:37,479 WARN  [PageNotFound] No mapping found for HTTP request with URI [/js/trafficlight.js] in DispatcherServlet with name 'org.springframework.web.servlet.DispatcherServlet-7cf10a6f'
+17:49:57,855 WARN  [PageNotFound] No mapping found for HTTP request with URI [/js/trafficlight.js] in DispatcherServlet with name 'org.springframework.web.servlet.DispatcherServlet-7cf10a6f'
+17:50:20,246 WARN  [PageNotFound] No mapping found for HTTP request with URI [/js/trafficlight.js] in DispatcherServlet with name 'org.springframework.web.servlet.DispatcherServlet-7cf10a6f'
+17:51:00,059 WARN  [PageNotFound] No mapping found for HTTP request with URI [/js/trafficlight.js] in DispatcherServlet with name 'org.springframework.web.servlet.DispatcherServlet-7cf10a6f'
+17:52:02,159 WARN  [PageNotFound] No mapping found for HTTP request with URI [/js/trafficlight.js] in DispatcherServlet with name 'org.springframework.web.servlet.DispatcherServlet-7cf10a6f'
+18:33:16,284 WARN  [PageNotFound] No mapping found for HTTP request with URI [/preferences/setAll/preferences/setAll] in DispatcherServlet with name 'org.springframework.web.servlet.DispatcherServlet-7cf10a6f'

@@ -105,10 +105,15 @@ $(document).ready(function() {
 	var myPieChart = new Chart(ctx3).Pie(data3);
 	
 	var backgroundColor = '#F7464A';
-		
-	var table = $('#containers').DataTable({
+
+	var successCount = 0;
+	var warningCount = 0;
+	var errorCount = 0;
+	var WARN_THRESHOLD = 1;
+	
+	var table = $('#containers').dataTable({
 		"cache":false,
-		"white-space":"nowrap",
+		"white-space":"wrap",
 		"lengthMenu":[[ 10, 25, 50, -1 ], [ 10, 25, 50, "All" ]],
 		"ajax":{ url:"http://localhost:8083/containers/", dataSrc:"" },
 		"columns":[{"data":"name"}, 
@@ -122,21 +127,39 @@ $(document).ready(function() {
 		           {"data":"diskTotal"}, 
 		           {"data":"containerId"}],
 		"columnDefs":[{"targets":[ 9 ], "visible":false, "searchable":false}],
-		"fnRowCallback":function(nRow, aData, iDisplayIndex, iDisplayIndexFull) {
-							$(nRow).children().each(function(index, td) {
-								if (aData.cpuUsed >= cpuThreshold) {
-									$(nRow).css('background', backgroundColor);
-								} 
-								else if(aData.diskUsed >= diskThreshold) {
-									$(nRow).css('background', backgroundColor);
-								} 
-								else if(aData.memUsed >= memoryThreshold) {
-									$(nRow).css('background', backgroundColor);
-								}
-							});
-						}
+		"fnRowCallback":rowCallback
 	});	// end datatable
 	
+	/*
+	 * Used for post processing each row in the table
+	 * 
+	 * row: currently processed row
+	 * data: data used to populate current row
+	 * index: current index
+	 * lastRowIndex: index of the last row in the table
+	 */
+	function rowCallback(row, data, index, lastRowIndex){
+		if(index == 0){
+			successCount = warningCount = errorCount = 0;
+		}
+		
+		if(data.cpuUsed >= cpuThreshold || data.diskUsed >= diskThreshold || data.memUsed >= memoryThreshold) {
+			$(row).css('background', backgroundColor);
+			errorCount++;
+		}
+		else if(data.cpuUsed >= (cpuThreshold*WARN_THRESHOLD) || data.diskUsed >= (diskThreshold*WARN_THRESHOLD) || data.memUsed >= (memoryThreshold*WARN_THRESHOLD)){
+			warningCount++;
+		}
+		else {
+			successCount++;
+		}	
+		
+		if(index >= lastRowIndex){
+			$("#successCount").text(successCount);
+			$("#warningCount").text(warningCount);
+			$("#errorCount").text(errorCount);
+		}
+	}
 	
 	$.fn.dataTable.ext.errMode = 'throw';
 
@@ -144,8 +167,8 @@ $(document).ready(function() {
 	 * Sets the refresh interval 
 	 */
 	setInterval(function() {
-		table.ajax.reload(null, false); // user paging is not reset on reload
-	}, 40000);
+		//table.ajax.reload(null, false); // user paging is not reset on reload
+	}, 3000);
 
 	$('#containers tbody tr').each(function() {
 		var title;
