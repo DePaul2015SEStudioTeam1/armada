@@ -167,7 +167,7 @@ $(document).ready(function() {
 	 * Sets the refresh interval 
 	 */
 	setInterval(function() {
-		//table.ajax.reload(null, false); // user paging is not reset on reload
+		table.api().ajax.reload(null, false); // user paging is not reset on reload
 	}, 3000);
 
 	$('#containers tbody tr').each(function() {
