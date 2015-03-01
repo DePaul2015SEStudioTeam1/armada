@@ -1,0 +1,4 @@
+#charts { text-align: center; }
+#line-chart { float: left; }
+#pie-chart { display: inline; }
+#bar-chart { float: right; }

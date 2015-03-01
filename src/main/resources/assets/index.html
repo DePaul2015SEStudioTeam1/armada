@@ -20,6 +20,7 @@ body {
 <link href="css/styles.css" rel="stylesheet">
 <link href="css/dataTables.bootstrap.css" rel="stylesheet">
 <link href="css/dataTables.tableTools.css" rel="stylesheet">
+<link href="css/armada.css" rel="stylesheet">
 
 <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
 <!--[if lt IE 9]>
@@ -103,8 +104,10 @@ body {
 			</div>
 		</div>
 		
-		<div class="row">
-		  <div id="traffic-light" class="col-md-3">
+		<div id="charts">
+		  <div id="line-chart">
+		      <canvas id="lineChart" width="400" height="220"></canvas>
+		      <!--
 		      <div class="row">
 		          <div id="runCount" class="col-md-3 label label-default label-success">
 		              Running: <span id="successCount"></span>
@@ -120,16 +123,18 @@ body {
                     Error: <span id="errorCount"></span>
                 </div>
               </div>
+              -->
 		  </div>
-          <div id="pie-chart" class="col-xs-6 col-md-3">
-            <canvas id="myChart3" width="200" height="200"></canvas>
+          <div id="pie-chart">
+            <canvas id="pieChart" width="200" height="200"></canvas>
           </div>
-          <div class="col-xs-6 col-md-3">
+          <div id="bar-chart">
+            <canvas id="barChart" width="400" height="220"></canvas>
           </div>
 		</div>
 
 		<div>
-			<legend>Container Activity</legend>
+			<!--<legend>Container Activity</legend> -->
 			<div class="row-fluid table-condensed">
 				<table id="containers" class="table table-hover table-bordered table-striped">
 					<thead>

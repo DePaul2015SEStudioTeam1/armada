@@ -85,7 +85,7 @@ $(document).ready(function() {
 		} ]
 	};
 
-	var data3 = [ {
+	var pieChartData = [ {
 		value : 3,
 		color : "#F7464A",
 		highlight : "#F7464A",
@@ -101,9 +101,63 @@ $(document).ready(function() {
 		highlight : "#f0ad4e",
 		label : "Active"
 	} ];
+	
+	var lineChartData = {
+		    labels: ["", "", "", "", "", "", ""],
+		    datasets: [
+		        {
+		            label: "My First dataset",
+		            fillColor: "rgba(220,220,220,0.2)",
+		            strokeColor: "rgba(220,220,220,1)",
+		            pointColor: "rgba(220,220,220,1)",
+		            pointStrokeColor: "#fff",
+		            pointHighlightFill: "#fff",
+		            pointHighlightStroke: "rgba(220,220,220,1)",
+		            data: [65, 59, 80, 81, 56, 55, 40]
+		        },
+		        {
+		            label: "My Second dataset",
+		            fillColor: "rgba(151,187,205,0.2)",
+		            strokeColor: "rgba(151,187,205,1)",
+		            pointColor: "rgba(151,187,205,1)",
+		            pointStrokeColor: "#fff",
+		            pointHighlightFill: "#fff",
+		            pointHighlightStroke: "rgba(151,187,205,1)",
+		            data: [28, 48, 40, 19, 86, 27, 90]
+		        }
+		    ]
+		};
+	
+	var barChartData = {
+		    labels: ["", "", "", "", "", "", ""],
+		    datasets: [
+		        {
+		            label: "My First dataset",
+		            fillColor: "rgba(220,220,220,0.5)",
+		            strokeColor: "rgba(220,220,220,0.8)",
+		            highlightFill: "rgba(220,220,220,0.75)",
+		            highlightStroke: "rgba(220,220,220,1)",
+		            data: [65, 59, 80, 81, 56, 55, 40]
+		        },
+		        {
+		            label: "My Second dataset",
+		            fillColor: "rgba(151,187,205,0.5)",
+		            strokeColor: "rgba(151,187,205,0.8)",
+		            highlightFill: "rgba(151,187,205,0.75)",
+		            highlightStroke: "rgba(151,187,205,1)",
+		            data: [28, 48, 40, 19, 86, 27, 90]
+		        }
+		    ]
+		};
 
-	var ctx3 = document.getElementById("myChart3").getContext("2d");
-	var myPieChart = new Chart(ctx3).Pie(data3);
+	var pieChartContext = document.getElementById("pieChart").getContext("2d");
+	var pieChart = new Chart(pieChartContext).Pie(pieChartData);
+	
+	var lineChartContext = document.getElementById("lineChart").getContext("2d");
+	var lineChart = new Chart(lineChartContext).Line(lineChartData);
+
+	var barChartContext = document.getElementById("barChart").getContext("2d");
+	var barChart = new Chart(barChartContext).Bar(barChartData);
 	
 	var backgroundColor = '#F7464A';
 
