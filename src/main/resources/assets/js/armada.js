@@ -220,26 +220,19 @@ $(document).ready(function() {
 
 	$('#cDetails').bind('show', function() {
 		$(".modal-header").html("<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button><h4>" + cName + " - Details</h4>");
-		// $('#cDetails').find('.modal-body').append("<canvas
-		// id=\"myChart\" width=\"200\"
-		// height=\"200\"></canvas><canvas
-		// id=\"myChart2\" width=\"200\"
-		// height=\"200\"></canvas><canvas
-		// id=\"myChart4\" width=\"200\"
-		// height=\"200\"></canvas>");
-		$('#cDetails').find('.modal-body').append("<canvas id=\"myChart\" width=\"400\" height=\"400\"></canvas>");
+		 $('#cDetails').find('.modal-body').append("<canvas id=\"myChart\" width=\"200\" height=\"200\"></canvas>" +
+				 								   "<canvas id=\"myChart2\" width=\"200\" height=\"200\"></canvas>" +
+				 								   "<canvas id=\"myChart4\" width=\"200\" height=\"200\"></canvas>");
+//		$('#cDetails').find('.modal-body').append("<canvas id=\"myChart\" width=\"400\" height=\"400\"></canvas>");
 
 		var ctx = document.getElementById("myChart").getContext("2d");
 		var myCpuChart = new Chart(ctx).Line(cpuData);
 
-		// var ctx2 =
-		// document.getElementById("myChart2").getContext("2d");
-		// var myDiskChart = new
-		// Chart(ctx2).Line(diskData);
-		// var ctx4 =
-		// document.getElementById("myChart4").getContext("2d");
-		// var myMemoryChart = new
-		// Chart(ctx4).Line(memData);
+		 var ctx2 = document.getElementById("myChart2").getContext("2d");
+		 var myDiskChart = new Chart(ctx2).Line(diskData);
+		 
+		 var ctx4 = document.getElementById("myChart4").getContext("2d");
+		 var myMemoryChart = new Chart(ctx4).Line(memData);
 	});// end of binding
 
 	$('#settings').bind('show', function() {
@@ -261,6 +254,13 @@ $(document).ready(function() {
 					   console.log(e);}
 		});
 		location.reload();
+	});
+	
+	$('#closeModal').click(function() {
+		memArray.length = 0;
+		diskArray.length = 0;
+		cpuArray.length = 0;
+		timestampArray.length = 0; 
 	});
 
 });

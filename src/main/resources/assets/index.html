@@ -106,12 +106,12 @@ body {
 		<div class="row">
 		  <div id="traffic-light" class="col-md-3">
 		      <div class="row">
-		          <div class="col-md-23 label label-default label-success">
+		          <div id="runCount" class="col-md-3 label label-default label-success">
 		              Running: <span id="successCount"></span>
 		          </div>
 		      </div>
               <div class="row">
-                <div id="warningCount" class="col-md-3 label label-default label-warning">
+                <div id="warnCount" class="col-md-3 label label-default label-warning">
                     Warning: <span id="warningCount"></span>
                 </div>
               </div>
@@ -152,13 +152,10 @@ body {
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
+					<button id="closeModal" type="button" class="close" data-dismiss="modal"
 						aria-hidden="true">&times;</button>
 				</div>
 				<div class="modal-body">
-					<!--						<canvas id="myChart" width="200" height="200"></canvas>-->
-					<!--						<canvas id="myChart2" width="200" height="200"></canvas>-->
-					<!--						<canvas id="myChart4" width="200" height="200"></canvas>-->
 				</div>
 			</div>
 		</div>
