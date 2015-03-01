@@ -117,8 +117,8 @@ $(document).ready(function() {
 		"lengthMenu":[[ 10, 25, 50, -1 ], [ 10, 25, 50, "All" ]],
 		"ajax":{ url:"http://localhost:8083/containers/", dataSrc:"" },
 		"columns":[{"data":"name"}, 
-		           {"data":"containerUniqueId"},
-		           {"data":"cAdvisorURL"}, 
+//		           {"data":"containerUniqueId"},
+//		           {"data":"cAdvisorURL"}, 
 		           {"data":"cpuUsed"}, 
 		           {"data":"cpuTotal"}, 
 		           {"data":"memUsed"}, 
@@ -126,7 +126,7 @@ $(document).ready(function() {
 		           {"data":"diskUsed"}, 
 		           {"data":"diskTotal"}, 
 		           {"data":"containerId"}],
-		"columnDefs":[{"targets":[ 9 ], "visible":false, "searchable":false}],
+		"columnDefs":[{"targets":[7], "visible":false, "searchable":false}],
 		"fnRowCallback":rowCallback
 	});	// end datatable
 	
@@ -144,10 +144,11 @@ $(document).ready(function() {
 		}
 		
 		if(data.cpuUsed >= cpuThreshold || data.diskUsed >= diskThreshold || data.memUsed >= memoryThreshold) {
-			$(row).css('background', backgroundColor);
+			$(row).css('background', "red");
 			errorCount++;
 		}
 		else if(data.cpuUsed >= (cpuThreshold*WARN_THRESHOLD) || data.diskUsed >= (diskThreshold*WARN_THRESHOLD) || data.memUsed >= (memoryThreshold*WARN_THRESHOLD)){
+			$(row).css('background', "orange");
 			warningCount++;
 		}
 		else {
@@ -164,7 +165,7 @@ $(document).ready(function() {
 	$.fn.dataTable.ext.errMode = 'throw';
 
 	/* 
-	 * Sets the refresh interval 
+	 * Sets the refresh interval for the table
 	 */
 	setInterval(function() {
 		table.api().ajax.reload(null, false); // user paging is not reset on reload
