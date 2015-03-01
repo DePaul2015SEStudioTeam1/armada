@@ -12,10 +12,11 @@ $(document).ready(function() {
 	var tableRefresh;
 
 	var cName;
-	var memArray = new Array();
-	var diskArray = new Array();
-	var cpuArray = new Array();
-	var timestampArray = new Array();
+	var cId;
+	var memArray = [];
+	var diskArray = [];
+	var cpuArray = [];
+	var timestampArray = [];
 	
 	var cpuData = {
 		labels : timestampArray,
@@ -117,16 +118,12 @@ $(document).ready(function() {
 		"lengthMenu":[[ 10, 25, 50, -1 ], [ 10, 25, 50, "All" ]],
 		"ajax":{ url:"http://localhost:8083/containers/", dataSrc:"" },
 		"columns":[{"data":"name"}, 
-//		           {"data":"containerUniqueId"},
-//		           {"data":"cAdvisorURL"}, 
 		           {"data":"cpuUsed"}, 
 		           {"data":"cpuTotal"}, 
 		           {"data":"memUsed"}, 
 		           {"data":"memTotal"}, 
 		           {"data":"diskUsed"}, 
-		           {"data":"diskTotal"}, 
-		           {"data":"containerId"}],
-		"columnDefs":[{"targets":[7], "visible":false, "searchable":false}],
+		           {"data":"diskTotal"}],
 		"fnRowCallback":rowCallback
 	});	// end datatable
 	
@@ -139,6 +136,8 @@ $(document).ready(function() {
 	 * lastRowIndex: index of the last row in the table
 	 */
 	function rowCallback(row, data, index, lastRowIndex){
+		$(row).attr("cId",data.containerId);
+		
 		if(index == 0){
 			successCount = warningCount = errorCount = 0;
 		}
@@ -174,9 +173,9 @@ $(document).ready(function() {
 	$('#containers tbody tr').each(function() {
 		var title;
 		var tds = $('td', this);
-		var cpuUsed = $(tds[3]).text();
-		var memUsed = $(tds[5]).text();
-		var diskUsed = $(tds[7]).text();
+		var cpuUsed = $(tds[1]).text();
+		var memUsed = $(tds[3]).text();
+		var diskUsed = $(tds[5]).text();
 
 		if (cpuUsed >= cpuThreshold) {
 			title = " CPU Used > " + cpuThreshold;
@@ -197,8 +196,14 @@ $(document).ready(function() {
 	 * Sets doubleclick functionality for the rows
 	 */
 	$('#containers tbody').on('dblclick', 'tr', function() {
-		cName = table.cell(this, 0).data();
-		var cId = table.cell(this, 9).data();
+		var tds = $('td', this);
+		cName = $(tds[0]).text();
+		cId = table.$(this).attr('cid');
+		
+//		memArray = [];
+//		diskArray = [];
+//		cpuArray = [];
+//		timestampArray = [];
 
 		var logsREST = "http://localhost:8083/logs/" + cId;
 		$.get(logsREST).done(function(data) {
@@ -215,26 +220,26 @@ $(document).ready(function() {
 
 	$('#cDetails').bind('show', function() {
 		$(".modal-header").html("<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button><h4>" + cName + " - Details</h4>");
-									// $('#cDetails').find('.modal-body').append("<canvas
-									// id=\"myChart\" width=\"200\"
-									// height=\"200\"></canvas><canvas
-									// id=\"myChart2\" width=\"200\"
-									// height=\"200\"></canvas><canvas
-									// id=\"myChart4\" width=\"200\"
-									// height=\"200\"></canvas>");
-									$('#cDetails').find('.modal-body').append("<canvas id=\"myChart\" width=\"400\" height=\"400\"></canvas>");
+		// $('#cDetails').find('.modal-body').append("<canvas
+		// id=\"myChart\" width=\"200\"
+		// height=\"200\"></canvas><canvas
+		// id=\"myChart2\" width=\"200\"
+		// height=\"200\"></canvas><canvas
+		// id=\"myChart4\" width=\"200\"
+		// height=\"200\"></canvas>");
+		$('#cDetails').find('.modal-body').append("<canvas id=\"myChart\" width=\"400\" height=\"400\"></canvas>");
 
-									var ctx = document.getElementById("myChart").getContext("2d");
-									var myCpuChart = new Chart(ctx).Line(cpuData);
+		var ctx = document.getElementById("myChart").getContext("2d");
+		var myCpuChart = new Chart(ctx).Line(cpuData);
 
-									// var ctx2 =
-									// document.getElementById("myChart2").getContext("2d");
-									// var myDiskChart = new
-									// Chart(ctx2).Line(diskData);
-									// var ctx4 =
-									// document.getElementById("myChart4").getContext("2d");
-									// var myMemoryChart = new
-									// Chart(ctx4).Line(memData);
+		// var ctx2 =
+		// document.getElementById("myChart2").getContext("2d");
+		// var myDiskChart = new
+		// Chart(ctx2).Line(diskData);
+		// var ctx4 =
+		// document.getElementById("myChart4").getContext("2d");
+		// var myMemoryChart = new
+		// Chart(ctx4).Line(memData);
 	});// end of binding
 
 	$('#settings').bind('show', function() {
