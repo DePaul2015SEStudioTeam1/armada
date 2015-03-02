@@ -30,14 +30,34 @@ $(document).ready(function() {
 		labels : timestampArray,
 		datasets : [ {
 			label : "CPU Usage History",
-			fillColor : "rgba(220,220,220,0.2)",
-			strokeColor : "rgba(220,220,220,1)",
-			pointColor : "rgba(220,220,220,1)",
-			pointStrokeColor : "#fff",
-			pointHighlightFill : "#fff",
-			pointHighlightStroke : "rgba(220,220,220,1)",
+			fillColor :redTrans,
+			strokeColor : red,
+			pointColor : red,
+			pointStrokeColor : red,
+			pointHighlightFill : red,
+			pointHighlightStroke : red,
 			data : cpuArray
-		} ]
+		},
+		{
+			label : "Memory Usage History",
+			fillColor : orangeTrans,
+			strokeColor : orange,
+			pointColor : orange,
+			pointStrokeColor : orange,
+			pointHighlightFill : orange,
+			pointHighlightStroke : orange,
+			data : memArray
+		},
+		{
+			label : "Disk History",
+			fillColor : greenTrans,
+			strokeColor : green,
+			pointColor : green,
+			pointStrokeColor : green,
+			pointHighlightFill : green,
+			pointHighlightStroke : green,
+			data : diskArray
+		}]
 	};
 	
 	var preferencesREST = "http://localhost:8083/preferences/";
@@ -76,7 +96,7 @@ $(document).ready(function() {
 			pointHighlightFill : "#fff",
 			pointHighlightStroke : "rgba(220,220,220,1)",
 			data : memArray
-		} ]
+		}]
 	};
 
 	var diskData = {
@@ -280,11 +300,6 @@ $(document).ready(function() {
 		var tds = $('td', this);
 		cName = $(tds[0]).text();
 		cId = table.$(this).attr('cid');
-		
-//		memArray = [];
-//		diskArray = [];
-//		cpuArray = [];
-//		timestampArray = [];
 
 		var logsREST = "http://localhost:8083/logs/" + cId;
 		$.get(logsREST).done(function(data) {
@@ -301,19 +316,19 @@ $(document).ready(function() {
 
 	$('#cDetails').bind('show', function() {
 		$(".modal-header").html("<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button><h4>" + cName + " - Details</h4>");
-		 $('#cDetails').find('.modal-body').append("<canvas id=\"myChart\" width=\"200\" height=\"200\"></canvas>" +
-				 								   "<canvas id=\"myChart2\" width=\"200\" height=\"200\"></canvas>" +
-				 								   "<canvas id=\"myChart4\" width=\"200\" height=\"200\"></canvas>");
-//		$('#cDetails').find('.modal-body').append("<canvas id=\"myChart\" width=\"400\" height=\"400\"></canvas>");
+//		 $('#cDetails').find('.modal-body').append("<canvas id=\"myChart\" width=\"200\" height=\"200\"></canvas>" +
+//				 								   "<canvas id=\"myChart2\" width=\"200\" height=\"200\"></canvas>" +
+//				 								   "<canvas id=\"myChart4\" width=\"200\" height=\"200\"></canvas>");
+		$('#cDetails').find('.modal-body').append("<canvas id=\"myChart\" width=\"400\" height=\"400\"></canvas>");
 
 		var ctx = document.getElementById("myChart").getContext("2d");
 		var myCpuChart = new Chart(ctx).Line(cpuData);
 
-		 var ctx2 = document.getElementById("myChart2").getContext("2d");
-		 var myDiskChart = new Chart(ctx2).Line(diskData);
-		 
-		 var ctx4 = document.getElementById("myChart4").getContext("2d");
-		 var myMemoryChart = new Chart(ctx4).Line(memData);
+//		 var ctx2 = document.getElementById("myChart2").getContext("2d");
+//		 var myDiskChart = new Chart(ctx2).Line(diskData);
+//		 
+//		 var ctx4 = document.getElementById("myChart4").getContext("2d");
+//		 var myMemoryChart = new Chart(ctx4).Line(memData);
 	});// end of binding
 
 	$('#settings').bind('show', function() {
@@ -337,11 +352,11 @@ $(document).ready(function() {
 		location.reload();
 	});
 	
-	$('#closeModal').click(function() {
-		memArray.length = 0;
-		diskArray.length = 0;
-		cpuArray.length = 0;
-		timestampArray.length = 0; 
-	});
+	$('#cDetails').bind('hide', function(event) {
+//		memArray.length = 0;
+//		diskArray.length = 0;
+//		cpuArray.length = 0;
+//		timestampArray.length = 0; 
+	 });
 
 });
