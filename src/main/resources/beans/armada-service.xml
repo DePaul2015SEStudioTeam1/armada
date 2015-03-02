@@ -18,5 +18,11 @@
         <property name="containerDao" ref="containerDao"/>
         <property name="preferenceDao" ref="preferenceDao"/>
     </bean>
+    
+    <bean id="metricService" class="edu.depaul.armada.service.MetricServiceImpl">
+        <property name="containerLogDao" ref="containerLogDao" />
+        <property name="containerDao" ref="containerDao"/>
+        <property name="preferenceDao" ref="preferenceDao"/>
+    </bean>
 
 </beans>

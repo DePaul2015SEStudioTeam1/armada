@@ -6,6 +6,7 @@ package edu.depaul.armada.dao;
 import java.util.List;
 
 import edu.depaul.armada.domain.ContainerLog;
+import edu.depaul.armada.model.Metric;
 
 
 /**
@@ -56,4 +57,13 @@ public interface ContainerLogDao {
 	 * @return list of logs
 	 */
 	List<ContainerLog> findWithContainerIdAndPeriod(long containerId, int period);
+	
+	/**
+	 * Gets a list of counts per hour based on specified countNumber
+	 * 
+	 * @stateThreshold	how many containers breached this threshold in the time interval
+	 * @periodCountInHours	how many intervals do we want counts for
+	 * @return list of counts of how many containers are in given state in given interval
+	 */
+	List<Metric> getStateCounts(long memThreshold, long cpuThreshold, long diskThreshold, int periodCountInHours);
 }

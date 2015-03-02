@@ -131,8 +131,16 @@ $(document).ready(function() {
 		label : "Active"
 	} ];
 	
+	function getChartLabels(){
+		var labels = [];
+		for(i=0; i<24; i++){
+			labels.push("" + i);
+		}
+		return labels;
+	}
+	
 	var lineChartData = {
-		    labels: ["1", "2", "3", "4", "5", "6", "7"],
+		    labels: getChartLabels(),
 		    datasets: [
 		        {
 		            label: "My First dataset",
@@ -168,7 +176,7 @@ $(document).ready(function() {
 		};
 	
 	var barChartData = {
-		    labels: ["1", "2", "3", "4", "5", "6", "7"],
+		    labels: getChartLabels(),
 		    datasets: [
 		        {
 		            label: "My First dataset",

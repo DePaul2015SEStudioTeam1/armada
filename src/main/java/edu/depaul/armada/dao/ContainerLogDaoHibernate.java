@@ -4,7 +4,10 @@
 package edu.depaul.armada.dao;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -16,6 +19,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import edu.depaul.armada.domain.ContainerLog;
+import edu.depaul.armada.model.Metric;
 import edu.depaul.armada.util.AssertUtil;
 
 /**
@@ -92,6 +96,41 @@ public class ContainerLogDaoHibernate implements ContainerLogDao {
 		criteria.add(Restrictions.ge("timestamp", new Timestamp(currentDate.getTime() - 24 * 60 * 60 * 1000)));
 		List<ContainerLog> result = criteria.list();
 		return (result == null)? Collections.<ContainerLog>emptyList() : result;
+	}
+
+	/* (non-Javadoc)
+	 * @see edu.depaul.armada.dao.ContainerLogDao#getStateCounts(int, int)
+	 */
+	@Override
+	public List<Metric> getStateCounts(long memThreshold, long cpuThreshold, long diskThreshold, int periodCountInHours) {
+		List<Metric> metrics = new ArrayList<Metric>(periodCountInHours);
+		Calendar cal = Calendar.getInstance();
+		for(int i=0; i<periodCountInHours; i++) {
+			Date end = cal.getTime();
+			int hour = cal.get(Calendar.HOUR_OF_DAY);
+			cal.add(Calendar.HOUR_OF_DAY, -1);
+			Date start = cal.getTime();
+			
+			//select count(distinct container_id) from container_log 
+			// where mem_used > 10000000 or disk_used > 10000000 or cpu_used > 10000000
+			
+			Criteria criteria = newCriteria();
+			criteria.add(Restrictions.le("timestamp", end));
+			criteria.add(Restrictions.gt("timestamp", start));	// we don't want overlap here
+			criteria.add(Restrictions.disjunction()
+					.add(Restrictions.gt("cpuUsed", cpuThreshold))
+					.add(Restrictions.gt("memUsed", memThreshold))
+					.add(Restrictions.gt("diskUsed", diskThreshold))
+			);
+			criteria.setProjection(Projections.countDistinct("container"));
+			int count = ((Long) criteria.uniqueResult()).intValue();
+			Metric temp = new Metric();
+			temp.setHour(hour);
+			temp.setValue(count);
+			metrics.add(temp);
+		}
+		Collections.reverse(metrics);	// we want the current time to be the last hour
+		return metrics;
 	}
 	
 }
