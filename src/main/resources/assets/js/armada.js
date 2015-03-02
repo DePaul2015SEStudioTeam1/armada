@@ -3,6 +3,10 @@
  */
 $(document).ready(function() {
 
+	$(document).ready(loadBarChartData);
+	$(document).ready(loadPieChartData);
+	$(document).ready(loadLineChartData);
+	
 	Chart.defaults.global.animation = true;
 	Chart.defaults.global.animationSteps = 1;
 	
@@ -151,42 +155,36 @@ $(document).ready(function() {
 	var pieChartContext = document.getElementById("pieChart").getContext("2d");
 	var pieChart = new Chart(pieChartContext).Pie(pieChartData, {segmentShowStroke : true, segmentStrokeColor : "rgba(255, 255, 255, 0.1)"});
 
-	$.get(metricREST + 1).done(function(data) {
-		
-		pieChart.clear();
-		
-		var temp = data[0];
-		
-		pieChart.addData({value: temp.error,
-						  color : redTrans,
-						  highlight : red,	// // rgb 247 70 74
-						  label : "ERROR"}, 0);
-		pieChart.addData({value: temp.warn,
-						  color : orangeTrans,
-						  highlight : orange,	// // rgb 247 70 74
-						  label : "WARN"}, 1);
-		pieChart.addData({value: temp.ok,
-						  color : greenTrans,
-						  highlight : green,	// // rgb 247 70 74
-						  label : "OK"}, 2);
-		
-		pieChart.update();
-	});
+	function loadPieChartData(){
+		$.get(metricREST + 1).done(function(data) {
+			
+			var temp = data[0];
+			pieChart.addData({value: temp.error,
+							  color : redTrans,
+							  highlight : red,	// // rgb 247 70 74
+							  label : "ERROR"}, 0);
+			pieChart.addData({value: temp.warn,
+							  color : orangeTrans,
+							  highlight : orange,	// // rgb 247 70 74
+							  label : "WARN"}, 1);
+			pieChart.addData({value: temp.ok,
+							  color : greenTrans,
+							  highlight : green,	// // rgb 247 70 74
+							  label : "OK"}, 2);
+		});
+	}
 	
 	var lineChartContext = document.getElementById("lineChart").getContext("2d");
 	var lineChart = new Chart(lineChartContext).Line(lineChartData, {pointDot : true, pointDotRadius : 1, datasetStrokeWidth : 1});
 		
-	$.get(metricREST + PERIOD).done(function(data) {
-		
-		lineChart.clear();
-		
-		$.each(data, function(index) {
-			var temp = data[index];
-			lineChart.addData([temp.error, temp.warn, temp.ok], temp.period + "h");
+	function loadLineChartData(){
+		$.get(metricREST + PERIOD).done(function(data) {
+			$.each(data, function(index) {
+				var temp = data[index];
+				lineChart.addData([temp.error, temp.warn, temp.ok], temp.period + "h");
+			});
 		});
-		
-		lineChart.update();
-	});
+	}
 		
 	var barChartData = {
 		    labels: [],
@@ -215,17 +213,14 @@ $(document).ready(function() {
 	var barChartContext = document.getElementById("barChart").getContext("2d");
 	var barChart = new Chart(barChartContext).Bar(barChartData, {barStrokeWidth : 1, barValueSpacing : 0, barDatasetSpacing : 1});
 
-	$.get(metricREST + PERIOD).done(function(data) {
-		
-		barChart.clear();
-		
-		$.each(data, function(index) {
-			var temp = data[index];
-			barChart.addData([temp.error, temp.warn, temp.ok], temp.period + "h");
+	function loadBarChartData(){
+		$.get(metricREST + PERIOD).done(function(data) {
+			$.each(data, function(index) {
+				var temp = data[index];
+				barChart.addData([temp.error, temp.warn, temp.ok], temp.period + "h");
+			});
 		});
-		
-		barChart.update();
-	});
+	}
 	
 	var backgroundColor = '#F7464A';
 
@@ -265,11 +260,11 @@ $(document).ready(function() {
 		}
 		
 		if(data.cpuUsed >= cpuThreshold || data.diskUsed >= diskThreshold || data.memUsed >= memoryThreshold) {
-			$(row).css('background', red);
+			$(row).css('background', redTrans);
 			errorCount++;
 		}
 		else if(data.cpuUsed >= (cpuThreshold*WARN_THRESHOLD) || data.diskUsed >= (diskThreshold*WARN_THRESHOLD) || data.memUsed >= (memoryThreshold*WARN_THRESHOLD)){
-			$(row).css('background', orange);
+			$(row).css('background', orangeTrans);
 			warningCount++;
 		}
 		else {
@@ -290,6 +285,9 @@ $(document).ready(function() {
 	 */
 	setInterval(function() {
 		table.api().ajax.reload(null, false); // user paging is not reset on reload
+		//loadPieChartData();
+		//loadBarChartData();
+		//loadLineChartData();
 	}, 3000);
 
 	$('#containers tbody tr').each(function() {
