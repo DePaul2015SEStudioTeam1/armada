@@ -7,7 +7,7 @@ $(document).ready(function() {
 	$(pieChart).ready(loadPieChartData);
 	$(lineChart).ready(loadLineChartData);
 	
-	Chart.defaults.global.animation = false;
+	Chart.defaults.global.animation = true;
 	Chart.defaults.global.animationSteps = 1;
 	
 	const PERIOD = 24;
