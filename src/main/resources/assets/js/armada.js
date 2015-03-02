@@ -3,6 +3,11 @@
  */
 $(document).ready(function() {
 
+	Chart.defaults.global.animation = true;
+	Chart.defaults.global.animationSteps = 1;
+	
+	const PERIOD = 24;
+	
 	var currentDate = new Date().toDateString();
 	
 	var cpuThreshold;
@@ -114,23 +119,7 @@ $(document).ready(function() {
 		} ]
 	};
 
-	var pieChartData = [       	    
-	         {
-		value : 3,
-		color : red,
-		highlight : red,	// // rgb 247 70 74
-		label : "Inactive"
-	}, {
-		value : 5,
-		color : orange,	// rgb 92 184 92
-		highlight : orange,	// rgb 92 184 92
-		label : "Active"
-	}, {
-		value : 1,
-		color : green,	// rgb 240 173 78
-		highlight : green,	//  rgb 240 173 78
-		label : "Active"
-	} ];
+	var pieChartData = [];
 	
 	var lineChartData = {
 		    labels: [],
@@ -160,12 +149,34 @@ $(document).ready(function() {
 		};
 	
 	var pieChartContext = document.getElementById("pieChart").getContext("2d");
-	var pieChart = new Chart(pieChartContext).Pie(pieChartData);
+	var pieChart = new Chart(pieChartContext).Pie(pieChartData, {segmentShowStroke : false});
+
+	$.get(metricREST + 1).done(function(data) {
+		
+		pieChart.clear();
+		
+		var temp = data[0];
+		
+		pieChart.addData({value: temp.error,
+						  color : red,
+						  highlight : red,	// // rgb 247 70 74
+						  label : "ERROR"}, 0);
+		pieChart.addData({value: temp.warn,
+						  color : orange,
+						  highlight : orange,	// // rgb 247 70 74
+						  label : "WARN"}, 1);
+		pieChart.addData({value: temp.ok,
+						  color : green,
+						  highlight : green,	// // rgb 247 70 74
+						  label : "OK"}, 2);
+		
+		pieChart.update();
+	});
 	
 	var lineChartContext = document.getElementById("lineChart").getContext("2d");
-	var lineChart = new Chart(lineChartContext).Line(lineChartData);
+	var lineChart = new Chart(lineChartContext).Line(lineChartData, {pointDot : true, pointDotRadius : 1, datasetStrokeWidth : 1});
 		
-	$.get(metricREST + 12).done(function(data) {
+	$.get(metricREST + PERIOD).done(function(data) {
 		
 		lineChart.clear();
 		
@@ -184,33 +195,27 @@ $(document).ready(function() {
 		            label: "ERROR",
 		            fillColor: redTrans,
 		            strokeColor: red,
-		            highlightFill: red,
-		            highlightStroke: red,
 		            data: []
 		        },
 		        {
 		            label: "WARN",
 		            fillColor: orangeTrans,
 		            strokeColor: orange,
-		            highlightFill: orange,
-		            highlightStroke: orange,
 		            data: []
 		        },
 		        {
 		            label: "OK",
 		            fillColor: greenTrans,
 		            strokeColor: green,
-		            highlightFill: green,
-		            highlightStroke: green,
 		            data: []
 		        }
 		    ]
 		};
 	
 	var barChartContext = document.getElementById("barChart").getContext("2d");
-	var barChart = new Chart(barChartContext).Bar(barChartData);
+	var barChart = new Chart(barChartContext).Bar(barChartData, {barStrokeWidth : 1, barValueSpacing : 0, barDatasetSpacing : 1});
 
-	$.get(metricREST + 12).done(function(data) {
+	$.get(metricREST + PERIOD).done(function(data) {
 		
 		barChart.clear();
 		
