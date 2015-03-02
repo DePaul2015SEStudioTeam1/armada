@@ -3,11 +3,11 @@
  */
 $(document).ready(function() {
 
-	$(document).ready(loadBarChartData);
-	$(document).ready(loadPieChartData);
-	$(document).ready(loadLineChartData);
+	$(barChart).ready(loadBarChartData);
+	$(pieChart).ready(loadPieChartData);
+	$(lineChart).ready(loadLineChartData);
 	
-	Chart.defaults.global.animation = true;
+	Chart.defaults.global.animation = false;
 	Chart.defaults.global.animationSteps = 1;
 	
 	const PERIOD = 24;
@@ -159,6 +159,9 @@ $(document).ready(function() {
 		$.get(metricREST + 1).done(function(data) {
 			
 			var temp = data[0];
+			pieChart.destroy();
+			pieChartContext = document.getElementById("pieChart").getContext("2d");
+			pieChart = new Chart(pieChartContext).Pie(pieChartData, {segmentShowStroke : true, segmentStrokeColor : "rgba(255, 255, 255, 0.1)"});
 			pieChart.addData({value: temp.error,
 							  color : redTrans,
 							  highlight : red,	// // rgb 247 70 74
@@ -179,6 +182,9 @@ $(document).ready(function() {
 		
 	function loadLineChartData(){
 		$.get(metricREST + PERIOD).done(function(data) {
+			lineChart.destroy();
+			lineChartContext = document.getElementById("lineChart").getContext("2d");
+			lineChart = new Chart(lineChartContext).Line(lineChartData, {pointDot : true, pointDotRadius : 1, datasetStrokeWidth : 1});
 			$.each(data, function(index) {
 				var temp = data[index];
 				lineChart.addData([temp.error, temp.warn, temp.ok], temp.period + "h");
@@ -215,6 +221,9 @@ $(document).ready(function() {
 
 	function loadBarChartData(){
 		$.get(metricREST + PERIOD).done(function(data) {
+			barChart.destroy();
+			barChartContext = document.getElementById("barChart").getContext("2d");
+			barChart = new Chart(barChartContext).Bar(barChartData, {barStrokeWidth : 1, barValueSpacing : 0, barDatasetSpacing : 1});
 			$.each(data, function(index) {
 				var temp = data[index];
 				barChart.addData([temp.error, temp.warn, temp.ok], temp.period + "h");
@@ -227,7 +236,7 @@ $(document).ready(function() {
 	var successCount = 0;
 	var warningCount = 0;
 	var errorCount = 0;
-	var WARN_THRESHOLD = 1;
+	var WARN_THRESHOLD = 0.75;
 	
 	var table = $('#containers').dataTable({
 		"cache":false,
