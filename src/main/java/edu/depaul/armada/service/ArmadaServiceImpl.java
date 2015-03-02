@@ -58,12 +58,12 @@ public class ArmadaServiceImpl implements ArmadaService {
 		}
 		// add entry
 		ContainerLog log = new ContainerLog();
-		log.setCpuUsed(agentContainer.cpuUsed/104857);
-		log.setCpuTotal(agentContainer.cpuTotal/104857);
-		log.setMemUsed(agentContainer.memUsed/104857);
-		log.setMemTotal(agentContainer.memTotal/104857);
-		log.setDiskUsed(agentContainer.diskUsed/104857);
-		log.setDiskTotal(agentContainer.diskTotal/104857);
+		log.setCpuUsed(agentContainer.cpuUsed);
+		log.setCpuTotal(agentContainer.cpuTotal);
+		log.setMemUsed(agentContainer.memUsed);
+		log.setMemTotal(agentContainer.memTotal);
+		log.setDiskUsed(agentContainer.diskUsed);
+		log.setDiskTotal(agentContainer.diskTotal);
 		log.setTimestamp(agentContainer.timestamp);
 		
 		container.addLog(log);
