@@ -61,6 +61,7 @@ $(document).ready(function() {
 	};
 	
 	var preferencesREST = "http://localhost:8083/preferences/";
+	var metricREST = "http://localhost:8083/metrics/thresholdStats/";
 	
 	/*
 	 * Sets the current data
@@ -131,88 +132,95 @@ $(document).ready(function() {
 		label : "Active"
 	} ];
 	
-	function getChartLabels(){
-		var labels = [];
-		for(i=0; i<24; i++){
-			labels.push("" + i);
-		}
-		return labels;
-	}
-	
 	var lineChartData = {
-		    labels: getChartLabels(),
+		    labels: [],
 		    datasets: [
 		        {
-		            label: "My First dataset",
+		            label: "ERROR",
 		            fillColor: redTrans,
 		            strokeColor: red,
 		            pointColor: red,
-		            pointStrokeColor: red,
-		            pointHighlightFill: red,
-		            pointHighlightStroke: red,
-		            data: [65, 59, 80, 81, 56, 55, 40]
+		            data: []
 		        },
 		        {
-		            label: "My Second dataset",
+		            label: "WARN",
 		            fillColor: orangeTrans,
 		            strokeColor: orange,
 		            pointColor: orange,
-		            pointStrokeColor: orange,
-		            pointHighlightFill: orange,
-		            pointHighlightStroke: orange,
-		            data: [28, 48, 40, 19, 86, 27, 90]
+		            data: []
 		        },
 		        {
-		            label: "My Third dataset",
+		            label: "OK",
 		            fillColor: greenTrans,
 		            strokeColor: green,
 		            pointColor: green,
-		            pointStrokeColor: green,
-		            pointHighlightFill: green,
-		            pointHighlightStroke: green,
-		            data: [2, 8, 40, 9, 8, 50, 9]
+		            data: []
 		        }
 		    ]
 		};
 	
-	var barChartData = {
-		    labels: getChartLabels(),
-		    datasets: [
-		        {
-		            label: "My First dataset",
-		            fillColor: redTrans,
-		            strokeColor: red,
-		            highlightFill: red,
-		            highlightStroke: red,
-		            data: [65, 59, 80, 81, 56, 55, 40]
-		        },
-		        {
-		            label: "My Second dataset",
-		            fillColor: orangeTrans,
-		            strokeColor: orange,
-		            highlightFill: orange,
-		            highlightStroke: orange,
-		            data: [28, 48, 40, 19, 86, 27, 90]
-		        },
-		        {
-		            label: "My Third dataset",
-		            fillColor: greenTrans,
-		            strokeColor: green,
-		            highlightFill: green,
-		            highlightStroke: green,
-		            data: [2, 8, 40, 9, 8, 50, 9]
-		        }
-		    ]
-		};
-
 	var pieChartContext = document.getElementById("pieChart").getContext("2d");
 	var pieChart = new Chart(pieChartContext).Pie(pieChartData);
 	
 	var lineChartContext = document.getElementById("lineChart").getContext("2d");
 	var lineChart = new Chart(lineChartContext).Line(lineChartData);
-
+		
+	$.get(metricREST + 12).done(function(data) {
+		
+		lineChart.clear();
+		
+		$.each(data, function(index) {
+			var temp = data[index];
+			lineChart.addData([temp.error, temp.warn, temp.ok], temp.period + "h");
+		});
+		
+		lineChart.update();
+	});
+		
+	var barChartData = {
+		    labels: [],
+		    datasets: [
+		        {
+		            label: "ERROR",
+		            fillColor: redTrans,
+		            strokeColor: red,
+		            highlightFill: red,
+		            highlightStroke: red,
+		            data: []
+		        },
+		        {
+		            label: "WARN",
+		            fillColor: orangeTrans,
+		            strokeColor: orange,
+		            highlightFill: orange,
+		            highlightStroke: orange,
+		            data: []
+		        },
+		        {
+		            label: "OK",
+		            fillColor: greenTrans,
+		            strokeColor: green,
+		            highlightFill: green,
+		            highlightStroke: green,
+		            data: []
+		        }
+		    ]
+		};
+	
 	var barChartContext = document.getElementById("barChart").getContext("2d");
 	var barChart = new Chart(barChartContext).Bar(barChartData);
+
+	$.get(metricREST + 12).done(function(data) {
+		
+		barChart.clear();
+		
+		$.each(data, function(index) {
+			var temp = data[index];
+			barChart.addData([temp.error, temp.warn, temp.ok], temp.period + "h");
+		});
+		
+		barChart.update();
+	});
 	
 	var backgroundColor = '#F7464A';
 
