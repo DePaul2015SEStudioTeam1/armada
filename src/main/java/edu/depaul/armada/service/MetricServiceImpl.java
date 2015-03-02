@@ -49,12 +49,13 @@ public class MetricServiceImpl implements MetricService {
 		long disk = preferenceDao.findWithPreferenceName(MEM_THRESHOLD).getValue();
 		
 		int total = containerDao.getAll().size();	// replace with count method
-		
-		List<Metric> err = containerLogDao.getStateCounts(mem, cpu, disk, periodInHours);	// breached threshold
+
 		List<Metric> warn = containerLogDao.getStateCounts(Double.valueOf(mem*0.75).longValue(), 
 				Double.valueOf(cpu*0.75).longValue(), 
 				Double.valueOf(disk*0.75).longValue(), 
 				periodInHours);	// breached warning threshold
+		List<Metric> err = containerLogDao.getStateCounts(mem, cpu, disk, periodInHours);	// breached threshold
+
 		List<ThresholdMetric> metrics = new ArrayList<ThresholdMetric>(periodInHours);
 		for(int i=0; i<periodInHours; i++) {
 			ThresholdMetric temp = new ThresholdMetric();
@@ -62,8 +63,8 @@ public class MetricServiceImpl implements MetricService {
 			Metric warnTemp = warn.get(i);
 			temp.setPeriod(errTemp.getHour());
 			temp.setError(errTemp.getValue());
-			temp.setWarn(warnTemp.getValue());
-			temp.setOk(total - (errTemp.getValue() + warnTemp.getValue()));
+			temp.setWarn(warnTemp.getValue() - errTemp.getValue());
+			temp.setOk(total - (temp.getError() + temp.getWarn()));
 			metrics.add(temp);
 		}
 		

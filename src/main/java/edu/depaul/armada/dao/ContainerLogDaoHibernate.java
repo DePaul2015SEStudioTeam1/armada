@@ -111,16 +111,13 @@ public class ContainerLogDaoHibernate implements ContainerLogDao {
 			cal.add(Calendar.HOUR_OF_DAY, -1);
 			Date start = cal.getTime();
 			
-			//select count(distinct container_id) from container_log 
-			// where mem_used > 10000000 or disk_used > 10000000 or cpu_used > 10000000
-			
 			Criteria criteria = newCriteria();
 			criteria.add(Restrictions.le("timestamp", end));
 			criteria.add(Restrictions.gt("timestamp", start));	// we don't want overlap here
 			criteria.add(Restrictions.disjunction()
-					.add(Restrictions.gt("cpuUsed", cpuThreshold))
-					.add(Restrictions.gt("memUsed", memThreshold))
-					.add(Restrictions.gt("diskUsed", diskThreshold))
+					.add(Restrictions.ge("cpuUsed", cpuThreshold))
+					.add(Restrictions.ge("memUsed", memThreshold))
+					.add(Restrictions.ge("diskUsed", diskThreshold))
 			);
 			criteria.setProjection(Projections.countDistinct("container"));
 			int count = ((Long) criteria.uniqueResult()).intValue();

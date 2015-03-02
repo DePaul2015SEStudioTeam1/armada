@@ -149,7 +149,7 @@ $(document).ready(function() {
 		};
 	
 	var pieChartContext = document.getElementById("pieChart").getContext("2d");
-	var pieChart = new Chart(pieChartContext).Pie(pieChartData, {segmentShowStroke : false});
+	var pieChart = new Chart(pieChartContext).Pie(pieChartData, {segmentShowStroke : true, segmentStrokeColor : "rgba(255, 255, 255, 0.1)"});
 
 	$.get(metricREST + 1).done(function(data) {
 		
@@ -158,15 +158,15 @@ $(document).ready(function() {
 		var temp = data[0];
 		
 		pieChart.addData({value: temp.error,
-						  color : red,
+						  color : redTrans,
 						  highlight : red,	// // rgb 247 70 74
 						  label : "ERROR"}, 0);
 		pieChart.addData({value: temp.warn,
-						  color : orange,
+						  color : orangeTrans,
 						  highlight : orange,	// // rgb 247 70 74
 						  label : "WARN"}, 1);
 		pieChart.addData({value: temp.ok,
-						  color : green,
+						  color : greenTrans,
 						  highlight : green,	// // rgb 247 70 74
 						  label : "OK"}, 2);
 		
@@ -265,11 +265,11 @@ $(document).ready(function() {
 		}
 		
 		if(data.cpuUsed >= cpuThreshold || data.diskUsed >= diskThreshold || data.memUsed >= memoryThreshold) {
-			$(row).css('background', "red");
+			$(row).css('background', red);
 			errorCount++;
 		}
 		else if(data.cpuUsed >= (cpuThreshold*WARN_THRESHOLD) || data.diskUsed >= (diskThreshold*WARN_THRESHOLD) || data.memUsed >= (memoryThreshold*WARN_THRESHOLD)){
-			$(row).css('background', "orange");
+			$(row).css('background', orange);
 			warningCount++;
 		}
 		else {
