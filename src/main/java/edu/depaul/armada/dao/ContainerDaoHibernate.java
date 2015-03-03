@@ -104,6 +104,9 @@ public class ContainerDaoHibernate implements ContainerDao {
 			temp.containerUniqueId = container.getContainerUniqueId();
 			temp.cAdvisorURL = container.getCAdvisorURL();
 			List<ContainerLog> logs = container.getLogs();
+			if(logs == null || logs.isEmpty()) {
+				continue;
+			}
 			ContainerLog[] logArr = logs.toArray(new ContainerLog[logs.size()]);
 			int index = logArr.length-1;
 			temp.cpuUsed = logArr[index].getCpuUsed();

@@ -8,7 +8,7 @@ $(document).ready(function() {
 	$(containerCountChart).ready(loadContainerCountChartData);
 	
 	Chart.defaults.global.animation = true;
-	Chart.defaults.global.animationSteps = 5;
+	Chart.defaults.global.animationSteps = 1;
 	
 	const PERIOD = 24;
 	
@@ -60,25 +60,23 @@ $(document).ready(function() {
 		});
 	});
 
-	var pieChartData = [];
-	
-	var containerCountChartData = {
-		    labels: [],
-		    datasets: [
-		        {
-		            label: "COUNT",
-		            fillColor: greenTrans,
-		            strokeColor: green,
-		            data: []
-		        }
-		    ]
-		};
-	
-	var pieChartContext = document.getElementById("pieChart").getContext("2d");
-	var pieChart = new Chart(pieChartContext).Pie(pieChartData, {segmentShowStroke : true, segmentStrokeColor : "rgba(255, 255, 255, 0.1)"});
-
 	function loadPieChartData(){
 		$.get(metricREST + 1).done(function(data) {
+			
+			var pieChartData = [];
+			
+			$('#pieChart').remove(); // this is my <canvas> element
+			$('#pie-chart').append('<canvas id="pieChart" width="200" height="200"></canvas>');
+			
+			var pieChartContext = document.getElementById("pieChart").getContext("2d");
+			var pieChart = new Chart(pieChartContext).Pie(pieChartData, 
+					{segmentShowStroke : true, 
+					 segmentStrokeColor : "rgba(255, 255, 255, 0.1)",
+					 animationSteps : 1,
+					 animationEasing : "easeOutBounce",
+					 animateRotate : true,
+					 animateScale : false
+					});
 			
 			var temp = data[0];
 			pieChart.addData({value: temp.error,
@@ -95,48 +93,68 @@ $(document).ready(function() {
 							  label : "OK"}, 2);
 		});
 	}
-	
-	var containerCountChartContext = document.getElementById("containerCountChart").getContext("2d");
-	var containerCountChart = new Chart(containerCountChartContext).Bar(containerCountChartData, {barStrokeWidth : 1, barValueSpacing : 1, barDatasetSpacing : 1});
 		
-	function loadContainerCountChartData(){
+	function loadContainerCountChartData(){		
 		$.get(containerCountREST + PERIOD).done(function(data) {
+			
+			var containerCountChartData = {
+				    labels: [],
+				    datasets: [
+				        {
+				            label: "COUNT",
+				            fillColor: greenTrans,
+				            strokeColor: green,
+				            data: []
+				        }
+				    ]
+				};
+			
+			$('#containerCountChart').remove(); // this is my <canvas> element
+			$('#container-count-chart').append('<canvas id="containerCountChart" width="400" height="220"></canvas>');
+			
+			var containerCountChartContext = document.getElementById("containerCountChart").getContext("2d");
+			var containerCountChart = new Chart(containerCountChartContext).Bar(containerCountChartData, {barStrokeWidth : 1, barValueSpacing : 1, barDatasetSpacing : 1});
+			
 			$.each(data, function(index) {
 				var temp = data[index];
 				containerCountChart.addData([temp.value], temp.hour + "h");
 			});
 		});
 	}
-		
-	var barChartData = {
-		    labels: [],
-		    datasets: [
-		        {
-		            label: "ERROR",
-		            fillColor: redTrans,
-		            strokeColor: red,
-		            data: []
-		        },
-		        {
-		            label: "WARN",
-		            fillColor: orangeTrans,
-		            strokeColor: orange,
-		            data: []
-		        },
-		        {
-		            label: "OK",
-		            fillColor: greenTrans,
-		            strokeColor: green,
-		            data: []
-		        }
-		    ]
-		};
-	
-	var barChartContext = document.getElementById("barChart").getContext("2d");
-	var barChart = new Chart(barChartContext).StackedBar(barChartData, {barStrokeWidth : 1, barValueSpacing : 1, barDatasetSpacing : 1});
 
 	function loadBarChartData(){
 		$.get(metricREST + PERIOD).done(function(data) {
+			
+			$('#barChart').remove(); // this is my <canvas> element
+			$('#bar-chart').append('<canvas id="barChart" width="400" height="220"></canvas>');
+			
+			var barChartData = {
+				    labels: [],
+				    datasets: [
+				        {
+				            label: "ERROR",
+				            fillColor: redTrans,
+				            strokeColor: red,
+				            data: []
+				        },
+				        {
+				            label: "WARN",
+				            fillColor: orangeTrans,
+				            strokeColor: orange,
+				            data: []
+				        },
+				        {
+				            label: "OK",
+				            fillColor: greenTrans,
+				            strokeColor: green,
+				            data: []
+				        }
+				    ]
+				};
+			
+			var barChartContext = document.getElementById("barChart").getContext("2d");
+			var barChart = new Chart(barChartContext).StackedBar(barChartData, {barStrokeWidth : 1, barValueSpacing : 1, barDatasetSpacing : 1});
+			
 			$.each(data, function(index) {
 				var temp = data[index];
 				barChart.addData([temp.error, temp.warn, temp.ok], temp.period + "h");
@@ -214,19 +232,20 @@ $(document).ready(function() {
 	 * Sets the refresh interval for the table
 	 */
 	setInterval(function() {
+		console.log("-- updating table");
 		table.api().ajax.reload(null, false); // user paging is not reset on reload
 	}, 3000);
 	
 	/*
 	 * Sets the refresh interval for the charts
 	 */
-	/*
 	setInterval(function() {
+		console.log("-- updating charts");
 		loadPieChartData();
 		loadBarChartData();
-		loadLineChartData();
-	}, 60000);
-*/
+		loadContainerCountChartData();
+	}, 3000);
+	
 	$('#containers tbody tr').each(function() {
 		var title;
 		var tds = $('td', this);
