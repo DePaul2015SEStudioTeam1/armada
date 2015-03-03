@@ -5,7 +5,7 @@ $(document).ready(function() {
 
 	$(barChart).ready(loadBarChartData);
 	$(pieChart).ready(loadPieChartData);
-	$(lineChart).ready(loadLineChartData);
+	$(containerCountChart).ready(loadContainerCountChartData);
 	
 	Chart.defaults.global.animation = true;
 	Chart.defaults.global.animationSteps = 5;
@@ -71,6 +71,7 @@ $(document).ready(function() {
 	
 	var preferencesREST = "http://localhost:8083/preferences/";
 	var metricREST = "http://localhost:8083/metrics/thresholdStats/";
+	var containerCountREST = "http://localhost:8083/metrics/containerCounts/";
 	
 	/*
 	 * Sets the current data
@@ -125,28 +126,13 @@ $(document).ready(function() {
 
 	var pieChartData = [];
 	
-	var lineChartData = {
+	var containerCountChartData = {
 		    labels: [],
 		    datasets: [
 		        {
-		            label: "ERROR",
-		            fillColor: redTrans,
-		            strokeColor: red,
-		            pointColor: red,
-		            data: []
-		        },
-		        {
-		            label: "WARN",
-		            fillColor: orangeTrans,
-		            strokeColor: orange,
-		            pointColor: orange,
-		            data: []
-		        },
-		        {
-		            label: "OK",
+		            label: "COUNT",
 		            fillColor: greenTrans,
 		            strokeColor: green,
-		            pointColor: green,
 		            data: []
 		        }
 		    ]
@@ -174,14 +160,14 @@ $(document).ready(function() {
 		});
 	}
 	
-	var lineChartContext = document.getElementById("lineChart").getContext("2d");
-	var lineChart = new Chart(lineChartContext).Line(lineChartData, {pointDot : true, pointDotRadius : 1, datasetStrokeWidth : 1, bezierCurve : false});
+	var containerCountChartContext = document.getElementById("containerCountChart").getContext("2d");
+	var containerCountChart = new Chart(containerCountChartContext).Bar(containerCountChartData, {barStrokeWidth : 1, barValueSpacing : 1, barDatasetSpacing : 1});
 		
-	function loadLineChartData(){
-		$.get(metricREST + PERIOD).done(function(data) {
+	function loadContainerCountChartData(){
+		$.get(containerCountREST + PERIOD).done(function(data) {
 			$.each(data, function(index) {
 				var temp = data[index];
-				lineChart.addData([temp.error, temp.warn, temp.ok], temp.period + "h");
+				containerCountChart.addData([temp.value], temp.hour + "h");
 			});
 		});
 	}

@@ -45,10 +45,10 @@ public class MetricServiceImpl implements MetricService {
 	@Override
 	public List<ThresholdMetric> getMetrics(int periodInHours) {
 		long mem = preferenceDao.findWithPreferenceName(MEM_THRESHOLD).getValue();
-		long cpu = preferenceDao.findWithPreferenceName(MEM_THRESHOLD).getValue();
-		long disk = preferenceDao.findWithPreferenceName(MEM_THRESHOLD).getValue();
+		long cpu = preferenceDao.findWithPreferenceName(CPU_THRESHOLD).getValue();
+		long disk = preferenceDao.findWithPreferenceName(DISK_THRESHOLD).getValue();
 		
-		int total = containerDao.getAll().size();	// replace with count method
+		List<Metric> containerCount = getContainerCount(periodInHours);
 
 		List<Metric> warn = containerLogDao.getStateCounts(Double.valueOf(mem*0.75).longValue(), 
 				Double.valueOf(cpu*0.75).longValue(), 
@@ -64,10 +64,19 @@ public class MetricServiceImpl implements MetricService {
 			temp.setPeriod(errTemp.getHour());
 			temp.setError(errTemp.getValue());
 			temp.setWarn(warnTemp.getValue() - errTemp.getValue());
-			temp.setOk(total - (temp.getError() + temp.getWarn()));
+			temp.setOk(containerCount.get(i).getValue() - (temp.getError() + temp.getWarn()));
 			metrics.add(temp);
 		}
 		
+		return metrics;
+	}
+
+	/* (non-Javadoc)
+	 * @see edu.depaul.armada.service.MetricService#getContainerCount(int)
+	 */
+	@Override
+	public List<Metric> getContainerCount(int periodInHours) {
+		List<Metric> metrics = containerLogDao.getContainerCounts(periodInHours);
 		return metrics;
 	}
 

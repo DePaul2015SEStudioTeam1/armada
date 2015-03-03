@@ -129,5 +129,32 @@ public class ContainerLogDaoHibernate implements ContainerLogDao {
 		Collections.reverse(metrics);	// we want the current time to be the last hour
 		return metrics;
 	}
+
+	/* (non-Javadoc)
+	 * @see edu.depaul.armada.dao.ContainerLogDao#getContainerCounts(int)
+	 */
+	@Override
+	public List<Metric> getContainerCounts(int periodInHours) {
+		List<Metric> metrics = new ArrayList<Metric>(periodInHours);
+		Calendar cal = Calendar.getInstance();
+		for(int i=0; i<periodInHours; i++) {
+			Date end = cal.getTime();
+			int hour = cal.get(Calendar.HOUR_OF_DAY);
+			cal.add(Calendar.HOUR_OF_DAY, -1);
+			Date start = cal.getTime();
+			
+			Criteria criteria = newCriteria();
+			criteria.add(Restrictions.le("timestamp", end));
+			criteria.add(Restrictions.gt("timestamp", start));	// we don't want overlap here
+			criteria.setProjection(Projections.countDistinct("container"));
+			int count = ((Long) criteria.uniqueResult()).intValue();
+			Metric temp = new Metric();
+			temp.setHour(hour);
+			temp.setValue(count);
+			metrics.add(temp);
+		}
+		Collections.reverse(metrics);	// we want the current time to be the last hour
+		return metrics;
+	}
 	
 }

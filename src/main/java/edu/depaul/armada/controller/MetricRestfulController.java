@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import edu.depaul.armada.model.Metric;
 import edu.depaul.armada.model.ThresholdMetric;
 import edu.depaul.armada.service.MetricService;
 
@@ -35,5 +36,11 @@ public class MetricRestfulController {
 	@ResponseBody
 	public List<ThresholdMetric> getThresholdStats(@PathVariable int hours) {
 		return metricService.getMetrics(hours);
+	}
+	
+	@RequestMapping(value = "/containerCounts/{hours}", method = RequestMethod.GET)
+	@ResponseBody
+	public List<Metric> getContainerCounts(@PathVariable int hours) {
+		return metricService.getContainerCount(hours);
 	}
 }

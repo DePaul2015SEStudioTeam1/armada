@@ -5,6 +5,7 @@ package edu.depaul.armada.service;
 
 import java.util.List;
 
+import edu.depaul.armada.model.Metric;
 import edu.depaul.armada.model.ThresholdMetric;
 
 /**
@@ -17,7 +18,7 @@ public interface MetricService {
 	public enum ContainerState {OK, WARN, ERR};
 
 	/**
-	 * Gives us a counts over time of how containers behaved
+	 * Gives us counts over time of how containers behaved
 	 * 
 	 * NOTE: for each hourly interval we will count how many containers breached a threshold
 	 * 
@@ -27,5 +28,17 @@ public interface MetricService {
 	 * @return list of counts for a 24h period
 	 */
 	public List<ThresholdMetric> getMetrics(int periodInHours);
+	
+	/**
+	 * Gives us counts over time of how many containers were running
+	 * 
+	 * NOTE: for each hourly interval we will count how many containers are running
+	 * 
+	 * Example of returned data: 1am {count:3}
+	 * 
+	 * @param periodInHours	how far back do we want to get data (each data point is for an hour interval)
+	 * @return list of counts for a 24h period
+	 */
+	public List<Metric> getContainerCount(int periodInHours);
 	
 }
