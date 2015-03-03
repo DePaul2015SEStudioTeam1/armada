@@ -22,10 +22,6 @@ $(document).ready(function() {
 
 	var cName;
 	var cId;
-	var memArray = [];
-	var diskArray = [];
-	var cpuArray = [];
-	var timestampArray = [];
 	
 	// colors
 	var red = "rgba(247, 70, 74, 1)";
@@ -34,40 +30,8 @@ $(document).ready(function() {
 	var greenTrans = "rgba(92, 184, 92, 0.7)";
 	var orange = "rgba(240, 173, 78, 1)";
 	var orangeTrans = "rgba(240, 173, 78, 0.7)";
-	
-	var cpuData = {
-		labels : timestampArray,
-		datasets : [ {
-			label : "CPU Usage History",
-			fillColor :redTrans,
-			strokeColor : red,
-			pointColor : red,
-			pointStrokeColor : red,
-			pointHighlightFill : red,
-			pointHighlightStroke : red,
-			data : cpuArray
-		},
-		{
-			label : "Memory Usage History",
-			fillColor : orangeTrans,
-			strokeColor : orange,
-			pointColor : orange,
-			pointStrokeColor : orange,
-			pointHighlightFill : orange,
-			pointHighlightStroke : orange,
-			data : memArray
-		},
-		{
-			label : "Disk History",
-			fillColor : greenTrans,
-			strokeColor : green,
-			pointColor : green,
-			pointStrokeColor : green,
-			pointHighlightFill : green,
-			pointHighlightStroke : green,
-			data : diskArray
-		}]
-	};
+	var purple = "rgba(176,224,230, 1)";
+	var purpleTrans = "rgba(176,224,230, 0.7)";
 	
 	var preferencesREST = "http://localhost:8083/preferences/";
 	var metricREST = "http://localhost:8083/metrics/thresholdStats/";
@@ -95,34 +59,6 @@ $(document).ready(function() {
 			}
 		});
 	});
-
-	var memData = {
-		labels : timestampArray,
-		datasets : [ {
-			label : "Memory Usage History",
-			fillColor : "rgba(220,220,220,0.2)",
-			strokeColor : "rgba(220,220,220,1)",
-			pointColor : "rgba(220,220,220,1)",
-			pointStrokeColor : "#fff",
-			pointHighlightFill : "#fff",
-			pointHighlightStroke : "rgba(220,220,220,1)",
-			data : memArray
-		}]
-	};
-
-	var diskData = {
-		labels : timestampArray,
-		datasets : [ {
-			label : "Disk History",
-			fillColor : "rgba(220,220,220,0.2)",
-			strokeColor : "rgba(220,220,220,1)",
-			pointColor : "rgba(220,220,220,1)",
-			pointStrokeColor : "#fff",
-			pointHighlightFill : "#fff",
-			pointHighlightStroke : "rgba(220,220,220,1)",
-			data : diskArray
-		} ]
-	};
 
 	var pieChartData = [];
 	
@@ -312,7 +248,7 @@ $(document).ready(function() {
 	});
 
 	table.$('tr').tooltip({"delay" : 0, "track" : true, "fade" : 250 });
-
+	
 	/*
 	 * Sets doubleclick functionality for the rows
 	 */
@@ -320,36 +256,42 @@ $(document).ready(function() {
 		var tds = $('td', this);
 		cName = $(tds[0]).text();
 		cId = table.$(this).attr('cid');
+		
+		$("#detailsTitle").text("Details for: " + cName);
+		
+		$('#cpuChart').remove(); // this is my <canvas> element
+		$('#cpuCanvasHolder').append('<canvas id="cpuChart" width="550" height="200"><canvas>');
+		$('#memChart').remove(); // this is my <canvas> element
+		$('#memCanvasHolder').append('<canvas id="memChart" width="550" height="200"><canvas>');
+		$('#diskChart').remove(); // this is my <canvas> element
+		$('#diskCanvasHolder').append('<canvas id="diskChart" width="550" height="200"><canvas>');
+		
+		var options = {datasetFill : false, pointDot : true, pointDotRadius : 1, datasetStrokeWidth : 1, bezierCurve : false};
+		
+		var cpuChartData = {labels: [], datasets: [{label: "CPU", strokeColor: purple, pointColor: purple, data: []}]};
+		var cpuChartContext = document.getElementById("cpuChart").getContext("2d");
+		var cpuChart = new Chart(cpuChartContext).Line(cpuChartData, options);
 
+		var memChartData = {labels: [], datasets: [{label: "MEM", strokeColor: purple, pointColor: purple, data: []}]};
+		var memChartContext = document.getElementById("memChart").getContext("2d");
+		var memChart = new Chart(memChartContext).Line(memChartData, options);
+		
+		var diskChartData = {labels: [], datasets: [{label: "DISK", strokeColor: purple, pointColor: purple, data: []}]};
+		var diskChartContext = document.getElementById("diskChart").getContext("2d");
+		var diskChart = new Chart(diskChartContext).Line(diskChartData, options);
+		
 		var logsREST = "http://localhost:8083/logs/" + cId;
 		$.get(logsREST).done(function(data) {
-			$.each(data, function(id) {
-				memArray.push(data[id].memUsed);
-				diskArray.push(data[id].diskUsed);
-				cpuArray.push(data[id].cpuUsed);
-				timestampArray.push(data[id].timestamp);
+			$.each(data, function(index) {
+				var temp = data[index];
+				cpuChart.addData([temp.cpu], temp.hour + "h");
+				memChart.addData([temp.mem], temp.hour + "h");
+				diskChart.addData([temp.disk], temp.hour + "h");
 			});
 		});
 
 		$('#cDetails').modal('show');
 	});
-
-	$('#cDetails').bind('show', function() {
-		$(".modal-header").html("<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button><h4>" + cName + " - Details</h4>");
-//		 $('#cDetails').find('.modal-body').append("<canvas id=\"myChart\" width=\"200\" height=\"200\"></canvas>" +
-//				 								   "<canvas id=\"myChart2\" width=\"200\" height=\"200\"></canvas>" +
-//				 								   "<canvas id=\"myChart4\" width=\"200\" height=\"200\"></canvas>");
-		$('#cDetails').find('.modal-body').append("<canvas id=\"myChart\" width=\"400\" height=\"400\"></canvas>");
-
-		var ctx = document.getElementById("myChart").getContext("2d");
-		var myCpuChart = new Chart(ctx).Line(cpuData);
-
-//		 var ctx2 = document.getElementById("myChart2").getContext("2d");
-//		 var myDiskChart = new Chart(ctx2).Line(diskData);
-//		 
-//		 var ctx4 = document.getElementById("myChart4").getContext("2d");
-//		 var myMemoryChart = new Chart(ctx4).Line(memData);
-	});// end of binding
 
 	$('#settings').bind('show', function() {
 		$(".modal-body #memory_threshold").val(memoryThreshold);
@@ -371,12 +313,5 @@ $(document).ready(function() {
 		});
 		location.reload();
 	});
-	
-	$('#cDetails').bind('hide', function(event) {
-//		memArray.length = 0;
-//		diskArray.length = 0;
-//		cpuArray.length = 0;
-//		timestampArray.length = 0; 
-	 });
 
 });

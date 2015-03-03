@@ -56,7 +56,7 @@ public interface ContainerLogDao {
 	 * @param period	used to determine the time period for which we want to collect logs
 	 * @return list of logs
 	 */
-	List<ContainerLog> findWithContainerIdAndPeriod(long containerId, int period);
+	List<Metric> findWithContainerIdAndPeriod(long containerId, int periodCount, String fieldToAverage);
 	
 	/**
 	 * Gets a list of counts per hour based on specified countNumber

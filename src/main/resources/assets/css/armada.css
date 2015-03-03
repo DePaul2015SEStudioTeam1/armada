@@ -7,3 +7,15 @@
 #pie-chart-title { display: inline; }
 #container-count-chart-title { float: right; }
 #bar-chart-title { float: left; }
+
+/*
+#detail-charts { text-align: center; }
+#disk-chart { float: right; }
+#mem-chart { display: inline; }
+#cpu-chart { float: left; }
+
+#detail-chart-titles { text-align: center; }
+#mem-chart-title { display: inline; }
+#disk-chart-title { float: right; }
+#cpu-title { float: left; }
+*/

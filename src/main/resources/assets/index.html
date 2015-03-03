@@ -122,9 +122,9 @@ body {
               <canvas id="containerCountChart" width="400" height="220"></canvas>
           </div>
 		</div>
-
+        <br/>
+        <br/>
 		<div>
-			<!--<legend>Container Activity</legend> -->
 			<div class="row-fluid table-condensed">
 				<table id="containers" class="table table-hover table-bordered table-striped">
 					<thead>
@@ -147,14 +147,21 @@ body {
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<button id="closeModal" type="button" class="close" data-dismiss="modal"
-						aria-hidden="true">&times;</button>
+					<button id="closeModal" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="detailsTitle"></h4>
 				</div>
 				<div class="modal-body">
+					   <div>CPU Use in Past 24h</div>
+					   <div id="cpuCanvasHolder"><canvas id="cpuChart" width="550" height="200"></canvas></div>
+					   <br/>
+					   <div>Memory Use in Past 24h</div>
+					   <div id="memCanvasHolder"><canvas id="memChart" width="550" height="200"></canvas></div>
+					   <br/>
+					   <div>Disk Use in Past 24h</div>
+					   <div id="diskCanvasHolder"><canvas id="diskChart" width="550" height="200"></canvas></div>
 				</div>
 			</div>
 		</div>
-	</div>
-
+	</div>	
 </body>
 </html>
