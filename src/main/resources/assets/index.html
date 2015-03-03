@@ -34,6 +34,7 @@ body {
 <script type="text/javascript" src="js/dataTables.bootstrap.js"></script>
 <script type="text/javascript" src="js/dataTables.tableTools.js"></script>
 <script type="text/javascript" src="js/Chart.js"></script>
+<script type="text/javascript" src="js/Chart.StackedBar.js"></script>
 <script type="text/javascript" src="js/armada.js"></script>
 <body>
 	<nav class="navbar navbar-inverse navbar-static-top" role="navigation">
@@ -103,16 +104,22 @@ body {
 				</div>
 			</div>
 		</div>
-		
+	    <br/>
+		<div id="chart-titles">
+            <div id="bar-chart-title">Container Status in Past 24h</div>
+            <div id="pie-chart-title">Current Container Status</div>
+            <div id="line-chart-title">Containers per Host</div>
+		</div>
+		<br/>
 		<div id="charts">
-		  <div id="line-chart">
-		      <canvas id="lineChart" width="400" height="220"></canvas>
-		  </div>
+		  <div id="bar-chart">
+            <canvas id="barChart" width="400" height="220"></canvas>
+          </div>
           <div id="pie-chart">
             <canvas id="pieChart" width="200" height="200"></canvas>
           </div>
-          <div id="bar-chart">
-            <canvas id="barChart" width="400" height="220"></canvas>
+          <div id="line-chart">
+              <canvas id="lineChart" width="400" height="220"></canvas>
           </div>
 		</div>
 

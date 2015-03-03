@@ -1,4 +1,9 @@
 #charts { text-align: center; }
-#line-chart { float: left; }
+#line-chart { float: right; }
 #pie-chart { display: inline; }
-#bar-chart { float: right; }
+#bar-chart { float: left; }
+
+#chart-titles { text-align: center; }
+#pie-chart-title { display: inline; }
+#line-chart-title { float: right; }
+#bar-chart-title { float: left; }

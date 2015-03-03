@@ -29,11 +29,11 @@ $(document).ready(function() {
 	
 	// colors
 	var red = "rgba(247, 70, 74, 1)";
-	var redTrans = "rgba(247, 70, 74, 0.5)";
+	var redTrans = "rgba(247, 70, 74, 0.7)";
 	var green = "rgba(92, 184, 92, 1)";
-	var greenTrans = "rgba(92, 184, 92, 0.5)";
+	var greenTrans = "rgba(92, 184, 92, 0.7)";
 	var orange = "rgba(240, 173, 78, 1)";
-	var orangeTrans = "rgba(240, 173, 78, 0.5)";
+	var orangeTrans = "rgba(240, 173, 78, 0.7)";
 	
 	var cpuData = {
 		labels : timestampArray,
@@ -211,7 +211,7 @@ $(document).ready(function() {
 		};
 	
 	var barChartContext = document.getElementById("barChart").getContext("2d");
-	var barChart = new Chart(barChartContext).Bar(barChartData, {barStrokeWidth : 1, barValueSpacing : 1, barDatasetSpacing : 1});
+	var barChart = new Chart(barChartContext).StackedBar(barChartData, {barStrokeWidth : 1, barValueSpacing : 1, barDatasetSpacing : 1});
 
 	function loadBarChartData(){
 		$.get(metricREST + PERIOD).done(function(data) {
