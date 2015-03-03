@@ -8,7 +8,7 @@ $(document).ready(function() {
 	$(lineChart).ready(loadLineChartData);
 	
 	Chart.defaults.global.animation = true;
-	Chart.defaults.global.animationSteps = 1;
+	Chart.defaults.global.animationSteps = 5;
 	
 	const PERIOD = 24;
 	
@@ -159,9 +159,6 @@ $(document).ready(function() {
 		$.get(metricREST + 1).done(function(data) {
 			
 			var temp = data[0];
-			pieChart.destroy();
-			pieChartContext = document.getElementById("pieChart").getContext("2d");
-			pieChart = new Chart(pieChartContext).Pie(pieChartData, {segmentShowStroke : true, segmentStrokeColor : "rgba(255, 255, 255, 0.1)"});
 			pieChart.addData({value: temp.error,
 							  color : redTrans,
 							  highlight : red,	// // rgb 247 70 74
@@ -178,13 +175,10 @@ $(document).ready(function() {
 	}
 	
 	var lineChartContext = document.getElementById("lineChart").getContext("2d");
-	var lineChart = new Chart(lineChartContext).Line(lineChartData, {pointDot : true, pointDotRadius : 1, datasetStrokeWidth : 1});
+	var lineChart = new Chart(lineChartContext).Line(lineChartData, {pointDot : true, pointDotRadius : 1, datasetStrokeWidth : 1, bezierCurve : false});
 		
 	function loadLineChartData(){
 		$.get(metricREST + PERIOD).done(function(data) {
-			lineChart.destroy();
-			lineChartContext = document.getElementById("lineChart").getContext("2d");
-			lineChart = new Chart(lineChartContext).Line(lineChartData, {pointDot : true, pointDotRadius : 1, datasetStrokeWidth : 1});
 			$.each(data, function(index) {
 				var temp = data[index];
 				lineChart.addData([temp.error, temp.warn, temp.ok], temp.period + "h");
@@ -217,13 +211,10 @@ $(document).ready(function() {
 		};
 	
 	var barChartContext = document.getElementById("barChart").getContext("2d");
-	var barChart = new Chart(barChartContext).Bar(barChartData, {barStrokeWidth : 1, barValueSpacing : 0, barDatasetSpacing : 1});
+	var barChart = new Chart(barChartContext).Bar(barChartData, {barStrokeWidth : 1, barValueSpacing : 1, barDatasetSpacing : 1});
 
 	function loadBarChartData(){
 		$.get(metricREST + PERIOD).done(function(data) {
-			barChart.destroy();
-			barChartContext = document.getElementById("barChart").getContext("2d");
-			barChart = new Chart(barChartContext).Bar(barChartData, {barStrokeWidth : 1, barValueSpacing : 0, barDatasetSpacing : 1});
 			$.each(data, function(index) {
 				var temp = data[index];
 				barChart.addData([temp.error, temp.warn, temp.ok], temp.period + "h");
@@ -262,10 +253,18 @@ $(document).ready(function() {
 	 * lastRowIndex: index of the last row in the table
 	 */
 	function rowCallback(row, data, index, lastRowIndex){
-		$(row).attr("cId",data.containerId);
+		$(row).attr("cId", data.containerId);
 		
 		if(index == 0){
 			successCount = warningCount = errorCount = 0;
+		}
+		
+		if(data.cpuUsed < 0){
+			$('td:eq(1)', row).html(0);
+		}
+		
+		if(data.memTotal < 0){
+			$('td:eq(4)', row).html('UNLIMITED'); 
 		}
 		
 		if(data.cpuUsed >= cpuThreshold || data.diskUsed >= diskThreshold || data.memUsed >= memoryThreshold) {
@@ -278,7 +277,7 @@ $(document).ready(function() {
 		}
 		else {
 			successCount++;
-		}	
+		}
 		
 		if(index >= lastRowIndex){
 			$("#successCount").text(successCount);
@@ -294,11 +293,18 @@ $(document).ready(function() {
 	 */
 	setInterval(function() {
 		table.api().ajax.reload(null, false); // user paging is not reset on reload
-		//loadPieChartData();
-		//loadBarChartData();
-		//loadLineChartData();
 	}, 3000);
-
+	
+	/*
+	 * Sets the refresh interval for the charts
+	 */
+	/*
+	setInterval(function() {
+		loadPieChartData();
+		loadBarChartData();
+		loadLineChartData();
+	}, 60000);
+*/
 	$('#containers tbody tr').each(function() {
 		var title;
 		var tds = $('td', this);
