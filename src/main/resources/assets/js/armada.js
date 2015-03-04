@@ -271,7 +271,7 @@ $(document).ready(function() {
 	/*
 	 * Sets doubleclick functionality for the rows
 	 */
-	$('#containers tbody').on('dblclick', 'tr', function() {
+	$('#containers tbody').on('click', 'tr', function() {
 		var tds = $('td', this);
 		cName = $(tds[0]).text();
 		cId = table.$(this).attr('cid');
