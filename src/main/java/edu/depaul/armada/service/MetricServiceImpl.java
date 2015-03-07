@@ -45,8 +45,8 @@ public class MetricServiceImpl implements MetricService {
 	@Override
 	public List<ThresholdMetric> getMetrics(int periodInHours) {
 		long mem = preferenceDao.findWithPreferenceName(MEM_THRESHOLD).getValue();
-		long cpu = preferenceDao.findWithPreferenceName(MEM_THRESHOLD).getValue();
-		long disk = preferenceDao.findWithPreferenceName(MEM_THRESHOLD).getValue();
+		long cpu = preferenceDao.findWithPreferenceName(CPU_THRESHOLD).getValue();
+		long disk = preferenceDao.findWithPreferenceName(DISK_THRESHOLD).getValue();
 		
 		int total = containerDao.getAll().size();	// replace with count method
 
