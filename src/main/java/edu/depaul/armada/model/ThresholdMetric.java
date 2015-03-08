@@ -4,6 +4,7 @@
 package edu.depaul.armada.model;
 
 /**
+ * An object which holds user-specified thresholds.
  * @author ptrzyna
  *
  */
@@ -15,56 +16,64 @@ public class ThresholdMetric {
 	private int error = 0;
 	
 	/**
-	 * @param period the period to set
+	 * Accepts an int and uses it to set the ThresholdMetric object’s period field.
+	 * @param period int
 	 */
 	public void setPeriod(int period) {
 		this.period = period;
 	}
 	
 	/**
-	 * @return the period
+	 * Returns the int value stored in the field period.
+	 * @return int period
 	 */
 	public int getPeriod() {
 		return period;
 	}
 	
 	/**
-	 * @param ok the ok to set
+	 * Accepts an int and uses it to set the ThresholdMetric object’s ok field.
+	 * @param ok int
 	 */
 	public void setOk(int ok) {
 		this.ok = ok;
 	}
 	
 	/**
-	 * @return the ok
+	 * Returns the int value stored in the field ok.
+	 * @return int ok
 	 */
 	public int getOk() {
 		return ok;
 	}
 	
 	/**
-	 * @param warn the warn to set
+	 * Accepts an int and uses it to set the ThresholdMetric object’s warn field.
+	 * @param warn int
 	 */
 	public void setWarn(int warn) {
 		this.warn = warn;
 	}
 	
 	/**
-	 * @return the warn
+	 * Returns the int value stored in the field warn.
+	 * @return int warn
 	 */
 	public int getWarn() {
 		return warn;
 	}
 	
 	/**
-	 * @param error the error to set
+	 * Accepts an int and uses it to set the ThresholdMetric object’s error field.
+	 * @param error int
 	 */
 	public void setError(int error) {
 		this.error = error;
 	}
 	
 	/**
-	 * @return the error
+	 * Returns the int value stored in the field error.
+	 * @return int error
 	 */
 	public int getError() {
 		return error;

@@ -4,6 +4,7 @@
 package edu.depaul.armada.model;
 
 /**
+ * An object which holds specific data for specific metrics about Linux containers in the application.
  * @author ptrzyna
  */
 public class Metric {
@@ -12,28 +13,32 @@ public class Metric {
 	private int value;
 	
 	/**
-	 * @param hour the hour to set
+	 * Accepts an int and uses it to set the Metric object’s hour field.
+	 * @param hour int
 	 */
 	public void setHour(int hour) {
 		this.hour = hour;
 	}
 	
 	/**
-	 * @return the hour
+	 * Returns the int value stored in the field hour.
+	 * @return int hour
 	 */
 	public int getHour() {
 		return hour;
 	}
 	
 	/**
-	 * @param value the value to set
+	 * Accepts an int and uses it to set the Metric object’s value field.
+	 * @param value int
 	 */
 	public void setValue(int value) {
 		this.value = value;
 	}
 	
 	/**
-	 * @return the value
+	 * Returns the int value stored in the field value.
+	 * @return int value
 	 */
 	public int getValue() {
 		return value;

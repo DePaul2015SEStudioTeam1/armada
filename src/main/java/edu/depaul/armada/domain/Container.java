@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * An object which holds data about a Linux containers that have been deployed by the application.
+ * An object which holds data about Linux containers that have been deployed by the application.
  * @author ptrzyna, john davidson, jplante
  *
  */
