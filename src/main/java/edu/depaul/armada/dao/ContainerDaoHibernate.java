@@ -18,6 +18,9 @@ import edu.depaul.armada.model.DashboardContainer;
 import edu.depaul.armada.util.AssertUtil;
 
 /**
+ * A class that implements the ContainerDao interface. It uses the Hibernate 
+ * framework to interact with the application’s database. It exists to provide 
+ * a way for the application to either store or retrieve Container data.
  * @author ptrzyna
  *
  */
@@ -37,6 +40,11 @@ public class ContainerDaoHibernate implements ContainerDao {
 	/* (non-Javadoc)
 	 * @see edu.depaul.armada.dao.ContainerDao#store(edu.depaul.armada.domain.Container)
 	 */
+	/**
+	 * Accepts a Container object, and uses Hibernate's saveOrUpdate method to save the
+	 * most recent container data in the database.
+	 * @param container Container
+	 */
 	@Override
 	public void store(Container container) {
 		AssertUtil.assertNotNull(container, "Container instance cannot be null!");
@@ -50,6 +58,10 @@ public class ContainerDaoHibernate implements ContainerDao {
 	/* (non-Javadoc)
 	 * @see edu.depaul.armada.operations.dao.ContainerDao#getAll()
 	 */
+	/**
+	 * Returns a List<Container> of all of the Container data in the database.
+	 * @return List<Container>
+	 */
 	@Override
 	public List<Container> getAll() {
 		Query query = sessionFactory.getCurrentSession().createQuery("from Container");
@@ -58,6 +70,12 @@ public class ContainerDaoHibernate implements ContainerDao {
 
 	/* (non-Javadoc)
 	 * @see edu.depaul.armada.operations.dao.ContainerDao#get(long, int)
+	 */
+	/**
+	 * Returns a List<Container> of a limited number of Containers with a specific id.
+	 * @param id long
+	 * @param int count
+	 * @return List<Container>
 	 */
 	@Override
 	public List<Container> get(long id, int count) {
@@ -70,6 +88,12 @@ public class ContainerDaoHibernate implements ContainerDao {
 	/* (non-Javadoc)
 	 * @see edu.depaul.armada.operations.dao.ContainerDao#findWithDockerId(java.lang.String)
 	 */
+	/**
+	 * Returns a single Container object with a containerId field matching the one specified
+	 * as a parameter.
+	 * @param containerId long
+	 * @return Container
+	 */
 	@Override
 	public Container findWithContainerId(long containerId) {
 		AssertUtil.assertNotNull(containerId, "Parameter 'containerId' cannot be null!");
@@ -81,6 +105,12 @@ public class ContainerDaoHibernate implements ContainerDao {
 	/* (non-Javadoc)
 	 * @see edu.depaul.armada.dao.ContainerDao#findWithContainerUniqueId(java.lang.String)
 	 */
+	/**
+	 * Returns a single Container object with a containerUniqueId field matching the one specified
+	 * as a parameter.
+	 * @param containerUniqueId String
+	 * @return Container
+	 */
 	@Override
 	public Container findWithContainerUniqueId(String containerUniqueId) {
 		AssertUtil.assertNotNull(containerUniqueId, "Parameter 'containerUniqueId' cannot be null!");
@@ -91,6 +121,11 @@ public class ContainerDaoHibernate implements ContainerDao {
 	
 	/* (non-Javadoc)
 	 * @see edu.depaul.armada.operations.dao.ContainerDao#getAll()
+	 */
+	/**
+	 * Returns a List<DashboardContainer> of all of the DashboardContainer objects
+	 * stored in the database.
+	 * @return List<DashboardContainer>
 	 */
 	@Override
 	public List<DashboardContainer> getAllDashboardContainers() {
@@ -122,6 +157,9 @@ public class ContainerDaoHibernate implements ContainerDao {
 
 	/* (non-Javadoc)
 	 * @see edu.depaul.armada.operations.dao.ContainerDao#get(long, int)
+	 */
+	/**
+	 * Returns a List<DashboardContainer> of a limited number of DashboardContainers with a specific id.
 	 */
 	@Override
 	public List<DashboardContainer> getDashboardContainers(long id, int count) {

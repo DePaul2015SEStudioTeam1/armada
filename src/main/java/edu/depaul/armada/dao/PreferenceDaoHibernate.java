@@ -18,6 +18,9 @@ import edu.depaul.armada.model.DashboardPreference;
 import edu.depaul.armada.util.AssertUtil;
 
 /**
+ * An implementation of PreferenceDao. It uses the Hibernate framework 
+ * to interact with the application’s database. It exists to provide 
+ * a way for the application to retrieve preference data.
  * @author Roland T Craddolph
  *
  */
@@ -36,6 +39,10 @@ public class PreferenceDaoHibernate implements PreferenceDao {
 	/* (non-Javadoc)
 	 * @see edu.depaul.armada.dao.PreferenceDAO#getAllPreferences()
 	 */
+	/**
+	 * Returns a List<DashboardPreference> of all of the preference data in the database.
+	 * @return List<DashboardPreference>
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<DashboardPreference> getAll() {
@@ -47,6 +54,11 @@ public class PreferenceDaoHibernate implements PreferenceDao {
 	 * (non-Javadoc)
 	 * @see edu.depaul.armada.dao.PreferenceDao#storePreference(edu.depaul.armada.domain.Preference)
 	 */
+	/**
+	 * Accepts a Preference object, and uses Hibernate's saveOrUpdate method to save the
+	 * most recent preference data in the database.
+	 * @param preference Preference
+	 */
 	@Override
 	public void storePreference(Preference preference) {
 		AssertUtil.assertNotNull(preference, "preference instance cannot be null!");
@@ -57,6 +69,12 @@ public class PreferenceDaoHibernate implements PreferenceDao {
 	/*
 	 * (non-Javadoc)
 	 * @see edu.depaul.armada.dao.PreferenceDao#findWithPreferenceName(java.lang.String)
+	 */
+	/**
+	 * Returns a single Preference object with a name field matching the one specified
+	 * as a parameter.
+	 * @param name String
+	 * @return Preference
 	 */
 	@Override
 	public Preference findWithPreferenceName(String name) {

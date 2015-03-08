@@ -22,7 +22,10 @@ import edu.depaul.armada.model.Metric;
 import edu.depaul.armada.util.AssertUtil;
 
 /**
- * Implementation of the ContainerLogDao
+ * Implementation of the ContainerLogDao. A class that implements 
+ * the ContainerLogDao interface. It uses the Hibernate framework 
+ * to interact with the application’s database. It exists to provide 
+ * a way for the application to retrieve Container data.
  * 
  * @author ptrzyna and jplante
  */
@@ -39,6 +42,12 @@ public class ContainerLogDaoHibernate implements ContainerLogDao {
 		this.sessionFactory = sessionFactory;
 	}
 
+	/**
+	 * Returns a List<Container> object with a containerId field matching the one 
+	 * specified as a parameter.
+	 * @param containerId long
+	 * @return Container
+	 */
 	@Override
 	public List<ContainerLog> findWithContainerId(long containerId) {
 		AssertUtil.assertNotNull(containerId, "Parameter 'containerId' cannot be null!");
@@ -49,21 +58,50 @@ public class ContainerLogDaoHibernate implements ContainerLogDao {
 		return (logs == null)? Collections.<ContainerLog>emptyList() : logs;
 	}
 	
+	/**
+	 * Returns a double of the average memory used by a Container. It accepts
+	 * a long as a parameter, then passes that to another method to find the 
+	 * average, which is then returned.
+	 * @param containerId long
+	 * @return double
+	 */
 	@Override
 	public double getContainerLogAvgMemUsage(long containerId) {
 		return getAverage(containerId, "memUsed");
 	}
 
+	/**
+	 * Returns a double of the average CPU used by a Container. It accepts
+	 * a long as a parameter, then passes that to another method to find the 
+	 * average, which is then returned.
+	 * @param containerId long
+	 * @return double
+	 */
 	@Override
 	public double getContainerLogAvgCpuUsage(long containerId) {
 		return getAverage(containerId, "cpuUsed");
 	}
 
+	/**
+	 * Returns a double of the average disk space used by a Container. It accepts
+	 * a long as a parameter, then passes that to another method to find the 
+	 * average, which is then returned.
+	 * @param containerId long
+	 * @return double
+	 */
 	@Override
 	public double getContainerLogAvgDiskUsage(long containerId) {
 		return getAverage(containerId, "filesystemUsed");
 	}
 	
+	/**
+	 * Returns a double after calculating the average usage of whatever data it
+	 * is passed. This method is a utility called by all of the data-specific
+	 * get average methods in the class.
+	 * @param containerId long
+	 * @param property String
+	 * @return double
+	 */
 	private double getAverage(long containerId, String property) {
 		Criteria criteria = newCriteria();
 		criteria.createAlias("container", "container");
@@ -84,6 +122,14 @@ public class ContainerLogDaoHibernate implements ContainerLogDao {
 
 	/* (non-Javadoc)
 	 * @see edu.depaul.armada.dao.ContainerLogDao#findWithContainerIdAndPeriod(long, int)
+	 */
+	/**
+	 * Returns a List<Metric> from all of the containers with a specified ID, within a
+	 * a particular amount of time, and with an average of a specified field.
+	 * @param containerId long
+	 * @param periodCount int
+	 * @param fieldToAverage String
+	 * @return List<Metric>
 	 */
 	@Override
 	public List<Metric> findWithContainerIdAndPeriod(long containerId, int periodCount, String fieldToAverage) {
@@ -114,6 +160,15 @@ public class ContainerLogDaoHibernate implements ContainerLogDao {
 
 	/* (non-Javadoc)
 	 * @see edu.depaul.armada.dao.ContainerLogDao#getStateCounts(int, int)
+	 */
+	/**
+	 * Returns a List<Metric> from all of the containers with state fields greater-than
+	 * or equal to certain user defined parameters.
+	 * @param memThreshold long
+	 * @param cpuThreshold long
+	 * @param diskThreshold long
+	 * @param periodCountInHours int
+	 * @return List<Metric>
 	 */
 	@Override
 	public List<Metric> getStateCounts(long memThreshold, long cpuThreshold, long diskThreshold, int periodCountInHours) {
@@ -147,6 +202,12 @@ public class ContainerLogDaoHibernate implements ContainerLogDao {
 	/* (non-Javadoc)
 	 * @see edu.depaul.armada.dao.ContainerLogDao#getContainerCounts(int)
 	 */
+	/**
+	 * Returns a List<Metric> from all of the containers with data within a specified
+	 * amount of time.
+	 * @param periodInHours int
+	 * @return List<Metric>
+	 */
 	@Override
 	public List<Metric> getContainerCounts(int periodInHours) {
 		List<Metric> metrics = new ArrayList<Metric>(periodInHours);
@@ -170,5 +231,4 @@ public class ContainerLogDaoHibernate implements ContainerLogDao {
 		Collections.reverse(metrics);	// we want the current time to be the last hour
 		return metrics;
 	}
-	
 }

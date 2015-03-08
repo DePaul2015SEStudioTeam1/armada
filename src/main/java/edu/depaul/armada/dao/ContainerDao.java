@@ -23,12 +23,32 @@ public interface ContainerDao {
 	 */
 	void store(Container container);
 	
+	/**
+	 * Returns a List<DashboardContainer> object.
+	 * @return List<DashboardContainer>
+	 */
 	List<DashboardContainer> getAllDashboardContainers();
 	
+	/**
+	 * Accepts a long and an int, returns a List<DashboardContainer> object.
+	 * @param id long
+	 * @param count int
+	 * @return List<DashboardContainer>
+	 */
 	List<DashboardContainer> getDashboardContainers(long id, int count);
 
+	/**
+	 * Returns a List<Container> object.
+	 * @return List<Container>
+	 */
 	List<Container> getAll();
 	
+	/**
+	 * Accepts a long and an int, and returns a List<Container> object.
+	 * @param id long
+	 * @param count int
+	 * @return List<Container>
+	 */
 	List<Container> get(long id, int count);
 	
 	/**
