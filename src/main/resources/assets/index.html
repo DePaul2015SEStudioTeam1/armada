@@ -34,13 +34,14 @@ body {
 <script type="text/javascript" src="js/dataTables.bootstrap.js"></script>
 <script type="text/javascript" src="js/dataTables.tableTools.js"></script>
 <script type="text/javascript" src="js/Chart.js"></script>
+<script type="text/javascript" src="js/Chart.StackedBar.js"></script>
 <script type="text/javascript" src="js/armada.js"></script>
 <body>
 	<nav class="navbar navbar-inverse navbar-static-top" role="navigation">
 		<div class="container">
 			<div class="navbar-header">
 				<img src="images/ship.gif" alt="ship"
-					style="width: 50px; height: 50px"> <a class="navbar-brand"
+					style="width: 55px; height: 55px; padding: 5px"> <a class="navbar-brand"
 					href="#">Armada</a>
 			</div>
 		</div>
@@ -103,32 +104,38 @@ body {
 				</div>
 			</div>
 		</div>
-		
+	    <br/>
+		<div id="chart-titles">
+            <div id="bar-chart-title">Container Status in Past 24h</div>
+            <div id="pie-chart-title">Current Container Status</div>
+            <div id="container-count-chart-title">Container Count in Past 24h</div>
+		</div>
+		<br/>
 		<div id="charts">
-		  <div id="line-chart">
-		      <canvas id="lineChart" width="400" height="220"></canvas>
-		  </div>
+		  <div id="bar-chart">
+            <canvas id="barChart" width="400" height="220"></canvas>
+          </div>
           <div id="pie-chart">
             <canvas id="pieChart" width="200" height="200"></canvas>
           </div>
-          <div id="bar-chart">
-            <canvas id="barChart" width="400" height="220"></canvas>
+          <div id="container-count-chart">
+              <canvas id="containerCountChart" width="400" height="220"></canvas>
           </div>
 		</div>
-
+        <br/>
+        <br/>
 		<div>
-			<!--<legend>Container Activity</legend> -->
 			<div class="row-fluid table-condensed">
 				<table id="containers" class="table table-hover table-bordered table-striped">
 					<thead>
 						<tr>
 							<th>Name</th>
-							<th>CPU Used</th>
-							<th>CPU Total</th>
-							<th>Mem Used</th>
-							<th>Mem Total</th>
-							<th>Disk Used</th>
-							<th>Disk Total</th>
+							<th>CPU Used (%)</th>
+							<th>CPU Total (<a target="_blank" href="https://docs.docker.com/reference/run/#runtime-constraints-on-cpu-and-memory">Shares</a>)</th>
+							<th>Mem Used (Kb)</th>
+							<th>Mem Total (Kb)</th>
+							<th>Disk Used (Mb)</th>
+							<th>Disk Total (Mb)</th>
 						</tr>
 					</thead>
 				</table>
@@ -140,14 +147,21 @@ body {
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<button id="closeModal" type="button" class="close" data-dismiss="modal"
-						aria-hidden="true">&times;</button>
+					<button id="closeModal" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="detailsTitle"></h4>
 				</div>
 				<div class="modal-body">
+					   <div>CPU Use in Past 24h</div>
+					   <div id="cpuCanvasHolder"><canvas id="cpuChart" width="550" height="200"></canvas></div>
+					   <br/>
+					   <div>Memory Use in Past 24h</div>
+					   <div id="memCanvasHolder"><canvas id="memChart" width="550" height="200"></canvas></div>
+					   <br/>
+					   <div>Disk Use in Past 24h</div>
+					   <div id="diskCanvasHolder"><canvas id="diskChart" width="550" height="200"></canvas></div>
 				</div>
 			</div>
 		</div>
-	</div>
-
+	</div>	
 </body>
 </html>

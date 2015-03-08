@@ -5,7 +5,6 @@ package edu.depaul.armada.dao;
 
 import static org.junit.Assert.*;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 import org.junit.Test;
@@ -80,31 +79,5 @@ public class ContainerLogDaoTest {
 		average = containerLogDao.getContainerLogAvgMemUsage(container.getId());
 		double expectedAverage = ((log.getMemUsed() + log2.getMemUsed())/2d);
 		assertEquals("Expected average to be " + expectedAverage + ", but was " + average + "!", expectedAverage, average, 0.1);
-	}
-	
-	@Test
-	public void testFindWithContainerIdAndPeriod() {
-		Container container = TestUtil.newContainer();
-		for(int i=0; i<25; i++) {
-			ContainerLog log = TestUtil.newContainerLog();
-			log.setTimestamp(new Timestamp(System.currentTimeMillis()));
-			container.addLog(log);
-		}
-		
-		for(int i=0; i<25; i++) {
-			ContainerLog log = TestUtil.newContainerLog();
-			log.setTimestamp(new Timestamp(System.currentTimeMillis() - 24 * 60 * 60 * 1001));
-			container.addLog(log);
-		}
-		
-		containerDao.store(container);
-		
-		List<ContainerLog> logs = containerDao.findWithContainerId(container.getId()).getLogs();
-		assertEquals(50, logs.size());
-		
-		List<ContainerLog> results = containerLogDao.findWithContainerIdAndPeriod(container.getId(), 24);
-		
-		assertNotNull(results);
-		assertEquals(25, results.size());
 	}
 }

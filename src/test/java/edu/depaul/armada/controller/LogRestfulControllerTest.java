@@ -19,7 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 import edu.depaul.armada.dao.ContainerDao;
 import edu.depaul.armada.domain.Container;
 import edu.depaul.armada.domain.ContainerLog;
-import edu.depaul.armada.model.DashboardContainerLog;
+import edu.depaul.armada.model.ContainerMetric;
 import edu.depaul.armada.util.TestUtil;
 
 /**
@@ -38,7 +38,7 @@ public class LogRestfulControllerTest {
 
 	@Test
 	public void testGetLogsForPast24Hours() {
-		List<DashboardContainerLog> results = logRestfulController.getLogsForPast24Hours(-1);
+		List<ContainerMetric> results = logRestfulController.getLogsForPast24Hours(-1);
 		assertNotNull(results);
 		assertTrue(results.isEmpty());
 		

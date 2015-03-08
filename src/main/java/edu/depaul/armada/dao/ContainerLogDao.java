@@ -56,7 +56,7 @@ public interface ContainerLogDao {
 	 * @param period	used to determine the time period for which we want to collect logs
 	 * @return list of logs
 	 */
-	List<ContainerLog> findWithContainerIdAndPeriod(long containerId, int period);
+	List<Metric> findWithContainerIdAndPeriod(long containerId, int periodCount, String fieldToAverage);
 	
 	/**
 	 * Gets a list of counts per hour based on specified countNumber
@@ -66,4 +66,12 @@ public interface ContainerLogDao {
 	 * @return list of counts of how many containers are in given state in given interval
 	 */
 	List<Metric> getStateCounts(long memThreshold, long cpuThreshold, long diskThreshold, int periodCountInHours);
+
+	/**
+	 * Gets a list of counts per hour based on specified countNumber
+	 * 
+	 * @param periodInHours	number of metrics
+	 * @return list of containers per hour
+	 */
+	List<Metric> getContainerCounts(int periodInHours);
 }

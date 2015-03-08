@@ -3,7 +3,6 @@
  */
 package edu.depaul.armada.dao;
 
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -87,15 +86,30 @@ public class ContainerLogDaoHibernate implements ContainerLogDao {
 	 * @see edu.depaul.armada.dao.ContainerLogDao#findWithContainerIdAndPeriod(long, int)
 	 */
 	@Override
-	public List<ContainerLog> findWithContainerIdAndPeriod(long containerId, int periodInHours) {
-		Criteria criteria = newCriteria();
-		criteria.createAlias("container", "container");
-		criteria.add(Restrictions.eq("container.id", containerId));
-		Timestamp currentDate = new Timestamp(System.currentTimeMillis());
-		criteria.add(Restrictions.le("timestamp", currentDate));
-		criteria.add(Restrictions.ge("timestamp", new Timestamp(currentDate.getTime() - 24 * 60 * 60 * 1000)));
-		List<ContainerLog> result = criteria.list();
-		return (result == null)? Collections.<ContainerLog>emptyList() : result;
+	public List<Metric> findWithContainerIdAndPeriod(long containerId, int periodCount, String fieldToAverage) {
+		List<Metric> metrics = new ArrayList<Metric>(periodCount);
+		Calendar cal = Calendar.getInstance();
+		for(int i=0; i<periodCount; i++) {
+			Date end = cal.getTime();
+			int hour = cal.get(Calendar.HOUR_OF_DAY);
+			cal.add(Calendar.HOUR_OF_DAY, -1);
+			Date start = cal.getTime();
+			
+			Criteria criteria = newCriteria();
+			criteria.createAlias("container", "container");
+			criteria.add(Restrictions.eq("container.id", containerId));
+			criteria.add(Restrictions.le("timestamp", end));
+			criteria.add(Restrictions.gt("timestamp", start));	// we don't want overlap here
+			criteria.setProjection(Projections.avg(fieldToAverage));
+			Object result = criteria.uniqueResult();
+			int count = (result == null)? 0 : ((Double) result).intValue();
+			Metric temp = new Metric();
+			temp.setHour(hour);
+			temp.setValue(count);
+			metrics.add(temp);
+		}
+		Collections.reverse(metrics);	// we want the current time to be the last hour
+		return metrics;
 	}
 
 	/* (non-Javadoc)
@@ -119,6 +133,33 @@ public class ContainerLogDaoHibernate implements ContainerLogDao {
 					.add(Restrictions.ge("memUsed", memThreshold))
 					.add(Restrictions.ge("diskUsed", diskThreshold))
 			);
+			criteria.setProjection(Projections.countDistinct("container"));
+			int count = ((Long) criteria.uniqueResult()).intValue();
+			Metric temp = new Metric();
+			temp.setHour(hour);
+			temp.setValue(count);
+			metrics.add(temp);
+		}
+		Collections.reverse(metrics);	// we want the current time to be the last hour
+		return metrics;
+	}
+
+	/* (non-Javadoc)
+	 * @see edu.depaul.armada.dao.ContainerLogDao#getContainerCounts(int)
+	 */
+	@Override
+	public List<Metric> getContainerCounts(int periodInHours) {
+		List<Metric> metrics = new ArrayList<Metric>(periodInHours);
+		Calendar cal = Calendar.getInstance();
+		for(int i=0; i<periodInHours; i++) {
+			Date end = cal.getTime();
+			int hour = cal.get(Calendar.HOUR_OF_DAY);
+			cal.add(Calendar.HOUR_OF_DAY, -1);
+			Date start = cal.getTime();
+			
+			Criteria criteria = newCriteria();
+			criteria.add(Restrictions.le("timestamp", end));
+			criteria.add(Restrictions.gt("timestamp", start));	// we don't want overlap here
 			criteria.setProjection(Projections.countDistinct("container"));
 			int count = ((Long) criteria.uniqueResult()).intValue();
 			Metric temp = new Metric();

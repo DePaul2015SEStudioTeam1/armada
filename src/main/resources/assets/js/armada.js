@@ -5,9 +5,9 @@ $(document).ready(function() {
 
 	$(barChart).ready(loadBarChartData);
 	$(pieChart).ready(loadPieChartData);
-	$(lineChart).ready(loadLineChartData);
+	$(containerCountChart).ready(loadContainerCountChartData);
 	
-	Chart.defaults.global.animation = false;
+	Chart.defaults.global.animation = true;
 	Chart.defaults.global.animationSteps = 1;
 	
 	const PERIOD = 24;
@@ -22,55 +22,20 @@ $(document).ready(function() {
 
 	var cName;
 	var cId;
-	var memArray = [];
-	var diskArray = [];
-	var cpuArray = [];
-	var timestampArray = [];
 	
 	// colors
 	var red = "rgba(247, 70, 74, 1)";
-	var redTrans = "rgba(247, 70, 74, 0.5)";
+	var redTrans = "rgba(247, 70, 74, 0.7)";
 	var green = "rgba(92, 184, 92, 1)";
-	var greenTrans = "rgba(92, 184, 92, 0.5)";
+	var greenTrans = "rgba(92, 184, 92, 0.7)";
 	var orange = "rgba(240, 173, 78, 1)";
-	var orangeTrans = "rgba(240, 173, 78, 0.5)";
-	
-	var cpuData = {
-		labels : timestampArray,
-		datasets : [ {
-			label : "CPU Usage History",
-			fillColor :redTrans,
-			strokeColor : red,
-			pointColor : red,
-			pointStrokeColor : red,
-			pointHighlightFill : red,
-			pointHighlightStroke : red,
-			data : cpuArray
-		},
-		{
-			label : "Memory Usage History",
-			fillColor : orangeTrans,
-			strokeColor : orange,
-			pointColor : orange,
-			pointStrokeColor : orange,
-			pointHighlightFill : orange,
-			pointHighlightStroke : orange,
-			data : memArray
-		},
-		{
-			label : "Disk History",
-			fillColor : greenTrans,
-			strokeColor : green,
-			pointColor : green,
-			pointStrokeColor : green,
-			pointHighlightFill : green,
-			pointHighlightStroke : green,
-			data : diskArray
-		}]
-	};
+	var orangeTrans = "rgba(240, 173, 78, 0.7)";
+	var purple = "rgba(176,224,230, 1)";
+	var purpleTrans = "rgba(176,224,230, 0.7)";
 	
 	var preferencesREST = "http://localhost:8083/preferences/";
 	var metricREST = "http://localhost:8083/metrics/thresholdStats/";
+	var containerCountREST = "http://localhost:8083/metrics/containerCounts/";
 	
 	/*
 	 * Sets the current data
@@ -95,73 +60,25 @@ $(document).ready(function() {
 		});
 	});
 
-	var memData = {
-		labels : timestampArray,
-		datasets : [ {
-			label : "Memory Usage History",
-			fillColor : "rgba(220,220,220,0.2)",
-			strokeColor : "rgba(220,220,220,1)",
-			pointColor : "rgba(220,220,220,1)",
-			pointStrokeColor : "#fff",
-			pointHighlightFill : "#fff",
-			pointHighlightStroke : "rgba(220,220,220,1)",
-			data : memArray
-		}]
-	};
-
-	var diskData = {
-		labels : timestampArray,
-		datasets : [ {
-			label : "Disk History",
-			fillColor : "rgba(220,220,220,0.2)",
-			strokeColor : "rgba(220,220,220,1)",
-			pointColor : "rgba(220,220,220,1)",
-			pointStrokeColor : "#fff",
-			pointHighlightFill : "#fff",
-			pointHighlightStroke : "rgba(220,220,220,1)",
-			data : diskArray
-		} ]
-	};
-
-	var pieChartData = [];
-	
-	var lineChartData = {
-		    labels: [],
-		    datasets: [
-		        {
-		            label: "ERROR",
-		            fillColor: redTrans,
-		            strokeColor: red,
-		            pointColor: red,
-		            data: []
-		        },
-		        {
-		            label: "WARN",
-		            fillColor: orangeTrans,
-		            strokeColor: orange,
-		            pointColor: orange,
-		            data: []
-		        },
-		        {
-		            label: "OK",
-		            fillColor: greenTrans,
-		            strokeColor: green,
-		            pointColor: green,
-		            data: []
-		        }
-		    ]
-		};
-	
-	var pieChartContext = document.getElementById("pieChart").getContext("2d");
-	var pieChart = new Chart(pieChartContext).Pie(pieChartData, {segmentShowStroke : true, segmentStrokeColor : "rgba(255, 255, 255, 0.1)"});
-
 	function loadPieChartData(){
 		$.get(metricREST + 1).done(function(data) {
 			
+			var pieChartData = [];
+			
+			$('#pieChart').remove(); // this is my <canvas> element
+			$('#pie-chart').append('<canvas id="pieChart" width="200" height="200"></canvas>');
+			
+			var pieChartContext = document.getElementById("pieChart").getContext("2d");
+			var pieChart = new Chart(pieChartContext).Pie(pieChartData, 
+					{segmentShowStroke : true, 
+					 segmentStrokeColor : "rgba(255, 255, 255, 0.1)",
+					 animationSteps : 1,
+					 animationEasing : "easeOutBounce",
+					 animateRotate : true,
+					 animateScale : false
+					});
+			
 			var temp = data[0];
-			pieChart.destroy();
-			pieChartContext = document.getElementById("pieChart").getContext("2d");
-			pieChart = new Chart(pieChartContext).Pie(pieChartData, {segmentShowStroke : true, segmentStrokeColor : "rgba(255, 255, 255, 0.1)"});
 			pieChart.addData({value: temp.error,
 							  color : redTrans,
 							  highlight : red,	// // rgb 247 70 74
@@ -176,54 +93,68 @@ $(document).ready(function() {
 							  label : "OK"}, 2);
 		});
 	}
-	
-	var lineChartContext = document.getElementById("lineChart").getContext("2d");
-	var lineChart = new Chart(lineChartContext).Line(lineChartData, {pointDot : true, pointDotRadius : 1, datasetStrokeWidth : 1});
 		
-	function loadLineChartData(){
-		$.get(metricREST + PERIOD).done(function(data) {
-			lineChart.destroy();
-			lineChartContext = document.getElementById("lineChart").getContext("2d");
-			lineChart = new Chart(lineChartContext).Line(lineChartData, {pointDot : true, pointDotRadius : 1, datasetStrokeWidth : 1});
+	function loadContainerCountChartData(){		
+		$.get(containerCountREST + PERIOD).done(function(data) {
+			
+			var containerCountChartData = {
+				    labels: [],
+				    datasets: [
+				        {
+				            label: "COUNT",
+				            fillColor: greenTrans,
+				            strokeColor: green,
+				            data: []
+				        }
+				    ]
+				};
+			
+			$('#containerCountChart').remove(); // this is my <canvas> element
+			$('#container-count-chart').append('<canvas id="containerCountChart" width="400" height="220"></canvas>');
+			
+			var containerCountChartContext = document.getElementById("containerCountChart").getContext("2d");
+			var containerCountChart = new Chart(containerCountChartContext).Bar(containerCountChartData, {barStrokeWidth : 1, barValueSpacing : 1, barDatasetSpacing : 1});
+			
 			$.each(data, function(index) {
 				var temp = data[index];
-				lineChart.addData([temp.error, temp.warn, temp.ok], temp.period + "h");
+				containerCountChart.addData([temp.value], temp.hour + "h");
 			});
 		});
 	}
-		
-	var barChartData = {
-		    labels: [],
-		    datasets: [
-		        {
-		            label: "ERROR",
-		            fillColor: redTrans,
-		            strokeColor: red,
-		            data: []
-		        },
-		        {
-		            label: "WARN",
-		            fillColor: orangeTrans,
-		            strokeColor: orange,
-		            data: []
-		        },
-		        {
-		            label: "OK",
-		            fillColor: greenTrans,
-		            strokeColor: green,
-		            data: []
-		        }
-		    ]
-		};
-	
-	var barChartContext = document.getElementById("barChart").getContext("2d");
-	var barChart = new Chart(barChartContext).Bar(barChartData, {barStrokeWidth : 1, barValueSpacing : 0, barDatasetSpacing : 1});
 
 	function loadBarChartData(){
 		$.get(metricREST + PERIOD).done(function(data) {
-			barChart.destroy();
-			barChartContext = document.getElementById("barChart").getContext("2d");
-			barChart = new Chart(barChartContext).Bar(barChartData, {barStrokeWidth : 1, barValueSpacing : 0, barDatasetSpacing : 1});
+			
+			$('#barChart').remove(); // this is my <canvas> element
+			$('#bar-chart').append('<canvas id="barChart" width="400" height="220"></canvas>');
+			
+			var barChartData = {
+				    labels: [],
+				    datasets: [
+				        {
+				            label: "ERROR",
+				            fillColor: redTrans,
+				            strokeColor: red,
+				            data: []
+				        },
+				        {
+				            label: "WARN",
+				            fillColor: orangeTrans,
+				            strokeColor: orange,
+				            data: []
+				        },
+				        {
+				            label: "OK",
+				            fillColor: greenTrans,
+				            strokeColor: green,
+				            data: []
+				        }
+				    ]
+				};
+			
+			var barChartContext = document.getElementById("barChart").getContext("2d");
+			var barChart = new Chart(barChartContext).StackedBar(barChartData, {barStrokeWidth : 1, barValueSpacing : 1, barDatasetSpacing : 1});
+			
 			$.each(data, function(index) {
 				var temp = data[index];
 				barChart.addData([temp.error, temp.warn, temp.ok], temp.period + "h");
@@ -262,10 +193,18 @@ $(document).ready(function() {
 	 * lastRowIndex: index of the last row in the table
 	 */
 	function rowCallback(row, data, index, lastRowIndex){
-		$(row).attr("cId",data.containerId);
+		$(row).attr("cId", data.containerId);
 		
 		if(index == 0){
 			successCount = warningCount = errorCount = 0;
+		}
+		
+		if(data.cpuUsed < 0){
+			$('td:eq(1)', row).html(0);
+		}
+		
+		if(data.memTotal < 0){
+			$('td:eq(4)', row).html('UNLIMITED'); 
 		}
 		
 		if(data.cpuUsed >= cpuThreshold || data.diskUsed >= diskThreshold || data.memUsed >= memoryThreshold) {
@@ -278,7 +217,7 @@ $(document).ready(function() {
 		}
 		else {
 			successCount++;
-		}	
+		}
 		
 		if(index >= lastRowIndex){
 			$("#successCount").text(successCount);
@@ -293,12 +232,20 @@ $(document).ready(function() {
 	 * Sets the refresh interval for the table
 	 */
 	setInterval(function() {
+		console.log("-- updating table");
 		table.api().ajax.reload(null, false); // user paging is not reset on reload
-		//loadPieChartData();
-		//loadBarChartData();
-		//loadLineChartData();
 	}, 3000);
-
+	
+	/*
+	 * Sets the refresh interval for the charts
+	 */
+	setInterval(function() {
+		console.log("-- updating charts");
+		loadPieChartData();
+		loadBarChartData();
+		loadContainerCountChartData();
+	}, 3000);
+	
 	$('#containers tbody tr').each(function() {
 		var title;
 		var tds = $('td', this);
@@ -320,44 +267,50 @@ $(document).ready(function() {
 	});
 
 	table.$('tr').tooltip({"delay" : 0, "track" : true, "fade" : 250 });
-
+	
 	/*
 	 * Sets doubleclick functionality for the rows
 	 */
-	$('#containers tbody').on('dblclick', 'tr', function() {
+	$('#containers tbody').on('click', 'tr', function() {
 		var tds = $('td', this);
 		cName = $(tds[0]).text();
 		cId = table.$(this).attr('cid');
+		
+		$("#detailsTitle").text("Details for: " + cName);
+		
+		$('#cpuChart').remove(); // this is my <canvas> element
+		$('#cpuCanvasHolder').append('<canvas id="cpuChart" width="550" height="200"><canvas>');
+		$('#memChart').remove(); // this is my <canvas> element
+		$('#memCanvasHolder').append('<canvas id="memChart" width="550" height="200"><canvas>');
+		$('#diskChart').remove(); // this is my <canvas> element
+		$('#diskCanvasHolder').append('<canvas id="diskChart" width="550" height="200"><canvas>');
+		
+		var options = {datasetFill : false, pointDot : true, pointDotRadius : 1, datasetStrokeWidth : 1, bezierCurve : false};
+		
+		var cpuChartData = {labels: [], datasets: [{label: "CPU", strokeColor: purple, pointColor: purple, data: []}]};
+		var cpuChartContext = document.getElementById("cpuChart").getContext("2d");
+		var cpuChart = new Chart(cpuChartContext).Line(cpuChartData, options);
 
+		var memChartData = {labels: [], datasets: [{label: "MEM", strokeColor: purple, pointColor: purple, data: []}]};
+		var memChartContext = document.getElementById("memChart").getContext("2d");
+		var memChart = new Chart(memChartContext).Line(memChartData, options);
+		
+		var diskChartData = {labels: [], datasets: [{label: "DISK", strokeColor: purple, pointColor: purple, data: []}]};
+		var diskChartContext = document.getElementById("diskChart").getContext("2d");
+		var diskChart = new Chart(diskChartContext).Line(diskChartData, options);
+		
 		var logsREST = "http://localhost:8083/logs/" + cId;
 		$.get(logsREST).done(function(data) {
-			$.each(data, function(id) {
-				memArray.push(data[id].memUsed);
-				diskArray.push(data[id].diskUsed);
-				cpuArray.push(data[id].cpuUsed);
-				timestampArray.push(data[id].timestamp);
+			$.each(data, function(index) {
+				var temp = data[index];
+				cpuChart.addData([temp.cpu], temp.hour + "h");
+				memChart.addData([temp.mem], temp.hour + "h");
+				diskChart.addData([temp.disk], temp.hour + "h");
 			});
 		});
 
 		$('#cDetails').modal('show');
 	});
-
-	$('#cDetails').bind('show', function() {
-		$(".modal-header").html("<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button><h4>" + cName + " - Details</h4>");
-//		 $('#cDetails').find('.modal-body').append("<canvas id=\"myChart\" width=\"200\" height=\"200\"></canvas>" +
-//				 								   "<canvas id=\"myChart2\" width=\"200\" height=\"200\"></canvas>" +
-//				 								   "<canvas id=\"myChart4\" width=\"200\" height=\"200\"></canvas>");
-		$('#cDetails').find('.modal-body').append("<canvas id=\"myChart\" width=\"400\" height=\"400\"></canvas>");
-
-		var ctx = document.getElementById("myChart").getContext("2d");
-		var myCpuChart = new Chart(ctx).Line(cpuData);
-
-//		 var ctx2 = document.getElementById("myChart2").getContext("2d");
-//		 var myDiskChart = new Chart(ctx2).Line(diskData);
-//		 
-//		 var ctx4 = document.getElementById("myChart4").getContext("2d");
-//		 var myMemoryChart = new Chart(ctx4).Line(memData);
-	});// end of binding
 
 	$('#settings').bind('show', function() {
 		$(".modal-body #memory_threshold").val(memoryThreshold);
@@ -379,12 +332,5 @@ $(document).ready(function() {
 		});
 		location.reload();
 	});
-	
-	$('#cDetails').bind('hide', function(event) {
-//		memArray.length = 0;
-//		diskArray.length = 0;
-//		cpuArray.length = 0;
-//		timestampArray.length = 0; 
-	 });
 
 });
