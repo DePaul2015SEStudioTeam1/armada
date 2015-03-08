@@ -9,7 +9,7 @@ import edu.depaul.armada.model.Metric;
 import edu.depaul.armada.model.ThresholdMetric;
 
 /**
- * Used by log controller to provide metrics over time
+ * An interface which specifies methods used for storing and receiving Container metrics over time.
  * 
  * @author ptrzyna
  */

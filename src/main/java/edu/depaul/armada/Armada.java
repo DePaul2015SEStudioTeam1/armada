@@ -21,6 +21,13 @@ import org.springframework.web.servlet.DispatcherServlet;
  */
 public class Armada {
 
+	/**
+	 * The main method is the only method in the Armada class. Its responsibilities are to define what resources will be used, 
+	 * including defining index.html as the homepage of the application when running. It also sets up and starts the web server 
+	 * from which the application runs.
+	 * @param args
+	 * @throws Exception
+	 */
 	public static void main(String[] args) throws Exception {
 		
 		Server server = new Server(8083);
