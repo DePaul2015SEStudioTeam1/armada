@@ -15,7 +15,15 @@ import edu.depaul.armada.domain.DashboardPreferenceList;
 import edu.depaul.armada.domain.Preference;
 import edu.depaul.armada.model.DashboardPreference;
 
-
+/**
+ * Uses several Spring features, most centrally the @RequestMapping annotation. This sends web 
+ * requests to specific pieces of the code, and then sends back the results through @ResponseBody. 
+ * It also uses the @RequestBody annotation to convert HTTP requests into parameters that can be 
+ * handled by a Java method. This class uses these Spring components to either return all of the 
+ * DashboardPreferences, or to set them.
+ * @author johnplante
+ *
+ */
 @Controller
 @RequestMapping("/preferences")
 public class PreferenceRestfulController {
@@ -24,17 +32,30 @@ public class PreferenceRestfulController {
 	
 	private PreferenceDao preferenceDao;
 	
+	/**
+	 * Creates a reference to the PreferenceDao object that it is passed.
+	 * @param dao
+	 */
 	@Autowired
 	public void setPreferenceDao(PreferenceDao dao) {
 		preferenceDao = dao;
 	}
 	
+	/**
+	 * Returns a List of DashboardPreference objects from the PreferenceDao.
+	 * @return List<DashboardPreference>
+	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	@ResponseBody
 	public List<DashboardPreference> getAll() {
 		return preferenceDao.getAll();
 	}
 	
+	/**
+	 * Accepts a set of user preferences from the dashboard, via an HTTP request, and sets the 
+	 * preferences accordingly.
+	 * @param preferences
+	 */
 	@RequestMapping(value = "/setAll", method = RequestMethod.POST)
 	public void setAll( @RequestBody DashboardPreferenceList preferences) {
 		for(DashboardPreference temp : preferences) {
@@ -52,6 +73,5 @@ public class PreferenceRestfulController {
 				continue;
 			}
 		}
-	}
-	
+	}	
 }

@@ -105,5 +105,4 @@ public class MetricServiceImpl implements MetricService {
 		List<Metric> metrics = containerLogDao.getContainerCounts(periodInHours);
 		return metrics;
 	}
-
 }

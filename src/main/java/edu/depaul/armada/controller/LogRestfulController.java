@@ -18,6 +18,9 @@ import edu.depaul.armada.model.ContainerMetric;
 import edu.depaul.armada.model.Metric;
 
 /**
+ * Uses several Spring features, most centrally the @RequestMapping annotation. This sends web requests 
+ * to specific pieces of the code, and then sends back the results through @ResponseBody. 
+ * Specifically, this class gets all of the DashboardContainerLogs from the past 24 hours.
  * @author ptrzyna
  *
  */
@@ -27,11 +30,21 @@ public class LogRestfulController {
 
 	private ContainerLogDao containerLogDao;
 	
+	/**
+	 * Creates a reference to the ContainerLogDao object that it is passed.
+	 * @param dao
+	 */
 	@Autowired
 	public void setContainerLogDao(ContainerLogDao dao) {
 		containerLogDao = dao;
 	}
 	
+	/**
+	 * Returns a list of all of the DashboardContainerLog objects with a specific Container ID 
+	 * from the ContainerLogDao with timestamps within the past 24 hours.
+	 * @param containerId
+	 * @return
+	 */
 	@RequestMapping(value = "/{containerId}", method = RequestMethod.GET)
 	@ResponseBody
 	public List<ContainerMetric> getLogsForPast24Hours(@PathVariable long containerId) {
@@ -51,7 +64,6 @@ public class LogRestfulController {
 			
 			results.add(temp);
 		}
-
 		return results;
 	}
 }
