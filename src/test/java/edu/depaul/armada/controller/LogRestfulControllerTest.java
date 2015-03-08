@@ -40,16 +40,22 @@ public class LogRestfulControllerTest {
 	public void testGetLogsForPast24Hours() {
 		List<ContainerMetric> results = logRestfulController.getLogsForPast24Hours(-1);
 		assertNotNull(results);
-		assertTrue(results.isEmpty());
+		assertTrue(!results.isEmpty());
+		for (int hour = 0; hour < 24; hour++) {
+			ContainerMetric cm = results.get(hour);
+			assertTrue(cm.getCpu() == 0);
+			assertTrue(cm.getDisk() == 0);
+			assertTrue(cm.getMem() == 0);
+		}
 		
 		Container container = TestUtil.newContainer();
-		for(int i=0; i<25; i++) {
+		for(int i=0; i<24; i++) {
 			ContainerLog log = TestUtil.newContainerLog();
 			log.setTimestamp(new Timestamp(System.currentTimeMillis()));
 			container.addLog(log);
 		}
 		
-		for(int i=0; i<25; i++) {
+		for(int i=0; i<24; i++) {
 			ContainerLog log = TestUtil.newContainerLog();
 			log.setTimestamp(new Timestamp(System.currentTimeMillis() - 24 * 60 * 60 * 1001));
 			container.addLog(log);
@@ -58,12 +64,12 @@ public class LogRestfulControllerTest {
 		containerDao.store(container);
 		
 		List<ContainerLog> logs = containerDao.findWithContainerId(container.getId()).getLogs();
-		assertEquals(50, logs.size());
+		assertEquals(48, logs.size());
 		
 		results = logRestfulController.getLogsForPast24Hours(container.getId());
 		
 		assertNotNull("List of results was null!", results);
-		assertEquals(25, results.size());
+		assertEquals(24, results.size());
 	}
 
 }
