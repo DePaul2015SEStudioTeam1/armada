@@ -4,6 +4,7 @@
 package edu.depaul.armada.domain;
 
 /**
+ * An object which holds data for user defined threshold preferences.
  * @author Roland T. Craddolph
  *
  */
