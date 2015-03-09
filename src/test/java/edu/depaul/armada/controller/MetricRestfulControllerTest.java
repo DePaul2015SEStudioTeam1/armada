@@ -2,7 +2,6 @@ package edu.depaul.armada.controller;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 import java.util.List;
 
@@ -14,7 +13,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
-import edu.depaul.armada.dao.ContainerDao;
+import edu.depaul.armada.dao.PreferenceDao;
+import edu.depaul.armada.domain.Preference;
 import edu.depaul.armada.model.Metric;
 import edu.depaul.armada.model.ThresholdMetric;
 
@@ -30,15 +30,35 @@ import edu.depaul.armada.model.ThresholdMetric;
 @Transactional
 public class MetricRestfulControllerTest {
 	@Autowired private MetricRestfulController metricRestfulController;
+	@Autowired private PreferenceDao preferenceDao;
 	
-	/**
 	@Test
-	public void testGetThresholdStats() {
-		List<ThresholdMetric> results = metricRestfulController.getThresholdStats(10);
+	public void testThresholds() {
+		Preference memory = new Preference();
+		memory.setName("memory_threshold");
+		memory.setValue(85);
+		preferenceDao.storePreference(memory);
+		
+		Preference disk = new Preference();
+		disk.setName("disk_threshold");
+		disk.setValue(85);
+		preferenceDao.storePreference(disk);
+		
+		Preference cpu = new Preference();
+		cpu.setName("cpu_threshold");
+		cpu.setValue(85);
+		preferenceDao.storePreference(cpu);
+		
+		List<ThresholdMetric> results = metricRestfulController.getThresholdStats(0);
 		assertNotNull(results);
 		assertTrue(results.isEmpty());
+		
+		results = metricRestfulController.getThresholdStats(4);
+		assertNotNull(results);
+		
+		ThresholdMetric threshold = results.get(0);
+		assertNotNull(threshold);
 	}
-	*/
 
 	@Test
 	public void testGetContainerCounts() {
