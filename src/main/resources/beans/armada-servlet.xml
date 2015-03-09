@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	                    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		                http://www.springframework.org/schema/aop 
+		                http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+		                http://www.springframework.org/schema/context 
+		                http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		                http://www.springframework.org/schema/mvc 
+		                http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+    
+    <!-- used to register the RPC handler with the spring container -->
+    <bean class="org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter"/>
+
+    <!-- exposes the spring service -->    
+    <bean id="httpArmadaService" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+        <property name="service" ref="armadaService"/>
+        <property name="serviceInterface" value="edu.depaul.armada.service.ArmadaService"/>
+    </bean>    
+    
+    <!-- creates a mapping for the exposed service -->
+    <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+        <property name="mappings">
+            <value>
+                /ArmadaService=httpArmadaService
+            </value>
+        </property>
+    </bean>
+
+
+</beans>

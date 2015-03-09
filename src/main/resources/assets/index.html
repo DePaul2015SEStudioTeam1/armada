@@ -1,0 +1,167 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Armada Dashboard</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<style>
+body {
+	padding-top: 0px;
+	/* 0px to make the container go all the way to the bottom of the topbar */
+	/*font-size: 70%;*/
+}
+</style>
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/styles.css" rel="stylesheet">
+<link href="css/dataTables.bootstrap.css" rel="stylesheet">
+<link href="css/dataTables.tableTools.css" rel="stylesheet">
+<link href="css/armada.css" rel="stylesheet">
+
+<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+<!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+</head>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/jquery.dataTables.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/dataTables.bootstrap.js"></script>
+<script type="text/javascript" src="js/dataTables.tableTools.js"></script>
+<script type="text/javascript" src="js/Chart.js"></script>
+<script type="text/javascript" src="js/Chart.StackedBar.js"></script>
+<script type="text/javascript" src="js/armada.js"></script>
+<body>
+	<nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<img src="images/ship.gif" alt="ship"
+					style="width: 55px; height: 55px; padding: 5px"> <a class="navbar-brand"
+					href="#">Armada</a>
+			</div>
+		</div>
+	</nav>
+
+	<div class="container">
+		<div class="text-right">
+			<span id="currentDate"></span>
+			<a href="#settings" class="btn btn-xs btn-primary" data-toggle="modal" data-target="#settings"> Settings </a>
+		</div>
+		<div class="modal fade bannerformmodal" tabindex="-1" role="dialog"
+			aria-labelledby="bannerformmodal" aria-hidden="true" id="settings">
+			<div class="modal-dialog modal-sm">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-hidden="true">&times;</button>
+						<h4 class="modal-title" id="myModalLabel">Settings</h4>
+					</div>
+					<div class="modal-body">
+						<form id="settingsForm" method="POST">
+							<div class="form-group">
+								<div class="input-group spinner">
+									<label class="control-label" for="textinput">CPU
+										Threshold</label> <input id="cpu_threshold" type="number"
+										class="form-control" name="cpu_threshold" data-min="0"
+										data-max="100" />
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="input-group spinner">
+									<label class="control-label" for="textinput">Memory
+										Threshold</label> <input id="memory_threshold" type="number"
+										class="form-control" name="memory_threshold" data-min="0"
+										data-max="100" />
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="input-group spinner">
+									<label class="control-label" for="textinput">Disk
+										Threshold</label> <input id="disk_threshold" type="number"
+										class="form-control" name="disk_threshold" data-min="0"
+										data-max="100" />
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="input-group spinner">
+									<label class="control-label" for="textinput">Table
+										Refresh</label> <input id="refresh_page" type="number"
+										class="form-control" name="refresh_page" data-min="0" />
+								</div>
+							</div>
+							<div align="right">
+								<button id="saveSettings" type="submit"
+									class="btn btn-blue btn-primary" data-dismiss="modal">Save</button>
+								<button type="button" class="btn btn-blue" id="resetbtn">Reset</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	    <br/>
+		<div id="chart-titles">
+            <div id="bar-chart-title">Container Status in Past 24h</div>
+            <div id="pie-chart-title">Current Container Status</div>
+            <div id="container-count-chart-title">Container Count in Past 24h</div>
+		</div>
+		<br/>
+		<div id="charts">
+		  <div id="bar-chart">
+            <canvas id="barChart" width="400" height="220"></canvas>
+          </div>
+          <div id="pie-chart">
+            <canvas id="pieChart" width="200" height="200"></canvas>
+          </div>
+          <div id="container-count-chart">
+              <canvas id="containerCountChart" width="400" height="220"></canvas>
+          </div>
+		</div>
+        <br/>
+        <br/>
+		<div>
+			<div class="row-fluid table-condensed">
+				<table id="containers" class="table table-hover table-bordered table-striped">
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>CPU Used (%)</th>
+							<th>CPU Total (<a target="_blank" href="https://docs.docker.com/reference/run/#runtime-constraints-on-cpu-and-memory">Shares</a>)</th>
+							<th>Mem Used (Kb)</th>
+							<th>Mem Total (Kb)</th>
+							<th>Disk Used (Mb)</th>
+							<th>Disk Total (Mb)</th>
+						</tr>
+					</thead>
+				</table>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade bannerformmodal" tabindex="-1" role="dialog"
+		aria-labelledby="bannerformmodal" aria-hidden="true" id="cDetails">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button id="closeModal" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="detailsTitle"></h4>
+				</div>
+				<div class="modal-body">
+					   <div>CPU Use in Past 24h</div>
+					   <div id="cpuCanvasHolder"><canvas id="cpuChart" width="550" height="200"></canvas></div>
+					   <br/>
+					   <div>Memory Use in Past 24h</div>
+					   <div id="memCanvasHolder"><canvas id="memChart" width="550" height="200"></canvas></div>
+					   <br/>
+					   <div>Disk Use in Past 24h</div>
+					   <div id="diskCanvasHolder"><canvas id="diskChart" width="550" height="200"></canvas></div>
+				</div>
+			</div>
+		</div>
+	</div>	
+</body>
+</html>
