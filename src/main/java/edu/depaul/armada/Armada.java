@@ -35,7 +35,7 @@ public class Armada {
 		starter.startServer(args);
 	}
 	
-	public boolean startServer(String[] args) throws Exception {
+	public void startServer(String[] args) throws Exception {
 		server = new Server(8083);
 		
 		ResourceHandler resourceHandler = new ResourceHandler();
@@ -66,16 +66,5 @@ public class Armada {
 		
 		server.start();
 		server.join();
-		
-		System.out.println("Server started");
-		
-		return server.isRunning();
 	}
-	
-	public boolean stopServer() throws Exception {
-		server.stop();
-		System.out.println("Server stopped");
-		return server.isStopped();
-	}
-
 }
