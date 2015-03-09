@@ -20,7 +20,9 @@ import org.springframework.web.servlet.DispatcherServlet;
  * @author ptrzyna and jplante
  */
 public class Armada {
-
+	private static boolean status;
+	private Server server;
+	
 	/**
 	 * The main method is the only method in the Armada class. Its responsibilities are to define what resources will be used, 
 	 * including defining index.html as the homepage of the application when running. It also sets up and starts the web server 
@@ -29,8 +31,12 @@ public class Armada {
 	 * @throws Exception
 	 */
 	public static void main(String[] args) throws Exception {
-		
-		Server server = new Server(8083);
+		Armada starter = new Armada();
+		starter.startServer(args);
+	}
+	
+	public boolean startServer(String[] args) throws Exception {
+		server = new Server(8083);
 		
 		ResourceHandler resourceHandler = new ResourceHandler();
 		resourceHandler.setDirectoriesListed(true);
@@ -60,6 +66,16 @@ public class Armada {
 		
 		server.start();
 		server.join();
+		
+		System.out.println("Server started");
+		
+		return server.isRunning();
+	}
+	
+	public boolean stopServer() throws Exception {
+		server.stop();
+		System.out.println("Server stopped");
+		return server.isStopped();
 	}
 
 }
