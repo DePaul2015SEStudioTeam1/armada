@@ -3,6 +3,7 @@
  */
 package edu.depaul.armada.dao;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -10,6 +11,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
@@ -230,5 +232,19 @@ public class ContainerLogDaoHibernate implements ContainerLogDao {
 		}
 		Collections.reverse(metrics);	// we want the current time to be the last hour
 		return metrics;
+	}
+
+	/* (non-Javadoc)
+	 * @see edu.depaul.armada.dao.ContainerLogDao#deleteOldData(int)
+	 */
+	@Override
+	public void deleteOldData(int interval) {
+		Query query = sessionFactory.getCurrentSession().createQuery("delete from ContainerLog c where c.timestamp <= :timestamp");
+		
+		Calendar cal = Calendar.getInstance();
+		cal.add(Calendar.HOUR, interval * -1);
+		
+		query.setTimestamp("timestamp", new Timestamp(cal.getTimeInMillis()));
+		query.executeUpdate();
 	}
 }

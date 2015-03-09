@@ -74,4 +74,11 @@ public interface ContainerLogDao {
 	 * @return list of containers per hour
 	 */
 	List<Metric> getContainerCounts(int periodInHours);
+	
+	/**
+	 * Deletes data older than given interval in hours
+	 * 
+	 * @param interval	interval in hours
+	 */
+	void deleteOldData(int interval);
 }
