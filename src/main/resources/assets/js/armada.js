@@ -18,7 +18,7 @@ $(document).ready(function() {
 	var diskThreshold;
 	var memoryThreshold;
 	var refreshVar;
-	var tableRefresh;
+	var tableRefresh = 3000;
 
 	var cName;
 	var cId;
@@ -55,7 +55,19 @@ $(document).ready(function() {
 				memoryThreshold = data[id].value;
 			} else if (data[id].name == 'refresh_page') {
 				refreshVar = data[id].value;
-				tableRefresh = refreshVar * 1000;
+				tableRefresh = refreshVar;
+				clearInterval(tableInterval);
+				clearInterval(chartInterval);
+				tableInterval = setInterval(function() {
+					console.log("-- updating table");
+					table.api().ajax.reload(null, false); // user paging is not reset on reload
+				}, tableRefresh);
+				chartInterval = setInterval(function() {
+					console.log("-- updating charts");
+					loadPieChartData();
+					loadBarChartData();
+					loadContainerCountChartData();
+				}, tableRefresh);
 			}
 		});
 	});
@@ -231,20 +243,20 @@ $(document).ready(function() {
 	/* 
 	 * Sets the refresh interval for the table
 	 */
-	setInterval(function() {
+	var tableInterval = setInterval(function() {
 		console.log("-- updating table");
 		table.api().ajax.reload(null, false); // user paging is not reset on reload
-	}, 3000);
+	}, tableRefresh);
 	
 	/*
 	 * Sets the refresh interval for the charts
 	 */
-	setInterval(function() {
+	var chartInterval = setInterval(function() {
 		console.log("-- updating charts");
 		loadPieChartData();
 		loadBarChartData();
 		loadContainerCountChartData();
-	}, 3000);
+	}, tableRefresh);
 	
 	$('#containers tbody tr').each(function() {
 		var title;
