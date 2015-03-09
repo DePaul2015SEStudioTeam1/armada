@@ -17,9 +17,9 @@ import edu.depaul.armada.model.DashboardContainer;
 public interface ContainerDao {
 
 	/**
-	 * Stores a container
-	 * 
-	 * @param container	container instance we want to store
+	 * Accepts a Container object, and uses Hibernate's saveOrUpdate method to save the
+	 * most recent container data in the database.
+	 * @param container	Container instance we want to store
 	 */
 	void store(Container container);
 	
@@ -44,7 +44,7 @@ public interface ContainerDao {
 	List<Container> getAll();
 	
 	/**
-	 * Accepts a long and an int, and returns a List<Container> object.
+	 * Accepts a long and an int, and returns a List<Container> object of the Container data in the database.
 	 * @param id long
 	 * @param count int
 	 * @return List<Container>
@@ -52,16 +52,16 @@ public interface ContainerDao {
 	List<Container> get(long id, int count);
 	
 	/**
-	 * Gets record matching container id
-	 * 
+	 * Returns a single Container object with a containerId field matching the one specified
+	 * as a parameter.
 	 * @param containerId	id of the container we want to retrieve
 	 * @return container instance matching the id
 	 */
 	Container findWithContainerId(long containerId);
 
 	/**
-	 * Finds a Container instance with given id
-	 * 
+	 * Returns a single Container object with a containerUniqueId field matching the one specified
+	 * as a parameter.
 	 * @param containerUniqueId	id used to find the container
 	 * @return Container matching the id
 	 */
