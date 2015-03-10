@@ -3,6 +3,8 @@
  */
 package edu.depaul.armada.dao;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -150,6 +152,9 @@ public class ContainerDaoHibernate implements ContainerDao {
 			temp.memTotal = logArr[index].getMemTotal();
 			temp.diskUsed = logArr[index].getDiskUsed();
 			temp.diskTotal = logArr[index].getDiskTotal();
+			DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mmZ");
+			String timestampAsString = df.format(logArr[index].getTimestamp());
+			temp.timestamp = timestampAsString;
 			result.add(temp);
 		}
 		return result;

@@ -192,7 +192,8 @@ $(document).ready(function() {
 		           {"data":"memUsed"}, 
 		           {"data":"memTotal"}, 
 		           {"data":"diskUsed"}, 
-		           {"data":"diskTotal"}],
+		           {"data":"diskTotal"},
+		           {"data":"timestamp"}],
 		"fnRowCallback":rowCallback
 	});	// end datatable
 	
@@ -219,11 +220,18 @@ $(document).ready(function() {
 			$('td:eq(4)', row).html('UNLIMITED'); 
 		}
 		
-		if(data.cpuUsed >= cpuThreshold || data.diskUsed >= diskThreshold || data.memUsed >= memoryThreshold) {
+		var currentDate = new Date();
+		var timestamp = new Date(data.timestamp);
+		if(data.cpuUsed >= cpuThreshold || 
+		   data.diskUsed >= diskThreshold || 
+		   data.memUsed >= memoryThreshold ||
+		   ((currentDate - timestamp) > tableRefresh)) {
 			$(row).css('background', redTrans);
 			errorCount++;
 		}
-		else if(data.cpuUsed >= (cpuThreshold*WARN_THRESHOLD) || data.diskUsed >= (diskThreshold*WARN_THRESHOLD) || data.memUsed >= (memoryThreshold*WARN_THRESHOLD)){
+		else if(data.cpuUsed >= (cpuThreshold*WARN_THRESHOLD) || 
+				data.diskUsed >= (diskThreshold*WARN_THRESHOLD) || 
+				data.memUsed >= (memoryThreshold*WARN_THRESHOLD)){
 			$(row).css('background', orangeTrans);
 			warningCount++;
 		}

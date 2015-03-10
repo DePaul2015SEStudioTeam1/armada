@@ -24,7 +24,7 @@ public class Container {
 	}
 
 	/**
-	 * Accepts a long and uses it to set the current Conainter object’s id field.
+	 * Accepts a long and uses it to set the current Container object’s id field.
 	 * @param id
 	 */
 	public void setId(long id) {

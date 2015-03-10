@@ -3,6 +3,7 @@
  */
 package edu.depaul.armada.service;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -68,6 +69,9 @@ public class ArmadaServiceImpl implements ArmadaService {
 	 */
 	@Override
 	public void send(AgentContainerLog agentContainer) {
+		
+		Timestamp currentTime = new Timestamp(System.currentTimeMillis());
+		
 		// get container matching unique id
 		Container container = containerDao.findWithContainerUniqueId(agentContainer.containerUniqueId); 
 		if(container == null) {
@@ -84,7 +88,7 @@ public class ArmadaServiceImpl implements ArmadaService {
 		log.setMemTotal(agentContainer.memTotal);
 		log.setDiskUsed(agentContainer.diskUsed);
 		log.setDiskTotal(agentContainer.diskTotal);
-		log.setTimestamp(agentContainer.timestamp);
+		log.setTimestamp(currentTime);
 		
 		container.addLog(log);
 		// save container
