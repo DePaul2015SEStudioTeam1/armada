@@ -11,6 +11,7 @@ $(document).ready(function() {
 	Chart.defaults.global.animationSteps = 1;
 	
 	const PERIOD = 24;
+	const UNRESPONSIVE_THRESHOLD = 120000;	// 1 minutes
 	
 	var currentDate = new Date().toDateString();
 	
@@ -225,7 +226,7 @@ $(document).ready(function() {
 		if(data.cpuUsed >= cpuThreshold || 
 		   data.diskUsed >= diskThreshold || 
 		   data.memUsed >= memoryThreshold ||
-		   ((currentDate - timestamp) > tableRefresh)) {
+		   ((currentDate - timestamp) > UNRESPONSIVE_THRESHOLD)) {
 			$(row).css('background', redTrans);
 			errorCount++;
 		}
