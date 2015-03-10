@@ -1,0 +1,430 @@
+20:36:12,185 INFO  [TestContextManager] @TestExecutionListeners is not present for class [class edu.depaul.armada.controller.ContainerRestfulControllerTest]: using defaults.
+20:36:12,323 INFO  [XmlBeanDefinitionReader] Loading XML bean definitions from class path resource [beans/armada-config-test.xml]
+20:36:12,795 INFO  [XmlBeanDefinitionReader] Loading XML bean definitions from class path resource [beans/armada-dao.xml]
+20:36:12,869 INFO  [XmlBeanDefinitionReader] Loading XML bean definitions from class path resource [beans/armada-service.xml]
+20:36:12,896 INFO  [XmlBeanDefinitionReader] Loading XML bean definitions from class path resource [beans/armada-servlet.xml]
+20:36:12,945 INFO  [GenericApplicationContext] Refreshing org.springframework.context.support.GenericApplicationContext@23fe1d71: startup date [Mon Mar 09 20:36:12 CDT 2015]; root of context hierarchy
+20:36:13,215 INFO  [DefaultListableBeanFactory] Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@41a2befb: defining beans [org.springframework.aop.config.internalAutoProxyCreator,containerRestfulController,logRestfulController,metricRestfulController,preferenceRestfulController,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping#0,org.springframework.format.support.FormattingConversionServiceFactoryBean#0,org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter#0,org.springframework.web.servlet.handler.MappedInterceptor#0,org.springframework.transaction.annotation.AnnotationTransactionAttributeSource#0,org.springframework.transaction.interceptor.TransactionInterceptor#0,org.springframework.transaction.config.internalTransactionAdvisor,containerLogDao,containerDao,preferenceDao,armadaService,metricService,org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter#0,httpArmadaService,urlMapping,armadaDataSource,armadaTransactionManager,armadaSessionFactory]; root of factory hierarchy
+20:36:13,361 INFO  [MLog] MLog clients using log4j logging.
+20:36:13,577 INFO  [C3P0Registry] Initializing c3p0-0.9.1 [built 16-January-2007 14:46:42; debug? true; trace: 10]
+20:36:13,922 INFO  [Version] Hibernate Commons Annotations 3.2.0.Final
+20:36:13,929 INFO  [Environment] Hibernate 3.6.9.Final
+20:36:13,931 INFO  [Environment] hibernate.properties not found
+20:36:13,935 INFO  [Environment] Bytecode provider name : javassist
+20:36:13,940 INFO  [Environment] using JDK 1.4 java.sql.Timestamp handling
+20:36:14,070 WARN  [DTDEntityResolver] recognized obsolete hibernate namespace http://hibernate.sourceforge.net/. Use namespace http://www.hibernate.org/dtd/ instead. Refer to Hibernate 3.6 Migration Guide!
+20:36:14,133 WARN  [DTDEntityResolver] recognized obsolete hibernate namespace http://hibernate.sourceforge.net/. Use namespace http://www.hibernate.org/dtd/ instead. Refer to Hibernate 3.6 Migration Guide!
+20:36:14,155 WARN  [DTDEntityResolver] recognized obsolete hibernate namespace http://hibernate.sourceforge.net/. Use namespace http://www.hibernate.org/dtd/ instead. Refer to Hibernate 3.6 Migration Guide!
+20:36:14,250 INFO  [HbmBinder] Mapping class: edu.depaul.armada.domain.Container -> container
+20:36:14,269 INFO  [HbmBinder] Mapping class: edu.depaul.armada.domain.ContainerLog -> container_log
+20:36:14,275 INFO  [HbmBinder] Mapping class: edu.depaul.armada.domain.Preference -> preferences
+20:36:14,278 INFO  [HbmBinder] Mapping collection: edu.depaul.armada.domain.Container.logs -> container_log
+20:36:14,287 INFO  [Configuration] Hibernate Validator not found: ignoring
+20:36:14,291 INFO  [LocalSessionFactoryBean] Building new Hibernate SessionFactory
+20:36:14,296 INFO  [HibernateSearchEventListenerRegister] Unable to find org.hibernate.search.event.FullTextIndexEventListener on the classpath. Hibernate Search is not enabled.
+20:36:14,301 INFO  [ConnectionProviderFactory] Initializing connection provider: org.springframework.orm.hibernate3.LocalDataSourceConnectionProvider
+20:36:14,394 INFO  [AbstractPoolBackedDataSource] Initializing c3p0 pool... com.mchange.v2.c3p0.ComboPooledDataSource [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, dataSourceName -> 1hge13898d8hnvm4pesm|1c5920df, debugUnreturnedConnectionStackTraces -> false, description -> null, driverClass -> org.hsqldb.jdbcDriver, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, identityToken -> 1hge13898d8hnvm4pesm|1c5920df, idleConnectionTestPeriod -> 0, initialPoolSize -> 3, jdbcUrl -> jdbc:hsqldb:mem:test, lastAcquisitionFailureDefaultUser -> null, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 6, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 3, numHelperThreads -> 3, numThreadsAwaitingCheckoutDefaultUser -> 0, preferredTestQuery -> null, properties -> {user=******, password=******}, propertyCycle -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, usesTraditionalReflectiveProxies -> false ]
+20:36:15,076 INFO  [Dialect] Using dialect: org.hibernate.dialect.HSQLDialect
+20:36:15,101 INFO  [JdbcSupportLoader] Disabling contextual LOB creation as createClob() method threw error : java.lang.reflect.InvocationTargetException
+20:36:15,112 INFO  [SettingsFactory] Database ->
+       name : HSQL Database Engine
+    version : 2.3.2
+      major : 2
+      minor : 3
+20:36:15,112 INFO  [SettingsFactory] Driver ->
+       name : HSQL Database Engine Driver
+    version : 2.3.2
+      major : 2
+      minor : 3
+20:36:15,114 INFO  [TransactionFactoryFactory] Transaction strategy: org.springframework.orm.hibernate3.SpringTransactionFactory
+20:36:15,116 INFO  [TransactionManagerLookupFactory] No TransactionManagerLookup configured (in JTA environment, use of read-write or transactional second-level cache is not recommended)
+20:36:15,116 INFO  [SettingsFactory] Automatic flush during beforeCompletion(): disabled
+20:36:15,117 INFO  [SettingsFactory] Automatic session close at end of transaction: disabled
+20:36:15,117 INFO  [SettingsFactory] JDBC batch size: 15
+20:36:15,117 INFO  [SettingsFactory] JDBC batch updates for versioned data: disabled
+20:36:15,118 INFO  [SettingsFactory] Scrollable result sets: enabled
+20:36:15,119 INFO  [SettingsFactory] JDBC3 getGeneratedKeys(): enabled
+20:36:15,119 INFO  [SettingsFactory] Connection release mode: auto
+20:36:15,120 INFO  [SettingsFactory] Default batch fetch size: 1
+20:36:15,121 INFO  [SettingsFactory] Generate SQL with comments: disabled
+20:36:15,121 INFO  [SettingsFactory] Order SQL updates by primary key: disabled
+20:36:15,121 INFO  [SettingsFactory] Order SQL inserts for batching: disabled
+20:36:15,121 INFO  [SettingsFactory] Query translator: org.hibernate.hql.ast.ASTQueryTranslatorFactory
+20:36:15,124 INFO  [ASTQueryTranslatorFactory] Using ASTQueryTranslatorFactory
+20:36:15,124 INFO  [SettingsFactory] Query language substitutions: {}
+20:36:15,124 INFO  [SettingsFactory] JPA-QL strict compliance: disabled
+20:36:15,124 INFO  [SettingsFactory] Second-level cache: enabled
+20:36:15,124 INFO  [SettingsFactory] Query cache: disabled
+20:36:15,125 INFO  [SettingsFactory] Cache region factory : org.hibernate.cache.impl.NoCachingRegionFactory
+20:36:15,126 INFO  [SettingsFactory] Optimize cache for minimal puts: disabled
+20:36:15,127 INFO  [SettingsFactory] Structured second-level cache entries: disabled
+20:36:15,133 INFO  [SettingsFactory] Echoing all SQL to stdout
+20:36:15,134 INFO  [SettingsFactory] Statistics: disabled
+20:36:15,134 INFO  [SettingsFactory] Deleted entity synthetic identifier rollback: disabled
+20:36:15,135 INFO  [SettingsFactory] Default entity-mode: pojo
+20:36:15,135 INFO  [SettingsFactory] Named query checking : enabled
+20:36:15,135 INFO  [SettingsFactory] Check Nullability in Core (should be disabled when Bean Validation is on): enabled
+20:36:15,160 INFO  [SessionFactoryImpl] building session factory
+20:36:15,170 INFO  [BasicTypeRegistry] Type registration [wrapper_materialized_blob] overrides previous : org.hibernate.type.WrappedMaterializedBlobType@44040454
+20:36:15,170 INFO  [BasicTypeRegistry] Type registration [characters_clob] overrides previous : org.hibernate.type.PrimitiveCharacterArrayClobType@65fe9e33
+20:36:15,170 INFO  [BasicTypeRegistry] Type registration [wrapper_characters_clob] overrides previous : org.hibernate.type.CharacterArrayClobType@18bc345
+20:36:15,171 INFO  [BasicTypeRegistry] Type registration [materialized_clob] overrides previous : org.hibernate.type.MaterializedClobType@42f8285e
+20:36:15,171 INFO  [BasicTypeRegistry] Type registration [materialized_blob] overrides previous : org.hibernate.type.MaterializedBlobType@26bab2f1
+20:36:15,171 INFO  [BasicTypeRegistry] Type registration [clob] overrides previous : org.hibernate.type.ClobType@3724af13
+20:36:15,171 INFO  [BasicTypeRegistry] Type registration [java.sql.Clob] overrides previous : org.hibernate.type.ClobType@3724af13
+20:36:15,171 INFO  [BasicTypeRegistry] Type registration [blob] overrides previous : org.hibernate.type.BlobType@68ead359
+20:36:15,171 INFO  [BasicTypeRegistry] Type registration [java.sql.Blob] overrides previous : org.hibernate.type.BlobType@68ead359
+20:36:15,464 INFO  [SessionFactoryObjectFactory] Not binding factory to JNDI, no JNDI name configured
+20:36:15,474 INFO  [SchemaExport] Running hbm2ddl schema export
+20:36:15,476 INFO  [SchemaExport] exporting generated schema to database
+20:36:15,509 INFO  [SchemaExport] schema export complete
+20:36:15,955 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/containers/] onto handler 'containerRestfulController'
+20:36:15,955 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/containers/{id}] onto handler 'containerRestfulController'
+20:36:15,956 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/containers/{id}.*] onto handler 'containerRestfulController'
+20:36:15,956 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/containers/{id}/] onto handler 'containerRestfulController'
+20:36:15,957 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/logs/{containerId}] onto handler 'logRestfulController'
+20:36:15,958 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/logs/{containerId}.*] onto handler 'logRestfulController'
+20:36:15,958 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/logs/{containerId}/] onto handler 'logRestfulController'
+20:36:15,959 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/metrics/thresholdStats/{hours}] onto handler 'metricRestfulController'
+20:36:15,960 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/metrics/thresholdStats/{hours}.*] onto handler 'metricRestfulController'
+20:36:15,960 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/metrics/thresholdStats/{hours}/] onto handler 'metricRestfulController'
+20:36:15,961 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/metrics/containerCounts/{hours}] onto handler 'metricRestfulController'
+20:36:15,961 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/metrics/containerCounts/{hours}.*] onto handler 'metricRestfulController'
+20:36:15,961 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/metrics/containerCounts/{hours}/] onto handler 'metricRestfulController'
+20:36:15,962 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/preferences/setAll] onto handler 'preferenceRestfulController'
+20:36:15,963 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/preferences/setAll.*] onto handler 'preferenceRestfulController'
+20:36:15,963 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/preferences/setAll/] onto handler 'preferenceRestfulController'
+20:36:15,964 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/preferences/] onto handler 'preferenceRestfulController'
+20:36:16,746 INFO  [SimpleUrlHandlerMapping] Mapped URL path [/ArmadaService] onto handler 'httpArmadaService'
+20:36:16,800 INFO  [HibernateTransactionManager] Using DataSource [com.mchange.v2.c3p0.ComboPooledDataSource [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, dataSourceName -> 1hge13898d8hnvm4pesm|1c5920df, debugUnreturnedConnectionStackTraces -> false, description -> null, driverClass -> org.hsqldb.jdbcDriver, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, identityToken -> 1hge13898d8hnvm4pesm|1c5920df, idleConnectionTestPeriod -> 0, initialPoolSize -> 3, jdbcUrl -> jdbc:hsqldb:mem:test, lastAcquisitionFailureDefaultUser -> null, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 6, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 3, numHelperThreads -> 3, numThreadsAwaitingCheckoutDefaultUser -> 0, preferredTestQuery -> null, properties -> {user=******, password=******}, propertyCycle -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, usesTraditionalReflectiveProxies -> false ]] of Hibernate SessionFactory for HibernateTransactionManager
+20:36:16,919 INFO  [TransactionalTestExecutionListener] Began transaction (1): transaction manager [org.springframework.orm.hibernate3.HibernateTransactionManager@6f330eb9]; rollback [true]
+20:36:17,383 INFO  [TransactionalTestExecutionListener] Rolled back transaction after test execution for test context [[TestContext@7c2a69b4 testClass = ContainerRestfulControllerTest, locations = array<String>['classpath:/beans/armada-config-test.xml'], testInstance = edu.depaul.armada.controller.ContainerRestfulControllerTest@a619c2, testMethod = testGetAllDashboardContainers@ContainerRestfulControllerTest, testException = [null]]]
+20:36:17,389 INFO  [TransactionalTestExecutionListener] Began transaction (2): transaction manager [org.springframework.orm.hibernate3.HibernateTransactionManager@6f330eb9]; rollback [true]
+20:36:17,683 INFO  [TransactionalTestExecutionListener] Rolled back transaction after test execution for test context [[TestContext@7c2a69b4 testClass = ContainerRestfulControllerTest, locations = array<String>['classpath:/beans/armada-config-test.xml'], testInstance = edu.depaul.armada.controller.ContainerRestfulControllerTest@65ae095c, testMethod = testGetPageOfDashboardContainers@ContainerRestfulControllerTest, testException = [null]]]
+20:36:17,696 INFO  [TestContextManager] @TestExecutionListeners is not present for class [class edu.depaul.armada.controller.LogRestfulControllerTest]: using defaults.
+20:36:17,720 INFO  [TransactionalTestExecutionListener] Began transaction (1): transaction manager [org.springframework.orm.hibernate3.HibernateTransactionManager@6f330eb9]; rollback [true]
+20:36:18,421 INFO  [TransactionalTestExecutionListener] Rolled back transaction after test execution for test context [[TestContext@20134094 testClass = LogRestfulControllerTest, locations = array<String>['classpath:/beans/armada-config-test.xml'], testInstance = edu.depaul.armada.controller.LogRestfulControllerTest@76889e60, testMethod = testGetLogsForPast24Hours@LogRestfulControllerTest, testException = [null]]]
+20:36:18,427 INFO  [TestContextManager] @TestExecutionListeners is not present for class [class edu.depaul.armada.controller.MetricRestfulControllerTest]: using defaults.
+20:36:18,470 INFO  [TransactionalTestExecutionListener] Began transaction (1): transaction manager [org.springframework.orm.hibernate3.HibernateTransactionManager@6f330eb9]; rollback [true]
+20:36:18,559 INFO  [TransactionalTestExecutionListener] Rolled back transaction after test execution for test context [[TestContext@78010562 testClass = MetricRestfulControllerTest, locations = array<String>['classpath:/beans/armada-config-test.xml'], testInstance = edu.depaul.armada.controller.MetricRestfulControllerTest@50756c76, testMethod = testThresholds@MetricRestfulControllerTest, testException = [null]]]
+20:36:18,562 INFO  [TransactionalTestExecutionListener] Began transaction (2): transaction manager [org.springframework.orm.hibernate3.HibernateTransactionManager@6f330eb9]; rollback [true]
+20:36:18,570 INFO  [TransactionalTestExecutionListener] Rolled back transaction after test execution for test context [[TestContext@78010562 testClass = MetricRestfulControllerTest, locations = array<String>['classpath:/beans/armada-config-test.xml'], testInstance = edu.depaul.armada.controller.MetricRestfulControllerTest@71d9cb05, testMethod = testGetContainerCounts@MetricRestfulControllerTest, testException = [null]]]
+20:36:18,574 INFO  [TestContextManager] @TestExecutionListeners is not present for class [class edu.depaul.armada.controller.PreferenceRestControllerTest]: using defaults.
+20:36:18,591 INFO  [TransactionalTestExecutionListener] Began transaction (1): transaction manager [org.springframework.orm.hibernate3.HibernateTransactionManager@6f330eb9]; rollback [true]
+20:36:18,606 INFO  [TransactionalTestExecutionListener] Rolled back transaction after test execution for test context [[TestContext@2412a42b testClass = PreferenceRestControllerTest, locations = array<String>['classpath:/beans/armada-config-test.xml'], testInstance = edu.depaul.armada.controller.PreferenceRestControllerTest@45404d5, testMethod = testGetSetPreferences@PreferenceRestControllerTest, testException = [null]]]
+20:36:18,612 INFO  [TestContextManager] @TestExecutionListeners is not present for class [class edu.depaul.armada.dao.ContainerDaoTest]: using defaults.
+20:36:18,638 INFO  [TransactionalTestExecutionListener] Began transaction (1): transaction manager [org.springframework.orm.hibernate3.HibernateTransactionManager@6f330eb9]; rollback [true]
+20:36:20,158 INFO  [TransactionalTestExecutionListener] Rolled back transaction after test execution for test context [[TestContext@5d7f1e59 testClass = ContainerDaoTest, locations = array<String>['classpath:/beans/armada-config-test.xml'], testInstance = edu.depaul.armada.dao.ContainerDaoTest@53e93fb7, testMethod = testGetAllDashboardContainers@ContainerDaoTest, testException = [null]]]
+20:36:20,163 INFO  [TransactionalTestExecutionListener] Began transaction (2): transaction manager [org.springframework.orm.hibernate3.HibernateTransactionManager@6f330eb9]; rollback [true]
+20:36:20,190 INFO  [TransactionalTestExecutionListener] Rolled back transaction after test execution for test context [[TestContext@5d7f1e59 testClass = ContainerDaoTest, locations = array<String>['classpath:/beans/armada-config-test.xml'], testInstance = edu.depaul.armada.dao.ContainerDaoTest@283a8ad6, testMethod = testGet@ContainerDaoTest, testException = [null]]]
+20:36:20,202 INFO  [GenericApplicationContext] Closing org.springframework.context.support.GenericApplicationContext@23fe1d71: startup date [Mon Mar 09 20:36:12 CDT 2015]; root of context hierarchy
+20:36:20,216 INFO  [DefaultListableBeanFactory] Destroying singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@41a2befb: defining beans [org.springframework.aop.config.internalAutoProxyCreator,containerRestfulController,logRestfulController,metricRestfulController,preferenceRestfulController,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping#0,org.springframework.format.support.FormattingConversionServiceFactoryBean#0,org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter#0,org.springframework.web.servlet.handler.MappedInterceptor#0,org.springframework.transaction.annotation.AnnotationTransactionAttributeSource#0,org.springframework.transaction.interceptor.TransactionInterceptor#0,org.springframework.transaction.config.internalTransactionAdvisor,containerLogDao,containerDao,preferenceDao,armadaService,metricService,org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter#0,httpArmadaService,urlMapping,armadaDataSource,armadaTransactionManager,armadaSessionFactory]; root of factory hierarchy
+20:36:20,228 INFO  [LocalSessionFactoryBean] Closing Hibernate SessionFactory
+20:36:20,228 INFO  [SessionFactoryImpl] closing
+20:36:20,233 INFO  [XmlBeanDefinitionReader] Loading XML bean definitions from class path resource [beans/armada-config-test.xml]
+20:36:20,331 INFO  [XmlBeanDefinitionReader] Loading XML bean definitions from class path resource [beans/armada-dao.xml]
+20:36:20,373 INFO  [XmlBeanDefinitionReader] Loading XML bean definitions from class path resource [beans/armada-service.xml]
+20:36:20,395 INFO  [XmlBeanDefinitionReader] Loading XML bean definitions from class path resource [beans/armada-servlet.xml]
+20:36:20,427 INFO  [GenericApplicationContext] Refreshing org.springframework.context.support.GenericApplicationContext@1b3bec6c: startup date [Mon Mar 09 20:36:20 CDT 2015]; root of context hierarchy
+20:36:20,479 INFO  [DefaultListableBeanFactory] Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@3686389: defining beans [org.springframework.aop.config.internalAutoProxyCreator,containerRestfulController,logRestfulController,metricRestfulController,preferenceRestfulController,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping#0,org.springframework.format.support.FormattingConversionServiceFactoryBean#0,org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter#0,org.springframework.web.servlet.handler.MappedInterceptor#0,org.springframework.transaction.annotation.AnnotationTransactionAttributeSource#0,org.springframework.transaction.interceptor.TransactionInterceptor#0,org.springframework.transaction.config.internalTransactionAdvisor,containerLogDao,containerDao,preferenceDao,armadaService,metricService,org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter#0,httpArmadaService,urlMapping,armadaDataSource,armadaTransactionManager,armadaSessionFactory]; root of factory hierarchy
+20:36:20,577 WARN  [DTDEntityResolver] recognized obsolete hibernate namespace http://hibernate.sourceforge.net/. Use namespace http://www.hibernate.org/dtd/ instead. Refer to Hibernate 3.6 Migration Guide!
+20:36:20,599 WARN  [DTDEntityResolver] recognized obsolete hibernate namespace http://hibernate.sourceforge.net/. Use namespace http://www.hibernate.org/dtd/ instead. Refer to Hibernate 3.6 Migration Guide!
+20:36:20,618 WARN  [DTDEntityResolver] recognized obsolete hibernate namespace http://hibernate.sourceforge.net/. Use namespace http://www.hibernate.org/dtd/ instead. Refer to Hibernate 3.6 Migration Guide!
+20:36:20,630 INFO  [HbmBinder] Mapping class: edu.depaul.armada.domain.Container -> container
+20:36:20,631 INFO  [HbmBinder] Mapping class: edu.depaul.armada.domain.ContainerLog -> container_log
+20:36:20,632 INFO  [HbmBinder] Mapping class: edu.depaul.armada.domain.Preference -> preferences
+20:36:20,633 INFO  [HbmBinder] Mapping collection: edu.depaul.armada.domain.Container.logs -> container_log
+20:36:20,634 INFO  [Configuration] Hibernate Validator not found: ignoring
+20:36:20,635 INFO  [LocalSessionFactoryBean] Building new Hibernate SessionFactory
+20:36:20,644 INFO  [HibernateSearchEventListenerRegister] Unable to find org.hibernate.search.event.FullTextIndexEventListener on the classpath. Hibernate Search is not enabled.
+20:36:20,645 INFO  [ConnectionProviderFactory] Initializing connection provider: org.springframework.orm.hibernate3.LocalDataSourceConnectionProvider
+20:36:20,659 INFO  [AbstractPoolBackedDataSource] Initializing c3p0 pool... com.mchange.v2.c3p0.ComboPooledDataSource [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, dataSourceName -> 1hge13898d8hnvm4pesm|108b121f, debugUnreturnedConnectionStackTraces -> false, description -> null, driverClass -> org.hsqldb.jdbcDriver, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, identityToken -> 1hge13898d8hnvm4pesm|108b121f, idleConnectionTestPeriod -> 0, initialPoolSize -> 3, jdbcUrl -> jdbc:hsqldb:mem:test, lastAcquisitionFailureDefaultUser -> null, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 6, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 3, numHelperThreads -> 3, numThreadsAwaitingCheckoutDefaultUser -> 0, preferredTestQuery -> null, properties -> {user=******, password=******}, propertyCycle -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, usesTraditionalReflectiveProxies -> false ]
+20:36:20,660 INFO  [Dialect] Using dialect: org.hibernate.dialect.HSQLDialect
+20:36:20,661 INFO  [JdbcSupportLoader] Disabling contextual LOB creation as createClob() method threw error : java.lang.reflect.InvocationTargetException
+20:36:20,662 INFO  [SettingsFactory] Database ->
+       name : HSQL Database Engine
+    version : 2.3.2
+      major : 2
+      minor : 3
+20:36:20,662 INFO  [SettingsFactory] Driver ->
+       name : HSQL Database Engine Driver
+    version : 2.3.2
+      major : 2
+      minor : 3
+20:36:20,663 INFO  [TransactionFactoryFactory] Transaction strategy: org.springframework.orm.hibernate3.SpringTransactionFactory
+20:36:20,663 INFO  [TransactionManagerLookupFactory] No TransactionManagerLookup configured (in JTA environment, use of read-write or transactional second-level cache is not recommended)
+20:36:20,664 INFO  [SettingsFactory] Automatic flush during beforeCompletion(): disabled
+20:36:20,664 INFO  [SettingsFactory] Automatic session close at end of transaction: disabled
+20:36:20,664 INFO  [SettingsFactory] JDBC batch size: 15
+20:36:20,664 INFO  [SettingsFactory] JDBC batch updates for versioned data: disabled
+20:36:20,665 INFO  [SettingsFactory] Scrollable result sets: enabled
+20:36:20,665 INFO  [SettingsFactory] JDBC3 getGeneratedKeys(): enabled
+20:36:20,665 INFO  [SettingsFactory] Connection release mode: auto
+20:36:20,666 INFO  [SettingsFactory] Default batch fetch size: 1
+20:36:20,666 INFO  [SettingsFactory] Generate SQL with comments: disabled
+20:36:20,666 INFO  [SettingsFactory] Order SQL updates by primary key: disabled
+20:36:20,666 INFO  [SettingsFactory] Order SQL inserts for batching: disabled
+20:36:20,666 INFO  [SettingsFactory] Query translator: org.hibernate.hql.ast.ASTQueryTranslatorFactory
+20:36:20,667 INFO  [ASTQueryTranslatorFactory] Using ASTQueryTranslatorFactory
+20:36:20,668 INFO  [SettingsFactory] Query language substitutions: {}
+20:36:20,668 INFO  [SettingsFactory] JPA-QL strict compliance: disabled
+20:36:20,668 INFO  [SettingsFactory] Second-level cache: enabled
+20:36:20,668 INFO  [SettingsFactory] Query cache: disabled
+20:36:20,670 INFO  [SettingsFactory] Cache region factory : org.hibernate.cache.impl.NoCachingRegionFactory
+20:36:20,670 INFO  [SettingsFactory] Optimize cache for minimal puts: disabled
+20:36:20,671 INFO  [SettingsFactory] Structured second-level cache entries: disabled
+20:36:20,671 INFO  [SettingsFactory] Echoing all SQL to stdout
+20:36:20,671 INFO  [SettingsFactory] Statistics: disabled
+20:36:20,671 INFO  [SettingsFactory] Deleted entity synthetic identifier rollback: disabled
+20:36:20,672 INFO  [SettingsFactory] Default entity-mode: pojo
+20:36:20,673 INFO  [SettingsFactory] Named query checking : enabled
+20:36:20,673 INFO  [SettingsFactory] Check Nullability in Core (should be disabled when Bean Validation is on): enabled
+20:36:20,678 INFO  [SessionFactoryImpl] building session factory
+20:36:20,679 INFO  [BasicTypeRegistry] Type registration [wrapper_materialized_blob] overrides previous : org.hibernate.type.WrappedMaterializedBlobType@44040454
+20:36:20,679 INFO  [BasicTypeRegistry] Type registration [characters_clob] overrides previous : org.hibernate.type.PrimitiveCharacterArrayClobType@65fe9e33
+20:36:20,680 INFO  [BasicTypeRegistry] Type registration [wrapper_characters_clob] overrides previous : org.hibernate.type.CharacterArrayClobType@18bc345
+20:36:20,681 INFO  [BasicTypeRegistry] Type registration [materialized_clob] overrides previous : org.hibernate.type.MaterializedClobType@42f8285e
+20:36:20,682 INFO  [BasicTypeRegistry] Type registration [materialized_blob] overrides previous : org.hibernate.type.MaterializedBlobType@26bab2f1
+20:36:20,682 INFO  [BasicTypeRegistry] Type registration [clob] overrides previous : org.hibernate.type.ClobType@3724af13
+20:36:20,683 INFO  [BasicTypeRegistry] Type registration [java.sql.Clob] overrides previous : org.hibernate.type.ClobType@3724af13
+20:36:20,683 INFO  [BasicTypeRegistry] Type registration [blob] overrides previous : org.hibernate.type.BlobType@68ead359
+20:36:20,683 INFO  [BasicTypeRegistry] Type registration [java.sql.Blob] overrides previous : org.hibernate.type.BlobType@68ead359
+20:36:20,701 INFO  [SessionFactoryObjectFactory] Not binding factory to JNDI, no JNDI name configured
+20:36:20,707 INFO  [SchemaExport] Running hbm2ddl schema export
+20:36:20,708 INFO  [SchemaExport] exporting generated schema to database
+20:36:20,714 INFO  [SchemaExport] schema export complete
+20:36:20,796 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/containers/] onto handler 'containerRestfulController'
+20:36:20,796 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/containers/{id}] onto handler 'containerRestfulController'
+20:36:20,797 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/containers/{id}.*] onto handler 'containerRestfulController'
+20:36:20,797 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/containers/{id}/] onto handler 'containerRestfulController'
+20:36:20,797 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/logs/{containerId}] onto handler 'logRestfulController'
+20:36:20,798 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/logs/{containerId}.*] onto handler 'logRestfulController'
+20:36:20,798 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/logs/{containerId}/] onto handler 'logRestfulController'
+20:36:20,799 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/metrics/thresholdStats/{hours}] onto handler 'metricRestfulController'
+20:36:20,799 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/metrics/thresholdStats/{hours}.*] onto handler 'metricRestfulController'
+20:36:20,799 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/metrics/thresholdStats/{hours}/] onto handler 'metricRestfulController'
+20:36:20,799 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/metrics/containerCounts/{hours}] onto handler 'metricRestfulController'
+20:36:20,800 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/metrics/containerCounts/{hours}.*] onto handler 'metricRestfulController'
+20:36:20,800 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/metrics/containerCounts/{hours}/] onto handler 'metricRestfulController'
+20:36:20,801 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/preferences/setAll] onto handler 'preferenceRestfulController'
+20:36:20,801 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/preferences/setAll.*] onto handler 'preferenceRestfulController'
+20:36:20,801 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/preferences/setAll/] onto handler 'preferenceRestfulController'
+20:36:20,801 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/preferences/] onto handler 'preferenceRestfulController'
+20:36:20,843 INFO  [SimpleUrlHandlerMapping] Mapped URL path [/ArmadaService] onto handler 'httpArmadaService'
+20:36:20,857 INFO  [HibernateTransactionManager] Using DataSource [com.mchange.v2.c3p0.ComboPooledDataSource [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, dataSourceName -> 1hge13898d8hnvm4pesm|108b121f, debugUnreturnedConnectionStackTraces -> false, description -> null, driverClass -> org.hsqldb.jdbcDriver, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, identityToken -> 1hge13898d8hnvm4pesm|108b121f, idleConnectionTestPeriod -> 0, initialPoolSize -> 3, jdbcUrl -> jdbc:hsqldb:mem:test, lastAcquisitionFailureDefaultUser -> null, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 6, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 3, numHelperThreads -> 3, numThreadsAwaitingCheckoutDefaultUser -> 0, preferredTestQuery -> null, properties -> {user=******, password=******}, propertyCycle -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, usesTraditionalReflectiveProxies -> false ]] of Hibernate SessionFactory for HibernateTransactionManager
+20:36:20,875 INFO  [TransactionalTestExecutionListener] Began transaction (3): transaction manager [org.springframework.orm.hibernate3.HibernateTransactionManager@308e87a1]; rollback [true]
+20:36:20,897 INFO  [TransactionalTestExecutionListener] Rolled back transaction after test execution for test context [[TestContext@5d7f1e59 testClass = ContainerDaoTest, locations = array<String>['classpath:/beans/armada-config-test.xml'], testInstance = edu.depaul.armada.dao.ContainerDaoTest@19dac2d6, testMethod = testStore@ContainerDaoTest, testException = [null]]]
+20:36:20,899 INFO  [GenericApplicationContext] Closing org.springframework.context.support.GenericApplicationContext@1b3bec6c: startup date [Mon Mar 09 20:36:20 CDT 2015]; root of context hierarchy
+20:36:20,900 INFO  [DefaultListableBeanFactory] Destroying singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@3686389: defining beans [org.springframework.aop.config.internalAutoProxyCreator,containerRestfulController,logRestfulController,metricRestfulController,preferenceRestfulController,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping#0,org.springframework.format.support.FormattingConversionServiceFactoryBean#0,org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter#0,org.springframework.web.servlet.handler.MappedInterceptor#0,org.springframework.transaction.annotation.AnnotationTransactionAttributeSource#0,org.springframework.transaction.interceptor.TransactionInterceptor#0,org.springframework.transaction.config.internalTransactionAdvisor,containerLogDao,containerDao,preferenceDao,armadaService,metricService,org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter#0,httpArmadaService,urlMapping,armadaDataSource,armadaTransactionManager,armadaSessionFactory]; root of factory hierarchy
+20:36:20,902 INFO  [LocalSessionFactoryBean] Closing Hibernate SessionFactory
+20:36:20,902 INFO  [SessionFactoryImpl] closing
+20:36:20,905 INFO  [XmlBeanDefinitionReader] Loading XML bean definitions from class path resource [beans/armada-config-test.xml]
+20:36:20,977 INFO  [XmlBeanDefinitionReader] Loading XML bean definitions from class path resource [beans/armada-dao.xml]
+20:36:21,012 INFO  [XmlBeanDefinitionReader] Loading XML bean definitions from class path resource [beans/armada-service.xml]
+20:36:21,031 INFO  [XmlBeanDefinitionReader] Loading XML bean definitions from class path resource [beans/armada-servlet.xml]
+20:36:21,051 INFO  [GenericApplicationContext] Refreshing org.springframework.context.support.GenericApplicationContext@44bbb7c6: startup date [Mon Mar 09 20:36:21 CDT 2015]; root of context hierarchy
+20:36:21,092 INFO  [DefaultListableBeanFactory] Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@5ab7ac02: defining beans [org.springframework.aop.config.internalAutoProxyCreator,containerRestfulController,logRestfulController,metricRestfulController,preferenceRestfulController,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping#0,org.springframework.format.support.FormattingConversionServiceFactoryBean#0,org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter#0,org.springframework.web.servlet.handler.MappedInterceptor#0,org.springframework.transaction.annotation.AnnotationTransactionAttributeSource#0,org.springframework.transaction.interceptor.TransactionInterceptor#0,org.springframework.transaction.config.internalTransactionAdvisor,containerLogDao,containerDao,preferenceDao,armadaService,metricService,org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter#0,httpArmadaService,urlMapping,armadaDataSource,armadaTransactionManager,armadaSessionFactory]; root of factory hierarchy
+20:36:21,133 WARN  [DTDEntityResolver] recognized obsolete hibernate namespace http://hibernate.sourceforge.net/. Use namespace http://www.hibernate.org/dtd/ instead. Refer to Hibernate 3.6 Migration Guide!
+20:36:21,148 WARN  [DTDEntityResolver] recognized obsolete hibernate namespace http://hibernate.sourceforge.net/. Use namespace http://www.hibernate.org/dtd/ instead. Refer to Hibernate 3.6 Migration Guide!
+20:36:21,176 WARN  [DTDEntityResolver] recognized obsolete hibernate namespace http://hibernate.sourceforge.net/. Use namespace http://www.hibernate.org/dtd/ instead. Refer to Hibernate 3.6 Migration Guide!
+20:36:21,185 INFO  [HbmBinder] Mapping class: edu.depaul.armada.domain.Container -> container
+20:36:21,186 INFO  [HbmBinder] Mapping class: edu.depaul.armada.domain.ContainerLog -> container_log
+20:36:21,189 INFO  [HbmBinder] Mapping class: edu.depaul.armada.domain.Preference -> preferences
+20:36:21,189 INFO  [HbmBinder] Mapping collection: edu.depaul.armada.domain.Container.logs -> container_log
+20:36:21,190 INFO  [Configuration] Hibernate Validator not found: ignoring
+20:36:21,191 INFO  [LocalSessionFactoryBean] Building new Hibernate SessionFactory
+20:36:21,195 INFO  [HibernateSearchEventListenerRegister] Unable to find org.hibernate.search.event.FullTextIndexEventListener on the classpath. Hibernate Search is not enabled.
+20:36:21,196 INFO  [ConnectionProviderFactory] Initializing connection provider: org.springframework.orm.hibernate3.LocalDataSourceConnectionProvider
+20:36:21,213 INFO  [AbstractPoolBackedDataSource] Initializing c3p0 pool... com.mchange.v2.c3p0.ComboPooledDataSource [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, dataSourceName -> 1hge13898d8hnvm4pesm|1d226f27, debugUnreturnedConnectionStackTraces -> false, description -> null, driverClass -> org.hsqldb.jdbcDriver, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, identityToken -> 1hge13898d8hnvm4pesm|1d226f27, idleConnectionTestPeriod -> 0, initialPoolSize -> 3, jdbcUrl -> jdbc:hsqldb:mem:test, lastAcquisitionFailureDefaultUser -> null, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 6, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 3, numHelperThreads -> 3, numThreadsAwaitingCheckoutDefaultUser -> 0, preferredTestQuery -> null, properties -> {user=******, password=******}, propertyCycle -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, usesTraditionalReflectiveProxies -> false ]
+20:36:21,214 INFO  [Dialect] Using dialect: org.hibernate.dialect.HSQLDialect
+20:36:21,215 INFO  [JdbcSupportLoader] Disabling contextual LOB creation as createClob() method threw error : java.lang.reflect.InvocationTargetException
+20:36:21,216 INFO  [SettingsFactory] Database ->
+       name : HSQL Database Engine
+    version : 2.3.2
+      major : 2
+      minor : 3
+20:36:21,217 INFO  [SettingsFactory] Driver ->
+       name : HSQL Database Engine Driver
+    version : 2.3.2
+      major : 2
+      minor : 3
+20:36:21,217 INFO  [TransactionFactoryFactory] Transaction strategy: org.springframework.orm.hibernate3.SpringTransactionFactory
+20:36:21,217 INFO  [TransactionManagerLookupFactory] No TransactionManagerLookup configured (in JTA environment, use of read-write or transactional second-level cache is not recommended)
+20:36:21,217 INFO  [SettingsFactory] Automatic flush during beforeCompletion(): disabled
+20:36:21,217 INFO  [SettingsFactory] Automatic session close at end of transaction: disabled
+20:36:21,218 INFO  [SettingsFactory] JDBC batch size: 15
+20:36:21,218 INFO  [SettingsFactory] JDBC batch updates for versioned data: disabled
+20:36:21,219 INFO  [SettingsFactory] Scrollable result sets: enabled
+20:36:21,219 INFO  [SettingsFactory] JDBC3 getGeneratedKeys(): enabled
+20:36:21,219 INFO  [SettingsFactory] Connection release mode: auto
+20:36:21,219 INFO  [SettingsFactory] Default batch fetch size: 1
+20:36:21,219 INFO  [SettingsFactory] Generate SQL with comments: disabled
+20:36:21,221 INFO  [SettingsFactory] Order SQL updates by primary key: disabled
+20:36:21,221 INFO  [SettingsFactory] Order SQL inserts for batching: disabled
+20:36:21,221 INFO  [SettingsFactory] Query translator: org.hibernate.hql.ast.ASTQueryTranslatorFactory
+20:36:21,221 INFO  [ASTQueryTranslatorFactory] Using ASTQueryTranslatorFactory
+20:36:21,221 INFO  [SettingsFactory] Query language substitutions: {}
+20:36:21,222 INFO  [SettingsFactory] JPA-QL strict compliance: disabled
+20:36:21,222 INFO  [SettingsFactory] Second-level cache: enabled
+20:36:21,224 INFO  [SettingsFactory] Query cache: disabled
+20:36:21,224 INFO  [SettingsFactory] Cache region factory : org.hibernate.cache.impl.NoCachingRegionFactory
+20:36:21,224 INFO  [SettingsFactory] Optimize cache for minimal puts: disabled
+20:36:21,225 INFO  [SettingsFactory] Structured second-level cache entries: disabled
+20:36:21,225 INFO  [SettingsFactory] Echoing all SQL to stdout
+20:36:21,226 INFO  [SettingsFactory] Statistics: disabled
+20:36:21,226 INFO  [SettingsFactory] Deleted entity synthetic identifier rollback: disabled
+20:36:21,226 INFO  [SettingsFactory] Default entity-mode: pojo
+20:36:21,226 INFO  [SettingsFactory] Named query checking : enabled
+20:36:21,226 INFO  [SettingsFactory] Check Nullability in Core (should be disabled when Bean Validation is on): enabled
+20:36:21,232 INFO  [SessionFactoryImpl] building session factory
+20:36:21,233 INFO  [BasicTypeRegistry] Type registration [wrapper_materialized_blob] overrides previous : org.hibernate.type.WrappedMaterializedBlobType@44040454
+20:36:21,234 INFO  [BasicTypeRegistry] Type registration [characters_clob] overrides previous : org.hibernate.type.PrimitiveCharacterArrayClobType@65fe9e33
+20:36:21,235 INFO  [BasicTypeRegistry] Type registration [wrapper_characters_clob] overrides previous : org.hibernate.type.CharacterArrayClobType@18bc345
+20:36:21,235 INFO  [BasicTypeRegistry] Type registration [materialized_clob] overrides previous : org.hibernate.type.MaterializedClobType@42f8285e
+20:36:21,235 INFO  [BasicTypeRegistry] Type registration [materialized_blob] overrides previous : org.hibernate.type.MaterializedBlobType@26bab2f1
+20:36:21,235 INFO  [BasicTypeRegistry] Type registration [clob] overrides previous : org.hibernate.type.ClobType@3724af13
+20:36:21,235 INFO  [BasicTypeRegistry] Type registration [java.sql.Clob] overrides previous : org.hibernate.type.ClobType@3724af13
+20:36:21,238 INFO  [BasicTypeRegistry] Type registration [blob] overrides previous : org.hibernate.type.BlobType@68ead359
+20:36:21,239 INFO  [BasicTypeRegistry] Type registration [java.sql.Blob] overrides previous : org.hibernate.type.BlobType@68ead359
+20:36:21,255 INFO  [SessionFactoryObjectFactory] Not binding factory to JNDI, no JNDI name configured
+20:36:21,260 INFO  [SchemaExport] Running hbm2ddl schema export
+20:36:21,262 INFO  [SchemaExport] exporting generated schema to database
+20:36:21,273 INFO  [SchemaExport] schema export complete
+20:36:21,358 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/containers/] onto handler 'containerRestfulController'
+20:36:21,359 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/containers/{id}] onto handler 'containerRestfulController'
+20:36:21,359 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/containers/{id}.*] onto handler 'containerRestfulController'
+20:36:21,359 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/containers/{id}/] onto handler 'containerRestfulController'
+20:36:21,360 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/logs/{containerId}] onto handler 'logRestfulController'
+20:36:21,360 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/logs/{containerId}.*] onto handler 'logRestfulController'
+20:36:21,360 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/logs/{containerId}/] onto handler 'logRestfulController'
+20:36:21,361 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/metrics/thresholdStats/{hours}] onto handler 'metricRestfulController'
+20:36:21,361 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/metrics/thresholdStats/{hours}.*] onto handler 'metricRestfulController'
+20:36:21,361 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/metrics/thresholdStats/{hours}/] onto handler 'metricRestfulController'
+20:36:21,361 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/metrics/containerCounts/{hours}] onto handler 'metricRestfulController'
+20:36:21,362 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/metrics/containerCounts/{hours}.*] onto handler 'metricRestfulController'
+20:36:21,362 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/metrics/containerCounts/{hours}/] onto handler 'metricRestfulController'
+20:36:21,363 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/preferences/setAll] onto handler 'preferenceRestfulController'
+20:36:21,363 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/preferences/setAll.*] onto handler 'preferenceRestfulController'
+20:36:21,364 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/preferences/setAll/] onto handler 'preferenceRestfulController'
+20:36:21,364 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/preferences/] onto handler 'preferenceRestfulController'
+20:36:21,401 INFO  [SimpleUrlHandlerMapping] Mapped URL path [/ArmadaService] onto handler 'httpArmadaService'
+20:36:21,416 INFO  [HibernateTransactionManager] Using DataSource [com.mchange.v2.c3p0.ComboPooledDataSource [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, dataSourceName -> 1hge13898d8hnvm4pesm|1d226f27, debugUnreturnedConnectionStackTraces -> false, description -> null, driverClass -> org.hsqldb.jdbcDriver, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, identityToken -> 1hge13898d8hnvm4pesm|1d226f27, idleConnectionTestPeriod -> 0, initialPoolSize -> 3, jdbcUrl -> jdbc:hsqldb:mem:test, lastAcquisitionFailureDefaultUser -> null, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 6, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 3, numHelperThreads -> 3, numThreadsAwaitingCheckoutDefaultUser -> 0, preferredTestQuery -> null, properties -> {user=******, password=******}, propertyCycle -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, usesTraditionalReflectiveProxies -> false ]] of Hibernate SessionFactory for HibernateTransactionManager
+20:36:21,433 INFO  [TransactionalTestExecutionListener] Began transaction (4): transaction manager [org.springframework.orm.hibernate3.HibernateTransactionManager@5e3d2765]; rollback [true]
+20:36:21,463 INFO  [TransactionalTestExecutionListener] Rolled back transaction after test execution for test context [[TestContext@5d7f1e59 testClass = ContainerDaoTest, locations = array<String>['classpath:/beans/armada-config-test.xml'], testInstance = edu.depaul.armada.dao.ContainerDaoTest@1584c019, testMethod = testGetAll@ContainerDaoTest, testException = [null]]]
+20:36:21,464 INFO  [GenericApplicationContext] Closing org.springframework.context.support.GenericApplicationContext@44bbb7c6: startup date [Mon Mar 09 20:36:21 CDT 2015]; root of context hierarchy
+20:36:21,465 INFO  [DefaultListableBeanFactory] Destroying singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@5ab7ac02: defining beans [org.springframework.aop.config.internalAutoProxyCreator,containerRestfulController,logRestfulController,metricRestfulController,preferenceRestfulController,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping#0,org.springframework.format.support.FormattingConversionServiceFactoryBean#0,org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter#0,org.springframework.web.servlet.handler.MappedInterceptor#0,org.springframework.transaction.annotation.AnnotationTransactionAttributeSource#0,org.springframework.transaction.interceptor.TransactionInterceptor#0,org.springframework.transaction.config.internalTransactionAdvisor,containerLogDao,containerDao,preferenceDao,armadaService,metricService,org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter#0,httpArmadaService,urlMapping,armadaDataSource,armadaTransactionManager,armadaSessionFactory]; root of factory hierarchy
+20:36:21,466 INFO  [LocalSessionFactoryBean] Closing Hibernate SessionFactory
+20:36:21,466 INFO  [SessionFactoryImpl] closing
+20:36:21,468 INFO  [XmlBeanDefinitionReader] Loading XML bean definitions from class path resource [beans/armada-config-test.xml]
+20:36:21,526 INFO  [XmlBeanDefinitionReader] Loading XML bean definitions from class path resource [beans/armada-dao.xml]
+20:36:21,553 INFO  [XmlBeanDefinitionReader] Loading XML bean definitions from class path resource [beans/armada-service.xml]
+20:36:21,570 INFO  [XmlBeanDefinitionReader] Loading XML bean definitions from class path resource [beans/armada-servlet.xml]
+20:36:21,589 INFO  [GenericApplicationContext] Refreshing org.springframework.context.support.GenericApplicationContext@74d22ddd: startup date [Mon Mar 09 20:36:21 CDT 2015]; root of context hierarchy
+20:36:21,616 INFO  [DefaultListableBeanFactory] Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@577f9dfd: defining beans [org.springframework.aop.config.internalAutoProxyCreator,containerRestfulController,logRestfulController,metricRestfulController,preferenceRestfulController,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping#0,org.springframework.format.support.FormattingConversionServiceFactoryBean#0,org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter#0,org.springframework.web.servlet.handler.MappedInterceptor#0,org.springframework.transaction.annotation.AnnotationTransactionAttributeSource#0,org.springframework.transaction.interceptor.TransactionInterceptor#0,org.springframework.transaction.config.internalTransactionAdvisor,containerLogDao,containerDao,preferenceDao,armadaService,metricService,org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter#0,httpArmadaService,urlMapping,armadaDataSource,armadaTransactionManager,armadaSessionFactory]; root of factory hierarchy
+20:36:21,662 WARN  [DTDEntityResolver] recognized obsolete hibernate namespace http://hibernate.sourceforge.net/. Use namespace http://www.hibernate.org/dtd/ instead. Refer to Hibernate 3.6 Migration Guide!
+20:36:21,677 WARN  [DTDEntityResolver] recognized obsolete hibernate namespace http://hibernate.sourceforge.net/. Use namespace http://www.hibernate.org/dtd/ instead. Refer to Hibernate 3.6 Migration Guide!
+20:36:21,693 WARN  [DTDEntityResolver] recognized obsolete hibernate namespace http://hibernate.sourceforge.net/. Use namespace http://www.hibernate.org/dtd/ instead. Refer to Hibernate 3.6 Migration Guide!
+20:36:21,706 INFO  [HbmBinder] Mapping class: edu.depaul.armada.domain.Container -> container
+20:36:21,713 INFO  [HbmBinder] Mapping class: edu.depaul.armada.domain.ContainerLog -> container_log
+20:36:21,714 INFO  [HbmBinder] Mapping class: edu.depaul.armada.domain.Preference -> preferences
+20:36:21,715 INFO  [HbmBinder] Mapping collection: edu.depaul.armada.domain.Container.logs -> container_log
+20:36:21,716 INFO  [Configuration] Hibernate Validator not found: ignoring
+20:36:21,717 INFO  [LocalSessionFactoryBean] Building new Hibernate SessionFactory
+20:36:21,722 INFO  [HibernateSearchEventListenerRegister] Unable to find org.hibernate.search.event.FullTextIndexEventListener on the classpath. Hibernate Search is not enabled.
+20:36:21,724 INFO  [ConnectionProviderFactory] Initializing connection provider: org.springframework.orm.hibernate3.LocalDataSourceConnectionProvider
+20:36:21,747 INFO  [AbstractPoolBackedDataSource] Initializing c3p0 pool... com.mchange.v2.c3p0.ComboPooledDataSource [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, dataSourceName -> 1hge13898d8hnvm4pesm|41143873, debugUnreturnedConnectionStackTraces -> false, description -> null, driverClass -> org.hsqldb.jdbcDriver, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, identityToken -> 1hge13898d8hnvm4pesm|41143873, idleConnectionTestPeriod -> 0, initialPoolSize -> 3, jdbcUrl -> jdbc:hsqldb:mem:test, lastAcquisitionFailureDefaultUser -> null, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 6, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 3, numHelperThreads -> 3, numThreadsAwaitingCheckoutDefaultUser -> 0, preferredTestQuery -> null, properties -> {user=******, password=******}, propertyCycle -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, usesTraditionalReflectiveProxies -> false ]
+20:36:21,750 INFO  [Dialect] Using dialect: org.hibernate.dialect.HSQLDialect
+20:36:21,751 INFO  [JdbcSupportLoader] Disabling contextual LOB creation as createClob() method threw error : java.lang.reflect.InvocationTargetException
+20:36:21,758 INFO  [SettingsFactory] Database ->
+       name : HSQL Database Engine
+    version : 2.3.2
+      major : 2
+      minor : 3
+20:36:21,761 INFO  [SettingsFactory] Driver ->
+       name : HSQL Database Engine Driver
+    version : 2.3.2
+      major : 2
+      minor : 3
+20:36:21,764 INFO  [TransactionFactoryFactory] Transaction strategy: org.springframework.orm.hibernate3.SpringTransactionFactory
+20:36:21,765 INFO  [TransactionManagerLookupFactory] No TransactionManagerLookup configured (in JTA environment, use of read-write or transactional second-level cache is not recommended)
+20:36:21,765 INFO  [SettingsFactory] Automatic flush during beforeCompletion(): disabled
+20:36:21,765 INFO  [SettingsFactory] Automatic session close at end of transaction: disabled
+20:36:21,765 INFO  [SettingsFactory] JDBC batch size: 15
+20:36:21,766 INFO  [SettingsFactory] JDBC batch updates for versioned data: disabled
+20:36:21,773 INFO  [SettingsFactory] Scrollable result sets: enabled
+20:36:21,793 INFO  [SettingsFactory] JDBC3 getGeneratedKeys(): enabled
+20:36:21,793 INFO  [SettingsFactory] Connection release mode: auto
+20:36:21,793 INFO  [SettingsFactory] Default batch fetch size: 1
+20:36:21,793 INFO  [SettingsFactory] Generate SQL with comments: disabled
+20:36:21,794 INFO  [SettingsFactory] Order SQL updates by primary key: disabled
+20:36:21,794 INFO  [SettingsFactory] Order SQL inserts for batching: disabled
+20:36:21,794 INFO  [SettingsFactory] Query translator: org.hibernate.hql.ast.ASTQueryTranslatorFactory
+20:36:21,794 INFO  [ASTQueryTranslatorFactory] Using ASTQueryTranslatorFactory
+20:36:21,795 INFO  [SettingsFactory] Query language substitutions: {}
+20:36:21,795 INFO  [SettingsFactory] JPA-QL strict compliance: disabled
+20:36:21,795 INFO  [SettingsFactory] Second-level cache: enabled
+20:36:21,795 INFO  [SettingsFactory] Query cache: disabled
+20:36:21,795 INFO  [SettingsFactory] Cache region factory : org.hibernate.cache.impl.NoCachingRegionFactory
+20:36:21,795 INFO  [SettingsFactory] Optimize cache for minimal puts: disabled
+20:36:21,796 INFO  [SettingsFactory] Structured second-level cache entries: disabled
+20:36:21,796 INFO  [SettingsFactory] Echoing all SQL to stdout
+20:36:21,796 INFO  [SettingsFactory] Statistics: disabled
+20:36:21,796 INFO  [SettingsFactory] Deleted entity synthetic identifier rollback: disabled
+20:36:21,796 INFO  [SettingsFactory] Default entity-mode: pojo
+20:36:21,796 INFO  [SettingsFactory] Named query checking : enabled
+20:36:21,796 INFO  [SettingsFactory] Check Nullability in Core (should be disabled when Bean Validation is on): enabled
+20:36:21,804 INFO  [SessionFactoryImpl] building session factory
+20:36:21,806 INFO  [BasicTypeRegistry] Type registration [wrapper_materialized_blob] overrides previous : org.hibernate.type.WrappedMaterializedBlobType@44040454
+20:36:21,808 INFO  [BasicTypeRegistry] Type registration [characters_clob] overrides previous : org.hibernate.type.PrimitiveCharacterArrayClobType@65fe9e33
+20:36:21,809 INFO  [BasicTypeRegistry] Type registration [wrapper_characters_clob] overrides previous : org.hibernate.type.CharacterArrayClobType@18bc345
+20:36:21,809 INFO  [BasicTypeRegistry] Type registration [materialized_clob] overrides previous : org.hibernate.type.MaterializedClobType@42f8285e
+20:36:21,811 INFO  [BasicTypeRegistry] Type registration [materialized_blob] overrides previous : org.hibernate.type.MaterializedBlobType@26bab2f1
+20:36:21,811 INFO  [BasicTypeRegistry] Type registration [clob] overrides previous : org.hibernate.type.ClobType@3724af13
+20:36:21,811 INFO  [BasicTypeRegistry] Type registration [java.sql.Clob] overrides previous : org.hibernate.type.ClobType@3724af13
+20:36:21,812 INFO  [BasicTypeRegistry] Type registration [blob] overrides previous : org.hibernate.type.BlobType@68ead359
+20:36:21,812 INFO  [BasicTypeRegistry] Type registration [java.sql.Blob] overrides previous : org.hibernate.type.BlobType@68ead359
+20:36:21,843 INFO  [SessionFactoryObjectFactory] Not binding factory to JNDI, no JNDI name configured
+20:36:21,848 INFO  [SchemaExport] Running hbm2ddl schema export
+20:36:21,850 INFO  [SchemaExport] exporting generated schema to database
+20:36:21,858 INFO  [SchemaExport] schema export complete
+20:36:21,939 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/containers/] onto handler 'containerRestfulController'
+20:36:21,940 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/containers/{id}] onto handler 'containerRestfulController'
+20:36:21,940 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/containers/{id}.*] onto handler 'containerRestfulController'
+20:36:21,940 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/containers/{id}/] onto handler 'containerRestfulController'
+20:36:21,941 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/logs/{containerId}] onto handler 'logRestfulController'
+20:36:21,941 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/logs/{containerId}.*] onto handler 'logRestfulController'
+20:36:21,941 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/logs/{containerId}/] onto handler 'logRestfulController'
+20:36:21,942 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/metrics/thresholdStats/{hours}] onto handler 'metricRestfulController'
+20:36:21,942 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/metrics/thresholdStats/{hours}.*] onto handler 'metricRestfulController'
+20:36:21,943 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/metrics/thresholdStats/{hours}/] onto handler 'metricRestfulController'
+20:36:21,943 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/metrics/containerCounts/{hours}] onto handler 'metricRestfulController'
+20:36:21,943 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/metrics/containerCounts/{hours}.*] onto handler 'metricRestfulController'
+20:36:21,945 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/metrics/containerCounts/{hours}/] onto handler 'metricRestfulController'
+20:36:21,946 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/preferences/setAll] onto handler 'preferenceRestfulController'
+20:36:21,949 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/preferences/setAll.*] onto handler 'preferenceRestfulController'
+20:36:21,949 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/preferences/setAll/] onto handler 'preferenceRestfulController'
+20:36:21,950 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/preferences/] onto handler 'preferenceRestfulController'
+20:36:22,023 INFO  [SimpleUrlHandlerMapping] Mapped URL path [/ArmadaService] onto handler 'httpArmadaService'
+20:36:22,043 INFO  [HibernateTransactionManager] Using DataSource [com.mchange.v2.c3p0.ComboPooledDataSource [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, dataSourceName -> 1hge13898d8hnvm4pesm|41143873, debugUnreturnedConnectionStackTraces -> false, description -> null, driverClass -> org.hsqldb.jdbcDriver, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, identityToken -> 1hge13898d8hnvm4pesm|41143873, idleConnectionTestPeriod -> 0, initialPoolSize -> 3, jdbcUrl -> jdbc:hsqldb:mem:test, lastAcquisitionFailureDefaultUser -> null, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 6, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 3, numHelperThreads -> 3, numThreadsAwaitingCheckoutDefaultUser -> 0, preferredTestQuery -> null, properties -> {user=******, password=******}, propertyCycle -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, usesTraditionalReflectiveProxies -> false ]] of Hibernate SessionFactory for HibernateTransactionManager
+20:36:22,060 INFO  [TransactionalTestExecutionListener] Began transaction (5): transaction manager [org.springframework.orm.hibernate3.HibernateTransactionManager@31940704]; rollback [true]
+20:36:22,090 INFO  [TransactionalTestExecutionListener] Rolled back transaction after test execution for test context [[TestContext@5d7f1e59 testClass = ContainerDaoTest, locations = array<String>['classpath:/beans/armada-config-test.xml'], testInstance = edu.depaul.armada.dao.ContainerDaoTest@2c9cafa5, testMethod = testFindWithContainerId@ContainerDaoTest, testException = [null]]]
+20:36:22,095 INFO  [TransactionalTestExecutionListener] Began transaction (6): transaction manager [org.springframework.orm.hibernate3.HibernateTransactionManager@31940704]; rollback [true]
+20:36:22,111 INFO  [TransactionalTestExecutionListener] Rolled back transaction after test execution for test context [[TestContext@5d7f1e59 testClass = ContainerDaoTest, locations = array<String>['classpath:/beans/armada-config-test.xml'], testInstance = edu.depaul.armada.dao.ContainerDaoTest@6335f04a, testMethod = testStoreWithChild@ContainerDaoTest, testException = [null]]]
+20:36:22,114 INFO  [TransactionalTestExecutionListener] Began transaction (7): transaction manager [org.springframework.orm.hibernate3.HibernateTransactionManager@31940704]; rollback [true]
+20:36:22,900 INFO  [TransactionalTestExecutionListener] Rolled back transaction after test execution for test context [[TestContext@5d7f1e59 testClass = ContainerDaoTest, locations = array<String>['classpath:/beans/armada-config-test.xml'], testInstance = edu.depaul.armada.dao.ContainerDaoTest@7491cdae, testMethod = testGetDashboardContainers_long@ContainerDaoTest, testException = [null]]]
+20:36:22,901 INFO  [TestContextManager] @TestExecutionListeners is not present for class [class edu.depaul.armada.dao.ContainerLogDaoTest]: using defaults.
+20:36:22,922 INFO  [TransactionalTestExecutionListener] Began transaction (1): transaction manager [org.springframework.orm.hibernate3.HibernateTransactionManager@31940704]; rollback [true]
+20:36:22,938 INFO  [TransactionalTestExecutionListener] Rolled back transaction after test execution for test context [[TestContext@33239d72 testClass = ContainerLogDaoTest, locations = array<String>['classpath:/beans/armada-config-test.xml'], testInstance = edu.depaul.armada.dao.ContainerLogDaoTest@19c24321, testMethod = testGetContainerLogAvgMemUsage_no_matching_container_log@ContainerLogDaoTest, testException = [null]]]
+20:36:22,940 INFO  [TransactionalTestExecutionListener] Began transaction (2): transaction manager [org.springframework.orm.hibernate3.HibernateTransactionManager@31940704]; rollback [true]
+20:36:22,957 INFO  [TransactionalTestExecutionListener] Rolled back transaction after test execution for test context [[TestContext@33239d72 testClass = ContainerLogDaoTest, locations = array<String>['classpath:/beans/armada-config-test.xml'], testInstance = edu.depaul.armada.dao.ContainerLogDaoTest@16cbba0f, testMethod = testGetContainerLogAvgMemUsage_matching_container_logs@ContainerLogDaoTest, testException = [null]]]
+20:36:22,962 INFO  [TransactionalTestExecutionListener] Began transaction (3): transaction manager [org.springframework.orm.hibernate3.HibernateTransactionManager@31940704]; rollback [true]
+20:36:22,969 INFO  [TransactionalTestExecutionListener] Rolled back transaction after test execution for test context [[TestContext@33239d72 testClass = ContainerLogDaoTest, locations = array<String>['classpath:/beans/armada-config-test.xml'], testInstance = edu.depaul.armada.dao.ContainerLogDaoTest@495f3965, testMethod = testFindWithContainerId@ContainerLogDaoTest, testException = [null]]]
+20:36:22,972 INFO  [TestContextManager] @TestExecutionListeners is not present for class [class edu.depaul.armada.dao.PreferenceDaoTest]: using defaults.
+20:36:22,987 INFO  [TransactionalTestExecutionListener] Began transaction (1): transaction manager [org.springframework.orm.hibernate3.HibernateTransactionManager@31940704]; rollback [true]
+20:36:23,001 INFO  [TransactionalTestExecutionListener] Rolled back transaction after test execution for test context [[TestContext@74faf450 testClass = PreferenceDaoTest, locations = array<String>['classpath:/beans/armada-config-test.xml'], testInstance = edu.depaul.armada.dao.PreferenceDaoTest@54c37dab, testMethod = testStorePreference@PreferenceDaoTest, testException = [null]]]
+20:36:23,004 INFO  [TransactionalTestExecutionListener] Began transaction (2): transaction manager [org.springframework.orm.hibernate3.HibernateTransactionManager@31940704]; rollback [true]
+20:36:23,007 INFO  [TransactionalTestExecutionListener] Rolled back transaction after test execution for test context [[TestContext@74faf450 testClass = PreferenceDaoTest, locations = array<String>['classpath:/beans/armada-config-test.xml'], testInstance = edu.depaul.armada.dao.PreferenceDaoTest@12dc702b, testMethod = testGetAll@PreferenceDaoTest, testException = [null]]]
+20:36:23,014 INFO  [GenericApplicationContext] Closing org.springframework.context.support.GenericApplicationContext@74d22ddd: startup date [Mon Mar 09 20:36:21 CDT 2015]; root of context hierarchy
+20:36:23,015 INFO  [DefaultListableBeanFactory] Destroying singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@577f9dfd: defining beans [org.springframework.aop.config.internalAutoProxyCreator,containerRestfulController,logRestfulController,metricRestfulController,preferenceRestfulController,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping#0,org.springframework.format.support.FormattingConversionServiceFactoryBean#0,org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter#0,org.springframework.web.servlet.handler.MappedInterceptor#0,org.springframework.transaction.annotation.AnnotationTransactionAttributeSource#0,org.springframework.transaction.interceptor.TransactionInterceptor#0,org.springframework.transaction.config.internalTransactionAdvisor,containerLogDao,containerDao,preferenceDao,armadaService,metricService,org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter#0,httpArmadaService,urlMapping,armadaDataSource,armadaTransactionManager,armadaSessionFactory]; root of factory hierarchy
+20:36:23,019 INFO  [LocalSessionFactoryBean] Closing Hibernate SessionFactory
+20:36:23,019 INFO  [SessionFactoryImpl] closing

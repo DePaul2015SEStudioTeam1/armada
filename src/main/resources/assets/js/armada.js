@@ -2,8 +2,6 @@
  * Holds functionality of the armada dashboard
  */
 $(document).ready(function() {
-	
-	const HOST_IP = "140.192.249.16";
 
 	$(barChart).ready(loadBarChartData);
 	$(pieChart).ready(loadPieChartData);
@@ -35,9 +33,9 @@ $(document).ready(function() {
 	var purple = "rgba(176,224,230, 1)";
 	var purpleTrans = "rgba(176,224,230, 0.7)";
 	
-	var preferencesREST = "http://" + HOST_IP + ":8083/preferences/";
-	var metricREST = "http://" + HOST_IP + ":8083/metrics/thresholdStats/";
-	var containerCountREST = "http://" + HOST_IP + ":8083/metrics/containerCounts/";
+	var preferencesREST = "/preferences/";
+	var metricREST = "/metrics/thresholdStats/";
+	var containerCountREST = "/metrics/containerCounts/";
 	
 	/*
 	 * Sets the current data
@@ -187,7 +185,7 @@ $(document).ready(function() {
 		"cache":false,
 		"white-space":"wrap",
 		"lengthMenu":[[ 10, 25, 50, -1 ], [ 10, 25, 50, "All" ]],
-		"ajax":{ url:"http://" + HOST_IP + ":8083/containers/", dataSrc:"" },
+		"ajax":{ url:"/containers/", dataSrc:"" },
 		"columns":[{"data":"name"}, 
 		           {"data":"cpuUsed"}, 
 		           {"data":"cpuTotal"}, 
@@ -313,7 +311,7 @@ $(document).ready(function() {
 		var diskChartContext = document.getElementById("diskChart").getContext("2d");
 		var diskChart = new Chart(diskChartContext).Line(diskChartData, options);
 		
-		var logsREST = "http://" + HOST_IP + ":8083/logs/" + cId;
+		var logsREST = "/logs/" + cId;
 		$.get(logsREST).done(function(data) {
 			$.each(data, function(index) {
 				var temp = data[index];
@@ -337,7 +335,7 @@ $(document).ready(function() {
 		event.preventDefault();
 		console.log(JSON.stringify($('#settingsForm').serializeArray()));
 		$.ajax({type : "POST",
-				url : "http://" + HOST_IP + ":8083/preferences/setAll/",
+				url : "/preferences/setAll/",
 				data : JSON.stringify($('#settingsForm').serializeArray()),
 					   dataType : 'json',
 					   contentType : 'application/json; charset=utf-8',
