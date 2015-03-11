@@ -19,52 +19,61 @@
           <a id="forkme_banner" href="https://github.com/DePaul2015SEStudioTeam1/armada">View on GitHub</a>
 
           <h1 id="project_title">Armada</h1>
-          <h2 id="project_tagline">Application that monitors and manages docker containers.</h2>
+          <h2 id="project_tagline">Application that monitors docker containers.</h2>
 
-            <section id="downloads">
-              <a class="zip_download_link" href="/bin/armada.jar">Download armada as a jar file</a>
-              <a class="zip_download_link" href="/bin/agent.jar">Download the agent as a jar file</a>
-            </section>
+
         </header>
     </div>
 
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
-        <h3>
-<a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span class="octicon octicon-link"></span></a>Welcome to Armada.</h3>
+        <h3>Welcome to Armada.</h3>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+        <p>Armada is an open-source project released under the <a href="http://opensource.org/licenses/MIT">MIT license</a>. It is a Spring/Hibernate based project that monitors and manages your docker containers.</p>
+        <p>Armada has two main components: core "Armada" and the "Agent(s)".</p
+        <p>Armada runs as a deployable Jetty jar, that wraps a spring based service for collecting container log data from different Agents. Your Agents will run locally on whichever server you wish to track containers on.</p>
+        <p>Armada will consume data from the Agents, storing them in a MySQL database, and provides an operations API for a Javascript front end, currently included as well in the Jetty server. </p>
+        <p>The Armada front end can be accessed at localhost:8083 and features a dashboard showing active containers across all your environments and real-time statistics that display CPU, memory and disk usage for each container.</p>
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
+<h3>How to Deploy</h3>
+
+<p>In order to use armada you will have to download the <a href="/bin/armada.jar">armada.jar</a> and the <a href="/bin/agent.jar">agent.jar</a></p>
+<p>Armada should be copied to the machine that will act as the server and a central location that will collect data fromt eh agents.</p>
+<p>Agents should be deployed on all the machines that are running docker containers</p>
+<p>Beside armada.jar and agent.jar you will also need to setup a <a href="http://www.mysql.com">mysql</a> database. You will need to create a schema called "armada" and a user "armada" with a password "armada". This user should have permissions to access the "armada" schema. Schema setup will occur automatically when you first start armada.</p>
+<p>The other tool that you will need to deploy is <a href="https://github.com/google/cadvisor">cAdvisor</a>. cAdvisor is used by the agent to collect metrics from the docker containers.</p>
+
+<p>Armada can be started by simply invoking:</p>
+<pre><code>$ java -jar armada.jar & 
 </code></pre>
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+<p>Agents can be started by invoking:</p>
+<pre><code>$ java -jar agent.jar http://armada:8083/ 
+  http://cadvisor:8890/api/v1.2/docker & 
+</code></pre>
 
-<h3>
-<a id="designer-templates" class="anchor" href="#designer-templates" aria-hidden="true"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
+<h3>Documentation and Github Repos</h3>
+<ul>
+  <li><a href="/documentations/index.html">API JavaDocs</a></li>
+  <li><a href="https://github.com/DePaul2015SEStudioTeam1/armada/">Armada Repo</a></li>
+  <li><a href="https://github.com/DePaul2015SEStudioTeam1/agent/">Agent Repo</a></li>
+  <li><a href="https://github.com/DePaul2015SEStudioTeam1/armada-api/">Armada API Repo</a></li>
+  <li><a href="https://github.com/DePaul2015SEStudioTeam1/agent-api/">Agent API Repo</a></li>
+  <li><a href="https://github.com/DePaul2015SEStudioTeam1/docker-dashboard/wiki">Project Development Blogs and Wiki</a></li>
+</ul>
 
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
+<h3>Authors and Contributors</h3>
+        <ul>
+          <li>Roland Craddolph (<a class="user-mention" href="https://github.com/rcraddolph">@rcraddolph</a>)</li>
+          <li>John Davidson (<a class="user-mention" href="https://github.com/jdavidson091">@jdavidson091</a>)</li> 
+          <li>Deonte Johnson (<a class="user-mention" href="https://github.com/Jet2kus84">@Jet2kus84</a>)</li> 
+          <li>John Plante (<a class="user-mention" href="https://github.com/JPaMillion">@JPaMillion</a>)</li> 
+          <li>Paul A. Trzyna (<a class="user-mention" href="https://github.com/ptrzyna">@ptrzyna</a>)</li> 
+         </ul> 
 
-<h3>
-<a id="rather-drive-stick" class="anchor" href="#rather-drive-stick" aria-hidden="true"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
-
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
-
-<h3>
-<a id="authors-and-contributors" class="anchor" href="#authors-and-contributors" aria-hidden="true"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
-
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
-
-<h3>
-<a id="support-or-contact" class="anchor" href="#support-or-contact" aria-hidden="true"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
-
-<p>Having trouble with Pages? Check out the documentation at <a href="https://help.github.com/pages">https://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
-      </section>
-    </div>
-
+<p>Special thanks to DePaul University, and Professor Xiaoping Jia (<a href="https://github.com/xjia">@xjia</a>).</p>
+</div>
     <!-- FOOTER  -->
     <div id="footer_wrap" class="outer">
       <footer class="inner">
