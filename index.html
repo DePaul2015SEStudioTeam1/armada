@@ -41,10 +41,10 @@
 
 <h3>How to Deploy</h3>
 
-<p>In order to use armada you will have to download the <a href="/bin/armada.jar">armada.jar</a> and the <a href="/bin/agent.jar">agent.jar</a></p>
+<p>In order to use armada you will have to download the <a href="/bin/armada.jar">armada.jar</a> and the <a href="/bin/agent.jar">agent.jar</a> jar files.</p>
 <p>Armada should be copied to the machine that will act as the server and a central location that will collect data fromt eh agents.</p>
-<p>Agents should be deployed on all the machines that are running docker containers</p>
-<p>Beside armada.jar and agent.jar you will also need to setup a <a href="http://www.mysql.com">mysql</a> database. You will need to create a schema called "armada" and a user "armada" with a password "armada". This user should have permissions to access the "armada" schema. Schema setup will occur automatically when you first start armada.</p>
+<p>Agents should be deployed on all the machines that are running docker containers.</p>
+<p>Beside armada.jar and agent.jar you will also need to set up a <a href="http://www.mysql.com">mysql</a> database. You will need to create a schema called "armada" and a user "armada" with a password "armada". This user should have permissions to access the "armada" schema. Schema setup will occur automatically when you first start armada.</p>
 <p>The other tool that you will need to deploy is <a href="https://github.com/google/cadvisor">cAdvisor</a>. cAdvisor is used by the agent to collect metrics from the docker containers.</p>
 
 <p>Armada can be started by simply invoking:</p>
