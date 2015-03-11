@@ -18,6 +18,7 @@
     
     <bean id="dataCleanupTask" class="edu.depaul.armada.util.DataCleanupTask">
         <property name="containerLogDao" ref="containerLogDao"/>
+        <property name="containerDao" ref="containerDao"/>
     </bean>
     
     <task:scheduler id="scheduler" pool-size="1"/>

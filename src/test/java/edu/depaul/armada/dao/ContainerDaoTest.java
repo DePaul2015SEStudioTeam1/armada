@@ -1,5 +1,25 @@
-/**
+/*
+ * The MIT License (MIT)
  * 
+ * Copyright (c) <year> <copyright holders> 
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
  */
 package edu.depaul.armada.dao;
 
@@ -7,7 +27,6 @@ import static org.junit.Assert.*;
 
 import java.sql.Timestamp;
 import java.util.List;
-import java.util.UUID;
 
 import org.apache.commons.lang3.RandomUtils;
 import org.junit.Test;
@@ -22,6 +41,7 @@ import org.springframework.transaction.annotation.Transactional;
 import edu.depaul.armada.domain.Container;
 import edu.depaul.armada.domain.ContainerLog;
 import edu.depaul.armada.model.DashboardContainer;
+import edu.depaul.armada.util.TestUtil;
 
 /**
  * @author ptrzyna
@@ -50,7 +70,7 @@ public class ContainerDaoTest {
 			assertEquals("Container instance cannot be null!", iae.getMessage());
 		}
 		
-		Container container = newContainer();
+		Container container = TestUtil.newContainer();
 		dao.store(container);
 		
 		List<Container> containers = dao.getAll();
@@ -68,7 +88,7 @@ public class ContainerDaoTest {
 		int expected = 10;
 		
 		for(int i=0; i<expected; i++) {
-			Container container = newContainer();
+			Container container = TestUtil.newContainer();
 			dao.store(container);
 		}
 		
@@ -83,7 +103,7 @@ public class ContainerDaoTest {
 	@DirtiesContext
 	@Test
 	public void testGet() {
-		Container container = newContainer();
+		Container container = TestUtil.newContainer();
 		dao.store(container);
 		
 		List<Container> results = dao.get(0, 1);
@@ -97,15 +117,15 @@ public class ContainerDaoTest {
 		
 		Container[] containers = new Container[3];
 		
-		containers[0] = newContainer();
+		containers[0] = TestUtil.newContainer();
 		containers[0].setName("test1");
 		dao.store(containers[0]);
 		
-		containers[1] = newContainer();
+		containers[1] = TestUtil.newContainer();
 		containers[1].setName("test2");
 		dao.store(containers[1]);
 		
-		containers[2] = newContainer();
+		containers[2] = TestUtil.newContainer();
 		containers[2].setName("test3");
 		dao.store(containers[2]);
 		
@@ -128,7 +148,7 @@ public class ContainerDaoTest {
 	
 	@Test
 	public void testStoreWithChild() {
-		Container container = newContainer();
+		Container container = TestUtil.newContainer();
 		container.setContainerUniqueId("test");
 		ContainerLog log = new ContainerLog();
 		log.setTimestamp(new Timestamp(0));
@@ -146,7 +166,7 @@ public class ContainerDaoTest {
 	@Test
 	public void testGetAllDashboardContainers() {
 		for(int i=0; i<100; i++) {
-			Container container = newContainer();
+			Container container = TestUtil.newContainer();
 			container.addLog(newContainerLog());
 			container.addLog(newContainerLog());
 			container.addLog(newContainerLog());
@@ -163,7 +183,7 @@ public class ContainerDaoTest {
 	@Test
 	public void testGetDashboardContainers_long() {
 		for(int i=0; i<100; i++) {
-			Container container = newContainer();
+			Container container = TestUtil.newContainer();
 			container.setName("Container " + i);
 			container.addLog(newContainerLog());
 			container.addLog(newContainerLog());
@@ -187,14 +207,6 @@ public class ContainerDaoTest {
 		for (int k=5; k < count2; k++){
 			assertEquals("Container " + k, result2.get(k).name);
 		}
-	}
-	
-	private Container newContainer() {
-		Container container = new Container();
-		container.setCAdvisorURL("http://localhost:8080/cAdvisor");
-		container.setContainerUniqueId(UUID.randomUUID().toString());
-		container.setName("test-name");
-		return container;
 	}
 	
 	private ContainerLog newContainerLog() {

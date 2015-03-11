@@ -1,4 +1,28 @@
 /*
+ * The MIT License (MIT)
+ * 
+ * Copyright (c) <year> <copyright holders> 
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+/*
  * Holds functionality of the armada dashboard
  */
 $(document).ready(function() {
@@ -31,8 +55,8 @@ $(document).ready(function() {
 	var greenTrans = "rgba(92, 184, 92, 0.7)";
 	var orange = "rgba(240, 173, 78, 1)";
 	var orangeTrans = "rgba(240, 173, 78, 0.7)";
-	var purple = "rgba(176,224,230, 1)";
-	var purpleTrans = "rgba(176,224,230, 0.7)";
+	var blue = "rgba(176,224,230, 1)";
+	var blueTrans = "rgba(176,224,230, 0.7)";
 	
 	var preferencesREST = "/preferences/";
 	var metricREST = "/metrics/thresholdStats/";
@@ -221,12 +245,14 @@ $(document).ready(function() {
 			$('td:eq(4)', row).html('UNLIMITED'); 
 		}
 		
-		var currentDate = new Date();
-		var timestamp = new Date(data.timestamp);
+		var currentDate = new Date().getTime();
+		var heartbeatDate = new Date(data.timestamp);
+		var millis = heartbeatDate.getTime();
+		var diff = (currentDate - millis);
 		if(data.cpuUsed >= cpuThreshold || 
 		   data.diskUsed >= diskThreshold || 
 		   data.memUsed >= memoryThreshold ||
-		   ((currentDate - timestamp) > UNRESPONSIVE_THRESHOLD)) {
+		   (diff > UNRESPONSIVE_THRESHOLD)) {
 			$(row).css('background', redTrans);
 			errorCount++;
 		}
@@ -240,10 +266,14 @@ $(document).ready(function() {
 			successCount++;
 		}
 		
-		if(index >= lastRowIndex){
-			$("#successCount").text(successCount);
-			$("#warningCount").text(warningCount);
-			$("#errorCount").text(errorCount);
+		if(diff > UNRESPONSIVE_THRESHOLD){
+			$('td:eq(1)', row).html('');
+			$('td:eq(2)', row).html('');
+			$('td:eq(3)', row).html('');
+			$('td:eq(4)', row).html('No heartbeat since: ' + heartbeatDate.format(dateFormat.masks.isoDateTime));
+			$('td:eq(5)', row).html('');
+			$('td:eq(6)', row).html('');
+			$('td:eq(7)', row).html('');
 		}
 	}
 	
@@ -308,15 +338,15 @@ $(document).ready(function() {
 		
 		var options = {datasetFill : false, pointDot : true, pointDotRadius : 1, datasetStrokeWidth : 1, bezierCurve : false};
 		
-		var cpuChartData = {labels: [], datasets: [{label: "CPU", strokeColor: purple, pointColor: purple, data: []}]};
+		var cpuChartData = {labels: [], datasets: [{label: "CPU", strokeColor: blue, pointColor: blue, data: []}]};
 		var cpuChartContext = document.getElementById("cpuChart").getContext("2d");
 		var cpuChart = new Chart(cpuChartContext).Line(cpuChartData, options);
 
-		var memChartData = {labels: [], datasets: [{label: "MEM", strokeColor: purple, pointColor: purple, data: []}]};
+		var memChartData = {labels: [], datasets: [{label: "MEM", strokeColor: blue, pointColor: blue, data: []}]};
 		var memChartContext = document.getElementById("memChart").getContext("2d");
 		var memChart = new Chart(memChartContext).Line(memChartData, options);
 		
-		var diskChartData = {labels: [], datasets: [{label: "DISK", strokeColor: purple, pointColor: purple, data: []}]};
+		var diskChartData = {labels: [], datasets: [{label: "DISK", strokeColor: blue, pointColor: blue, data: []}]};
 		var diskChartContext = document.getElementById("diskChart").getContext("2d");
 		var diskChart = new Chart(diskChartContext).Line(diskChartData, options);
 		
