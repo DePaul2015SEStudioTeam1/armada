@@ -1,4 +1,28 @@
 /*
+ * The MIT License (MIT)
+ * 
+ * Copyright (c) <year> <copyright holders> 
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+/*
  * Holds functionality of the armada dashboard
  */
 $(document).ready(function() {
@@ -11,6 +35,7 @@ $(document).ready(function() {
 	Chart.defaults.global.animationSteps = 1;
 	
 	const PERIOD = 24;
+	const UNRESPONSIVE_THRESHOLD = 120000;	// 1 minutes
 	
 	var currentDate = new Date().toDateString();
 	
@@ -30,12 +55,12 @@ $(document).ready(function() {
 	var greenTrans = "rgba(92, 184, 92, 0.7)";
 	var orange = "rgba(240, 173, 78, 1)";
 	var orangeTrans = "rgba(240, 173, 78, 0.7)";
-	var purple = "rgba(176,224,230, 1)";
-	var purpleTrans = "rgba(176,224,230, 0.7)";
+	var blue = "rgba(176,224,230, 1)";
+	var blueTrans = "rgba(176,224,230, 0.7)";
 	
-	var preferencesREST = "http://localhost:8083/preferences/";
-	var metricREST = "http://localhost:8083/metrics/thresholdStats/";
-	var containerCountREST = "http://localhost:8083/metrics/containerCounts/";
+	var preferencesREST = "/preferences/";
+	var metricREST = "/metrics/thresholdStats/";
+	var containerCountREST = "/metrics/containerCounts/";
 	
 	/*
 	 * Sets the current data
@@ -185,14 +210,15 @@ $(document).ready(function() {
 		"cache":false,
 		"white-space":"wrap",
 		"lengthMenu":[[ 10, 25, 50, -1 ], [ 10, 25, 50, "All" ]],
-		"ajax":{ url:"http://localhost:8083/containers/", dataSrc:"" },
+		"ajax":{ url:"/containers/", dataSrc:"" },
 		"columns":[{"data":"name"}, 
 		           {"data":"cpuUsed"}, 
 		           {"data":"cpuTotal"}, 
 		           {"data":"memUsed"}, 
 		           {"data":"memTotal"}, 
 		           {"data":"diskUsed"}, 
-		           {"data":"diskTotal"}],
+		           {"data":"diskTotal"},
+		           {"data":"timestamp"}],
 		"fnRowCallback":rowCallback
 	});	// end datatable
 	
@@ -219,11 +245,20 @@ $(document).ready(function() {
 			$('td:eq(4)', row).html('UNLIMITED'); 
 		}
 		
-		if(data.cpuUsed >= cpuThreshold || data.diskUsed >= diskThreshold || data.memUsed >= memoryThreshold) {
+		var currentDate = new Date().getTime();
+		var heartbeatDate = new Date(data.timestamp);
+		var millis = heartbeatDate.getTime();
+		var diff = (currentDate - millis);
+		if(data.cpuUsed >= cpuThreshold || 
+		   data.diskUsed >= diskThreshold || 
+		   data.memUsed >= memoryThreshold ||
+		   (diff > UNRESPONSIVE_THRESHOLD)) {
 			$(row).css('background', redTrans);
 			errorCount++;
 		}
-		else if(data.cpuUsed >= (cpuThreshold*WARN_THRESHOLD) || data.diskUsed >= (diskThreshold*WARN_THRESHOLD) || data.memUsed >= (memoryThreshold*WARN_THRESHOLD)){
+		else if(data.cpuUsed >= (cpuThreshold*WARN_THRESHOLD) || 
+				data.diskUsed >= (diskThreshold*WARN_THRESHOLD) || 
+				data.memUsed >= (memoryThreshold*WARN_THRESHOLD)){
 			$(row).css('background', orangeTrans);
 			warningCount++;
 		}
@@ -231,10 +266,14 @@ $(document).ready(function() {
 			successCount++;
 		}
 		
-		if(index >= lastRowIndex){
-			$("#successCount").text(successCount);
-			$("#warningCount").text(warningCount);
-			$("#errorCount").text(errorCount);
+		if(diff > UNRESPONSIVE_THRESHOLD){
+			$('td:eq(1)', row).html('');
+			$('td:eq(2)', row).html('');
+			$('td:eq(3)', row).html('');
+			$('td:eq(4)', row).html('No heartbeat since: ' + heartbeatDate.format(dateFormat.masks.isoDateTime));
+			$('td:eq(5)', row).html('');
+			$('td:eq(6)', row).html('');
+			$('td:eq(7)', row).html('');
 		}
 	}
 	
@@ -299,19 +338,19 @@ $(document).ready(function() {
 		
 		var options = {datasetFill : false, pointDot : true, pointDotRadius : 1, datasetStrokeWidth : 1, bezierCurve : false};
 		
-		var cpuChartData = {labels: [], datasets: [{label: "CPU", strokeColor: purple, pointColor: purple, data: []}]};
+		var cpuChartData = {labels: [], datasets: [{label: "CPU", strokeColor: blue, pointColor: blue, data: []}]};
 		var cpuChartContext = document.getElementById("cpuChart").getContext("2d");
 		var cpuChart = new Chart(cpuChartContext).Line(cpuChartData, options);
 
-		var memChartData = {labels: [], datasets: [{label: "MEM", strokeColor: purple, pointColor: purple, data: []}]};
+		var memChartData = {labels: [], datasets: [{label: "MEM", strokeColor: blue, pointColor: blue, data: []}]};
 		var memChartContext = document.getElementById("memChart").getContext("2d");
 		var memChart = new Chart(memChartContext).Line(memChartData, options);
 		
-		var diskChartData = {labels: [], datasets: [{label: "DISK", strokeColor: purple, pointColor: purple, data: []}]};
+		var diskChartData = {labels: [], datasets: [{label: "DISK", strokeColor: blue, pointColor: blue, data: []}]};
 		var diskChartContext = document.getElementById("diskChart").getContext("2d");
 		var diskChart = new Chart(diskChartContext).Line(diskChartData, options);
 		
-		var logsREST = "http://localhost:8083/logs/" + cId;
+		var logsREST = "/logs/" + cId;
 		$.get(logsREST).done(function(data) {
 			$.each(data, function(index) {
 				var temp = data[index];
@@ -335,7 +374,7 @@ $(document).ready(function() {
 		event.preventDefault();
 		console.log(JSON.stringify($('#settingsForm').serializeArray()));
 		$.ajax({type : "POST",
-				url : "http://localhost:8083/preferences/setAll/",
+				url : "/preferences/setAll/",
 				data : JSON.stringify($('#settingsForm').serializeArray()),
 					   dataType : 'json',
 					   contentType : 'application/json; charset=utf-8',

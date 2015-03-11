@@ -1,8 +1,29 @@
-/**
+/*
+ * The MIT License (MIT)
  * 
+ * Copyright (c) <year> <copyright holders> 
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
  */
 package edu.depaul.armada.service;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -68,14 +89,18 @@ public class ArmadaServiceImpl implements ArmadaService {
 	 */
 	@Override
 	public void send(AgentContainerLog agentContainer) {
+		
+		Timestamp currentTime = new Timestamp(System.currentTimeMillis());
+		
 		// get container matching unique id
-		Container container = containerDao.findWithContainerUniqueId(agentContainer.containerUniqueId); 
+		Container container = containerDao.findWithContainerUniqueId(agentContainer.containerUniqueId);
 		if(container == null) {
 			container = new Container();
 			container.setCAdvisorURL(agentContainer.cAdvisorURL);
 			container.setContainerUniqueId(agentContainer.containerUniqueId);
 			container.setName(agentContainer.name);
 		}
+		container.setTimestamp(currentTime);
 		// add entry
 		ContainerLog log = new ContainerLog();
 		log.setCpuUsed(agentContainer.cpuUsed);
@@ -84,11 +109,13 @@ public class ArmadaServiceImpl implements ArmadaService {
 		log.setMemTotal(agentContainer.memTotal);
 		log.setDiskUsed(agentContainer.diskUsed);
 		log.setDiskTotal(agentContainer.diskTotal);
-		log.setTimestamp(agentContainer.timestamp);
+		log.setTimestamp(currentTime);
 		
 		container.addLog(log);
 		// save container
 		containerDao.store(container);
+		
+		logger.info("-- Inserting new logs with timestamp " + currentTime);
 	}
 
 	/* (non-Javadoc)
