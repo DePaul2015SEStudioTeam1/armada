@@ -90,14 +90,16 @@ public class MetricServiceImpl implements MetricService {
 		long mem = preferenceDao.findWithPreferenceName(MEM_THRESHOLD).getValue();
 		long cpu = preferenceDao.findWithPreferenceName(CPU_THRESHOLD).getValue();
 		long disk = preferenceDao.findWithPreferenceName(DISK_THRESHOLD).getValue();
+		long refreshInterval = preferenceDao.findWithPreferenceName(REFRESH_INTERVAL).getValue();
 		
 		List<Metric> containerCount = getContainerCount(periodInHours);
 
 		List<Metric> warn = containerLogDao.getStateCounts(Double.valueOf(mem*0.75).longValue(), 
 				Double.valueOf(cpu*0.75).longValue(), 
 				Double.valueOf(disk*0.75).longValue(), 
+				refreshInterval,
 				periodInHours);	// breached warning threshold
-		List<Metric> err = containerLogDao.getStateCounts(mem, cpu, disk, periodInHours);	// breached threshold
+		List<Metric> err = containerLogDao.getStateCounts(mem, cpu, disk, refreshInterval, periodInHours);	// breached threshold
 
 		List<ThresholdMetric> metrics = new ArrayList<ThresholdMetric>(periodInHours);
 		for(int i=0; i<periodInHours; i++) {

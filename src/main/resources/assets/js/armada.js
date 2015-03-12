@@ -84,11 +84,9 @@ $(document).ready(function() {
 				clearInterval(tableInterval);
 				clearInterval(chartInterval);
 				tableInterval = setInterval(function() {
-					console.log("-- updating table");
 					table.api().ajax.reload(null, false); // user paging is not reset on reload
 				}, tableRefresh);
 				chartInterval = setInterval(function() {
-					console.log("-- updating charts");
 					loadPieChartData();
 					loadBarChartData();
 					loadContainerCountChartData();
@@ -245,27 +243,18 @@ $(document).ready(function() {
 			$('td:eq(4)', row).html('UNLIMITED'); 
 		}
 		
+		// convert cpu used to percent
+		var n = data.cpuUsed;
+		n = (n < 0)? 0 : n;
+		n = n/100.00;
+		n = n.toFixed(2);
+		$('td:eq(1)', row).html(n);
+		
 		var currentDate = new Date().getTime();
 		var heartbeatDate = new Date(data.timestamp);
 		var millis = heartbeatDate.getTime();
 		var diff = (currentDate - millis);
-		if(data.cpuUsed >= cpuThreshold || 
-		   data.diskUsed >= diskThreshold || 
-		   data.memUsed >= memoryThreshold ||
-		   (diff > UNRESPONSIVE_THRESHOLD)) {
-			$(row).css('background', redTrans);
-			errorCount++;
-		}
-		else if(data.cpuUsed >= (cpuThreshold*WARN_THRESHOLD) || 
-				data.diskUsed >= (diskThreshold*WARN_THRESHOLD) || 
-				data.memUsed >= (memoryThreshold*WARN_THRESHOLD)){
-			$(row).css('background', orangeTrans);
-			warningCount++;
-		}
-		else {
-			successCount++;
-		}
-		
+
 		if(diff > UNRESPONSIVE_THRESHOLD){
 			$('td:eq(1)', row).html('');
 			$('td:eq(2)', row).html('');
@@ -274,7 +263,28 @@ $(document).ready(function() {
 			$('td:eq(5)', row).html('');
 			$('td:eq(6)', row).html('');
 			$('td:eq(7)', row).html('');
+			$(row).css('background', redTrans);
 		}
+		
+		if(data.cpuUsed >= cpuThreshold || 
+		   data.diskUsed >= diskThreshold || 
+		   data.memUsed >= memoryThreshold ||
+		   (diff > UNRESPONSIVE_THRESHOLD)) {
+			$(row).css('background', redTrans);
+			errorCount++;
+			return;
+		}
+		
+		if(data.cpuUsed >= (cpuThreshold*WARN_THRESHOLD) || 
+				data.diskUsed >= (diskThreshold*WARN_THRESHOLD) || 
+				data.memUsed >= (memoryThreshold*WARN_THRESHOLD)){
+			$(row).css('background', orangeTrans);
+			warningCount++;
+			return;
+		}
+		
+		$(row).css('background', null);
+		successCount++;
 	}
 	
 	$.fn.dataTable.ext.errMode = 'throw';
@@ -283,7 +293,6 @@ $(document).ready(function() {
 	 * Sets the refresh interval for the table
 	 */
 	var tableInterval = setInterval(function() {
-		console.log("-- updating table");
 		table.api().ajax.reload(null, false); // user paging is not reset on reload
 	}, tableRefresh);
 	
@@ -291,7 +300,6 @@ $(document).ready(function() {
 	 * Sets the refresh interval for the charts
 	 */
 	var chartInterval = setInterval(function() {
-		console.log("-- updating charts");
 		loadPieChartData();
 		loadBarChartData();
 		loadContainerCountChartData();

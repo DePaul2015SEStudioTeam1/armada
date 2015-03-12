@@ -191,7 +191,7 @@ public class ContainerLogDaoHibernate implements ContainerLogDao {
 	 * @return List<Metric>
 	 */
 	@Override
-	public List<Metric> getStateCounts(long memThreshold, long cpuThreshold, long diskThreshold, int periodCountInHours) {
+	public List<Metric> getStateCounts(long memThreshold, long cpuThreshold, long diskThreshold, long refreshInterval, int periodCountInHours) {
 		List<Metric> metrics = new ArrayList<Metric>(periodCountInHours);
 		Calendar cal = Calendar.getInstance();
 		for(int i=0; i<periodCountInHours; i++) {
@@ -202,6 +202,7 @@ public class ContainerLogDaoHibernate implements ContainerLogDao {
 			
 			Criteria criteria = newCriteria();
 			criteria.add(Restrictions.le("timestamp", end));
+			start = (i == 0)? new Date(end.getTime()-(60000)): start;	// for current check we want to see values in last minute
 			criteria.add(Restrictions.gt("timestamp", start));	// we don't want overlap here
 			criteria.add(Restrictions.disjunction()
 					.add(Restrictions.ge("cpuUsed", cpuThreshold))

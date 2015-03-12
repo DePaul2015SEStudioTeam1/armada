@@ -86,7 +86,7 @@ public interface ContainerLogDao {
 	 * @periodCountInHours	how many intervals do we want counts for
 	 * @return list of counts of how many containers are in given state in given interval
 	 */
-	List<Metric> getStateCounts(long memThreshold, long cpuThreshold, long diskThreshold, int periodCountInHours);
+	List<Metric> getStateCounts(long memThreshold, long cpuThreshold, long diskThreshold, long refreshInterval, int periodCountInHours);
 
 	/**
 	 * Returns a List<Metric> from all of the containers with data within a specified

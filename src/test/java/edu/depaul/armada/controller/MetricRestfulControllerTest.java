@@ -70,6 +70,11 @@ public class MetricRestfulControllerTest {
 		cpu.setName("cpu_threshold");
 		cpu.setValue(85);
 		preferenceDao.storePreference(cpu);
+
+		Preference refresh = new Preference();
+		refresh.setName("refresh_page");
+		refresh.setValue(85);
+		preferenceDao.storePreference(refresh);
 		
 		List<ThresholdMetric> results = metricRestfulController.getThresholdStats(0);
 		assertNotNull(results);
