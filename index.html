@@ -39,16 +39,16 @@
 
         <h3>Welcome to Armada.</h3>
 
-        <p>Armada is an open-source project released under the <a href="http://opensource.org/licenses/MIT">MIT license</a>. It is a Spring/Hibernate based project that monitors and manages your docker containers.</p>
+        <p>Armada is an open-source project released under the <a href="http://opensource.org/licenses/MIT">MIT license</a>. It is a Spring/Hibernate based project that monitors your docker containers.</p>
         <p>Armada has two main components: <a href="/bin/armada.jar">armada</a> and the <a href="/bin/agent.jar">agent</a>.</p
-        <p>Armada runs as a deployable Jetty jar, that wraps a spring based service for collecting container log data from different Agents. Your Agents will run locally on whichever server you wish to track containers on. Dashboard interface is exposed on port 8083.</p>
-        <p>Armada will consume data from the Agents, storing them in a MySQL database, and provides an operations API for a Javascript front end, currently included as well in the Jetty server. </p>
-        <p>The Armada front end can be accessed at localhost:8083 and features a dashboard showing active containers across all your environments and real-time statistics that display CPU, memory and disk usage for each container.</p>
+        <p>Armada runs as a deployable Jetty jar that wraps a spring based service for collecting container log data from different agents. Your agents will run locally on whichever server you wish to track containers on. Dashboard interface is exposed on port 8083.</p>
+        <p>Armada will consume data from the agents, storing them in a <a href="http://www.mysql.com">MySQL database</a>, and provides an operations API for a javascript front end, currently included, as well in the Jetty server. </p>
+        <p>The armada front end can be accessed at localhost:8083 and features a dashboard showing active containers across all your environments and real-time statistics that display CPU, memory and disk usage for each container.</p>
 
 <h3>How to Deploy</h3>
 
 <p>In order to use armada you will have to download the <a href="/bin/armada.jar">armada</a> and the <a href="/bin/agent.jar">agent</a> jar files.</p>
-<p>Armada should be copied to the machine that will act as the server and a central location that will collect data fromt eh agents.</p>
+<p>Armada should be copied to the machine that will act as the server and a central location that will collect data from the agents.</p>
 <p>Agents should be deployed on all the machines that are running docker containers.</p>
 <p>Beside armada.jar and agent.jar you will also need to set up a <a href="http://www.mysql.com">mysql</a> database. You will need to create a schema called "armada" and a user "armada" with a password "armada". This user should have permissions to access the "armada" schema. Schema setup will occur automatically when you first start armada.</p>
 <p>The other tool that you will need to deploy is <a href="https://github.com/google/cadvisor">cAdvisor</a>. cAdvisor is used by the agent to collect metrics from the docker containers.</p>
@@ -64,7 +64,7 @@
 
 <h3>Documentation and Github Repos</h3>
 <ul>
-  <li><a href="/documentation/index.html">API JavaDocs</a></li>
+  <li><a href="/documentation/index.html">API Documentation</a></li>
   <li><a href="https://github.com/DePaul2015SEStudioTeam1/armada/">Armada Repo</a></li>
   <li><a href="https://github.com/DePaul2015SEStudioTeam1/agent/">Agent Repo</a></li>
   <li><a href="https://github.com/DePaul2015SEStudioTeam1/armada-api/">Armada API Repo</a></li>
