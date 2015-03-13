@@ -28,6 +28,7 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
@@ -53,6 +54,8 @@ import edu.depaul.armada.util.AssertUtil;
 @Repository
 public class ContainerLogDaoHibernate implements ContainerLogDao {
 
+	private final Logger logger = Logger.getLogger(getClass());
+	
 	private SessionFactory sessionFactory;
 	
 	public ContainerLogDaoHibernate() {}
@@ -194,6 +197,10 @@ public class ContainerLogDaoHibernate implements ContainerLogDao {
 	public List<Metric> getStateCounts(long memThreshold, long cpuThreshold, long diskThreshold, long refreshInterval, int periodCountInHours) {
 		List<Metric> metrics = new ArrayList<Metric>(periodCountInHours);
 		Calendar cal = Calendar.getInstance();
+		cal.set(Calendar.MINUTE, 0);
+		cal.set(Calendar.SECOND, 0);
+		cal.set(Calendar.MILLISECOND, 0);
+		cal.add(Calendar.HOUR_OF_DAY, 1);
 		for(int i=0; i<periodCountInHours; i++) {
 			Date end = cal.getTime();
 			int hour = cal.get(Calendar.HOUR_OF_DAY);
@@ -201,8 +208,9 @@ public class ContainerLogDaoHibernate implements ContainerLogDao {
 			Date start = cal.getTime();
 			
 			Criteria criteria = newCriteria();
+			end = (i == 0)? new Date() : end;
 			criteria.add(Restrictions.le("timestamp", end));
-			start = (i == 0)? new Date(end.getTime()-(60000)): start;	// for current check we want to see values in last minute
+			start = (i == 0)? new Date(System.currentTimeMillis()-(60000)): start;	// for current check we want to see values in last minute
 			criteria.add(Restrictions.gt("timestamp", start));	// we don't want overlap here
 			criteria.add(Restrictions.disjunction()
 					.add(Restrictions.ge("cpuUsed", cpuThreshold))
@@ -211,6 +219,10 @@ public class ContainerLogDaoHibernate implements ContainerLogDao {
 			);
 			criteria.setProjection(Projections.countDistinct("container"));
 			int count = ((Long) criteria.uniqueResult()).intValue();
+			if(count < 0) {
+				logger.error("-- Count for hour " + hour + " was " + count + "!");
+			}
+			
 			Metric temp = new Metric();
 			temp.setHour(hour);
 			temp.setValue(count);
@@ -233,6 +245,10 @@ public class ContainerLogDaoHibernate implements ContainerLogDao {
 	public List<Metric> getContainerCounts(int periodInHours) {
 		List<Metric> metrics = new ArrayList<Metric>(periodInHours);
 		Calendar cal = Calendar.getInstance();
+		cal.set(Calendar.MINUTE, 0);
+		cal.set(Calendar.SECOND, 0);
+		cal.set(Calendar.MILLISECOND, 0);
+		cal.add(Calendar.HOUR_OF_DAY, 1);
 		for(int i=0; i<periodInHours; i++) {
 			Date end = cal.getTime();
 			int hour = cal.get(Calendar.HOUR_OF_DAY);
@@ -240,7 +256,9 @@ public class ContainerLogDaoHibernate implements ContainerLogDao {
 			Date start = cal.getTime();
 			
 			Criteria criteria = newCriteria();
+			end = (i == 0)? new Date() : end;
 			criteria.add(Restrictions.le("timestamp", end));
+			start = (i == 0)? new Date(System.currentTimeMillis()-(60000)): start;	// for current check we want to see values in last minute
 			criteria.add(Restrictions.gt("timestamp", start));	// we don't want overlap here
 			criteria.setProjection(Projections.countDistinct("container"));
 			int count = ((Long) criteria.uniqueResult()).intValue();

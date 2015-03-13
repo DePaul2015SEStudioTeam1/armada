@@ -1,150 +1,298 @@
-23:45:11,375 INFO  [log] Logging initialized @209ms
-23:45:11,695 INFO  [Server] jetty-9.2.3.v20140905
-23:45:11,827 INFO  [StandardDescriptorProcessor] NO JSP Support for /, did not find org.apache.jasper.servlet.JspServlet
-23:45:11,875 INFO  [/] Initializing Spring FrameworkServlet 'org.springframework.web.servlet.DispatcherServlet-7cf10a6f'
-23:45:11,875 INFO  [DispatcherServlet] FrameworkServlet 'org.springframework.web.servlet.DispatcherServlet-7cf10a6f': initialization started
-23:45:11,920 INFO  [XmlWebApplicationContext] Refreshing WebApplicationContext for namespace 'org.springframework.web.servlet.DispatcherServlet-7cf10a6f-servlet': startup date [Wed Mar 11 23:45:11 CDT 2015]; root of context hierarchy
-23:45:11,970 INFO  [XmlBeanDefinitionReader] Loading XML bean definitions from class path resource [beans/armada-config.xml]
-23:45:12,282 INFO  [XmlBeanDefinitionReader] Loading XML bean definitions from class path resource [beans/armada-dao.xml]
-23:45:12,370 INFO  [XmlBeanDefinitionReader] Loading XML bean definitions from class path resource [beans/armada-datasource.xml]
-23:45:12,414 INFO  [XmlBeanDefinitionReader] Loading XML bean definitions from class path resource [beans/armada-service.xml]
-23:45:12,453 INFO  [XmlBeanDefinitionReader] Loading XML bean definitions from class path resource [beans/armada-servlet.xml]
-23:45:12,493 INFO  [XmlBeanDefinitionReader] Loading XML bean definitions from class path resource [beans/armada-scheduler.xml]
-23:45:12,802 INFO  [DefaultListableBeanFactory] Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@2928854b: defining beans [containerRestfulController,logRestfulController,metricRestfulController,preferenceRestfulController,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping#0,org.springframework.format.support.FormattingConversionServiceFactoryBean#0,org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter#0,org.springframework.web.servlet.handler.MappedInterceptor#0,org.springframework.aop.config.internalAutoProxyCreator,org.springframework.transaction.annotation.AnnotationTransactionAttributeSource#0,org.springframework.transaction.interceptor.TransactionInterceptor#0,org.springframework.transaction.config.internalTransactionAdvisor,containerLogDao,containerDao,preferenceDao,armadaDataSource,armadaTransactionManager,armadaSessionFactory,armadaService,metricService,org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter#0,httpArmadaService,urlMapping,dataCleanupTask,scheduler,org.springframework.scheduling.support.MethodInvokingRunnable#0,org.springframework.scheduling.config.ScheduledTaskRegistrar#0]; root of factory hierarchy
-23:45:12,911 INFO  [MLog] MLog clients using log4j logging.
-23:45:13,052 INFO  [C3P0Registry] Initializing c3p0-0.9.1 [built 16-January-2007 14:46:42; debug? true; trace: 10]
-23:45:13,332 INFO  [Version] Hibernate Commons Annotations 3.2.0.Final
-23:45:13,338 INFO  [Environment] Hibernate 3.6.9.Final
-23:45:13,340 INFO  [Environment] hibernate.properties not found
-23:45:13,344 INFO  [Environment] Bytecode provider name : javassist
-23:45:13,347 INFO  [Environment] using JDK 1.4 java.sql.Timestamp handling
-23:45:13,439 WARN  [DTDEntityResolver] recognized obsolete hibernate namespace http://hibernate.sourceforge.net/. Use namespace http://www.hibernate.org/dtd/ instead. Refer to Hibernate 3.6 Migration Guide!
-23:45:13,512 WARN  [DTDEntityResolver] recognized obsolete hibernate namespace http://hibernate.sourceforge.net/. Use namespace http://www.hibernate.org/dtd/ instead. Refer to Hibernate 3.6 Migration Guide!
-23:45:13,535 WARN  [DTDEntityResolver] recognized obsolete hibernate namespace http://hibernate.sourceforge.net/. Use namespace http://www.hibernate.org/dtd/ instead. Refer to Hibernate 3.6 Migration Guide!
-23:45:13,683 INFO  [HbmBinder] Mapping class: edu.depaul.armada.domain.Container -> container
-23:45:13,700 INFO  [HbmBinder] Mapping class: edu.depaul.armada.domain.ContainerLog -> container_log
-23:45:13,707 INFO  [HbmBinder] Mapping class: edu.depaul.armada.domain.Preference -> preferences
-23:45:13,710 INFO  [HbmBinder] Mapping collection: edu.depaul.armada.domain.Container.logs -> container_log
-23:45:13,716 INFO  [Configuration] Hibernate Validator not found: ignoring
-23:45:13,719 INFO  [LocalSessionFactoryBean] Building new Hibernate SessionFactory
-23:45:13,723 INFO  [HibernateSearchEventListenerRegister] Unable to find org.hibernate.search.event.FullTextIndexEventListener on the classpath. Hibernate Search is not enabled.
-23:45:13,729 INFO  [ConnectionProviderFactory] Initializing connection provider: org.springframework.orm.hibernate3.LocalDataSourceConnectionProvider
-23:45:13,825 INFO  [AbstractPoolBackedDataSource] Initializing c3p0 pool... com.mchange.v2.c3p0.ComboPooledDataSource [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, dataSourceName -> 1hge138983ev8mo3w54gt|17f7cd29, debugUnreturnedConnectionStackTraces -> false, description -> null, driverClass -> com.mysql.jdbc.Driver, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, identityToken -> 1hge138983ev8mo3w54gt|17f7cd29, idleConnectionTestPeriod -> 0, initialPoolSize -> 3, jdbcUrl -> jdbc:mysql://127.0.0.1:3306/armada, lastAcquisitionFailureDefaultUser -> null, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 6, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 3, numHelperThreads -> 3, numThreadsAwaitingCheckoutDefaultUser -> 0, preferredTestQuery -> null, properties -> {user=******, password=******}, propertyCycle -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, usesTraditionalReflectiveProxies -> false ]
-23:45:14,359 INFO  [Dialect] Using dialect: org.hibernate.dialect.MySQLDialect
-23:45:14,373 INFO  [JdbcSupportLoader] Disabling contextual LOB creation as createClob() method threw error : java.lang.reflect.InvocationTargetException
-23:45:14,373 INFO  [SettingsFactory] Database ->
+21:27:41,153 INFO  [log] Logging initialized @215ms
+21:27:41,474 INFO  [Server] jetty-9.2.3.v20140905
+21:27:41,598 INFO  [StandardDescriptorProcessor] NO JSP Support for /, did not find org.apache.jasper.servlet.JspServlet
+21:27:41,648 INFO  [/] Initializing Spring FrameworkServlet 'org.springframework.web.servlet.DispatcherServlet-7cf10a6f'
+21:27:41,648 INFO  [DispatcherServlet] FrameworkServlet 'org.springframework.web.servlet.DispatcherServlet-7cf10a6f': initialization started
+21:27:41,689 INFO  [XmlWebApplicationContext] Refreshing WebApplicationContext for namespace 'org.springframework.web.servlet.DispatcherServlet-7cf10a6f-servlet': startup date [Thu Mar 12 21:27:41 CDT 2015]; root of context hierarchy
+21:27:41,736 INFO  [XmlBeanDefinitionReader] Loading XML bean definitions from class path resource [beans/armada-config.xml]
+21:27:42,037 INFO  [XmlBeanDefinitionReader] Loading XML bean definitions from class path resource [beans/armada-dao.xml]
+21:27:42,122 INFO  [XmlBeanDefinitionReader] Loading XML bean definitions from class path resource [beans/armada-datasource.xml]
+21:27:42,162 INFO  [XmlBeanDefinitionReader] Loading XML bean definitions from class path resource [beans/armada-service.xml]
+21:27:42,193 INFO  [XmlBeanDefinitionReader] Loading XML bean definitions from class path resource [beans/armada-servlet.xml]
+21:27:42,225 INFO  [XmlBeanDefinitionReader] Loading XML bean definitions from class path resource [beans/armada-scheduler.xml]
+21:27:42,558 INFO  [DefaultListableBeanFactory] Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@2928854b: defining beans [containerRestfulController,logRestfulController,metricRestfulController,preferenceRestfulController,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping#0,org.springframework.format.support.FormattingConversionServiceFactoryBean#0,org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter#0,org.springframework.web.servlet.handler.MappedInterceptor#0,org.springframework.aop.config.internalAutoProxyCreator,org.springframework.transaction.annotation.AnnotationTransactionAttributeSource#0,org.springframework.transaction.interceptor.TransactionInterceptor#0,org.springframework.transaction.config.internalTransactionAdvisor,containerLogDao,containerDao,preferenceDao,armadaDataSource,armadaTransactionManager,armadaSessionFactory,armadaService,metricService,org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter#0,httpArmadaService,urlMapping,dataCleanupTask,scheduler,org.springframework.scheduling.support.MethodInvokingRunnable#0,org.springframework.scheduling.config.ScheduledTaskRegistrar#0]; root of factory hierarchy
+21:27:42,676 INFO  [MLog] MLog clients using log4j logging.
+21:27:42,868 INFO  [C3P0Registry] Initializing c3p0-0.9.1 [built 16-January-2007 14:46:42; debug? true; trace: 10]
+21:27:43,119 INFO  [Version] Hibernate Commons Annotations 3.2.0.Final
+21:27:43,125 INFO  [Environment] Hibernate 3.6.9.Final
+21:27:43,126 INFO  [Environment] hibernate.properties not found
+21:27:43,130 INFO  [Environment] Bytecode provider name : javassist
+21:27:43,133 INFO  [Environment] using JDK 1.4 java.sql.Timestamp handling
+21:27:43,225 WARN  [DTDEntityResolver] recognized obsolete hibernate namespace http://hibernate.sourceforge.net/. Use namespace http://www.hibernate.org/dtd/ instead. Refer to Hibernate 3.6 Migration Guide!
+21:27:43,312 WARN  [DTDEntityResolver] recognized obsolete hibernate namespace http://hibernate.sourceforge.net/. Use namespace http://www.hibernate.org/dtd/ instead. Refer to Hibernate 3.6 Migration Guide!
+21:27:43,338 WARN  [DTDEntityResolver] recognized obsolete hibernate namespace http://hibernate.sourceforge.net/. Use namespace http://www.hibernate.org/dtd/ instead. Refer to Hibernate 3.6 Migration Guide!
+21:27:43,423 INFO  [HbmBinder] Mapping class: edu.depaul.armada.domain.Container -> container
+21:27:43,438 INFO  [HbmBinder] Mapping class: edu.depaul.armada.domain.ContainerLog -> container_log
+21:27:43,443 INFO  [HbmBinder] Mapping class: edu.depaul.armada.domain.Preference -> preferences
+21:27:43,446 INFO  [HbmBinder] Mapping collection: edu.depaul.armada.domain.Container.logs -> container_log
+21:27:43,451 INFO  [Configuration] Hibernate Validator not found: ignoring
+21:27:43,453 INFO  [LocalSessionFactoryBean] Building new Hibernate SessionFactory
+21:27:43,457 INFO  [HibernateSearchEventListenerRegister] Unable to find org.hibernate.search.event.FullTextIndexEventListener on the classpath. Hibernate Search is not enabled.
+21:27:43,462 INFO  [ConnectionProviderFactory] Initializing connection provider: org.springframework.orm.hibernate3.LocalDataSourceConnectionProvider
+21:27:43,522 INFO  [AbstractPoolBackedDataSource] Initializing c3p0 pool... com.mchange.v2.c3p0.ComboPooledDataSource [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, dataSourceName -> 1hge138984pe9dm1ealmoi|17f7cd29, debugUnreturnedConnectionStackTraces -> false, description -> null, driverClass -> com.mysql.jdbc.Driver, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, identityToken -> 1hge138984pe9dm1ealmoi|17f7cd29, idleConnectionTestPeriod -> 0, initialPoolSize -> 3, jdbcUrl -> jdbc:mysql://127.0.0.1:3306/armada, lastAcquisitionFailureDefaultUser -> null, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 6, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 3, numHelperThreads -> 3, numThreadsAwaitingCheckoutDefaultUser -> 0, preferredTestQuery -> null, properties -> {user=******, password=******}, propertyCycle -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, usesTraditionalReflectiveProxies -> false ]
+21:27:44,038 INFO  [Dialect] Using dialect: org.hibernate.dialect.MySQLDialect
+21:27:44,046 INFO  [JdbcSupportLoader] Disabling contextual LOB creation as createClob() method threw error : java.lang.reflect.InvocationTargetException
+21:27:44,047 INFO  [SettingsFactory] Database ->
        name : MySQL
     version : 5.5.11
       major : 5
       minor : 5
-23:45:14,373 INFO  [SettingsFactory] Driver ->
+21:27:44,047 INFO  [SettingsFactory] Driver ->
        name : MySQL Connector Java
     version : mysql-connector-java-5.1.33 ( Revision: alexander.soklakov@oracle.com-20140908134200-8ukofe1izi0r2b63 )
       major : 5
       minor : 1
-23:45:14,376 INFO  [TransactionFactoryFactory] Transaction strategy: org.springframework.orm.hibernate3.SpringTransactionFactory
-23:45:14,378 INFO  [TransactionManagerLookupFactory] No TransactionManagerLookup configured (in JTA environment, use of read-write or transactional second-level cache is not recommended)
-23:45:14,378 INFO  [SettingsFactory] Automatic flush during beforeCompletion(): disabled
-23:45:14,379 INFO  [SettingsFactory] Automatic session close at end of transaction: disabled
-23:45:14,379 INFO  [SettingsFactory] JDBC batch size: 15
-23:45:14,379 INFO  [SettingsFactory] JDBC batch updates for versioned data: disabled
-23:45:14,380 INFO  [SettingsFactory] Scrollable result sets: enabled
-23:45:14,381 INFO  [SettingsFactory] JDBC3 getGeneratedKeys(): enabled
-23:45:14,381 INFO  [SettingsFactory] Connection release mode: auto
-23:45:14,382 INFO  [SettingsFactory] Maximum outer join fetch depth: 2
-23:45:14,383 INFO  [SettingsFactory] Default batch fetch size: 1
-23:45:14,383 INFO  [SettingsFactory] Generate SQL with comments: disabled
-23:45:14,383 INFO  [SettingsFactory] Order SQL updates by primary key: disabled
-23:45:14,383 INFO  [SettingsFactory] Order SQL inserts for batching: disabled
-23:45:14,383 INFO  [SettingsFactory] Query translator: org.hibernate.hql.ast.ASTQueryTranslatorFactory
-23:45:14,386 INFO  [ASTQueryTranslatorFactory] Using ASTQueryTranslatorFactory
-23:45:14,386 INFO  [SettingsFactory] Query language substitutions: {}
-23:45:14,386 INFO  [SettingsFactory] JPA-QL strict compliance: disabled
-23:45:14,386 INFO  [SettingsFactory] Second-level cache: enabled
-23:45:14,387 INFO  [SettingsFactory] Query cache: disabled
-23:45:14,387 INFO  [SettingsFactory] Cache region factory : org.hibernate.cache.impl.NoCachingRegionFactory
-23:45:14,388 INFO  [SettingsFactory] Optimize cache for minimal puts: disabled
-23:45:14,389 INFO  [SettingsFactory] Structured second-level cache entries: disabled
-23:45:14,395 INFO  [SettingsFactory] Statistics: disabled
-23:45:14,395 INFO  [SettingsFactory] Deleted entity synthetic identifier rollback: disabled
-23:45:14,396 INFO  [SettingsFactory] Default entity-mode: pojo
-23:45:14,396 INFO  [SettingsFactory] Named query checking : enabled
-23:45:14,396 INFO  [SettingsFactory] Check Nullability in Core (should be disabled when Bean Validation is on): enabled
-23:45:14,421 INFO  [SessionFactoryImpl] building session factory
-23:45:14,432 INFO  [BasicTypeRegistry] Type registration [wrapper_characters_clob] overrides previous : org.hibernate.type.CharacterArrayClobType@6d167f58
-23:45:14,433 INFO  [BasicTypeRegistry] Type registration [clob] overrides previous : org.hibernate.type.ClobType@3403e2ac
-23:45:14,433 INFO  [BasicTypeRegistry] Type registration [java.sql.Clob] overrides previous : org.hibernate.type.ClobType@3403e2ac
-23:45:14,433 INFO  [BasicTypeRegistry] Type registration [characters_clob] overrides previous : org.hibernate.type.PrimitiveCharacterArrayClobType@65b104b9
-23:45:14,433 INFO  [BasicTypeRegistry] Type registration [wrapper_materialized_blob] overrides previous : org.hibernate.type.WrappedMaterializedBlobType@6c4980d3
-23:45:14,434 INFO  [BasicTypeRegistry] Type registration [materialized_blob] overrides previous : org.hibernate.type.MaterializedBlobType@327bcebd
-23:45:14,434 INFO  [BasicTypeRegistry] Type registration [blob] overrides previous : org.hibernate.type.BlobType@19c65cdc
-23:45:14,434 INFO  [BasicTypeRegistry] Type registration [java.sql.Blob] overrides previous : org.hibernate.type.BlobType@19c65cdc
-23:45:14,434 INFO  [BasicTypeRegistry] Type registration [materialized_clob] overrides previous : org.hibernate.type.MaterializedClobType@74bf1791
-23:45:14,683 INFO  [SessionFactoryObjectFactory] Not binding factory to JNDI, no JNDI name configured
-23:45:14,689 INFO  [SchemaUpdate] Running hbm2ddl schema update
-23:45:14,689 INFO  [SchemaUpdate] fetching database metadata
-23:45:14,692 INFO  [SchemaUpdate] updating schema
-23:45:14,733 INFO  [TableMetadata] table found: armada.container
-23:45:14,733 INFO  [TableMetadata] columns: [container_unique_id, cadvisor_url, name, id, timestamp]
-23:45:14,733 INFO  [TableMetadata] foreign keys: []
-23:45:14,733 INFO  [TableMetadata] indexes: [container_unique_id, primary]
-23:45:14,749 INFO  [TableMetadata] table found: armada.container_log
-23:45:14,750 INFO  [TableMetadata] columns: [mem_used, cpu_used, disk_used, disk_total, id, cpu_total, mem_total, container_id, timestamp]
-23:45:14,750 INFO  [TableMetadata] foreign keys: [fk_container_to_log]
-23:45:14,750 INFO  [TableMetadata] indexes: [fk_container_to_log, primary]
-23:45:14,760 INFO  [TableMetadata] table found: armada.preferences
-23:45:14,760 INFO  [TableMetadata] columns: [pref_value, id, pref_name]
-23:45:14,760 INFO  [TableMetadata] foreign keys: []
-23:45:14,760 INFO  [TableMetadata] indexes: [pref_name, primary]
-23:45:14,761 INFO  [SchemaUpdate] schema update complete
-23:45:15,009 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/containers/] onto handler 'containerRestfulController'
-23:45:15,010 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/containers/{id}] onto handler 'containerRestfulController'
-23:45:15,010 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/containers/{id}.*] onto handler 'containerRestfulController'
-23:45:15,010 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/containers/{id}/] onto handler 'containerRestfulController'
-23:45:15,011 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/logs/{containerId}] onto handler 'logRestfulController'
-23:45:15,011 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/logs/{containerId}.*] onto handler 'logRestfulController'
-23:45:15,011 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/logs/{containerId}/] onto handler 'logRestfulController'
-23:45:15,012 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/metrics/thresholdStats/{hours}] onto handler 'metricRestfulController'
-23:45:15,012 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/metrics/thresholdStats/{hours}.*] onto handler 'metricRestfulController'
-23:45:15,012 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/metrics/thresholdStats/{hours}/] onto handler 'metricRestfulController'
-23:45:15,012 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/metrics/containerCounts/{hours}] onto handler 'metricRestfulController'
-23:45:15,012 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/metrics/containerCounts/{hours}.*] onto handler 'metricRestfulController'
-23:45:15,013 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/metrics/containerCounts/{hours}/] onto handler 'metricRestfulController'
-23:45:15,014 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/preferences/setAll] onto handler 'preferenceRestfulController'
-23:45:15,014 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/preferences/setAll.*] onto handler 'preferenceRestfulController'
-23:45:15,014 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/preferences/setAll/] onto handler 'preferenceRestfulController'
-23:45:15,014 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/preferences/] onto handler 'preferenceRestfulController'
-23:45:15,467 INFO  [HibernateTransactionManager] Using DataSource [com.mchange.v2.c3p0.ComboPooledDataSource [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, dataSourceName -> 1hge138983ev8mo3w54gt|17f7cd29, debugUnreturnedConnectionStackTraces -> false, description -> null, driverClass -> com.mysql.jdbc.Driver, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, identityToken -> 1hge138983ev8mo3w54gt|17f7cd29, idleConnectionTestPeriod -> 0, initialPoolSize -> 3, jdbcUrl -> jdbc:mysql://127.0.0.1:3306/armada, lastAcquisitionFailureDefaultUser -> null, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 6, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 3, numHelperThreads -> 3, numThreadsAwaitingCheckoutDefaultUser -> 0, preferredTestQuery -> null, properties -> {user=******, password=******}, propertyCycle -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, usesTraditionalReflectiveProxies -> false ]] of Hibernate SessionFactory for HibernateTransactionManager
-23:45:15,561 INFO  [SimpleUrlHandlerMapping] Mapped URL path [/ArmadaService] onto handler 'httpArmadaService'
-23:45:15,594 INFO  [ThreadPoolTaskScheduler] Initializing ExecutorService  'scheduler'
-23:45:15,646 INFO  [DataCleanupTask] -- Cleaning up data older than 48h.
-23:45:15,779 INFO  [DispatcherServlet] FrameworkServlet 'org.springframework.web.servlet.DispatcherServlet-7cf10a6f': initialization completed in 3903 ms
-23:45:15,789 INFO  [ContextHandler] Started o.e.j.w.WebAppContext@ce5a68e{/,file:/Volumes/Macbook%20Pro%20Secondary/ptrzyna/Development/workspace/armada/target/classes/assets/,AVAILABLE}
-23:45:15,842 INFO  [ServerConnector] Started ServerConnector@332a7fce{HTTP/1.1}{0.0.0.0:8083}
-23:45:15,842 INFO  [Server] Started @5019ms
-23:45:17,530 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-11 23:45:17.422
-23:45:17,599 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-11 23:45:17.555
-23:45:17,706 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-11 23:45:17.633
-23:45:17,764 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-11 23:45:17.722
-23:45:17,831 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-11 23:45:17.796
-23:45:17,881 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-11 23:45:17.848
-23:45:17,936 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-11 23:45:17.903
-23:45:17,985 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-11 23:45:17.955
-23:45:18,035 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-11 23:45:18.003
-23:45:18,075 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-11 23:45:18.048
-23:45:18,114 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-11 23:45:18.088
-23:45:18,157 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-11 23:45:18.131
-23:45:18,203 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-11 23:45:18.173
-23:45:28,603 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-11 23:45:28.59
-23:45:28,624 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-11 23:45:28.61
-23:45:28,654 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-11 23:45:28.638
-23:45:28,681 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-11 23:45:28.664
-23:45:28,705 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-11 23:45:28.689
-23:45:28,732 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-11 23:45:28.713
-23:45:28,760 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-11 23:45:28.745
-23:45:28,784 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-11 23:45:28.768
-23:45:28,805 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-11 23:45:28.791
-23:45:28,913 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-11 23:45:28.891
-23:45:28,938 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-11 23:45:28.919
-23:45:28,958 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-11 23:45:28.945
-23:45:28,979 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-11 23:45:28.968
+21:27:44,049 INFO  [TransactionFactoryFactory] Transaction strategy: org.springframework.orm.hibernate3.SpringTransactionFactory
+21:27:44,051 INFO  [TransactionManagerLookupFactory] No TransactionManagerLookup configured (in JTA environment, use of read-write or transactional second-level cache is not recommended)
+21:27:44,051 INFO  [SettingsFactory] Automatic flush during beforeCompletion(): disabled
+21:27:44,052 INFO  [SettingsFactory] Automatic session close at end of transaction: disabled
+21:27:44,052 INFO  [SettingsFactory] JDBC batch size: 15
+21:27:44,052 INFO  [SettingsFactory] JDBC batch updates for versioned data: disabled
+21:27:44,053 INFO  [SettingsFactory] Scrollable result sets: enabled
+21:27:44,053 INFO  [SettingsFactory] JDBC3 getGeneratedKeys(): enabled
+21:27:44,053 INFO  [SettingsFactory] Connection release mode: auto
+21:27:44,054 INFO  [SettingsFactory] Maximum outer join fetch depth: 2
+21:27:44,054 INFO  [SettingsFactory] Default batch fetch size: 1
+21:27:44,054 INFO  [SettingsFactory] Generate SQL with comments: disabled
+21:27:44,054 INFO  [SettingsFactory] Order SQL updates by primary key: disabled
+21:27:44,055 INFO  [SettingsFactory] Order SQL inserts for batching: disabled
+21:27:44,055 INFO  [SettingsFactory] Query translator: org.hibernate.hql.ast.ASTQueryTranslatorFactory
+21:27:44,056 INFO  [ASTQueryTranslatorFactory] Using ASTQueryTranslatorFactory
+21:27:44,057 INFO  [SettingsFactory] Query language substitutions: {}
+21:27:44,057 INFO  [SettingsFactory] JPA-QL strict compliance: disabled
+21:27:44,057 INFO  [SettingsFactory] Second-level cache: enabled
+21:27:44,057 INFO  [SettingsFactory] Query cache: disabled
+21:27:44,057 INFO  [SettingsFactory] Cache region factory : org.hibernate.cache.impl.NoCachingRegionFactory
+21:27:44,058 INFO  [SettingsFactory] Optimize cache for minimal puts: disabled
+21:27:44,059 INFO  [SettingsFactory] Structured second-level cache entries: disabled
+21:27:44,063 INFO  [SettingsFactory] Statistics: disabled
+21:27:44,064 INFO  [SettingsFactory] Deleted entity synthetic identifier rollback: disabled
+21:27:44,064 INFO  [SettingsFactory] Default entity-mode: pojo
+21:27:44,064 INFO  [SettingsFactory] Named query checking : enabled
+21:27:44,064 INFO  [SettingsFactory] Check Nullability in Core (should be disabled when Bean Validation is on): enabled
+21:27:44,080 INFO  [SessionFactoryImpl] building session factory
+21:27:44,087 INFO  [BasicTypeRegistry] Type registration [wrapper_characters_clob] overrides previous : org.hibernate.type.CharacterArrayClobType@6d167f58
+21:27:44,087 INFO  [BasicTypeRegistry] Type registration [clob] overrides previous : org.hibernate.type.ClobType@3403e2ac
+21:27:44,087 INFO  [BasicTypeRegistry] Type registration [java.sql.Clob] overrides previous : org.hibernate.type.ClobType@3403e2ac
+21:27:44,088 INFO  [BasicTypeRegistry] Type registration [characters_clob] overrides previous : org.hibernate.type.PrimitiveCharacterArrayClobType@65b104b9
+21:27:44,088 INFO  [BasicTypeRegistry] Type registration [wrapper_materialized_blob] overrides previous : org.hibernate.type.WrappedMaterializedBlobType@6c4980d3
+21:27:44,088 INFO  [BasicTypeRegistry] Type registration [materialized_blob] overrides previous : org.hibernate.type.MaterializedBlobType@327bcebd
+21:27:44,088 INFO  [BasicTypeRegistry] Type registration [blob] overrides previous : org.hibernate.type.BlobType@19c65cdc
+21:27:44,088 INFO  [BasicTypeRegistry] Type registration [java.sql.Blob] overrides previous : org.hibernate.type.BlobType@19c65cdc
+21:27:44,088 INFO  [BasicTypeRegistry] Type registration [materialized_clob] overrides previous : org.hibernate.type.MaterializedClobType@74bf1791
+21:27:44,302 INFO  [SessionFactoryObjectFactory] Not binding factory to JNDI, no JNDI name configured
+21:27:44,307 INFO  [SchemaUpdate] Running hbm2ddl schema update
+21:27:44,307 INFO  [SchemaUpdate] fetching database metadata
+21:27:44,310 INFO  [SchemaUpdate] updating schema
+21:27:44,348 INFO  [TableMetadata] table found: armada.container
+21:27:44,349 INFO  [TableMetadata] columns: [container_unique_id, cadvisor_url, name, id, timestamp]
+21:27:44,349 INFO  [TableMetadata] foreign keys: []
+21:27:44,349 INFO  [TableMetadata] indexes: [container_unique_id, primary]
+21:27:44,363 INFO  [TableMetadata] table found: armada.container_log
+21:27:44,364 INFO  [TableMetadata] columns: [mem_used, cpu_used, disk_used, disk_total, id, cpu_total, mem_total, container_id, timestamp]
+21:27:44,364 INFO  [TableMetadata] foreign keys: [fk_container_to_log]
+21:27:44,364 INFO  [TableMetadata] indexes: [fk_container_to_log, primary]
+21:27:44,380 INFO  [TableMetadata] table found: armada.preferences
+21:27:44,381 INFO  [TableMetadata] columns: [pref_value, id, pref_name]
+21:27:44,381 INFO  [TableMetadata] foreign keys: []
+21:27:44,381 INFO  [TableMetadata] indexes: [pref_name, primary]
+21:27:44,382 INFO  [SchemaUpdate] schema update complete
+21:27:44,611 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/containers/] onto handler 'containerRestfulController'
+21:27:44,612 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/containers/{id}] onto handler 'containerRestfulController'
+21:27:44,612 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/containers/{id}.*] onto handler 'containerRestfulController'
+21:27:44,612 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/containers/{id}/] onto handler 'containerRestfulController'
+21:27:44,613 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/logs/{containerId}] onto handler 'logRestfulController'
+21:27:44,613 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/logs/{containerId}.*] onto handler 'logRestfulController'
+21:27:44,613 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/logs/{containerId}/] onto handler 'logRestfulController'
+21:27:44,614 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/metrics/thresholdStats/{hours}] onto handler 'metricRestfulController'
+21:27:44,614 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/metrics/thresholdStats/{hours}.*] onto handler 'metricRestfulController'
+21:27:44,614 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/metrics/thresholdStats/{hours}/] onto handler 'metricRestfulController'
+21:27:44,614 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/metrics/containerCounts/{hours}] onto handler 'metricRestfulController'
+21:27:44,615 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/metrics/containerCounts/{hours}.*] onto handler 'metricRestfulController'
+21:27:44,615 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/metrics/containerCounts/{hours}/] onto handler 'metricRestfulController'
+21:27:44,616 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/preferences/setAll] onto handler 'preferenceRestfulController'
+21:27:44,616 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/preferences/setAll.*] onto handler 'preferenceRestfulController'
+21:27:44,616 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/preferences/setAll/] onto handler 'preferenceRestfulController'
+21:27:44,616 INFO  [DefaultAnnotationHandlerMapping] Mapped URL path [/preferences/] onto handler 'preferenceRestfulController'
+21:27:45,114 INFO  [HibernateTransactionManager] Using DataSource [com.mchange.v2.c3p0.ComboPooledDataSource [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, dataSourceName -> 1hge138984pe9dm1ealmoi|17f7cd29, debugUnreturnedConnectionStackTraces -> false, description -> null, driverClass -> com.mysql.jdbc.Driver, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, identityToken -> 1hge138984pe9dm1ealmoi|17f7cd29, idleConnectionTestPeriod -> 0, initialPoolSize -> 3, jdbcUrl -> jdbc:mysql://127.0.0.1:3306/armada, lastAcquisitionFailureDefaultUser -> null, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 6, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 3, numHelperThreads -> 3, numThreadsAwaitingCheckoutDefaultUser -> 0, preferredTestQuery -> null, properties -> {user=******, password=******}, propertyCycle -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, usesTraditionalReflectiveProxies -> false ]] of Hibernate SessionFactory for HibernateTransactionManager
+21:27:45,231 INFO  [SimpleUrlHandlerMapping] Mapped URL path [/ArmadaService] onto handler 'httpArmadaService'
+21:27:45,273 INFO  [ThreadPoolTaskScheduler] Initializing ExecutorService  'scheduler'
+21:27:45,321 INFO  [DataCleanupTask] -- Cleaning up data older than 48h.
+21:27:45,469 INFO  [DispatcherServlet] FrameworkServlet 'org.springframework.web.servlet.DispatcherServlet-7cf10a6f': initialization completed in 3820 ms
+21:27:45,480 INFO  [ContextHandler] Started o.e.j.w.WebAppContext@ce5a68e{/,file:/Volumes/Macbook%20Pro%20Secondary/ptrzyna/Development/workspace/armada/target/classes/assets/,AVAILABLE}
+21:27:45,544 INFO  [ServerConnector] Started ServerConnector@332a7fce{HTTP/1.1}{0.0.0.0:8083}
+21:27:45,545 INFO  [Server] Started @4826ms
+21:27:53,364 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:27:53.33
+21:27:53,398 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:27:53.377
+21:27:53,429 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:27:53.409
+21:27:53,454 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:27:53.438
+21:27:53,486 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:27:53.466
+21:27:53,515 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:27:53.496
+21:27:53,545 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:27:53.527
+21:27:53,574 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:27:53.554
+21:27:53,609 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:27:53.588
+21:27:53,636 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:27:53.618
+21:27:53,666 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:27:53.645
+21:27:53,697 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:27:53.675
+21:27:53,726 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:27:53.705
+21:28:04,230 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:28:04.22
+21:28:04,248 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:28:04.238
+21:28:04,267 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:28:04.256
+21:28:04,290 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:28:04.275
+21:28:04,313 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:28:04.299
+21:28:04,333 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:28:04.321
+21:28:04,353 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:28:04.341
+21:28:04,375 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:28:04.362
+21:28:04,398 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:28:04.382
+21:28:04,419 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:28:04.405
+21:28:04,443 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:28:04.426
+21:28:04,463 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:28:04.452
+21:28:04,480 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:28:04.469
+21:28:15,042 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:28:15.032
+21:28:15,061 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:28:15.051
+21:28:15,076 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:28:15.068
+21:28:15,090 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:28:15.082
+21:28:15,104 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:28:15.096
+21:28:15,120 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:28:15.111
+21:28:15,134 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:28:15.125
+21:28:15,151 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:28:15.14
+21:28:15,166 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:28:15.155
+21:28:15,180 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:28:15.171
+21:28:15,195 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:28:15.186
+21:28:15,210 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:28:15.2
+21:28:15,225 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:28:15.216
+21:28:25,753 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:28:25.74
+21:28:25,774 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:28:25.764
+21:28:25,793 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:28:25.782
+21:28:25,812 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:28:25.801
+21:28:25,857 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:28:25.828
+21:28:25,879 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:28:25.865
+21:28:25,904 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:28:25.887
+21:28:25,923 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:28:25.913
+21:28:25,952 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:28:25.936
+21:28:25,971 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:28:25.959
+21:28:25,992 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:28:25.98
+21:28:26,028 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:28:26.004
+21:28:26,082 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:28:26.068
+21:28:27,076 WARN  [PageNotFound] No mapping found for HTTP request with URI [/preferences/setAll/preferences/setAll] in DispatcherServlet with name 'org.springframework.web.servlet.DispatcherServlet-7cf10a6f'
+21:28:36,612 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:28:36.602
+21:28:36,628 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:28:36.618
+21:28:36,643 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:28:36.633
+21:28:36,657 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:28:36.649
+21:28:36,685 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:28:36.664
+21:28:36,702 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:28:36.692
+21:28:36,719 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:28:36.706
+21:28:36,746 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:28:36.732
+21:28:36,791 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:28:36.768
+21:28:36,814 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:28:36.802
+21:28:36,839 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:28:36.825
+21:28:36,858 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:28:36.848
+21:28:36,885 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:28:36.873
+21:28:47,344 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:28:47.337
+21:28:47,356 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:28:47.35
+21:28:47,367 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:28:47.361
+21:28:47,377 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:28:47.371
+21:28:47,388 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:28:47.382
+21:28:47,400 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:28:47.393
+21:28:47,414 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:28:47.405
+21:28:47,425 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:28:47.419
+21:28:47,437 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:28:47.429
+21:28:47,452 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:28:47.442
+21:28:47,465 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:28:47.458
+21:28:47,478 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:28:47.47
+21:28:47,492 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:28:47.484
+21:28:58,058 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:28:58.05
+21:28:58,070 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:28:58.063
+21:28:58,082 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:28:58.075
+21:28:58,092 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:28:58.086
+21:28:58,104 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:28:58.097
+21:28:58,116 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:28:58.108
+21:28:58,128 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:28:58.12
+21:28:58,140 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:28:58.134
+21:28:58,156 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:28:58.147
+21:28:58,171 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:28:58.16
+21:28:58,185 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:28:58.176
+21:28:58,199 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:28:58.189
+21:28:58,211 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:28:58.204
+21:29:08,682 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:29:08.676
+21:29:08,696 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:29:08.689
+21:29:08,710 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:29:08.7
+21:29:08,734 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:29:08.72
+21:29:08,756 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:29:08.745
+21:29:08,772 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:29:08.763
+21:29:08,790 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:29:08.779
+21:29:08,803 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:29:08.795
+21:29:08,817 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:29:08.809
+21:29:08,845 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:29:08.828
+21:29:08,864 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:29:08.852
+21:29:08,881 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:29:08.871
+21:29:08,894 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:29:08.886
+21:29:15,245 WARN  [PageNotFound] No mapping found for HTTP request with URI [/preferences/setAll/preferences/setAll] in DispatcherServlet with name 'org.springframework.web.servlet.DispatcherServlet-7cf10a6f'
+21:29:19,401 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:29:19.391
+21:29:19,418 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:29:19.407
+21:29:19,434 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:29:19.424
+21:29:19,451 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:29:19.441
+21:29:19,481 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:29:19.465
+21:29:19,500 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:29:19.488
+21:29:19,515 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:29:19.505
+21:29:19,536 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:29:19.526
+21:29:19,557 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:29:19.546
+21:29:19,575 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:29:19.564
+21:29:19,591 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:29:19.58
+21:29:19,610 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:29:19.596
+21:29:19,627 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:29:19.616
+21:29:23,028 WARN  [PageNotFound] No mapping found for HTTP request with URI [/preferences/setAll/preferences/setAll] in DispatcherServlet with name 'org.springframework.web.servlet.DispatcherServlet-7cf10a6f'
+21:29:30,207 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:29:30.199
+21:29:30,223 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:29:30.216
+21:29:30,262 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:29:30.231
+21:29:30,275 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:29:30.267
+21:29:30,290 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:29:30.283
+21:29:30,309 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:29:30.298
+21:29:30,326 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:29:30.316
+21:29:30,342 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:29:30.334
+21:29:30,367 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:29:30.351
+21:29:30,381 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:29:30.372
+21:29:30,398 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:29:30.388
+21:29:30,419 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:29:30.408
+21:29:30,433 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:29:30.425
+21:29:33,666 WARN  [PageNotFound] No mapping found for HTTP request with URI [/preferences/setAll/preferences/setAll] in DispatcherServlet with name 'org.springframework.web.servlet.DispatcherServlet-7cf10a6f'
+21:29:41,036 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:29:41.03
+21:29:41,049 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:29:41.042
+21:29:41,062 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:29:41.054
+21:29:41,073 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:29:41.066
+21:29:41,085 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:29:41.078
+21:29:41,102 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:29:41.091
+21:29:41,120 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:29:41.11
+21:29:41,135 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:29:41.126
+21:29:41,149 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:29:41.141
+21:29:41,160 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:29:41.153
+21:29:41,173 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:29:41.164
+21:29:41,191 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:29:41.18
+21:29:41,208 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:29:41.199
+21:29:50,498 WARN  [PageNotFound] No mapping found for HTTP request with URI [/preferences/setAll/preferences/setAll] in DispatcherServlet with name 'org.springframework.web.servlet.DispatcherServlet-7cf10a6f'
+21:29:51,729 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:29:51.719
+21:29:51,748 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:29:51.734
+21:29:51,766 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:29:51.754
+21:29:51,781 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:29:51.771
+21:29:51,793 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:29:51.785
+21:29:51,805 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:29:51.797
+21:29:51,817 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:29:51.81
+21:29:51,830 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:29:51.822
+21:29:51,841 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:29:51.834
+21:29:51,852 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:29:51.845
+21:29:51,864 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:29:51.856
+21:29:51,877 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:29:51.869
+21:29:51,889 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:29:51.882
+21:30:02,407 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:30:02.401
+21:30:02,417 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:30:02.411
+21:30:02,428 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:30:02.421
+21:30:02,437 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:30:02.432
+21:30:02,447 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:30:02.441
+21:30:02,457 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:30:02.451
+21:30:02,471 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:30:02.462
+21:30:02,482 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:30:02.476
+21:30:02,493 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:30:02.486
+21:30:02,504 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:30:02.497
+21:30:02,516 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:30:02.508
+21:30:02,526 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:30:02.519
+21:30:02,539 INFO  [ArmadaServiceImpl] -- Inserting new logs with timestamp 2015-03-12 21:30:02.531
